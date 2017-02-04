@@ -1,0 +1,39 @@
+/*统配样式*/
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,img{border:medium none;margin: 0;padding: 0;}
+body,button,input,select,textarea{font: 12px/1.5 'Simsun',tahoma,Srial,helvetica,sans-serif;}
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+}
+body {
+    background-image: url("../img/bg.jpg");
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    width: 100%;
+    height: 1000px;
+}
+
+h1,h2,h3,h4,h5,h6{font-size: 100%;}
+div{zoom: 1;}
+em{font-style:normal;}
+ul,ol{list-style: none;}
+a{text-decoration: none;}
+a:hover{text-decoration: none;}
+fieldset,img { border: medium none; vertical-align: middle;}
+/*a:hover{ }*/
+li:not(.tab):hover{ -moz-transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in; -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;}
+img:hover{ -moz-transition: all 0.3s ease-in; -webkit-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in; transition: all 0.3s ease-in;}
+.clearfix{clear: both;}
+.fl{float:left;}
+.fr{float:right;}
+.hide{display:none}
+body{
+    font-family: "微软雅黑";font-size: 62.5%;}
+
+/*滚动条样式*/
+::-webkit-scrollbar {    width: 10px;}
+/* 滚动槽 */
+::-webkit-scrollbar-track {    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);    border-radius: 10px;}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {    border-radius: 10px;    background: rgba(0,0,0,0.1);    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);}::-webkit-scrollbar-thumb:window-inactive {    background: rgba(255,0,0,0.4);}

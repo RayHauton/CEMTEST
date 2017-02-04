@@ -1,0 +1,80 @@
+/*idnex css*/
+@media screen and (min-width:1200px) {
+	/*index head*/
+	.box{width: 1200px;margin: 0 auto;}
+	.head{text-align: center;margin-top: 10px;overflow: hidden;position: relative;}
+	.head div{float: left;}
+	.logo img{width: 50px;height: 50px;border-radius: 50%;}
+	.nav{height: 50px;line-height: 50px;margin-left: 10px;}
+	#nav-btn{display: none;}
+	.nav li{width: 148px;height: 48px;float: left;border:1px solid purple;border-radius: 24px;}
+	.nav li:hover,.login a:hover{background-color: yellow;color: #000;}
+	.nav li a{display: block;color: #000;font-size: 18px;}
+	.login{position: absolute;top: 0;right: 0;}
+	.login a{display: block;width: 78px;height: 48px;line-height: 50px;color: #fff;font-size: 18px;border:1px solid #f60;border-radius: 24px;}
+	.container{height: 800px;position: relative;margin: 10px auto;}
+	#iframe{width: 100%;height: 100%;border-radius: 100px;}
+	.foot{width: 100%;height: 180px;
+		position: relative;}
+	.link{width: 100%;line-height: 36px;padding-bottom: 10px;}
+	.link span,.share span{width: 80px;font-size: 16px;line-height: 36px;}
+	.link a{display: inline-block;width: 100px;color: #fff;font-size: 14px;}
+	.link-a{width: calc(100% - 80px);display: inline;}
+	.share{text-align: left;width: 60%;position: relative;}
+	.share ul{position: absolute;top: 0;left: 80px;}
+	.share li{line-height: 36px;color: #fff;font-size: 14px;}
+	.information{width: 100%;text-align: center;padding-bottom: 10px;position: absolute;left: 50%;margin-left: -600px;bottom: 0px;}
+	
+ 
+}
+@media screen and (max-width:1199px) and (min-width:760px) {
+	.box{width: 80%;margin: 0 auto;}
+	.head{text-align: center;margin-top: 10px;overflow: hidden;}
+	.head div{float: left;}
+	.logo img{width: 50px;height: 50px;border-radius: 50%;}
+	.nav{width: calc(100% - 110px);height: 50px;line-height: 50px;margin-left: 10px;}
+	#nav-btn{display: none;}
+	.nav li{width: calc(16% - 2px);height: 48px;float: left;border:1px solid purple;border-radius: 24px;}
+	.nav li:hover,.login a:hover{background-color: yellow;color: #000;}
+	.nav li a{display: block;color: #000;font-size: 16px;}
+	.login a{display: block;width: 48px;height: 48px;line-height: 50px;float: left;color: #fff;font-size: 14px;border:1px solid #f60;border-radius: 24px;}
+	.container{height: 600px;position: relative;margin: 10px auto;}
+	.bg-box{width: 100%;height: 600px;top: 70px;background: rgba(255,255,255,0.3);position: absolute;left: 0;z-index: -1;}
+	#iframe{width: 100%;height: 100%;}
+	.foot{width: 100%;position: relative;height: 180px;}
+	.link{width: 100%;line-height: 36px;}
+	.link span,.share span{width: 80px;font-size: 16px;line-height: 36px;}
+	.link-a{width: calc(100% - 80px);display: inline;}
+	.link a{display: inline-block;width: 100px;color: #fff;font-size: 14px;}
+	.share{width: 60%;position: relative;height: 108px;}
+	.share ul{position: absolute;top: 0;left: 80px;}
+	.share li{line-height: 36px;color: #fff;font-size: 14px;}
+	.information{width: 100%;padding-bottom: 10px;text-align: center;}
+}
+@media screen and (max-width: 760px) {
+ 	.box{width: 80%;margin: 0 auto;}
+	.head{text-align: center;margin-top: 10px;overflow: hidden;}
+	.head div{float: left;}
+	.logo img{width: 50px;height: 50px;border-radius: 50%;}
+	.nav{width: calc(100% - 110px);height: 100%;line-height: 36px;margin-left: 10px;}
+	#nav-list{display: none;}
+	#nav-btn{width: 50px;height: 50px;padding: 5px;border-radius: 50%;font-size: 16px;cursor: pointer;outline: none;}
+	#nav-btn:hover{background-color: yellow;}
+	.nav li{width: 100%;height: 36px;}
+	.nav li:hover,.login a:hover{background-color: yellow;color: #000;}
+	.nav li a{display: block;color: #000;font-size: 16px;}
+	.subnav{display: none;}
+	.login a{display: block;width: 48px;height: 48px;line-height: 50px;float: left;color: #fff;font-size: 14px;border-radius: 50%;border:1px solid #f60;}
+	.container{height: 600px;position: relative;margin: 10px auto;}
+	.bg-box{width: 100%;height: 600px;top: 70px;background: rgba(255,255,255,0.3);position: absolute;left: 0;z-index: -1;}
+	#iframe{width: 100%;height: 100%;}
+	.foot{width: 100%;position: relative;height: 180px;}
+	.link{width: 100%;line-height: 36px;overflow: hidden;}
+	.link-a{width: calc(100% - 80px);display: block;float: right;}
+	.link span,.share span{width: 80px;font-size: 16px;line-height: 36px;}
+	.link a{display: inline-block;width: 100px;color: #fff;font-size: 14px;}
+	.share{width: 100%;position: relative;height: 108px;}
+	.share ul{width: calc(100% - 80px);position: absolute;top: 0;left: 80px;}
+	.share li{line-height: 36px;color: #fff;font-size: 14px;}
+	.information{width: 100%;padding-bottom: 10px;text-align: center;}
+ }

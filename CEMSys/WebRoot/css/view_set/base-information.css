@@ -1,0 +1,75 @@
+/**/
+.box{width: 100%;margin: 20px auto;position: relative;}
+@media screen and (min-width:761px) {
+	.subnav {
+		width: 180px;
+		height: 100%;
+		position: absolute;
+		top: 20px;
+		left: 0;
+		padding: 0 10px;
+		border-right:2px solid dodgerblue;
+		background-color: #00A761;
+	}
+
+	.subnav li {
+		display: block;
+		padding: 5px;
+		color: #1f7965;
+		font-size: 14px;
+		font-family:微软雅黑;
+	}
+
+	.subnav li:hover{color: #000;background-color: #acf45b;}
+	.on{background-color: #fff;color: #000!important;}
+	#majorName label{display: inline-block;}
+	#majorName p{display: none;}
+	#majorP{display: none;}
+	#content>div{display: none;}
+	#content{position: absolute;top: 20px;left: 200px;}
+	#content h2{font-size: 18px;margin-bottom: 20px;}
+	#content p{font-size: 14px;margin: 10px 5px;}
+	#content input {
+		outline: none;
+		padding: 2px;
+		margin: 5px 5px;
+		font-size: 14px;
+		border:1px solid #dddddd;
+		border-radius:4px;
+	}
+
+	#content input[type="text"]{text-indent: 1em;}
+	.income,.reason{text-indent: 3em;font-size: 14px;}
+	.btncus {
+		width: 200px;
+		height:30px;
+		margin: 10px 0px;
+		/*background-color: #00A761;*/
+	}
+
+	.btncus input {
+		width: 80px;
+		height: 30px;
+		/*background-color: yellow;*/
+		font-size: 16px;
+		font-family: 微软雅黑;
+	}
+}
+@media screen and (max-width: 760px) {
+	.subnav{width: 180px;height: 100%;padding: 0 10px;text-align: center;margin: 0 auto;}
+	.subnav li{display: block;padding: 5px;color: #fff;font-size: 14px;cursor:pointer;}
+	.subnav li:hover{color: #000;background-color: yellow; }
+	.on{background-color: #fff;color: #000!important;}
+	#majorName input{display: block;float: left;}
+	#majorName p{display: none;}
+	#majorP{display: none;}
+	#content>div{display: none;}
+	#content{width: 80%;margin: 20px auto;}
+	#content h2{font-size: 18px;margin-bottom: 20px;}
+	#content p{font-size: 16px;margin: 10px 5px;}
+	#content input{outline: none;padding: 2px;margin: 0 5px;font-size: 14px;}
+	#content input[type="text"]{text-indent: 1em;}
+	.income,.reason{text-indent: 3em;font-size: 14px;}
+	.btn{width: 60%;margin: 50px auto;}
+	.btn input{width: 50px;height: 24px;background-color: yellow;font-size: 16px;} 
+ }
