@@ -8,7 +8,7 @@
     <class name="com.cem.pojo.User" table="user" catalog="cemsys">
         <id name="userId" type="java.lang.Integer">
             <column name="userId" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="20" not-null="true" />
