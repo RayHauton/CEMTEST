@@ -11,51 +11,51 @@
             <generator class="native" />
         </id>
         <property name="username" type="java.lang.String">
-            <column name="username" length="20" not-null="true" />
+            <column name="username" length="20"/>
         </property>
         <property name="truename" type="java.lang.String">
-            <column name="truename" length="30" not-null="true" />
+            <column name="truename" length="30"/>
         </property>
         <property name="password" type="java.lang.String">
-            <column name="password" length="50" not-null="true" />
+            <column name="password" length="50"/>
         </property>
         <property name="sex" type="java.lang.String">
-            <column name="sex" length="1" not-null="true" />
+            <column name="sex" length="1" />
         </property>
         <property name="studNumber" type="java.lang.String">
-            <column name="studNumber" length="12" not-null="true" />
+            <column name="studNumber" length="12" />
         </property>
         <property name="birth" type="java.lang.String">
-            <column name="birth" length="10" not-null="true">
+            <column name="birth" length="10" >
                 <comment>出生日期</comment>
             </column>
         </property>
         <property name="mobile" type="java.lang.String">
-            <column name="mobile" length="11" not-null="true" />
+            <column name="mobile" length="11" />
         </property>
         <property name="email" type="java.lang.String">
-            <column name="email" length="50" not-null="true" />
+            <column name="email" length="50" />
         </property>
         <property name="address" type="java.lang.String">
-            <column name="address" length="100" not-null="true" />
+            <column name="address" length="100" />
         </property>
         <property name="entranceDate" type="java.lang.String">
-            <column name="entranceDate" length="10" not-null="true">
+            <column name="entranceDate" length="10">
                 <comment>入学年份</comment>
             </column>
         </property>
         <property name="graduateDate" type="java.lang.String">
-            <column name="graduateDate" length="10" not-null="true">
+            <column name="graduateDate" length="10" >
                 <comment>毕业年份</comment>
             </column>
         </property>
         <property name="schoolExperienceId" type="java.lang.String">
-            <column name="schoolExperienceId" length="5" not-null="true">
+            <column name="schoolExperienceId" length="5">
                 <comment>专业</comment>
             </column>
         </property>
         <property name="checkOut" type="java.lang.String">
-            <column name="checkOut" length="1" not-null="true" />
+            <column name="checkOut" length="1"/>
         </property>
         <property name="bbsrank" type="java.lang.String">
             <column name="BBSRank" length="5">
@@ -68,7 +68,7 @@
             </column>
         </property>
         <property name="isDeleted" type="java.lang.String">
-            <column name="isDeleted" length="1" not-null="true" />
+            <column name="isDeleted" length="1"/>
         </property>
     </class>
 </hibernate-mapping>

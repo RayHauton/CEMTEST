@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
 </head>
 <body>
+<!-- 保存url前缀 -->
+<input type="hidden" value="${pageContext.request.contextPath }" id="urlPrefix"/>
 <div class="topSection">
     <div class="log">
         <img src="../img/cemLog.png"/>
@@ -31,9 +33,10 @@
         <div class="formSection1">
             <div class="input-group" style="margin-top: 10px;">
                 <div class="input-group-addon">用户名</div>
-                <input type="text" name="userId" class="form-control ">
+                <input type="text" name="userId" class="form-control " id="username"
+                 onblur="checkUnique('username','username','checkUsername');"/>
             </div>
-            <div class="warning">
+            <div class="warning" id="checkUsername">
 
             </div>
             <div class="input-group">
@@ -59,16 +62,18 @@
             </div>
             <div class="input-group">
                 <div class="input-group-addon">手&nbsp;&nbsp;&nbsp;&nbsp;机</div>
-                <input type="text" name="mobile" class="form-control">
+                <input type="text" name="mobile" class="form-control" id="mobile"
+                onblur="checkUnique('mobile','mobile','checkMobile');"/>
             </div>
-            <div class="warning">
+            <div class="warning" id="checkMobile">
 
             </div>
             <div class="input-group">
                 <div class="input-group-addon">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</div>
-                <input type="text" name="email" class="form-control ">
+                <input type="text" name="email" class="form-control " id="email"
+                onblur="checkUnique('email','email','checkEmail');">
             </div>
-            <div class="warning">
+            <div class="warning" id="checkEmail">
 
             </div>
             <%--<div class="validationInfo">--%>
@@ -94,9 +99,10 @@
             </div>
             <div class="input-group">
                 <div class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;号</div>
-                <input type="text" name="studNumber" class="form-control" placeholder="选填">
+                <input type="text" name="studNumber" class="form-control" placeholder="选填" id="studNum"
+                 onblur="checkUnique('studNum','studNum','checkStudNum');"/>
             </div>
-            <div class="warning">
+            <div class="warning" id="checkStudNum">
 
             </div>
             <div class="input-group">
@@ -134,7 +140,7 @@
 
             </div>
             <div class="input-group">
-                <button type="button" value="" class="btn btn-success btn-set">提交</button>
+                <button type="button" value="" class="btn btn-success btn-set" onclick="checkFormIfCouldSubmit();">提交</button>
             </div>
             <div class="warning">
 
@@ -148,4 +154,10 @@
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/registerController/registerCheck.js"></script>
+<script type="text/javascript">
+	function test() {
+		alert("succ");
+	}
+</script>
 </html>
