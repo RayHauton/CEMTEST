@@ -8,10 +8,6 @@ public class User implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4173699195242720918L;
 	private Integer userId;
 	private String username;
 	private String truename;
@@ -20,12 +16,11 @@ public class User implements java.io.Serializable {
 	private String studNumber;
 	private String birth;
 	private String mobile;
-	private String mail;
+	private String email;
 	private String address;
 	private String entranceDate;
 	private String graduateDate;
-	private String education;
-	private String schoolExperience;
+	private String schoolExperienceId;
 	private String checkOut;
 	private String bbsrank;
 	private String role;
@@ -38,16 +33,11 @@ public class User implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public User(Integer userId) {
-		this.userId = userId;
-	}
-
-	/** full constructor */
 	public User(Integer userId, String username, String truename,
 			String password, String sex, String studNumber, String birth,
-			String mobile, String mail, String address, String entranceDate,
-			String graduateDate, String education, String schoolExperience,
-			String checkOut, String bbsrank, String role, String isDeleted) {
+			String mobile, String email, String address, String entranceDate,
+			String graduateDate, String schoolExperienceId, String checkOut,
+			String isDeleted) {
 		this.userId = userId;
 		this.username = username;
 		this.truename = truename;
@@ -56,12 +46,34 @@ public class User implements java.io.Serializable {
 		this.studNumber = studNumber;
 		this.birth = birth;
 		this.mobile = mobile;
-		this.mail = mail;
+		this.email = email;
 		this.address = address;
 		this.entranceDate = entranceDate;
 		this.graduateDate = graduateDate;
-		this.education = education;
-		this.schoolExperience = schoolExperience;
+		this.schoolExperienceId = schoolExperienceId;
+		this.checkOut = checkOut;
+		this.isDeleted = isDeleted;
+	}
+
+	/** full constructor */
+	public User(Integer userId, String username, String truename,
+			String password, String sex, String studNumber, String birth,
+			String mobile, String email, String address, String entranceDate,
+			String graduateDate, String schoolExperienceId, String checkOut,
+			String bbsrank, String role, String isDeleted) {
+		this.userId = userId;
+		this.username = username;
+		this.truename = truename;
+		this.password = password;
+		this.sex = sex;
+		this.studNumber = studNumber;
+		this.birth = birth;
+		this.mobile = mobile;
+		this.email = email;
+		this.address = address;
+		this.entranceDate = entranceDate;
+		this.graduateDate = graduateDate;
+		this.schoolExperienceId = schoolExperienceId;
 		this.checkOut = checkOut;
 		this.bbsrank = bbsrank;
 		this.role = role;
@@ -134,12 +146,12 @@ public class User implements java.io.Serializable {
 		this.mobile = mobile;
 	}
 
-	public String getMail() {
-		return this.mail;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {
@@ -166,20 +178,12 @@ public class User implements java.io.Serializable {
 		this.graduateDate = graduateDate;
 	}
 
-	public String getEducation() {
-		return this.education;
+	public String getSchoolExperienceId() {
+		return this.schoolExperienceId;
 	}
 
-	public void setEducation(String education) {
-		this.education = education;
-	}
-
-	public String getSchoolExperience() {
-		return this.schoolExperience;
-	}
-
-	public void setSchoolExperience(String schoolExperience) {
-		this.schoolExperience = schoolExperience;
+	public void setSchoolExperienceId(String schoolExperienceId) {
+		this.schoolExperienceId = schoolExperienceId;
 	}
 
 	public String getCheckOut() {

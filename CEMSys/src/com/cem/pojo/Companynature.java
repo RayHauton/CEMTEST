@@ -8,10 +8,6 @@ public class Companynature implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4724680096401499835L;
 	private String natureId;
 	private String natureName;
 	private String isDeleted;

@@ -16,10 +16,10 @@ public class GetConnection {
     @Test
     public void testFindUserById() throws Exception {
         UserDao userDao = new UserDaoImpl();
-        User user = userDao.findUserByStudNum("091401323");
+        User user = userDao.findUserByStudNum("091401323",false);
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());
-        System.out.println(user.getMail());
+        System.out.println(user.getEmail());
     }
     @Test
     public void testCoonection() {

@@ -8,10 +8,6 @@ public class Donation implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2241221741553740228L;
 	private String donationId;
 	private String publishUser;
 	private String donationProject;

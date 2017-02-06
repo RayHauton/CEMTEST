@@ -8,13 +8,9 @@ public class Schoolexperience implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4701417665422963227L;
-	private String seid;
-	private String majorName;
-	private String education;
+	private String schooleExperienceId;
+	private String majorId;
+	private String degreeId;
 	private String isDeleted;
 
 	// Constructors
@@ -24,38 +20,38 @@ public class Schoolexperience implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Schoolexperience(String seid, String majorName, String education,
-			String isDeleted) {
-		this.seid = seid;
-		this.majorName = majorName;
-		this.education = education;
+	public Schoolexperience(String schooleExperienceId, String majorId,
+			String degreeId, String isDeleted) {
+		this.schooleExperienceId = schooleExperienceId;
+		this.majorId = majorId;
+		this.degreeId = degreeId;
 		this.isDeleted = isDeleted;
 	}
 
 	// Property accessors
 
-	public String getSeid() {
-		return this.seid;
+	public String getSchooleExperienceId() {
+		return this.schooleExperienceId;
 	}
 
-	public void setSeid(String seid) {
-		this.seid = seid;
+	public void setSchooleExperienceId(String schooleExperienceId) {
+		this.schooleExperienceId = schooleExperienceId;
 	}
 
-	public String getMajorName() {
-		return this.majorName;
+	public String getMajorId() {
+		return this.majorId;
 	}
 
-	public void setMajorName(String majorName) {
-		this.majorName = majorName;
+	public void setMajorId(String majorId) {
+		this.majorId = majorId;
 	}
 
-	public String getEducation() {
-		return this.education;
+	public String getDegreeId() {
+		return this.degreeId;
 	}
 
-	public void setEducation(String education) {
-		this.education = education;
+	public void setDegreeId(String degreeId) {
+		this.degreeId = degreeId;
 	}
 
 	public String getIsDeleted() {

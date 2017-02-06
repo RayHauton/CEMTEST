@@ -8,10 +8,6 @@ public class Reply implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2910354075122604764L;
 	private Long replyId;
 	private String replyText;
 	private String publishUser;

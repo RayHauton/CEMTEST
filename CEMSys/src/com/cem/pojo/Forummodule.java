@@ -8,10 +8,6 @@ public class Forummodule implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6632736163697896721L;
 	private String forumModuleId;
 	private String forumModuleName;
 	private Long forumCount;

@@ -43,16 +43,16 @@ public class LoginController {
             User user;
             if (checkMethod.equals("phone")) {
                 //手机号登录
-                user = userService.findUserByMobile(loginMethod);
+                user = userService.findUserByMobile(loginMethod,false);
             } else if (checkMethod.equals("email")) {
                 //邮箱登录
-                user = userService.finduserByEmail(loginMethod);
+                user = userService.finduserByEmail(loginMethod,false);
             } else if (checkMethod.equals("studNum")) {
                 //学号登录
-                user = userService.findUserByStudNum(loginMethod);
+                user = userService.findUserByStudNum(loginMethod,false);
             } else {
                 //用户名登录
-                user = userService.findUserByUsername(loginMethod);
+                user = userService.findUserByUsername(loginMethod,false);
             }
             /*
             校验密码

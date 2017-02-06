@@ -8,10 +8,6 @@ public class Transferjobcount implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2682644121708546871L;
 	private String countId;
 	private String countLabel;
 	private String isDeleted;

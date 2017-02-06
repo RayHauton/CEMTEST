@@ -10,12 +10,12 @@
 <html>
 <head>
     <title>Title</title>
+    <!-- 登录拦截器中使用response会有问题，只能使用request进行转发，只能新建一个页面作为中转； -->
     <script type="text/javascript">
         window.onload=function(){
             if('${requestScope.toLogin}'=='toLogin'){
                 if (window.confirm("您尚未登录本系统，是否现在登录？")) {
                     window.open("${pageContext.request.contextPath}/login/login.jsp","_blank");
-//                    window.close();
                 }
             }
         }

@@ -8,10 +8,6 @@ public class Income implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7103228453015368809L;
 	private String incomeId;
 	private String incomeLevel;
 	private String isDeleted;

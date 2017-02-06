@@ -6,15 +6,15 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Schoolexperience" table="schoolexperience" catalog="cemsys">
-        <id name="seid" type="java.lang.String">
-            <column name="SEId" length="5" />
+        <id name="schooleExperienceId" type="java.lang.String">
+            <column name="schooleExperienceId" length="5" />
             <generator class="assigned" />
         </id>
-        <property name="majorName" type="java.lang.String">
-            <column name="majorName" length="30" not-null="true" />
+        <property name="majorId" type="java.lang.String">
+            <column name="majorId" length="5" not-null="true" />
         </property>
-        <property name="education" type="java.lang.String">
-            <column name="education" length="1" not-null="true" />
+        <property name="degreeId" type="java.lang.String">
+            <column name="degreeId" length="5" not-null="true" />
         </property>
         <property name="isDeleted" type="java.lang.String">
             <column name="isDeleted" length="1" not-null="true" />

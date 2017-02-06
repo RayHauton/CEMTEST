@@ -8,10 +8,6 @@ public class Recruitment implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3681891629135499145L;
 	private String recruitmentId;
 	private String userId;
 	private String publishDate;

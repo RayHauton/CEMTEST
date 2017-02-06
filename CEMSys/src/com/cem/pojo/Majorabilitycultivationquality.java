@@ -8,10 +8,6 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1725008843430933304L;
 	private String userId;
 	private Short teacherProfessionalismLevel;
 	private Short teacherTeachingLevel;
