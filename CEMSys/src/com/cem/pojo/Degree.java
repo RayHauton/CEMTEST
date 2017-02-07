@@ -8,6 +8,10 @@ public class Degree implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -495346000204351380L;
 	private String degreeId;
 	private String degreeName;
 	private String isDeleted;

@@ -8,6 +8,10 @@ public class Schoolexperience implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7659375279137904266L;
 	private String schooleExperienceId;
 	private String majorId;
 	private String degreeId;
