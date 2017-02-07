@@ -10,16 +10,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cem.pojo.User;
+import com.cem.service.SchoolExperienceService;
 import com.cem.service.UserService;
+import com.cem.util.JsonUtil;
 
 @Controller
 public class RegisterController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private SchoolExperienceService schoolExperienceService;
 
 	@RequestMapping("/register")
 	public void register(User user) throws Exception {
 
+	}
+
+	/*
+	 * 根据用户选择的学位水平进行专业的筛选
+	 */
+	@RequestMapping(value = "/chooseMajor")
+	public void chooseMajor(String degreeId, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("utf-8");
+		PrintWriter writer = response.getWriter();
+		writer.write(JsonUtil.generatorJsonForMajors(schoolExperienceService.findMajorsByDegreeId(degreeId)));
+		writer.flush();
+		writer.close();
 	}
 
 	/*
@@ -42,18 +58,18 @@ public class RegisterController {
 				if (user != null) {// 道理同用户名
 					writer.write("mobileExist");
 				}
-			}else if(check.equals("email")){//邮箱
+			} else if (check.equals("email")) {// 邮箱
 				user = userService.finduserByEmail(checkValue, true);
-				if(user!=null){
+				if (user != null) {
 					writer.write("emailExist");
 				}
-			}else if(check.equals("studNum")){
+			} else if (check.equals("studNum")) {
 				user = userService.findUserByStudNum(checkValue, true);
-				if(user!=null){
+				if (user != null) {
 					writer.write("studNumberExist");
 				}
-			}else{
-				//正常注册；
+			} else {
+				// 正常注册；
 			}
 		}
 	}

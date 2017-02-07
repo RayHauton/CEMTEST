@@ -14,4 +14,9 @@ public interface MajorService {
 	 * 根据id查询专业信息
 	 */
 	public Major findByMajorId(String majorId) throws Exception;
+
+	/*
+	 * 根据多个id查询专业信息
+	 */
+	public List<Major> findByMajorIdList(List<String> majorIdList) throws Exception;
 }

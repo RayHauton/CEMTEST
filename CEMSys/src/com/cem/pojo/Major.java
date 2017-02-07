@@ -8,6 +8,10 @@ public class Major implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -121642168143242999L;
 	private String majorId;
 	private String majorName;
 	private String isDeleted;

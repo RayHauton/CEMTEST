@@ -24,8 +24,12 @@ public class MajorDaoImpl implements MajorDao {
 	@Override
 	public List<Major> findByMajorIdList(List<String> majorIdList) throws Exception {
 		Session session = getSession();
-		String hql = "FROM Major WHERE isDeleted='0' AND majorId IN "+new GenerateHqlSectionUtil().generateHql_IN(majorIdList);
-		return session.createQuery(hql).list();
+		if(majorIdList.size()!=0){//如果有记录的情况
+			String hql = "FROM Major WHERE isDeleted='0' AND majorId IN "+new GenerateHqlSectionUtil().generateHql_IN(majorIdList);
+			return session.createQuery(hql).list();
+		}else{//没有对应记录
+			return null;
+		}
 	}
 
 

@@ -22,7 +22,11 @@ public class Schoolexperience implements java.io.Serializable {
 	/** default constructor */
 	public Schoolexperience() {
 	}
-
+	
+	public Schoolexperience(String majorId){
+		this.majorId=majorId;
+	}
+	
 	/** full constructor */
 	public Schoolexperience(String schooleExperienceId, String majorId,
 			String degreeId, String isDeleted) {

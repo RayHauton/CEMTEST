@@ -8,10 +8,10 @@ var errorSuffix = "</font>";
 /*
  * 表单验证标志
  */
-var username_chk=false;
-var mobile_chk=false;
-var email_chk=false;
-var studNum_chk=false;
+var username_chk = false;
+var mobile_chk = false;
+var email_chk = false;
+var studNum_chk = false;
 function checkUnique(which, elemtId, infoId) {
 	// 获取检查的元素value
 	var checkEle = document.getElementById(elemtId).value;
@@ -22,7 +22,7 @@ function checkUnique(which, elemtId, infoId) {
 		if (firstCheck != '') {
 			document.getElementById(infoId).innerHTML = errorPrefix
 					+ firstCheck + errorSuffix;
-			username_chk=false;
+			username_chk = false;
 			return;
 		}
 		succCallbackFun = function(data) {
@@ -30,11 +30,11 @@ function checkUnique(which, elemtId, infoId) {
 				// 说明用户名已经存在
 				document.getElementById(infoId).innerHTML = errorPrefix
 						+ "用户名已经存在" + errorSuffix;
-				username_chk=false;
+				username_chk = false;
 			} else {
 				document.getElementById(infoId).innerHTML = succPrefix + "√"
 						+ succSuffix;
-				username_chk=true;
+				username_chk = true;
 			}
 		}
 	} else if (which == 'mobile') {
@@ -42,7 +42,7 @@ function checkUnique(which, elemtId, infoId) {
 		if (firstCheck != '') {
 			document.getElementById(infoId).innerHTML = errorPrefix
 					+ firstCheck + errorSuffix;
-			mobile_chk=false;
+			mobile_chk = false;
 			return;
 		}
 		succCallbackFun = function(data) {
@@ -50,11 +50,11 @@ function checkUnique(which, elemtId, infoId) {
 				// 说明使用该手机号的用户已经存在
 				document.getElementById(infoId).innerHTML = errorPrefix
 						+ "该手机号已经注册" + errorSuffix;
-				mobile_chk=false;
+				mobile_chk = false;
 			} else {
 				document.getElementById(infoId).innerHTML = succPrefix + "√"
 						+ succSuffix;
-				mobile_chk=true;
+				mobile_chk = true;
 			}
 		}
 	} else if (which == 'email') {
@@ -62,7 +62,7 @@ function checkUnique(which, elemtId, infoId) {
 		if (firstCheck != '') {
 			document.getElementById(infoId).innerHTML = errorPrefix
 					+ firstCheck + errorSuffix;
-			email_chk=false;
+			email_chk = false;
 			return;
 		}
 		succCallbackFun = function(data) {
@@ -70,27 +70,27 @@ function checkUnique(which, elemtId, infoId) {
 				// 说明该邮箱已经注册
 				document.getElementById(infoId).innerHTML = errorPrefix
 						+ "该邮箱已经注册" + errorSuffix;
-				email_chk=false;
+				email_chk = false;
 			} else {
 				document.getElementById(infoId).innerHTML = succPrefix + "√"
 						+ succSuffix;
-				email_chk=true;
+				email_chk = true;
 			}
 		}
 	} else if (which == 'studNum') {
 		var firstCheck = checkStudNum(checkEle);
-		if(firstCheck==0){
-			//未填学号
-			studNum_chk=true;
+		if (firstCheck == 0) {
+			// 未填学号
+			studNum_chk = true;
 			return;
-		}else if(firstCheck==1){
-			//学号格式正确
-			studNum_chk=true;
-		}else{
-			//学号格式不正确
+		} else if (firstCheck == 1) {
+			// 学号格式正确
+			studNum_chk = true;
+		} else {
+			// 学号格式不正确
 			document.getElementById(infoId).innerHTML = errorPrefix
-			+ firstCheck + errorSuffix;
-			studNum_chk=false;
+					+ firstCheck + errorSuffix;
+			studNum_chk = false;
 			return;
 		}
 		succCallbackFun = function(data) {
@@ -98,11 +98,11 @@ function checkUnique(which, elemtId, infoId) {
 				// 说明该学号已经注册
 				document.getElementById(infoId).innerHTML = errorPrefix
 						+ "该学号已经注册" + errorSuffix;
-				studNum_chk=false;
+				studNum_chk = false;
 			} else {
 				document.getElementById(infoId).innerHTML = succPrefix + "√"
 						+ succSuffix;
-				studNum_chk=true;
+				studNum_chk = true;
 			}
 		}
 	}
@@ -124,11 +124,11 @@ function checkUnique(which, elemtId, infoId) {
 /*
  * 检查表单是否可以提交
  */
-function checkFormIfCouldSubmit(){
-	if(username_chk && email_chk && mobile_chk && studNum_chk){
+function checkFormIfCouldSubmit() {
+	if (username_chk && email_chk && mobile_chk && studNum_chk) {
 		window.alert("yes!");
 		return true;
-	}else{
+	} else {
 		alert("no!");
 		return false;
 	}
@@ -136,14 +136,14 @@ function checkFormIfCouldSubmit(){
 /*
  * 检查学号是否正确
  */
-function checkStudNum(studNum){
-	//学号可以不填
-	var reg=/^\d{9,10}$/;
-	if(studNum!='' && studNum.length!=0 && !reg.test(studNum)){
-		return '请输入正确的学号';//能进到这个控制块内部说明用户一定输入了学号 并且学号格式不对，否则逻辑短路跳到else；
-	}else if(studNum=='' || studNum.length==0){
+function checkStudNum(studNum) {
+	// 学号可以不填
+	var reg = /^\d{9,10}$/;
+	if (studNum != '' && studNum.length != 0 && !reg.test(studNum)) {
+		return '请输入正确的学号';// 能进到这个控制块内部说明用户一定输入了学号 并且学号格式不对，否则逻辑短路跳到else；
+	} else if (studNum == '' || studNum.length == 0) {
 		return 0;
-	}else{
+	} else {
 		return 1;
 	}
 }
@@ -188,4 +188,41 @@ function checkMobile(mobile) {
 			return '';
 		}
 	}
+}
+/*
+ * 根据选择的学位不同选择对应的专业
+ */
+function getMajorsAccordingDegree(url) {
+	var degreeId = document.getElementById("degreeSelect").value;
+	var majorOptions = document.getElementById("majorSection").options;
+	var optArray = new Array();
+	majorOptions[0].selected=true;//设置默认选中的选项
+	for (var i = 1; i < majorOptions.length; i++) {//下标从1开始，忽略一开始的默认选中--“请选择专业提示”
+		var temp = majorOptions[i];
+		optArray[temp.value] = temp;//利用option的value作为数组下标存储对应的option对象
+		/*
+		 * 将除了默认选中的option以外所有的option的display设置为不可见，
+		 * 这样避免了数组元素包含与否的查找，提高速度；
+		 * 初始将所有的option置为不可见，
+		 * 在后面的后台异步传输完成后根据数据设置相应需要显示的option
+		 */
+		temp.style.display = "none";
+	}
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : "degreeId=" + degreeId,
+		async : true,
+		error : function() {
+			window.alert("服务器错误！");
+		},
+		success : function(data) {
+			var obj = eval("(" + data + ")");
+//			window.alert(obj[0]);
+			for (var i = 0; i < obj.length; i++) {
+				optArray[obj[i]].style.display="inline";
+			}
+			
+		}
+	});
 }

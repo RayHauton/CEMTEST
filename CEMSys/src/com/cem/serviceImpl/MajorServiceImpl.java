@@ -23,4 +23,10 @@ public class MajorServiceImpl implements MajorService{
 		return majorDao.findByMajorId(majorId);
 	}
 
+	@Override
+	public List<Major> findByMajorIdList(List<String> majorIdList) throws Exception {
+		return majorDao.findByMajorIdList(majorIdList);
+	}
+	
+
 }

@@ -6,11 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page import="com.cem.util.BeanUtil"%>
-<%@page import="com.cem.util.BaseDataStorage"%>
+<%@page import="com.cem.util.BaseDataUtil"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-// request.setAttribute("degreeList", ((BaseDataStorage)BeanUtil.getBean(BaseDataStorage.class)).getDegrees());
+request.setAttribute("degreeList", new BaseDataUtil().getDegrees());
+request.setAttribute("majorList", new BaseDataUtil().getMajors());
 %>
 <html>
 <head>
@@ -113,7 +114,8 @@
             </div>
             <div class="input-group">
                 <div class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;历</div>
-                <select class="form-control" style="width: 250px;">
+                <select class="form-control" style="width: 250px;"  id="degreeSelect"
+                 onchange="getMajorsAccordingDegree('${pageContext.request.contextPath }/chooseMajor.action');">
                 	<c:forEach var="degree" items="${degreeList }">
                 		<option value="${degree.degreeId }">${degree.degreeName }</option>
                 	</c:forEach>
@@ -124,22 +126,11 @@
             </div>
             <div class="input-group">
                 <div class="input-group-addon">专&nbsp;&nbsp;&nbsp;&nbsp;业</div>
-                <select class="form-control" style="width: 250px;">
-                    <optgroup>
-                        <option value="1">工商</option>
-                        <option value="2">会计</option>
-                        <option value="3">金融</option>
-                    </optgroup>
-                    <optgroup>
-                        <option value="1">工商</option>
-                        <option value="2">会计</option>
-                        <option value="3">金融</option>
-                    </optgroup>
-                    <optgroup>
-                        <option value="1">工商</option>
-                        <option value="2">会计</option>
-                        <option value="3">金融</option>
-                    </optgroup>
+                <select class="form-control" style="width: 250px;" id="majorSection">
+                	<option value="default">请选择专业</option>
+                	<c:forEach var="major" items="${majorList }">
+                		<option value="${major.majorId }">${major.majorName }</option>
+                	</c:forEach>
                 </select>
             </div>
             <div class="warning">

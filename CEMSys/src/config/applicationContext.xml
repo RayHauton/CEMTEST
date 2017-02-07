@@ -15,7 +15,7 @@
     <context:property-placeholder location="classpath:config/db.properties"/>
     <context:component-scan base-package="com.cem.serviceImpl"/>
     <context:component-scan base-package="com.cem.daoImpl"/>
-    <context:component-scan base-package="com.cem.util"/>
+<!--     <context:component-scan base-package="com.cem.util"/> -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driverClass}"/>
         <property name="jdbcUrl" value="${jdbc.url}"/>
@@ -26,6 +26,10 @@
         <property name="initialPoolSize" value="${jdbc.initPoolSize}"/>
         <property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
         <property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
+    </bean>
+     <!-- spring jdbc，解决在工具类中查询出现的线程中找不到session的异常 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource"></property>
     </bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>

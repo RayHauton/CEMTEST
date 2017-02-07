@@ -35,7 +35,7 @@ public class SchoolExperienceDaoImpl implements SchoolExperienceDao {
 	@Override
 	public List<Major> findMajorsByDegreeId(String degreeId) throws Exception {
 		Session session = getSession();
-		List<String> majorIds = session.createQuery("FROM Schoolexperience se WHERE se.degreeId=?")
+		List<String> majorIds = session.createQuery("SELECT se.majorId FROM Schoolexperience se WHERE se.degreeId=?")
 				.setParameter(0, degreeId).list();
 		return majorDao.findByMajorIdList(majorIds);
 	}

@@ -18,7 +18,7 @@ public class GenerateHqlSectionUtil {
 	public String generateHql_IN(List<String> manyPointIds){
 		StringBuffer in = new StringBuffer("(");
 		for(String item:manyPointIds){
-			in.append(item+",");
+			in.append("'"+item+"'"+",");
 		}
 		return in.substring(0, in.length()-1)+")";
 	}
