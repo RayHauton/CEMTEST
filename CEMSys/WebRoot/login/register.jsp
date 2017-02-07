@@ -5,7 +5,13 @@
   Time: 10:20
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="com.cem.util.BeanUtil"%>
+<%@page import="com.cem.util.BaseDataStorage"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+// request.setAttribute("degreeList", ((BaseDataStorage)BeanUtil.getBean(BaseDataStorage.class)).getDegrees());
+%>
 <html>
 <head>
     <title>校友信息系统用户注册</title>
@@ -108,9 +114,9 @@
             <div class="input-group">
                 <div class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;历</div>
                 <select class="form-control" style="width: 250px;">
-                    <option value="1">本科</option>
-                    <option value="2">硕士</option>
-                    <option value="3">博士</option>
+                	<c:forEach var="degree" items="${degreeList }">
+                		<option value="${degree.degreeId }">${degree.degreeName }</option>
+                	</c:forEach>
                 </select>
             </div>
             <div class="warning">
