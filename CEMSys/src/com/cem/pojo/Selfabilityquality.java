@@ -8,6 +8,10 @@ public class Selfabilityquality implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2071806941358862424L;
 	private String userId;
 	private Short gumptionAndAchvConscious;
 	private Short companyCooperation;

@@ -8,6 +8,10 @@ public class Jobcontitionmodule implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6551063923964979848L;
 	private String conditionId;
 	private String userId;
 	private Integer yearsToBusinessSelf;

@@ -17,7 +17,8 @@ public class PatternTest {
         String phone = "^(((13[0-9])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8})|(0\\d{2}-\\d{8})|(0\\d{3}-\\d{7})$";
         Pattern regexEmail = Pattern.compile(email);
         Pattern regexPhone = Pattern.compile(phone);
-        Matcher matcher = regexEmail.matcher("2433983339@qq.com");
+        @SuppressWarnings("unused")
+		Matcher matcher = regexEmail.matcher("2433983339@qq.com");
         Matcher matcher1 = regexPhone.matcher("15651646589");
         flag = matcher1.matches();
         System.out.println(flag);

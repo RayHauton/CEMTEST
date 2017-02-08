@@ -8,6 +8,10 @@ public class Bbsrank implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1999542805026570157L;
 	private String rankId;
 	private String rankName;
 	private String icon;

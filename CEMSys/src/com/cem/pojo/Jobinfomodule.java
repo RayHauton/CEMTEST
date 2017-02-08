@@ -8,6 +8,10 @@ public class Jobinfomodule implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5174713523789199612L;
 	private String moduleId;
 	private String userId;
 	private String companyNature;

@@ -7,6 +7,10 @@ public class Topic implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6511381375957676909L;
 	private String topicId;
 	private String topicName;
 	private String description;

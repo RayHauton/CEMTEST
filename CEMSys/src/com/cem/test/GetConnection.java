@@ -23,7 +23,8 @@ public class GetConnection {
     }
     @Test
     public void testCoonection() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:config/applicationContext.xml");
+        @SuppressWarnings("resource")
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:config/applicationContext.xml");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
         try {
             System.out.println(dataSource.getConnection());
