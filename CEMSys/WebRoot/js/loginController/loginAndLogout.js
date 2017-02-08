@@ -1,5 +1,9 @@
 function login(prefix,action,target){
     //alert($('#loginInfo').serialize());
+	if($("#loginMethod").val().trim().length==0){
+		window.alert("用户名不能为空");
+		return;
+	}
     $.ajax({
         cache:false,
         type:"POST",

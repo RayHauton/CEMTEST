@@ -19,7 +19,8 @@
 <body>
     <div id="titleContent">
         <div class="nuaaImgDiv">
-            <img alt="" src="../img/nuaa.jpg" class="img-circle">
+<!--         class="img-circle" -->
+            <img alt="" src="../img/cemLog.png" style="border-radius: 60px;">
         </div>
         <div class="title">
             <p class="h1 " style="color:#2CC42C;letter-spacing:3px;">经济与管理学院</p>
@@ -30,7 +31,7 @@
         <form action="" class="" id="loginInfo">
             <div class="input-group form_style_control">
                 <div class="input-group-addon input-group-addon-cus label-style-control">用户名</div>
-                <input type="text" id="loginMethod" name="loginMethod"
+                <input type="text" id="loginMethod" name="loginMethod" required="required"
                        class="form-control input-lg" placeholder="选填用户名|手机号|邮箱|学号">
             </div>
             <div class="input-group form_style_control">

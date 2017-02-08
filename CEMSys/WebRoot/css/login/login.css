@@ -4,11 +4,12 @@ body{
 	padding:0px;
 /* 	background-image: url("../../images/main-bg.jpg"); */
 	background-color:#eefbff;
-	background-image: url("../../img/bg.jpg");
+/* 	background-image: url("../../img/bg.jpg"); */
+	background-image: url("../../img/register_bg.jpg");
 	background-repeat: repeat-x;
 }
 #titleContent{
-	width:435px;
+	width:435px;	
 	height:115px;
 	margin-left:auto;
 	margin-right:auto;
@@ -59,7 +60,8 @@ body{
 }
 .label-style-control{
 /* 	background-color:#d7d7d7; */
-	background-color:#EEEEEE;
+	background-color:#5BC0DE;
+	color:white;
 }
 .end{
 	width:450px;
