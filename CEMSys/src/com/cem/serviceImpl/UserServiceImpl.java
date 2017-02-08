@@ -31,22 +31,33 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUserByStudNum(String studNum,boolean passed) throws Exception {
-		return userDao.findUserByStudNum(studNum,passed);
+	public User findUserByStudNum(String studNum, boolean passed) throws Exception {
+		return userDao.findUserByStudNum(studNum, passed);
 	}
 
 	@Override
-	public User findUserByUsername(String username,boolean passed) throws Exception {
-		return userDao.findUserByUsername(username,passed);
+	public User findUserByUsername(String username, boolean passed) throws Exception {
+		return userDao.findUserByUsername(username, passed);
 	}
 
 	@Override
-	public User findUserByMobile(String mobile,boolean passed) throws Exception {
-		return userDao.findUserByMobile(mobile,passed);
+	public User findUserByMobile(String mobile, boolean passed) throws Exception {
+		return userDao.findUserByMobile(mobile, passed);
 	}
 
 	@Override
-	public User finduserByEmail(String email,boolean passed) throws Exception {
-		return userDao.finduserByEmail(email,passed);
+	public User finduserByEmail(String email, boolean passed) throws Exception {
+		return userDao.finduserByEmail(email, passed);
 	}
+
+	@Override
+	public User findIfUserExist(String username, String mobile, String studNum, String email) throws Exception {
+		return userDao.findIfUserExist(username, mobile, studNum, email);
+	}
+
+	@Override
+	public void updateUser(User user) throws Exception {
+		userDao.updateUser(user);
+	}
+
 }

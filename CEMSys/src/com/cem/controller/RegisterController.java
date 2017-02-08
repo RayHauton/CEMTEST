@@ -5,10 +5,12 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cem.customPojo.UserCustom;
 import com.cem.pojo.User;
 import com.cem.service.SchoolExperienceService;
 import com.cem.service.UserService;
@@ -20,10 +22,30 @@ public class RegisterController {
 	private UserService userService;
 	@Autowired
 	private SchoolExperienceService schoolExperienceService;
+	/*
+	 * @RequestMapping("/test") public void test() { User user = null;
+	 * System.out.println(user.getAddress()); // throw new
+	 * NullPointerException(); }
+	 */
 
 	@RequestMapping("/register")
-	public void register(User user) throws Exception {
-
+	public void register(UserCustom userCustom, HttpServletResponse response) throws Exception {
+		User user = new User();
+		BeanUtils.copyProperties(userCustom, user);
+		user.setRole("0");
+		user.setSchoolExperienceId(
+				schoolExperienceService.findSchoolExperienceByMajorIdAndDegreeId(userCustom).getSchooleExperienceId());
+		User queryUser = userService.findIfUserExist(user.getUsername(), user.getMobile(), user.getStudNumber(), user.getEmail());
+		if(queryUser!=null){
+			user.setUserId(queryUser.getUserId());
+			//更细用户而不是添加用户
+			user.setCheckOut("0");
+			user.setIsDeleted("0");
+			userService.updateUser(user);
+		}else{
+			userService.insertUser(user);
+		}
+		response.getWriter().write("succ");
 	}
 
 	/*

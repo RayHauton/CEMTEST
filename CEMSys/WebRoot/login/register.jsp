@@ -40,7 +40,7 @@ request.setAttribute("majorList", new BaseDataUtil().getMajors());
         <div class="formSection1">
             <div class="input-group" style="margin-top: 10px;">
                 <div class="input-group-addon">用户名</div>
-                <input type="text" name="userId" class="form-control " id="username"
+                <input type="text" name="username" class="form-control " id="username"
                  onblur="checkUnique('username','username','checkUsername');"/>
             </div>
             <div class="warning" id="checkUsername">
@@ -48,23 +48,26 @@ request.setAttribute("majorList", new BaseDataUtil().getMajors());
             </div>
             <div class="input-group">
                 <div class="input-group-addon">姓&nbsp;&nbsp;&nbsp;&nbsp;名</div>
-                <input type="text" name="truename" class="form-control ">
+                <input type="text" name="truename" class="form-control " id="truename"
+                 onblur="checkTruename();">
             </div>
-            <div class="warning">
+            <div class="warning" id="checkTruename">
 
             </div>
             <div class="input-group">
                 <div class="input-group-addon">密&nbsp;&nbsp;&nbsp;&nbsp;码</div>
-                <input type="text" name="password" class="form-control">
+                <input type="password" name="password" class="form-control" id="password"
+                onblur="checkPassword();">
             </div>
-            <div class="warning">
+            <div class="warning" id="checkPassword">
 
             </div>
             <div class="input-group">
                 <div class="input-group-addon">确认密码</div>
-                <input type="text" name="confirmPassword" class="form-control" style="width: 236px;">
+                <input type="password" name="confirmPassword" class="form-control" style="width: 236px;" id="confirmPassword"
+                onblur="checkConfirmPassword();">
             </div>
-            <div class="warning">
+            <div class="warning" id="checkConfirmPassword">
 
             </div>
             <div class="input-group">
@@ -99,9 +102,10 @@ request.setAttribute("majorList", new BaseDataUtil().getMajors());
         <div class="formSection2">
             <div class="input-group" style="margin-top: 10px;">
                 <div class="input-group-addon">入学年份</div>
-                <input type="month" name="admit" class="form-control" style="width: 236px;">
+                <input type="month" name="entranceDate" class="form-control" style="width: 236px;" id="admitDate"
+                onblur="checkAdmitDate();">
             </div>
-            <div class="warning">
+            <div class="warning" id="checkAdmitDate">
 
             </div>
             <div class="input-group">
@@ -113,8 +117,8 @@ request.setAttribute("majorList", new BaseDataUtil().getMajors());
 
             </div>
             <div class="input-group">
-                <div class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;历</div>
-                <select class="form-control" style="width: 250px;"  id="degreeSelect"
+                <div class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;位</div>
+                <select class="form-control" style="width: 250px;"  id="degreeSelect" name="degreeId"
                  onchange="getMajorsAccordingDegree('${pageContext.request.contextPath }/chooseMajor.action');">
                 	<c:forEach var="degree" items="${degreeList }">
                 		<option value="${degree.degreeId }">${degree.degreeName }</option>
@@ -126,18 +130,19 @@ request.setAttribute("majorList", new BaseDataUtil().getMajors());
             </div>
             <div class="input-group">
                 <div class="input-group-addon">专&nbsp;&nbsp;&nbsp;&nbsp;业</div>
-                <select class="form-control" style="width: 250px;" id="majorSection">
+                <select class="form-control" style="width: 250px;" id="majorSection" name="majorId"
+                onchange="checkMajor()">
                 	<option value="default">请选择专业</option>
                 	<c:forEach var="major" items="${majorList }">
                 		<option value="${major.majorId }">${major.majorName }</option>
                 	</c:forEach>
                 </select>
             </div>
-            <div class="warning">
+            <div class="warning" id="checkMajorSection">
 
             </div>
             <div class="input-group">
-                <button type="button" value="" class="btn btn-success btn-set" onclick="checkFormIfCouldSubmit();">提交</button>
+                <button type="button" value="" class="btn btn-success btn-set" onclick="checkFormIfCouldSubmit('${pageContext.request.contextPath}');">提交</button>
             </div>
             <div class="warning">
 

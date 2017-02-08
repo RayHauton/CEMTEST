@@ -1,11 +1,14 @@
 package com.cem.daoImpl;
 
-import com.cem.dao.UserDao;
-import com.cem.pojo.User;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.cem.dao.UserDao;
+import com.cem.pojo.User;
 
 /**
  * Created by RayHauton on 2017/1/25.
@@ -39,10 +42,13 @@ public class UserDaoImpl implements UserDao {
 		} else {
 			hql = "FROM User user WHERE user.studNumber=? and user.isDeleted=?";
 		}
-		User user = (User) session.createQuery(hql).setParameter(0, studNum).setParameter(1, "0").uniqueResult();
-		return user;
+		@SuppressWarnings("unchecked")
+		List<User> users = session.createQuery(hql).setParameter(0, studNum).setParameter(1, "0").setFirstResult(0)
+				.setMaxResults(1).list();
+		return users.size() == 1 ? users.get(0) : null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User findUserByUsername(String username, boolean passed) throws Exception {
 		Session session = getSession();
@@ -52,8 +58,9 @@ public class UserDaoImpl implements UserDao {
 		} else {
 			hql = "FROM User where username=? and isDeleted=?";
 		}
-		User user = (User) session.createQuery(hql).setParameter(0, username).setParameter(1, "0").uniqueResult();
-		return user;
+		List<User> users = session.createQuery(hql).setParameter(0, username).setParameter(1, "0").setFirstResult(0)
+				.setMaxResults(1).list();
+		return users.size() == 1 ? users.get(0) : null;
 	}
 
 	@Override
@@ -65,8 +72,10 @@ public class UserDaoImpl implements UserDao {
 		} else {
 			hql = "FROM User where mobile=? and isDeleted=?";
 		}
-		User user = (User) session.createQuery(hql).setParameter(0, mobile).setParameter(1, "0").uniqueResult();
-		return user;
+		@SuppressWarnings("unchecked")
+		List<User> users = session.createQuery(hql).setParameter(0, mobile).setParameter(1, "0").setFirstResult(0)
+				.setMaxResults(1).list();
+		return users.size() == 1 ? users.get(0) : null;
 	}
 
 	@Override
@@ -78,8 +87,28 @@ public class UserDaoImpl implements UserDao {
 		} else {
 			hql = "FROM User where email=? and isDeleted=?";
 		}
-		User user = (User) session.createQuery(hql).setParameter(0, email).setParameter(1, "0").uniqueResult();
+		@SuppressWarnings("unchecked")
+		List<User> users = session.createQuery(hql).setParameter(0, email).setParameter(1, "0").setFirstResult(0)
+				.setMaxResults(1).list();
+		return users.size() == 1 ? users.get(0) : null;
+	}
+
+	@Override
+	public User findIfUserExist(String username, String mobile, String studNum, String email) throws Exception {
+		User user = null;
+		if ((user = findUserByMobile(mobile, false)) != null) {
+		} else if ((user = findUserByUsername(username, false)) != null) {
+		} else if ((user = finduserByEmail(email, false)) != null) {
+		} else if ((user = findUserByStudNum(studNum, false)) != null) {
+		} else {
+		}
 		return user;
+	}
+
+	@Override
+	public void updateUser(User user) throws Exception {
+		Session session = getSession();
+		session.update(user);
 	}
 
 }
