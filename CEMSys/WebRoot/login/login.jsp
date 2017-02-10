@@ -39,9 +39,18 @@
                 <input type="password" name="password" id="password" class="form-control input-lg">
             </div>
             <div class="input-group form_style_control">
+                <div class="input-group-addon input-group-addon-cus label-style-control">验证码</div>
+                <input type="text" name="idenCode" id="idenCode" class="form-control input-lg"
+                style="width: 220px;">
+               	<img alt="" src="${pageContext.request.contextPath }/generateCode.action"
+               	  onclick="changeCode();" id="code" class="codeStyle" title="点击切换验证码">
+            </div>
+<!--             存放验证码的隐藏表单 -->
+<%-- 			<input type="hidden" id="codeStorage" value="${sessionScope.codeInSession }"> --%>
+            <div class="input-group form_style_control">
                 <button type="submit" id="submitLoginInfo"
                         class="from-control btn btn-success btn-style-set"
-                        onclick="login('${pageContext.request.contextPath}','/login.action','/index.jsp');return false;">确认登录</button>
+                        onclick="checkIdentifyCode('${pageContext.request.contextPath}');return false;">确认登录</button>
             </div>
             <div class="input-group form_style_control">
                 <button type="button" class="from-control btn btn-style-set btn-info" onclick="javascript:window.open('register.jsp');">注册账号</button>
@@ -59,8 +68,13 @@
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
-//    $("#submitLoginInfo").click(function() {
-//        $("#loginInfo").submit();
-//    });
+// 	document.getElementById("code").onload=function(){
+// 		alert("complete");
+// 		$("#codeStorage").val('${sessionScope.codeInSession}');
+// 	};
+	function changeCode() {
+		$("#code").attr('src','${pageContext.request.contextPath}/generateCode.action?abc='+Math.random());
+// 		$("#codeStorage").val('${sessionScope.codeInSession}');
+	}
 </script>
 </html>
