@@ -2,6 +2,7 @@ function login(prefix, action, target) {
 	// alert($('#loginInfo').serialize());
 	if ($("#loginMethod").val().trim().length == 0) {
 		window.alert("用户名不能为空");
+//		customAlert("用户名不能为空！","warning");
 		return;
 	}
 	$.ajax({
@@ -19,16 +20,20 @@ function login(prefix, action, target) {
 				// window.location.href = prefix+target;
 				return;
 			} else if (data == "notExist") {
-				window.alert("用户不存在，请尝试其他登录方式！");
+//				window.alert("用户不存在，请尝试其他登录方式！");
+				customAlert("用户不存在，请尝试其他登录方式！","error");
 				return;
 			} else if (data == "notCheck") {
 				window.alert("抱歉，账号尚未审核！");
+//				customAlert("抱歉，账号尚未审核！","warning");
 				return;
 			} else if (data == "notPass") {
 				window.alert("账号未通过审核！请重新注册，并保证注册信息的正确！");
+//				customAlert("账号未通过审核！请重新注册，并保证注册信息的正确！","error");
 				return;
 			} else {
 				window.alert("密码错误！");
+//				customAlert("密码错误！","error");
 				return;
 			}
 		}
@@ -47,6 +52,7 @@ function checkIdentifyCode(prefix) {
 		async:true,
 		error:function(){
 			window.alert("服务器错误");
+//			customAlert("服务器错误！","error");
 		},
 		success:function(data){
 			if(data==code){
@@ -56,6 +62,7 @@ function checkIdentifyCode(prefix) {
 				login(prefix, "/login.action", "/index.jsp");
 			}else{
 				window.alert("验证码不正确");
+//				customAlert("验证码不正确！","error");
 			}
 		}
 	});
@@ -74,13 +81,16 @@ function logout(prefix, action, target) {
 		if (status == 'success') {
 			if (data == 'succ') {
 				window.alert("注销成功！");
+//				customAlert("注销成功！","success");
 				// window.open(prefix + target, "_blank");
 				window.location.href = prefix + target;
 			} else {
 				window.alert("尚未登录或者出现未知错误！")
+//				customAlert("尚未登录或者出现未知错误！","warning");
 			}
 		} else {
 			window.alert("服务器错误！");
+//			customAlert("服务器错误！","error");
 		}
 
 	});

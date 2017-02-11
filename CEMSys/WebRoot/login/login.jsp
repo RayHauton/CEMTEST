@@ -14,7 +14,7 @@
     <title>南航经管院专业学习交流平台</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/login/login.css">
-    <script src="../js/loginController/loginAndLogout.js"></script>
+    <link rel="stylesheet" href="../css/alertCss/xcConfirm.css">
 </head>
 <body>
     <div id="titleContent">
@@ -67,6 +67,9 @@
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/loginController/loginAndLogout.js"></script>
+<script src="../js/alertPlugin/xcConfirm.js"></script>
+<script src="../js/alertPlugin/CustomAlert.js"></script>
 <script type="text/javascript">
 // 	document.getElementById("code").onload=function(){
 // 		alert("complete");
