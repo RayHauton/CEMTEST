@@ -13,6 +13,7 @@ function login(prefix, action, target) {
 		async : true,
 		error : function() {
 			window.alert("服务器错误！");
+//			customAlert("服务器错误！","error");
 		},
 		success : function(data) {
 			if (data == "succ") {
@@ -20,8 +21,8 @@ function login(prefix, action, target) {
 				// window.location.href = prefix+target;
 				return;
 			} else if (data == "notExist") {
-//				window.alert("用户不存在，请尝试其他登录方式！");
-				customAlert("用户不存在，请尝试其他登录方式！","error");
+				window.alert("用户不存在，请尝试其他登录方式！");
+//				customAlert("用户不存在，请尝试其他登录方式！","error");
 				return;
 			} else if (data == "notCheck") {
 				window.alert("抱歉，账号尚未审核！");
