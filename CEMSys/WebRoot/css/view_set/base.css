@@ -4,7 +4,9 @@ body,button,input,select,textarea{font: 12px/1.5 'Simsun',tahoma,Srial,helvetica
 body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
 }
 body {
-    background-image: url("../../img/bg.jpg");
+
+    background:url("../../img/p2.jpg");
+    background-size:cover;
     background-repeat: repeat-x;
     background-attachment: fixed;
     width: 100%;
