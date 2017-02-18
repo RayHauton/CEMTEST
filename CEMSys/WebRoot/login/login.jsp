@@ -23,8 +23,9 @@
             <img alt="" src="../img/cemLog.png" style="border-radius: 60px;">
         </div>
         <div class="title">
-            <p class="h1 " style="color:#2CC42C;letter-spacing:3px;">经济与管理学院</p>
-            <p class="h3" style="color:#000FFE;letter-spacing:2px;"><i>校友信息管理系统</i></p>
+<!--             <p class="h1 " style="color:#2CC42C;letter-spacing:3px;">经济与管理学院</p> -->
+            <p class="h1 " style="color:#FFFFFF;letter-spacing:3px;">经济与管理学院</p>
+            <p class="h3" style="color:#000FFE;letter-spacing:2px;">校友信息管理系统</p>
         </div>
     </div>
     <div id="loginFormDiv">
