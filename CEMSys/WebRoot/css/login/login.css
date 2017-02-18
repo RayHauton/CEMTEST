@@ -3,10 +3,12 @@ body{
 	margin:0px;
 	padding:0px;
 /* 	background-image: url("../../images/main-bg.jpg"); */
-	background-color:#eefbff;
+/* 	background-color:#eefbff; */
 /* 	background-image: url("../../img/bg.jpg"); */
-	background-image: url("../../img/register_bg.jpg");
-	background-repeat: repeat-x;
+/* 	background-image: url("../../img/register_bg.jpg"); */
+/* 	background-repeat: repeat-x; */
+	background: url("../../img/p2.jpg")no-repeat;
+	background-size:cover;
 }
 #titleContent{
 	width:435px;	
