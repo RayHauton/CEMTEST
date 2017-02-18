@@ -1,0 +1,102 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-image: url("../../img/p2.jpg");
+	background-size: cover;
+	font-family: 微软雅黑;
+}
+
+.outer {
+	width: 700px;
+	height: 420px;
+	/* 	background-color: lightgreen; */
+	margin: 30px auto;
+	border-radius: 10px;
+	border: 1px #1296DB solid;
+	padding: 0px;
+	background-color: #FFFFFF;
+}
+
+.head {
+	width: 700px;
+	height: 35px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	background-color: #50e450;
+	padding: 0px;
+}
+
+.head .imgDiv {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	float: left;
+}
+
+.head img {
+	width: 30px;
+	height: 30px;
+	/* 	margin-top:2px; */
+	/* 	padding:0px; */
+}
+
+.head span {
+	display: inline-block;
+	margin-top: 8px;
+	font-size: 15px;
+	font-family: 微软雅黑;
+	color: white;
+	letter-spacing: 3px;
+	float: left;
+	border-top: 1px dashed #FFFFFF;
+}
+
+.info {
+	width: 700px;
+	height: 330px;
+	/* 	background-color:pink; */
+	border-bottom: 1px solid silver;
+}
+/* tr{ */
+/* 	 background-color: #89cff5; */
+/* } */
+.input_set {
+	padding: 0px;
+	border: none;
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: transparent;
+}
+
+.textarea_set {
+	width: 100%;
+	height: 60px;
+}
+
+.fileBtn {
+	border-radius: 3px;
+	border: 1px solid #1296DB;
+	background-color: #1296DB;
+	color: #FFFFFF;
+	height: 30px;
+	margin-top: 2px;
+	font-family: "微软雅黑";
+}
+
+.btnDiv {
+	width: 300px;
+	height: 40px;
+	/* 	background-color: red; */
+	float: right;
+	margin-top: 5px;
+	text-align: right;
+	letter-spacing: 25px;
+}
+
+.btnDiv button {
+	margin-top: 3px;
+	width: 80px;
+}

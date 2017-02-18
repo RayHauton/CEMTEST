@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: 微软雅黑;
+	padding: 0;
+	margin: 0;
+}
+
+.outer {
+	width: 850px;
+	height: 520px;
+	background-color: lightgreen;
+	margin: 30px auto;
+	border-radius:10px;
+}
+.head{
+	width: 850px;
+	height:35px;
+	background-color: pink;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
