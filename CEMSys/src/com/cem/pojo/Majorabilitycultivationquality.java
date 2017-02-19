@@ -39,6 +39,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	private Short projectExperience;
 	private Short scientificResearchOpportunity;
 	private Short scienReschSpiritAndAcademicMoral;
+	private Short isDelete;
 
 	// Constructors
 
@@ -130,8 +131,23 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		this.scientificResearchOpportunity = scientificResearchOpportunity;
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
 	}
+	
+	
 
 	// Property accessors
+
+	@Override
+	public String toString() {
+		return teacherProfessionalismLevel + "," + teacherTeachingLevel + ","
+				+ relationshipOfTcherAndStud + "," + majorCultivationTargetAndSocialFit + ","
+				+ internationalCommunicationLearning + "," + baseCourseLearning + "," + majorCourseLearning + ","
+				+ majorExperiment + "," + majorInternship + "," + graduationDesign + "," + textbookUsed + ","
+				+ majorCompetitionActivity + "," + schoolAcademicLecture + "," + recreationalActivities + ","
+				+ physicalFitness + "," + learningAtmosphereConstruction + "," + libraryEffect + "," + instructorWorking
+				+ "," + logisticServiceWorking + "," + fellowConnectionWorking + ","
+				+ careerPlanningAndEmploymentGuidance + "," + psychologyGrooming + "," + tutorGuidance + ","
+				+ projectExperience + "," + scientificResearchOpportunity + "," + scienReschSpiritAndAcademicMoral;
+	}
 
 	public String getUserId() {
 		return this.userId;
@@ -353,6 +369,14 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	public void setScienReschSpiritAndAcademicMoral(
 			Short scienReschSpiritAndAcademicMoral) {
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
+	}
+
+	public Short getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Short isDelete) {
+		this.isDelete = isDelete;
 	}
 
 }

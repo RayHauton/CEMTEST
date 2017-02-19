@@ -140,5 +140,10 @@
                 <comment>科研精神与学术道德</comment>
             </column>
         </property>
+        <property name="IsDelete" type="java.lang.Short">
+            <column name="IsDelete">
+                <comment>是否被删除</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>
