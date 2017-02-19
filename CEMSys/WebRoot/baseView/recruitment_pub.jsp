@@ -28,22 +28,22 @@
 					<tbody>
 						<tr>
 							<td style="width: 330px;">发布人</td>
-							<td style="padding: 0px;"><input type="text" name=""
-								value="" class="input_set" /></td>
+							<td style="padding: 0px;"><input type="text" name="truename" disabled="disabled"
+								value="${sessionScope.user.truename}" class="input_set" /></td>
 						</tr>
 						<tr>
 							<td>单位名称</td>
-							<td style="padding: 0px;"><input type="text" name=""
+							<td style="padding: 0px;"><input type="text" name="companyName"
 								value="" class="input_set" /></td>
 						</tr>
 						<tr>
 							<td>联系方式</td>
-							<td style="padding: 0px;"><input type="text" name=""
+							<td style="padding: 0px;"><input type="text" name="connectWay"
 								value="" class="input_set" /></td>
 						</tr>
 						<tr>
 							<td>附件上传</td>
-							<td style="padding: 0px;"><input type="file" name=""
+							<td style="padding: 0px;"><input type="file" name="attachment"
 								value="" class="input_set" style="display: none;"
 								id="fileUpload" onchange="showFile();" />
 								<button class="fileBtn" type="button"
@@ -52,7 +52,7 @@
 						</tr>
 						<tr>
 							<td>简要信息</td>
-							<td style="padding: 0px;"><textarea name=""
+							<td style="padding: 0px;"><textarea name="summary"
 									class="textarea_set" placeholder="不超过多少个字"></textarea></td>
 						</tr>
 					</tbody>

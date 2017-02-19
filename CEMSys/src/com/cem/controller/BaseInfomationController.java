@@ -1,21 +1,12 @@
 package com.cem.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.lang.annotation.AfterReturning;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cem.pojo.Companynature;
 import com.cem.pojo.Income;
@@ -25,9 +16,6 @@ import com.cem.pojo.Transferjobcount;
 import com.cem.pojo.User;
 import com.cem.service.JobService;
 import com.cem.service.UserService;
-
-import net.sf.json.JSONArray;
-import net.sf.json.util.JSONUtils;
 
 /**
  * Created by RayHauton on 2017/1/29.
