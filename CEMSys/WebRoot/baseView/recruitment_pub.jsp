@@ -1,3 +1,8 @@
+<!-- 
+	create by linhd;
+	2017/2/19
+	招聘信息发布界面
+ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,7 +26,7 @@
 				<table class="table table-bordered table-striped" cellpadding="0"
 					cellspacing="0">
 					<tbody>
-						<tr class="success">
+						<tr>
 							<td style="width: 330px;">发布人</td>
 							<td style="padding: 0px;"><input type="text" name=""
 								value="" class="input_set" /></td>
@@ -31,7 +36,7 @@
 							<td style="padding: 0px;"><input type="text" name=""
 								value="" class="input_set" /></td>
 						</tr>
-						<tr class="success">
+						<tr>
 							<td>联系方式</td>
 							<td style="padding: 0px;"><input type="text" name=""
 								value="" class="input_set" /></td>
@@ -45,7 +50,7 @@
 									onclick="javascript:document.getElementById('fileUpload').click();">点击上传文件(rar|zip)</button>
 							</td>
 						</tr>
-						<tr class="success">
+						<tr>
 							<td>简要信息</td>
 							<td style="padding: 0px;"><textarea name=""
 									class="textarea_set" placeholder="不超过多少个字"></textarea></td>

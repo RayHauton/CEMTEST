@@ -10,6 +10,6 @@ public class RecruitmentController {
 	 */
 	@RequestMapping(value="/open")
 	public String open() throws Exception{
-		return "";
+		return "url";
 	}
 }
