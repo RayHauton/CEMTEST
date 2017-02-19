@@ -26,6 +26,7 @@ public class Selfabilityquality implements java.io.Serializable {
 	private Short communicationAndOrganizeAbility;
 	private Short wordsExpression;
 	private Short psychologyBearAndAntiFrustration;
+	private Short isDelete;
 
 	// Constructors
 
@@ -59,9 +60,22 @@ public class Selfabilityquality implements java.io.Serializable {
 
 	// Property accessors
 
+	@Override
+	public String toString() {
+		return  gumptionAndAchvConscious
+				+ "," + companyCooperation + "," + professionalism
+				+ "," + majorBaseKnowledge + "," + knowledgeWidth
+				+ "," + foreignLanguage + "," + acquireAndApplyKnowledge
+				+ "," + selfDealProblem + "," + practiceAndHandsOn
+				+ "," + motivationAbility + ","
+				+ communicationAndOrganizeAbility + "," + wordsExpression
+				+ "," + psychologyBearAndAntiFrustration;
+	}
+	
 	public String getUserId() {
 		return this.userId;
 	}
+
 
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -172,5 +186,14 @@ public class Selfabilityquality implements java.io.Serializable {
 			Short psychologyBearAndAntiFrustration) {
 		this.psychologyBearAndAntiFrustration = psychologyBearAndAntiFrustration;
 	}
+
+	public Short getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Short isDelete) {
+		this.isDelete = isDelete;
+	}
+	
 
 }
