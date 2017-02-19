@@ -12,7 +12,7 @@ public class Jobinfomodule implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5174713523789199612L;
-	private String moduleId;
+	private int moduleId;
 	private String userId;
 	private String companyNature;
 	private String jobRank;
@@ -28,7 +28,7 @@ public class Jobinfomodule implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Jobinfomodule(String moduleId, String userId, String companyNature,
+	public Jobinfomodule(int moduleId, String userId, String companyNature,
 			String jobRank, String companyName, String positionName,
 			String isDeleted) {
 		this.moduleId = moduleId;
@@ -41,7 +41,7 @@ public class Jobinfomodule implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Jobinfomodule(String moduleId, String userId, String companyNature,
+	public Jobinfomodule(int moduleId, String userId, String companyNature,
 			String jobRank, String companyName, String positionName,
 			String resume, String isDeleted) {
 		this.moduleId = moduleId;
@@ -56,11 +56,11 @@ public class Jobinfomodule implements java.io.Serializable {
 
 	// Property accessors
 
-	public String getModuleId() {
+	public int getModuleId() {
 		return this.moduleId;
 	}
 
-	public void setModuleId(String moduleId) {
+	public void setModuleId(int moduleId) {
 		this.moduleId = moduleId;
 	}
 

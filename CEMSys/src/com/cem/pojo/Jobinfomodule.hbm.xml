@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Jobinfomodule" table="jobinfomodule" catalog="cemsys">
-        <id name="moduleId" type="java.lang.String">
-            <column name="moduleId" length="5" />
-            <generator class="assigned" />
+        <id name="moduleId" type="java.lang.Integer">
+            <column name="moduleId" />
+            <generator class="native" />
         </id>
         <property name="userId" type="java.lang.String">
             <column name="userId" length="10" not-null="true">
