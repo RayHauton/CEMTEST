@@ -34,12 +34,12 @@
 						<tr>
 							<td>单位名称</td>
 							<td style="padding: 0px;"><input type="text" name="companyName"
-								value="" class="input_set" /></td>
+								value="" class="input_set" id="companyName"/></td>
 						</tr>
 						<tr>
 							<td>联系方式</td>
 							<td style="padding: 0px;"><input type="text" name="connectWay"
-								value="" class="input_set" /></td>
+								value="" class="input_set" id="connectWay"/></td>
 						</tr>
 						<tr>
 							<td>附件上传</td>
@@ -52,7 +52,7 @@
 						</tr>
 						<tr>
 							<td>简要信息</td>
-							<td style="padding: 0px;"><textarea name="summary"
+							<td style="padding: 0px;"><textarea name="summary" id="summary"
 									class="textarea_set" placeholder="不超过多少个字"></textarea></td>
 						</tr>
 					</tbody>
@@ -79,31 +79,24 @@
 			</div>
 			<div class="btnDiv">
 				<button class="btn btn-info" type="button" onclick="resetFrom();">重置</button>
-				<button class="btn btn-success"
+				<button class="btn btn-success" type="button" onclick="checkFormIllegal();"
 					style="background-color: #50E450; margin-right: 15px;">提交</button>
+			</div>
+			<div class="errorDivOuter">
+				<div class="errorDivInnerOne" id="errorDivInnerOne" style="display: none;">
+					提示信息
+				</div>
+				<div class="errorDiv" id="errorDiv">
+<!-- 				<span class="errorSpan" id="companyNameError"></span> -->
+<!-- 				<span class="errorSpan" id="connectWayError"></span> -->
+<!-- 				<span class="errorSpan" id="attachmentError"></span> -->
+<!-- 				<span class="errorSpan" id="summaryError"></span> -->
+				</div>
 			</div>
 		</form>
 	</div>
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	function resetFrom() {
-		document.getElementById("form").reset();
-		document.getElementById("flnm").innerHTML = "...";
-		document.getElementById("flsz").innerHTML = "...";
-		// 		document.getElementById("fltp").innerHTML=file.type;
-		document.getElementById("flmddt").innerHTML = "...";
-	}
-	function showFile() {
-		var file = document.getElementById("fileUpload").files[0];
-		document.getElementById("flnm").innerHTML = file.name;
-		document.getElementById("flsz").innerHTML = (file.size / 1024)
-				.toFixed(2)
-				+ "kb";
-		// 		document.getElementById("fltp").innerHTML=file.type;
-		document.getElementById("flmddt").innerHTML = new Date(
-				file.lastModified).toLocaleDateString();
-	}
-</script>
+<script src="../js/recruitmentControl/recruitment_pub.js"></script>
 </html>
