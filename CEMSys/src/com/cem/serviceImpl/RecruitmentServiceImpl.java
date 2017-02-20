@@ -1,5 +1,7 @@
 package com.cem.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,10 @@ public class RecruitmentServiceImpl implements RecruitmentService{
 	@Override
 	public void insertRecruitment(Recruitment recruitment) throws Exception {
 		recruitmentDao.insertRecruitment(recruitment);
+	}
+
+	@Override
+	public List<Recruitment> findAll(int pageIndex,int pageSize) throws Exception {
+		return recruitmentDao.findAll(pageIndex,pageSize);
 	}
 }

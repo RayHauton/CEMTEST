@@ -7,25 +7,20 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:config/baseDataStorage.properties"/>
     <!--controller扫描包-->
     <context:component-scan base-package="com.cem.controller"/>
-    <!--<mvc:resources location="/js/" mapping="/js/**"/>-->
-    <!--<mvc:resources location="/js/" mapping="/js/**/**"/>-->
-    <!--<mvc:resources location="/css/" mapping="/css/**" />-->
-    <!--<mvc:resources location="/css/" mapping="/css/**/**" />-->
-    <!--<mvc:resources location="/img/" mapping="/img/**"/>-->
-    <!--<mvc:resources location="/images/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/images/" mapping="/images/**/**"/>-->
-    <!--<mvc:resources location="/plugin/" mapping="/plugin/**"/>-->
-    <!--<mvc:resources location="/plugin/" mapping="/plugin/**/**"/>-->
-    <!--<mvc:resources mapping="/baseView/**" location="/baseView/"/>-->
-    <!--<mvc:resources mapping="/login/**" location="/login/"/>-->
     <!--注解驱动器-->
     <mvc:annotation-driven/>
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value=""/>
+        <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize">
+    		<value>5242880</value>
+    	</property>
     </bean>
    <bean class="com.cem.globalException.GlobalCustomExceptionResolver"></bean>
     <!--配置拦截器-->

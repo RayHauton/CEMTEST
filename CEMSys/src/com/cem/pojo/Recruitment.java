@@ -1,5 +1,7 @@
 package com.cem.pojo;
 
+import java.util.Date;
+
 /**
  * Recruitment entity. @author MyEclipse Persistence Tools
  */
@@ -12,9 +14,9 @@ public class Recruitment implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3681891629135499145L;
-	private String recruitmentId;
-	private String userId;
-	private String publishDate;
+	private Long recruitmentId;
+	private Long userId;
+	private Date publishDate;
 	private String companyName;
 	private String summary;
 	private String connectWay;
@@ -28,7 +30,7 @@ public class Recruitment implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Recruitment(String recruitmentId, String userId, String publishDate,
+	public Recruitment(Long recruitmentId, Long userId, Date publishDate,
 			String companyName, String summary, String connectWay,
 			String attachmentPath, String isDeleted) {
 		this.recruitmentId = recruitmentId;
@@ -43,27 +45,28 @@ public class Recruitment implements java.io.Serializable {
 
 	// Property accessors
 
-	public String getRecruitmentId() {
-		return this.recruitmentId;
-	}
-
-	public void setRecruitmentId(String recruitmentId) {
-		this.recruitmentId = recruitmentId;
-	}
-
-	public String getUserId() {
+	
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	public Long getRecruitmentId() {
+		return recruitmentId;
+	}
+
+	public void setRecruitmentId(Long recruitmentId) {
+		this.recruitmentId = recruitmentId;
+	}
+
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public String getPublishDate() {
+	public Date getPublishDate() {
 		return this.publishDate;
 	}
 
-	public void setPublishDate(String publishDate) {
+	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
 

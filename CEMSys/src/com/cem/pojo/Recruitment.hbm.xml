@@ -6,17 +6,17 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Recruitment" table="recruitment" catalog="cemsys">
-        <id name="recruitmentId" type="java.lang.String">
-            <column name="recruitmentId" length="12" />
-            <generator class="assigned" />
+        <id name="recruitmentId" type="java.lang.Long">
+            <column name="recruitmentId"/>
+            <generator class="native" />
         </id>
-        <property name="userId" type="java.lang.String">
-            <column name="userId" length="10" not-null="true">
+        <property name="userId" type="java.lang.Long">
+            <column name="userId"  not-null="true">
                 <comment>用户编号</comment>
             </column>
         </property>
-        <property name="publishDate" type="java.lang.String">
-            <column name="publishDate" length="10" not-null="true">
+        <property name="publishDate" type="java.util.Date">
+            <column name="publishDate" not-null="true">
                 <comment>发布日期</comment>
             </column>
         </property>

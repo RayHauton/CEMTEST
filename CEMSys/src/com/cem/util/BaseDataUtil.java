@@ -30,4 +30,5 @@ public class BaseDataUtil {
 	public <T> RowMapper<T> getRowMapper(Class<T> clazz){
 		return new BeanPropertyRowMapper<>(clazz);
 	}
+	
 }

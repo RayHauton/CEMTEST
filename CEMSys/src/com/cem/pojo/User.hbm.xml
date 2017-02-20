@@ -6,7 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.User" table="user" catalog="cemsys">
-        <id name="userId" type="java.lang.Integer">
+        <id name="userId" type="java.lang.Long">
             <column name="userId" />
             <generator class="native" />
         </id>

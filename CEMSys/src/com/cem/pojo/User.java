@@ -12,7 +12,7 @@ public class User implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5370282005346457795L;
-	private Integer userId;
+	private Long userId;
 	private String username;
 	private String truename;
 	private String password;
@@ -37,7 +37,7 @@ public class User implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public User(Integer userId, String username, String truename,
+	public User(Long userId, String username, String truename,
 			String password, String sex, String studNumber, String birth,
 			String mobile, String email, String address, String entranceDate,
 			String graduateDate, String schoolExperienceId, String checkOut,
@@ -60,7 +60,7 @@ public class User implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public User(Integer userId, String username, String truename,
+	public User(Long userId, String username, String truename,
 			String password, String sex, String studNumber, String birth,
 			String mobile, String email, String address, String entranceDate,
 			String graduateDate, String schoolExperienceId, String checkOut,
@@ -86,11 +86,11 @@ public class User implements java.io.Serializable {
 
 	// Property accessors
 
-	public Integer getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

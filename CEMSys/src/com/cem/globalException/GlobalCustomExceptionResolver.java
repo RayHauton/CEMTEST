@@ -33,7 +33,7 @@ public class GlobalCustomExceptionResolver implements HandlerExceptionResolver {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("message",message);
 		modelAndView.addObject("stackTrace",stackTrace);
-		modelAndView.setViewName("error");
+		modelAndView.setViewName("/error");
 		return modelAndView;
 	}
 

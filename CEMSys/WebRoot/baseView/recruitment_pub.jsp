@@ -14,8 +14,9 @@
 <title>发布招聘信息</title>
 </head>
 <body>
+	<input type="hidden" value="${pageContext.request.contextPath }" id="basePath"/>
 	<div class="outer">
-		<form action="" method="post" enctype="multipart/form-data" id="form">
+		<form action="${pageContext.request.contextPath }/recruitment/publish.action" method="post" enctype="multipart/form-data" id="form">
 			<div class="head">
 				<div class="imgDiv">
 					<img alt="" src="../img/edit.png">
@@ -28,7 +29,9 @@
 					<tbody>
 						<tr>
 							<td style="width: 330px;">发布人</td>
-							<td style="padding: 0px;"><input type="text" name="truename" disabled="disabled"
+							<td style="display: none;"><input type="hidden" name="userId" id="userId"
+								value="${sessionScope.user.userId}"/></td>
+							<td style="padding: 0px;"><input type="text" name="truename" readonly="readonly"
 								value="${sessionScope.user.truename}" class="input_set" /></td>
 						</tr>
 						<tr>
@@ -48,12 +51,13 @@
 								id="fileUpload" onchange="showFile();" />
 								<button class="fileBtn" type="button"
 									onclick="javascript:document.getElementById('fileUpload').click();">点击上传文件(rar|zip)</button>
+								<span id="fileError" style="padding: 0;margin: 0;"></span>
 							</td>
 						</tr>
 						<tr>
 							<td>简要信息</td>
 							<td style="padding: 0px;"><textarea name="summary" id="summary"
-									class="textarea_set" placeholder="不超过多少个字"></textarea></td>
+									class="textarea_set" placeholder="不超过100个字符,如果字数太多请用文档压缩成附件上传"></textarea></td>
 						</tr>
 					</tbody>
 				</table>
@@ -87,10 +91,6 @@
 					提示信息
 				</div>
 				<div class="errorDiv" id="errorDiv">
-<!-- 				<span class="errorSpan" id="companyNameError"></span> -->
-<!-- 				<span class="errorSpan" id="connectWayError"></span> -->
-<!-- 				<span class="errorSpan" id="attachmentError"></span> -->
-<!-- 				<span class="errorSpan" id="summaryError"></span> -->
 				</div>
 			</div>
 		</form>
