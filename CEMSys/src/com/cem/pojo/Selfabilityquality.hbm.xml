@@ -75,9 +75,9 @@
                 <comment>心理承受能力和抗挫折能力</comment>
             </column>
         </property>
-        <property name="isDelete" type="java.lang.Short">
-            <column name="isDelete" not-null="true">
-                <comment>是否被删除</comment>
+        <property name="isDeleted" type="java.lang.String">
+            <column name="isDeleted" length="1" not-null="true">
+                <comment>删除的标志</comment>
             </column>
         </property>
     </class>

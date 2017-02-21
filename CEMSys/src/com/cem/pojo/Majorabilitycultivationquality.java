@@ -39,7 +39,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	private Short projectExperience;
 	private Short scientificResearchOpportunity;
 	private Short scienReschSpiritAndAcademicMoral;
-	private Short isDelete;
+	private String isDeleted;
 
 	// Constructors
 
@@ -371,12 +371,14 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
 	}
 
-	public Short getIsDelete() {
-		return isDelete;
+	public String getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsDelete(Short isDelete) {
-		this.isDelete = isDelete;
+	public void setIsDeleted(String isDeleted) {
+		this.isDeleted = isDeleted;
 	}
+
+	
 
 }

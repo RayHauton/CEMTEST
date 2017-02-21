@@ -46,7 +46,7 @@ public class SurveySysDaoImpl implements SurveySysDao {
 		Session session = sessionFactory.openSession();//这个地方如果用getCurrentSession会报错，不知道为什么；
 		Selfabilityquality selfabilityquality = (Selfabilityquality) session.get(Selfabilityquality.class,userID);
 		if(selfabilityquality!=null){
-			if(selfabilityquality.getIsDelete()==Short.valueOf("1"))
+			if(selfabilityquality.getIsDeleted()=="1")
 				return null;
 			else 
 				return selfabilityquality;
@@ -59,7 +59,7 @@ public class SurveySysDaoImpl implements SurveySysDao {
 		Session session = sessionFactory.openSession();;
 		Majorabilitycultivationquality majorabilitycultivationquality = (Majorabilitycultivationquality) session.get(Majorabilitycultivationquality.class, userID);
 		if(majorabilitycultivationquality!=null){
-			if(majorabilitycultivationquality.getIsDelete()==Short.valueOf("1"))
+			if(majorabilitycultivationquality.getIsDeleted()=="1")
 				return null;
 			else 
 				return majorabilitycultivationquality;

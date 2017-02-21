@@ -55,7 +55,7 @@ public class SurveySysController {
 		response.setCharacterEncoding("UTF-8");
 		User user = (User) request.getSession().getAttribute("user");
 		selfabilityquality.setUserId(user.getUserId().toString());
-		selfabilityquality.setIsDelete(Short.valueOf("0"));
+		selfabilityquality.setIsDeleted("0");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("activityName", "添加成功");
 		String s = JSONArray.fromObject(map).toString();
@@ -72,7 +72,7 @@ public class SurveySysController {
 		response.setCharacterEncoding("UTF-8");
 		User user = (User) request.getSession().getAttribute("user");
 		majorabilitycultivationquality.setUserId(user.getUserId().toString());
-		majorabilitycultivationquality.setIsDelete(Short.valueOf("0"));
+		majorabilitycultivationquality.setIsDeleted("0");
 		surveySysService.saveMajorabilitycultivationquality(majorabilitycultivationquality);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("activityName", "添加成功");

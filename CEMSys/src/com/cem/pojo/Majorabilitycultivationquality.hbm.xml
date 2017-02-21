@@ -140,9 +140,9 @@
                 <comment>科研精神与学术道德</comment>
             </column>
         </property>
-        <property name="IsDelete" type="java.lang.Short">
-            <column name="IsDelete">
-                <comment>是否被删除</comment>
+        <property name="isDeleted" type="java.lang.String">
+            <column name="isDeleted" length="1" not-null="true">
+                <comment>删除的标志</comment>
             </column>
         </property>
     </class>
