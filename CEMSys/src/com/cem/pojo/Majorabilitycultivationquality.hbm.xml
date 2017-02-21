@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Majorabilitycultivationquality" table="majorabilitycultivationquality" catalog="cemsys">
-        <id name="userId" type="java.lang.String">
+        <id name="userId" type="java.lang.Long">
             <column name="userId" length="10" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="teacherProfessionalismLevel" type="java.lang.Short">
             <column name="teacherProfessionalismLevel" not-null="true">

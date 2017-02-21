@@ -12,7 +12,8 @@ public class Donation implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2241221741553740228L;
-	private String donationId;
+	private Long donationId;
+	private Long publishUserId;
 	private String publishUser;
 	private String donationProject;
 	private String donationItem;
@@ -26,20 +27,30 @@ public class Donation implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Donation(String donationId, String publishUser, String donor,
+	public Donation(Long donationId, String publishUser, String donor,Long publishUserId,
 			String isDeleted) {
 		this.donationId = donationId;
 		this.publishUser = publishUser;
+		this.publishUserId=publishUserId;
 		this.donor = donor;
 		this.isDeleted = isDeleted;
 	}
 
+	public Long getPublishUserId() {
+		return publishUserId;
+	}
+
+	public void setPublishUserId(Long publishUserId) {
+		this.publishUserId = publishUserId;
+	}
+
 	/** full constructor */
-	public Donation(String donationId, String publishUser,
+	public Donation(Long donationId, String publishUser,Long publishUserId,
 			String donationProject, String donationItem, String donor,
 			String isDeleted) {
 		this.donationId = donationId;
 		this.publishUser = publishUser;
+		this.publishUserId=publishUserId;
 		this.donationProject = donationProject;
 		this.donationItem = donationItem;
 		this.donor = donor;
@@ -48,11 +59,11 @@ public class Donation implements java.io.Serializable {
 
 	// Property accessors
 
-	public String getDonationId() {
+	public Long getDonationId() {
 		return this.donationId;
 	}
 
-	public void setDonationId(String donationId) {
+	public void setDonationId(Long donationId) {
 		this.donationId = donationId;
 	}
 

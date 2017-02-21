@@ -12,7 +12,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1725008843430933304L;
-	private String userId;
+	private Long userId;
 	private Short teacherProfessionalismLevel;
 	private Short teacherTeachingLevel;
 	private Short relationshipOfTcherAndStud;
@@ -40,7 +40,6 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	private Short scientificResearchOpportunity;
 	private Short scienReschSpiritAndAcademicMoral;
 	private String isDeleted;
-
 	// Constructors
 
 	/** default constructor */
@@ -48,19 +47,14 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Majorabilitycultivationquality(String userId,
-			Short teacherProfessionalismLevel, Short teacherTeachingLevel,
-			Short relationshipOfTcherAndStud,
-			Short majorCultivationTargetAndSocialFit,
-			Short internationalCommunicationLearning, Short baseCourseLearning,
-			Short majorCourseLearning, Short majorExperiment,
-			Short majorInternship, Short graduationDesign, Short textbookUsed,
-			Short majorCompetitionActivity, Short schoolAcademicLecture,
-			Short recreationalActivities, Short physicalFitness,
-			Short learningAtmosphereConstruction, Short libraryEffect,
-			Short instructorWorking, Short logisticServiceWorking,
-			Short fellowConnectionWorking,
-			Short careerPlanningAndEmploymentGuidance, Short psychologyGrooming) {
+	public Majorabilitycultivationquality(Long userId, Short teacherProfessionalismLevel, Short teacherTeachingLevel,
+			Short relationshipOfTcherAndStud, Short majorCultivationTargetAndSocialFit,
+			Short internationalCommunicationLearning, Short baseCourseLearning, Short majorCourseLearning,
+			Short majorExperiment, Short majorInternship, Short graduationDesign, Short textbookUsed,
+			Short majorCompetitionActivity, Short schoolAcademicLecture, Short recreationalActivities,
+			Short physicalFitness, Short learningAtmosphereConstruction, Short libraryEffect, Short instructorWorking,
+			Short logisticServiceWorking, Short fellowConnectionWorking, Short careerPlanningAndEmploymentGuidance,
+			Short psychologyGrooming) {
 		this.userId = userId;
 		this.teacherProfessionalismLevel = teacherProfessionalismLevel;
 		this.teacherTeachingLevel = teacherTeachingLevel;
@@ -87,22 +81,15 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Majorabilitycultivationquality(String userId,
-			Short teacherProfessionalismLevel, Short teacherTeachingLevel,
-			Short relationshipOfTcherAndStud,
-			Short majorCultivationTargetAndSocialFit,
-			Short internationalCommunicationLearning, Short baseCourseLearning,
-			Short majorCourseLearning, Short majorExperiment,
-			Short majorInternship, Short graduationDesign, Short textbookUsed,
-			Short majorCompetitionActivity, Short schoolAcademicLecture,
-			Short recreationalActivities, Short physicalFitness,
-			Short learningAtmosphereConstruction, Short libraryEffect,
-			Short instructorWorking, Short logisticServiceWorking,
-			Short fellowConnectionWorking,
-			Short careerPlanningAndEmploymentGuidance,
-			Short psychologyGrooming, Short tutorGuidance,
-			Short projectExperience, Short scientificResearchOpportunity,
-			Short scienReschSpiritAndAcademicMoral) {
+	public Majorabilitycultivationquality(Long userId, Short teacherProfessionalismLevel, Short teacherTeachingLevel,
+			Short relationshipOfTcherAndStud, Short majorCultivationTargetAndSocialFit,
+			Short internationalCommunicationLearning, Short baseCourseLearning, Short majorCourseLearning,
+			Short majorExperiment, Short majorInternship, Short graduationDesign, Short textbookUsed,
+			Short majorCompetitionActivity, Short schoolAcademicLecture, Short recreationalActivities,
+			Short physicalFitness, Short learningAtmosphereConstruction, Short libraryEffect, Short instructorWorking,
+			Short logisticServiceWorking, Short fellowConnectionWorking, Short careerPlanningAndEmploymentGuidance,
+			Short psychologyGrooming, Short tutorGuidance, Short projectExperience, Short scientificResearchOpportunity,
+			Short scienReschSpiritAndAcademicMoral, String isDeleted) {
 		this.userId = userId;
 		this.teacherProfessionalismLevel = teacherProfessionalismLevel;
 		this.teacherTeachingLevel = teacherTeachingLevel;
@@ -130,30 +117,28 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		this.projectExperience = projectExperience;
 		this.scientificResearchOpportunity = scientificResearchOpportunity;
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
+		this.isDeleted = isDeleted;
 	}
-	
-	
 
 	// Property accessors
 
 	@Override
 	public String toString() {
-		return teacherProfessionalismLevel + "," + teacherTeachingLevel + ","
-				+ relationshipOfTcherAndStud + "," + majorCultivationTargetAndSocialFit + ","
-				+ internationalCommunicationLearning + "," + baseCourseLearning + "," + majorCourseLearning + ","
-				+ majorExperiment + "," + majorInternship + "," + graduationDesign + "," + textbookUsed + ","
-				+ majorCompetitionActivity + "," + schoolAcademicLecture + "," + recreationalActivities + ","
-				+ physicalFitness + "," + learningAtmosphereConstruction + "," + libraryEffect + "," + instructorWorking
-				+ "," + logisticServiceWorking + "," + fellowConnectionWorking + ","
-				+ careerPlanningAndEmploymentGuidance + "," + psychologyGrooming + "," + tutorGuidance + ","
+		return teacherProfessionalismLevel + "," + teacherTeachingLevel + "," + relationshipOfTcherAndStud + ","
+				+ majorCultivationTargetAndSocialFit + "," + internationalCommunicationLearning + ","
+				+ baseCourseLearning + "," + majorCourseLearning + "," + majorExperiment + "," + majorInternship + ","
+				+ graduationDesign + "," + textbookUsed + "," + majorCompetitionActivity + "," + schoolAcademicLecture
+				+ "," + recreationalActivities + "," + physicalFitness + "," + learningAtmosphereConstruction + ","
+				+ libraryEffect + "," + instructorWorking + "," + logisticServiceWorking + "," + fellowConnectionWorking
+				+ "," + careerPlanningAndEmploymentGuidance + "," + psychologyGrooming + "," + tutorGuidance + ","
 				+ projectExperience + "," + scientificResearchOpportunity + "," + scienReschSpiritAndAcademicMoral;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -185,8 +170,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		return this.majorCultivationTargetAndSocialFit;
 	}
 
-	public void setMajorCultivationTargetAndSocialFit(
-			Short majorCultivationTargetAndSocialFit) {
+	public void setMajorCultivationTargetAndSocialFit(Short majorCultivationTargetAndSocialFit) {
 		this.majorCultivationTargetAndSocialFit = majorCultivationTargetAndSocialFit;
 	}
 
@@ -194,8 +178,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		return this.internationalCommunicationLearning;
 	}
 
-	public void setInternationalCommunicationLearning(
-			Short internationalCommunicationLearning) {
+	public void setInternationalCommunicationLearning(Short internationalCommunicationLearning) {
 		this.internationalCommunicationLearning = internationalCommunicationLearning;
 	}
 
@@ -283,8 +266,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		return this.learningAtmosphereConstruction;
 	}
 
-	public void setLearningAtmosphereConstruction(
-			Short learningAtmosphereConstruction) {
+	public void setLearningAtmosphereConstruction(Short learningAtmosphereConstruction) {
 		this.learningAtmosphereConstruction = learningAtmosphereConstruction;
 	}
 
@@ -324,8 +306,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		return this.careerPlanningAndEmploymentGuidance;
 	}
 
-	public void setCareerPlanningAndEmploymentGuidance(
-			Short careerPlanningAndEmploymentGuidance) {
+	public void setCareerPlanningAndEmploymentGuidance(Short careerPlanningAndEmploymentGuidance) {
 		this.careerPlanningAndEmploymentGuidance = careerPlanningAndEmploymentGuidance;
 	}
 
@@ -357,8 +338,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		return this.scientificResearchOpportunity;
 	}
 
-	public void setScientificResearchOpportunity(
-			Short scientificResearchOpportunity) {
+	public void setScientificResearchOpportunity(Short scientificResearchOpportunity) {
 		this.scientificResearchOpportunity = scientificResearchOpportunity;
 	}
 
@@ -366,8 +346,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		return this.scienReschSpiritAndAcademicMoral;
 	}
 
-	public void setScienReschSpiritAndAcademicMoral(
-			Short scienReschSpiritAndAcademicMoral) {
+	public void setScienReschSpiritAndAcademicMoral(Short scienReschSpiritAndAcademicMoral) {
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
 	}
 
@@ -378,7 +357,4 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-
-	
-
 }

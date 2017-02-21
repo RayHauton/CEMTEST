@@ -12,7 +12,7 @@ public class Selfabilityquality implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2071806941358862424L;
-	private String userId;
+	private Long userId;
 	private Short gumptionAndAchvConscious;
 	private Short companyCooperation;
 	private Short professionalism;
@@ -27,7 +27,6 @@ public class Selfabilityquality implements java.io.Serializable {
 	private Short wordsExpression;
 	private Short psychologyBearAndAntiFrustration;
 	private String isDeleted;
-
 	// Constructors
 
 	/** default constructor */
@@ -35,13 +34,11 @@ public class Selfabilityquality implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Selfabilityquality(String userId, Short gumptionAndAchvConscious,
-			Short companyCooperation, Short professionalism,
-			Short majorBaseKnowledge, Short knowledgeWidth,
-			Short foreignLanguage, Short acquireAndApplyKnowledge,
-			Short selfDealProblem, Short practiceAndHandsOn,
-			Short motivationAbility, Short communicationAndOrganizeAbility,
-			Short wordsExpression, Short psychologyBearAndAntiFrustration) {
+	public Selfabilityquality(Long userId, Short gumptionAndAchvConscious, Short companyCooperation,
+			Short professionalism, Short majorBaseKnowledge, Short knowledgeWidth, Short foreignLanguage,
+			Short acquireAndApplyKnowledge, Short selfDealProblem, Short practiceAndHandsOn, Short motivationAbility,
+			Short communicationAndOrganizeAbility, Short wordsExpression, Short psychologyBearAndAntiFrustration,
+			String isDeleted) {
 		this.userId = userId;
 		this.gumptionAndAchvConscious = gumptionAndAchvConscious;
 		this.companyCooperation = companyCooperation;
@@ -56,28 +53,24 @@ public class Selfabilityquality implements java.io.Serializable {
 		this.communicationAndOrganizeAbility = communicationAndOrganizeAbility;
 		this.wordsExpression = wordsExpression;
 		this.psychologyBearAndAntiFrustration = psychologyBearAndAntiFrustration;
+		this.isDeleted = isDeleted;
 	}
 
 	// Property accessors
 
 	@Override
 	public String toString() {
-		return  gumptionAndAchvConscious
-				+ "," + companyCooperation + "," + professionalism
-				+ "," + majorBaseKnowledge + "," + knowledgeWidth
-				+ "," + foreignLanguage + "," + acquireAndApplyKnowledge
-				+ "," + selfDealProblem + "," + practiceAndHandsOn
-				+ "," + motivationAbility + ","
-				+ communicationAndOrganizeAbility + "," + wordsExpression
-				+ "," + psychologyBearAndAntiFrustration;
+		return gumptionAndAchvConscious + "," + companyCooperation + "," + professionalism + "," + majorBaseKnowledge
+				+ "," + knowledgeWidth + "," + foreignLanguage + "," + acquireAndApplyKnowledge + "," + selfDealProblem
+				+ "," + practiceAndHandsOn + "," + motivationAbility + "," + communicationAndOrganizeAbility + ","
+				+ wordsExpression + "," + psychologyBearAndAntiFrustration;
 	}
-	
-	public String getUserId() {
+
+	public Long getUserId() {
 		return this.userId;
 	}
 
-
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -165,8 +158,7 @@ public class Selfabilityquality implements java.io.Serializable {
 		return this.communicationAndOrganizeAbility;
 	}
 
-	public void setCommunicationAndOrganizeAbility(
-			Short communicationAndOrganizeAbility) {
+	public void setCommunicationAndOrganizeAbility(Short communicationAndOrganizeAbility) {
 		this.communicationAndOrganizeAbility = communicationAndOrganizeAbility;
 	}
 
@@ -182,8 +174,7 @@ public class Selfabilityquality implements java.io.Serializable {
 		return this.psychologyBearAndAntiFrustration;
 	}
 
-	public void setPsychologyBearAndAntiFrustration(
-			Short psychologyBearAndAntiFrustration) {
+	public void setPsychologyBearAndAntiFrustration(Short psychologyBearAndAntiFrustration) {
 		this.psychologyBearAndAntiFrustration = psychologyBearAndAntiFrustration;
 	}
 
@@ -194,7 +185,4 @@ public class Selfabilityquality implements java.io.Serializable {
 	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-
-	
-
 }

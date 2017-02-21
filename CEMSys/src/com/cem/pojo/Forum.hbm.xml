@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Forum" table="forum" catalog="cemsys">
-        <id name="forumId" type="java.lang.String">
+        <id name="forumId" type="java.lang.Long">
             <column name="forumId" length="20" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="forumTitle" type="java.lang.String">
             <column name="forumTitle" length="10">
@@ -20,8 +20,8 @@
                 <comment>发帖模块</comment>
             </column>
         </property>
-        <property name="userId" type="java.lang.String">
-            <column name="userId" length="10">
+        <property name="userId" type="java.lang.Long">
+            <column name="userId">
                 <comment>发帖人</comment>
             </column>
         </property>
@@ -30,17 +30,20 @@
                 <comment>用户名</comment>
             </column>
         </property>
+        <property name="truename" type="java.lang.String">
+        	<column name="truename" length="20"></column>
+        </property>
         <property name="topic" type="java.lang.String">
             <column name="topic" length="5">
                 <comment>主题</comment>
             </column>
         </property>
-        <property name="publishTime" type="java.lang.String">
+        <property name="publishTime" type="java.util.Date">
             <column name="publishTime" length="30">
                 <comment>发帖时间</comment>
             </column>
         </property>
-        <property name="updateTime" type="java.lang.String">
+        <property name="updateTime" type="java.util.Date">
             <column name="updateTime" length="30">
                 <comment>最后回复时间</comment>
             </column>

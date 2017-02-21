@@ -70,7 +70,7 @@ public class BaseInfomationController {
 		if (user != null && companynature != null) {
 			Jobinfomodule jobinfomodule2 = jobService
 					.findJobInfByUserId(String.valueOf(((User) session.getAttribute("user")).getUserId()));
-			jobinfomodule.setUserId(String.valueOf(((User) session.getAttribute("user")).getUserId()));
+			jobinfomodule.setUserId(((User) session.getAttribute("user")).getUserId());
 			jobinfomodule.setIsDeleted("0");
 			System.out.println("准备比较");
 			if (jobinfomodule2 == null) {
@@ -115,7 +115,7 @@ public class BaseInfomationController {
 			jobcontitionmodule.setSatisLevelOfBusinessSelf(request.getParameter("satisLevelOfBusinessSelf"));
 			jobcontitionmodule.setSatisLevelOfCurrJob(request.getParameter("satisLevelOfCurrJob"));
 			jobcontitionmodule.setTransferJobCount(Integer.parseInt(request.getParameter("transferJobCount")));
-			jobcontitionmodule.setUserId(String.valueOf(((User) session.getAttribute("user")).getUserId()));
+			jobcontitionmodule.setUserId(((User) session.getAttribute("user")).getUserId());
 			jobcontitionmodule.setYearsToBusinessSelf(Integer.parseInt(request.getParameter("yearsToBusinessSelf")));
 			jobService.insertJobCon(jobcontitionmodule);
 			response.getWriter().write("succ");

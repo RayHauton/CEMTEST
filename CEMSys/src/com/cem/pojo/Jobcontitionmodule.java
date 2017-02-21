@@ -12,8 +12,8 @@ public class Jobcontitionmodule implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6551063923964979848L;
-	private int conditionId;
-	private String userId;
+	private Long conditionId;
+	private Long userId;
 	private Integer yearsToBusinessSelf;
 	private String honorName;
 	private Integer firstPromote;
@@ -33,7 +33,7 @@ public class Jobcontitionmodule implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Jobcontitionmodule(int conditionId, String userId,
+	public Jobcontitionmodule(Long conditionId, Long userId,
 			Integer yearsToBusinessSelf, Integer firstPromote,
 			String satisLevelOfBusinessSelf, Integer transferJobCount,
 			String satisLevelOfCurrJob, String income, Short honorLevel,
@@ -52,7 +52,7 @@ public class Jobcontitionmodule implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Jobcontitionmodule(int conditionId, String userId,
+	public Jobcontitionmodule(Long conditionId, Long userId,
 			Integer yearsToBusinessSelf, String honorName,
 			Integer firstPromote, String satisLevelOfBusinessSelf,
 			String reasonOfNotStatis, Integer transferJobCount,
@@ -75,19 +75,19 @@ public class Jobcontitionmodule implements java.io.Serializable {
 
 	// Property accessors
 
-	public int getConditionId() {
+	public Long getConditionId() {
 		return this.conditionId;
 	}
 
-	public void setConditionId(int conditionId) {
+	public void setConditionId(Long conditionId) {
 		this.conditionId = conditionId;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

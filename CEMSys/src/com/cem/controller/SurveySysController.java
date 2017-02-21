@@ -54,7 +54,7 @@ public class SurveySysController {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		User user = (User) request.getSession().getAttribute("user");
-		selfabilityquality.setUserId(user.getUserId().toString());
+		selfabilityquality.setUserId(user.getUserId());
 		selfabilityquality.setIsDeleted("0");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("activityName", "添加成功");
@@ -71,7 +71,7 @@ public class SurveySysController {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		User user = (User) request.getSession().getAttribute("user");
-		majorabilitycultivationquality.setUserId(user.getUserId().toString());
+		majorabilitycultivationquality.setUserId(user.getUserId());
 		majorabilitycultivationquality.setIsDeleted("0");
 		surveySysService.saveMajorabilitycultivationquality(majorabilitycultivationquality);
 		Map<String, String> map = new HashMap<String, String>();
