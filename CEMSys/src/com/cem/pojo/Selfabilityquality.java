@@ -12,7 +12,7 @@ public class Selfabilityquality implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2071806941358862424L;
-	private String userId;
+	private Long userId;
 	private Short gumptionAndAchvConscious;
 	private Short companyCooperation;
 	private Short professionalism;
@@ -26,7 +26,7 @@ public class Selfabilityquality implements java.io.Serializable {
 	private Short communicationAndOrganizeAbility;
 	private Short wordsExpression;
 	private Short psychologyBearAndAntiFrustration;
-	private Short isDelete;
+	private String isDelete;
 
 	// Constructors
 
@@ -35,7 +35,7 @@ public class Selfabilityquality implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Selfabilityquality(String userId, Short gumptionAndAchvConscious,
+	public Selfabilityquality(Long userId, Short gumptionAndAchvConscious,
 			Short companyCooperation, Short professionalism,
 			Short majorBaseKnowledge, Short knowledgeWidth,
 			Short foreignLanguage, Short acquireAndApplyKnowledge,
@@ -72,12 +72,12 @@ public class Selfabilityquality implements java.io.Serializable {
 				+ "," + psychologyBearAndAntiFrustration;
 	}
 	
-	public String getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -187,11 +187,11 @@ public class Selfabilityquality implements java.io.Serializable {
 		this.psychologyBearAndAntiFrustration = psychologyBearAndAntiFrustration;
 	}
 
-	public Short getIsDelete() {
+	public String getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(Short isDelete) {
+	public void setIsDelete(String isDelete) {
 		this.isDelete = isDelete;
 	}
 	

@@ -1,5 +1,7 @@
 package com.cem.pojo;
 
+import java.util.Date;
+
 /**
  * Reply entity. @author MyEclipse Persistence Tools
  */
@@ -14,10 +16,11 @@ public class Reply implements java.io.Serializable {
 	private static final long serialVersionUID = 2910354075122604764L;
 	private Long replyId;
 	private String replyText;
+	private Long publishUserId;
 	private String publishUser;
 	private String forum;
 	private Short floor;
-	private String replyTime;
+	private Date replyTime;
 	private String parentReplyId;
 	private String replyObject;
 	private String isDeleted;
@@ -35,9 +38,8 @@ public class Reply implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Reply(Long replyId, String replyText, String publishUser,
-			String forum, Short floor, String replyTime, String parentReplyId,
-			String replyObject, String isDeleted) {
+	public Reply(Long publishUserId, Long replyId, String replyText, String publishUser, String forum, Short floor,
+			Date replyTime, String parentReplyId, String replyObject, String isDeleted) {
 		this.replyId = replyId;
 		this.replyText = replyText;
 		this.publishUser = publishUser;
@@ -47,6 +49,7 @@ public class Reply implements java.io.Serializable {
 		this.parentReplyId = parentReplyId;
 		this.replyObject = replyObject;
 		this.isDeleted = isDeleted;
+		this.publishUserId = publishUserId;
 	}
 
 	// Property accessors
@@ -91,11 +94,11 @@ public class Reply implements java.io.Serializable {
 		this.floor = floor;
 	}
 
-	public String getReplyTime() {
+	public Date getReplyTime() {
 		return this.replyTime;
 	}
 
-	public void setReplyTime(String replyTime) {
+	public void setReplyTime(Date replyTime) {
 		this.replyTime = replyTime;
 	}
 
@@ -123,4 +126,11 @@ public class Reply implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
+	public Long getPublishUserId() {
+		return publishUserId;
+	}
+
+	public void setPublishUserId(Long publishUserId) {
+		this.publishUserId = publishUserId;
+	}
 }

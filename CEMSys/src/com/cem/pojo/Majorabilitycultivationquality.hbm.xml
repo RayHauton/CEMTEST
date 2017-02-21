@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Majorabilitycultivationquality" table="majorabilitycultivationquality" catalog="cemsys">
-        <id name="userId" type="java.lang.String">
+        <id name="userId" type="java.lang.Long">
             <column name="userId" length="10" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="teacherProfessionalismLevel" type="java.lang.Short">
             <column name="teacherProfessionalismLevel" not-null="true">
@@ -140,8 +140,8 @@
                 <comment>科研精神与学术道德</comment>
             </column>
         </property>
-        <property name="IsDelete" type="java.lang.Short">
-            <column name="IsDelete">
+        <property name="IsDelete" type="java.lang.String">
+            <column name="IsDelete" length="1">
                 <comment>是否被删除</comment>
             </column>
         </property>

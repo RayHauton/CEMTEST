@@ -6,12 +6,12 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Jobinfomodule" table="jobinfomodule" catalog="cemsys">
-        <id name="moduleId" type="java.lang.Integer">
+        <id name="moduleId" type="java.lang.Long">
             <column name="moduleId" />
             <generator class="native" />
         </id>
-        <property name="userId" type="java.lang.String">
-            <column name="userId" length="10" not-null="true">
+        <property name="userId" type="java.lang.Long">
+            <column name="userId" not-null="true">
                 <comment>用户编号</comment>
             </column>
         </property>

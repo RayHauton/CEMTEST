@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Selfabilityquality" table="selfabilityquality" catalog="cemsys">
-        <id name="userId" type="java.lang.String">
-            <column name="userId" length="10" />
-            <generator class="assigned" />
+        <id name="userId" type="java.lang.Long">
+            <column name="userId" />
+            <generator class="native" />
         </id>
         <property name="gumptionAndAchvConscious" type="java.lang.Short">
             <column name="gumptionAndAchvConscious" not-null="true">
@@ -75,7 +75,7 @@
                 <comment>心理承受能力和抗挫折能力</comment>
             </column>
         </property>
-        <property name="isDelete" type="java.lang.Short">
+        <property name="isDelete" type="java.lang.String">
             <column name="isDelete" not-null="true">
                 <comment>是否被删除</comment>
             </column>

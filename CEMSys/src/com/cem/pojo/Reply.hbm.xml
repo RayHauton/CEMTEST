@@ -8,7 +8,7 @@
     <class name="com.cem.pojo.Reply" table="reply" catalog="cemsys">
         <id name="replyId" type="java.lang.Long">
             <column name="replyId" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="replyText" type="java.lang.String">
             <column name="replyText" length="65535">
@@ -20,6 +20,9 @@
                 <comment>被回复人的id</comment>
             </column>
         </property>
+        <property name="publishUserId" type="java.lang.Long">
+        	<column name="publishUserId"></column>
+        </property>
         <property name="forum" type="java.lang.String">
             <column name="forum" length="20">
                 <comment>帖子id</comment>
@@ -30,8 +33,8 @@
                 <comment>楼层</comment>
             </column>
         </property>
-        <property name="replyTime" type="java.lang.String">
-            <column name="replyTime" length="30">
+        <property name="replyTime" type="java.util.Date">
+            <column name="replyTime">
                 <comment>回复时间</comment>
             </column>
         </property>

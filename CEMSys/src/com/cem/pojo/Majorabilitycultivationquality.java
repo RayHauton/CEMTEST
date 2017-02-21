@@ -12,7 +12,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1725008843430933304L;
-	private String userId;
+	private Long userId;
 	private Short teacherProfessionalismLevel;
 	private Short teacherTeachingLevel;
 	private Short relationshipOfTcherAndStud;
@@ -39,7 +39,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	private Short projectExperience;
 	private Short scientificResearchOpportunity;
 	private Short scienReschSpiritAndAcademicMoral;
-	private Short isDelete;
+	private String isDelete;
 
 	// Constructors
 
@@ -48,7 +48,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Majorabilitycultivationquality(String userId,
+	public Majorabilitycultivationquality(Long userId,
 			Short teacherProfessionalismLevel, Short teacherTeachingLevel,
 			Short relationshipOfTcherAndStud,
 			Short majorCultivationTargetAndSocialFit,
@@ -87,7 +87,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Majorabilitycultivationquality(String userId,
+	public Majorabilitycultivationquality(Long userId,
 			Short teacherProfessionalismLevel, Short teacherTeachingLevel,
 			Short relationshipOfTcherAndStud,
 			Short majorCultivationTargetAndSocialFit,
@@ -149,11 +149,11 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 				+ projectExperience + "," + scientificResearchOpportunity + "," + scienReschSpiritAndAcademicMoral;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -371,11 +371,11 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
 	}
 
-	public Short getIsDelete() {
+	public String getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(Short isDelete) {
+	public void setIsDelete(String isDelete) {
 		this.isDelete = isDelete;
 	}
 

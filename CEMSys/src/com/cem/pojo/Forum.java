@@ -1,5 +1,7 @@
 package com.cem.pojo;
 
+import java.util.Date;
+
 /**
  * Forum entity. @author MyEclipse Persistence Tools
  */
@@ -12,14 +14,15 @@ public class Forum implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 572852796722790496L;
-	private String forumId;
+	private Long forumId;
 	private String forumTitle;
 	private String forumModule;
-	private String userId;
+	private Long userId;
 	private String username;
+	private String truename;
 	private String topic;
-	private String publishTime;
-	private String updateTime;
+	private Date publishTime;
+	private Date updateTime;
 	private Integer replyCount;
 	private Integer viewCount;
 	private String attachment;
@@ -33,16 +36,15 @@ public class Forum implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Forum(String forumId, String isDeleted) {
+	public Forum(Long forumId, String isDeleted) {
 		this.forumId = forumId;
 		this.isDeleted = isDeleted;
 	}
 
 	/** full constructor */
-	public Forum(String forumId, String forumTitle, String forumModule,
-			String userId, String username, String topic, String publishTime,
-			String updateTime, Integer replyCount, Integer viewCount,
-			String attachment, String isFine, String isDeleted) {
+	public Forum(Long forumId, String forumTitle, String forumModule, Long userId, String username, String truename,
+			String topic, Date publishTime, Date updateTime, Integer replyCount, Integer viewCount, String attachment,
+			String isFine, String isDeleted) {
 		this.forumId = forumId;
 		this.forumTitle = forumTitle;
 		this.forumModule = forumModule;
@@ -56,15 +58,16 @@ public class Forum implements java.io.Serializable {
 		this.attachment = attachment;
 		this.isFine = isFine;
 		this.isDeleted = isDeleted;
+		this.truename = truename;
 	}
 
 	// Property accessors
 
-	public String getForumId() {
+	public Long getForumId() {
 		return this.forumId;
 	}
 
-	public void setForumId(String forumId) {
+	public void setForumId(Long forumId) {
 		this.forumId = forumId;
 	}
 
@@ -84,11 +87,11 @@ public class Forum implements java.io.Serializable {
 		this.forumModule = forumModule;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -108,20 +111,28 @@ public class Forum implements java.io.Serializable {
 		this.topic = topic;
 	}
 
-	public String getPublishTime() {
+	public Date getPublishTime() {
 		return this.publishTime;
 	}
 
-	public void setPublishTime(String publishTime) {
+	public void setPublishTime(Date publishTime) {
 		this.publishTime = publishTime;
 	}
 
-	public String getUpdateTime() {
+	public Date getUpdateTime() {
 		return this.updateTime;
 	}
 
-	public void setUpdateTime(String updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getTruename() {
+		return truename;
+	}
+
+	public void setTruename(String truename) {
+		this.truename = truename;
 	}
 
 	public Integer getReplyCount() {
