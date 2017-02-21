@@ -1,6 +1,7 @@
 package com.cem.controller;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,20 +26,10 @@ import com.cem.service.RecruitmentService;
 public class RecruitmentController {
 	@Value("${file.path}")
 	private String path;
-	@Value("${show.pageSize}")
-	private String pageSizeString;
-	@Value("${show.pageSize.default}")
+	@Value("${defaultPageSize}")
 	private Integer pageSizeDefault;
-	private List<Integer> pageSizeList;
 	@Autowired
 	private RecruitmentService recruitmentService;
-
-	{
-		String[] pageSizeArray = pageSizeString.split(".");
-		for(String item:pageSizeArray){
-			pageSizeList.add(Integer.parseInt(item));
-		}
-	}
 	
 	/*
 	 * 打开发布招聘信息界面
@@ -57,16 +48,32 @@ public class RecruitmentController {
 	@RequestMapping(value = "/show")
 	public ModelAndView show(HttpServletRequest request, HttpServletResponse response, 
 			HttpSession session,
-			RecruitmentQueryVo recruitmentQueryVo) throws Exception {
-		int pageIndex = (recruitmentQueryVo.getPageIndex()==null)?1:recruitmentQueryVo.getPageIndex();
-		int pageSize = recruitmentQueryVo.getPageSize()==null?pageSizeDefault:recruitmentQueryVo.getPageSize();
-		String searchCondition = recruitmentQueryVo.getQueryCondition();
+			RecruitmentQueryVo queryVo) throws Exception {
+		int pageIndex = (queryVo.getPageIndex()==null)?1:queryVo.getPageIndex();
+		int pageSize = queryVo.getPageSize()==null?pageSizeDefault:queryVo.getPageSize();
+		String searchCondition = queryVo.getQueryCondition();
 		ModelAndView modelAndView = new ModelAndView();
+		List<Recruitment> queryResult = null;
 		if(searchCondition!=null){
 			
 		}else{
-			modelAndView.addObject("recruitmentList",recruitmentService.findAll(pageIndex, pageSize));
+			queryResult=recruitmentService.findAll(pageIndex, pageSize);
 		}
+		modelAndView.addObject("recruitmentList",queryResult);
+		/*
+		 * 设置当前页码
+		 */
+		queryVo.setPageIndex(pageIndex);
+		/*
+		 * 设置总记录数
+		 */
+		int recordCount = queryResult.size();
+		queryVo.setRecordCount(recordCount);
+		/*
+		 * 设置总页数
+		 */
+		queryVo.setPageCount(recordCount%pageSize==0?recordCount/pageSize:recordCount/pageSize+1);
+		modelAndView.addObject("queryVo",queryVo);
 		modelAndView.setViewName("baseView/recruitment_show");
 		return modelAndView;
 	}
@@ -80,6 +87,7 @@ public class RecruitmentController {
 		ServletContext context = request.getServletContext();
 		String dirRealPath = context.getRealPath(path);
 		System.out.println(dirRealPath);
+//		System.out.println(pageSizeString);
 		/*
 		 * 文件默认放在/WebRoot/fileUpload文件夹中 最后项目完成更换成服务器的某个位置 这个地方
 		 * 尽管请求完毕后项目中的fileUpload目录仍然是空的 但是在tomcat的项目目录文件已经成功上传
@@ -92,10 +100,10 @@ public class RecruitmentController {
 			attachment.transferTo(newFile);
 			recruitment.setAttachmentPath(newFileName);
 		}
-		recruitment.setPublishDate(new java.sql.Date(new java.util.Date().getTime()));
+		recruitment.setPublishDate(new Timestamp(new java.util.Date().getTime()));
 		recruitment.setIsDeleted("0");
 		recruitmentService.insertRecruitment(recruitment);
 //		response.getWriter().write("succ");
-		return "/show.action";
+		return "redirect:show.action";
 	}
 }

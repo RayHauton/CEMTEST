@@ -1,11 +1,8 @@
 package com.cem.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +17,6 @@ import com.cem.pojo.Majorabilitycultivationquality;
 import com.cem.pojo.Selfabilityquality;
 import com.cem.pojo.User;
 import com.cem.service.SurveySysService;
-import com.sun.swing.internal.plaf.synth.resources.synth_ja;
 
 import net.sf.json.JSONArray;
 

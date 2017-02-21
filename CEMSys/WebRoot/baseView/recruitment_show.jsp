@@ -3,8 +3,13 @@
 	2017/2/19
 	招聘信息展示界面
  -->
+<%@page import="com.cem.util.BaseDataUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	request.setAttribute("pageSizeList", BaseDataUtil.getPageSizes());
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,11 +35,9 @@
 					<img alt="" src="../img/drop.png" style="width: 15px;height: 15px;">
 				</button>
 				<ul class="dropdown-menu" style="height: 152px;">
-					<li onclick="changeSearch(this,'pgsz');">1</li>
-					<li onclick="changeSearch(this,'pgsz');">2</li>
-					<li onclick="changeSearch(this,'pgsz');">5</li>
-					<li onclick="changeSearch(this,'pgsz');">10</li>
-					<li onclick="changeSearch(this,'pgsz');">20</li>
+					<c:forEach var="pageSize" items="${pageSizeList }">
+						<li onclick="changeSearch(this,'pgsz');">${pageSize }</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<span class="divideSpan">条记录</span>
@@ -77,103 +80,34 @@
 				<th>发布日期</th>
 			</thead>
 			<tbody>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
-				<tr>
-					<td style="display: none;">1</td>
-					<td>林华栋</td>
-					<td>南航</td>
-					<td>这是个摘要</td>
-					<td>15651646589</td>
-					<td>下载附件</td>
-					<td>2016-01-11</td>
-				</tr>
+				<c:forEach var="recruitment" items="${recruitmentList }">
+					<tr>
+						<td style="display: none;">${recruitment.userId }</td>
+						<td>${recruitment.truename }</td>
+						<td>${recruitment.companyName }</td>
+						<td>${recruitment.summary }</td>
+						<td>${recruitment.connectWay }</td>
+						<td><a href="${recruitment.attachmentPath }">附件下载</a></td>
+						<td>${recruitment.publishDate }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<!-- 分页 -->
 		<div style="float: left;margin-left: 290px;margin-right: auto;">
 			<ul class="pagination dividePage">
 				<li class="disabled"><span>&laquo;</span></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
+				<c:forEach begin="${queryVo.pageIndex-queryVo.pageIndex%5+1 }" end="${queryVo.pageIndex-queryVo.pageIndex%5+5 }" step="1" varStatus="status">
+					<c:if test="${status.current<=queryVo.pageCount }">
+						<li><a href="#">${status.current }</a></li>
+					</c:if>
+				</c:forEach>		
+<!-- 				<li class="active"><a href="#">1</a></li> -->
 				<li><a href="#">&raquo;</a></li>
 			</ul>
 		</div>
 		<div class="record">
-			<span>共<font>10</font>条记录，当前是第<font>1</font>页，共<font>10</font>页</span>
+			<span>共<font>${queryVo.recordCount }</font>条记录，当前是第<font>${queryVo.pageIndex }</font>页，共<font>${queryVo.pageCount }</font>页</span>
 		</div>
 	</div>
 </body>

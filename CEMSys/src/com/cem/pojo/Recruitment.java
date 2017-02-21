@@ -16,6 +16,7 @@ public class Recruitment implements java.io.Serializable {
 	private static final long serialVersionUID = 3681891629135499145L;
 	private Long recruitmentId;
 	private Long userId;
+	private String truename;
 	private Date publishDate;
 	private String companyName;
 	private String summary;
@@ -30,9 +31,8 @@ public class Recruitment implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Recruitment(Long recruitmentId, Long userId, Date publishDate,
-			String companyName, String summary, String connectWay,
-			String attachmentPath, String isDeleted) {
+	public Recruitment(Long recruitmentId, Long userId, Date publishDate, String companyName, String summary,
+			String connectWay, String attachmentPath, String isDeleted) {
 		this.recruitmentId = recruitmentId;
 		this.userId = userId;
 		this.publishDate = publishDate;
@@ -45,9 +45,20 @@ public class Recruitment implements java.io.Serializable {
 
 	// Property accessors
 
-	
 	public Long getUserId() {
 		return this.userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getTruename() {
+		return truename;
+	}
+
+	public void setTruename(String truename) {
+		this.truename = truename;
 	}
 
 	public Long getRecruitmentId() {
@@ -56,10 +67,6 @@ public class Recruitment implements java.io.Serializable {
 
 	public void setRecruitmentId(Long recruitmentId) {
 		this.recruitmentId = recruitmentId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public Date getPublishDate() {

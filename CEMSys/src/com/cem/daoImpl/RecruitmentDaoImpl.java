@@ -14,6 +14,7 @@ import com.cem.pojo.Recruitment;
 public class RecruitmentDaoImpl implements RecruitmentDao {
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -28,9 +29,8 @@ public class RecruitmentDaoImpl implements RecruitmentDao {
 	public List<Recruitment> findAll(int pageIndex, int pageSize) throws Exception {
 		Session session = getSession();
 		@SuppressWarnings("unchecked")
-		List<Recruitment> recruitmentList = session.createQuery("FROM Recruitment re WHERE re.isDeleted=?")
-				.setParameter(0, "0").setFirstResult((pageIndex - 1) * pageSize).setMaxResults(pageIndex * pageSize)
-				.list();
+		List<Recruitment> recruitmentList = session.createQuery("FROM Recruitment re WHERE re.isDeleted='0' ORDER BY re.publishDate desc")
+				.setFirstResult((pageIndex - 1) * pageSize).setMaxResults(pageIndex * pageSize).list();
 		return recruitmentList;
 	}
 }
