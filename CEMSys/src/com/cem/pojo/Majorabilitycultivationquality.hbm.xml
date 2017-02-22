@@ -8,7 +8,6 @@
     <class name="com.cem.pojo.Majorabilitycultivationquality" table="majorabilitycultivationquality" catalog="cemsys">
         <id name="userId" type="java.lang.Long">
             <column name="userId" length="10" />
-            <generator class="native" />
         </id>
         <property name="teacherProfessionalismLevel" type="java.lang.Short">
             <column name="teacherProfessionalismLevel" not-null="true">

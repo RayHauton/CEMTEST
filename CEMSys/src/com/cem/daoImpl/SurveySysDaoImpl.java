@@ -42,41 +42,35 @@ public class SurveySysDaoImpl implements SurveySysDao {
 	}
 
 	@Override
-	public Selfabilityquality SearchSelfabilityqualityByUserID(String userID) {
-		Session session = sessionFactory.openSession();//这个地方如果用getCurrentSession会报错，不知道为什么；
-		Selfabilityquality selfabilityquality = (Selfabilityquality) session.get(Selfabilityquality.class,userID);
-		if(selfabilityquality!=null){
-			if(selfabilityquality.getIsDeleted()=="1")
-				return null;
-			else 
+	public Selfabilityquality SearchSelfabilityqualityByUserID(Long userID) {
+		Session session = getSession();//这个地方如果用getCurrentSession会报错，是因为没有延长session的作用范围；
+		Selfabilityquality selfabilityquality = (Selfabilityquality) session.load(Selfabilityquality.class,userID);
+		if(selfabilityquality!=null&&selfabilityquality.getIsDeleted().equals("1")==false)
 				return selfabilityquality;
-		}else 
+		else 
 			return null;
 	}
 
 	@Override
-	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(String userID) {
-		Session session = sessionFactory.openSession();;
-		Majorabilitycultivationquality majorabilitycultivationquality = (Majorabilitycultivationquality) session.get(Majorabilitycultivationquality.class, userID);
-		if(majorabilitycultivationquality!=null){
-			if(majorabilitycultivationquality.getIsDeleted()=="1")
-				return null;
-			else 
+	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(Long userID) {
+		Session session = getSession();
+		Majorabilitycultivationquality majorabilitycultivationquality = (Majorabilitycultivationquality) session.load(Majorabilitycultivationquality.class, userID);
+		if(majorabilitycultivationquality!=null&&majorabilitycultivationquality.getIsDeleted().equals("1")==false)
 				return majorabilitycultivationquality;
-		}else 
+		else 
 			return null;
 	}
 	@Override
-	public void deleteSelfabilityqualityByUserID(String userID) {
+	public void deleteSelfabilityqualityByUserID(Long userID) {
 		Session session = getSession();
-		String hql="update Selfabilityquality s set s.isDelete=1 where s.userId='"+userID+"';";
+		String hql="update Selfabilityquality s set s.isDeleted=1 where s.userId='"+userID+"';";
 		session.createSQLQuery(hql).executeUpdate();
 	}
 
 	@Override
-	public void deleteMajorabilitycultivationqualityByUserID(String userID) {
+	public void deleteMajorabilitycultivationqualityByUserID(Long userID) {
 		Session session = getSession();
-		String hql="update Majorabilitycultivationquality m set m.isDelete=1 where m.userId="+userID+";";
+		String hql="update Majorabilitycultivationquality m set m.isDeleted=1 where m.userId="+userID+";";
 		session.createSQLQuery(hql).executeUpdate();
 	}
 	
