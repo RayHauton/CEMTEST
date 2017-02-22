@@ -57,7 +57,7 @@ public class RecruitmentController {
 		if(searchCondition!=null){
 			
 		}else{
-			queryResult=recruitmentService.findAllWithDivPage(pageIndex, pageSize);
+			queryResult=recruitmentService.findAll(pageIndex, pageSize);
 		}
 		modelAndView.addObject("recruitmentList",queryResult);
 		/*
