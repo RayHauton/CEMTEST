@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cem.dao.JobDao;
-import com.cem.dao.UserDao;
 import com.cem.pojo.Companynature;
 import com.cem.pojo.Income;
 import com.cem.pojo.Jobcontitionmodule;

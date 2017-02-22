@@ -14,7 +14,6 @@ import com.cem.pojo.Income;
 import com.cem.pojo.Jobcontitionmodule;
 import com.cem.pojo.Jobinfomodule;
 import com.cem.pojo.Transferjobcount;
-import com.cem.pojo.User;
 
 @Repository
 public class JobDaoImp implements JobDao{
