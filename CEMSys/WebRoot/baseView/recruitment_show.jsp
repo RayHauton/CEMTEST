@@ -28,46 +28,14 @@
 			<span>招聘信息一览</span>
 		</div>
 		<div class="searchDiv">
-			<span class="divideSpan">每页显示</span>
-			<div class="btn-group" style="margin-left: 1px;margin-top: 3px;float: left;">
-				<button id="pgsz" class="btn btn-nav">请选择</button>
-				<button data-toggle="dropdown" class="dropdown-toggle btn-drop" id="btn_drop_divide">
-					<img alt="" src="../img/drop.png" style="width: 15px;height: 15px;">
-				</button>
-				<ul class="dropdown-menu" style="height: 152px;">
-					<c:forEach var="pageSize" items="${pageSizeList }">
-						<li onclick="changeSearch(this,'pgsz');">${pageSize }</li>
-					</c:forEach>
-				</ul>
-			</div>
-			<span class="divideSpan">条记录</span>
-			<div style="float: right; width: 380px;">
-				<div class="btn-group" style="margin-left: 1px;margin-top: 3px;float: left;">
-					<button id="searchMethod" class="btn btn-nav">搜索方式</button>
-					<button data-toggle="dropdown" class="dropdown-toggle btn-drop" id="btn_drop">
-						<img alt="" src="../img/drop.png" style="width: 15px;height: 15px;">
-					</button>
-					<ul class="dropdown-menu">
-						<li onclick="changeSearch(this,'searchMethod');">全部记录</li>
-<!-- 						<li class="divider"></li> -->
-						<li onclick="changeSearch(this,'searchMethod');">发&nbsp;&nbsp;布&nbsp;&nbsp;人</li>
-<!-- 						<li class="divider"></li> -->
-						<li onclick="changeSearch(this,'searchMethod');">发布日期</li>
-<!-- 						<li class="divider"></li> -->
-						<li onclick="changeSearch(this,'searchMethod');">发布单位</li>
-					</ul>
-				</div>
-				<form action="" role="form" style="margin-right: 0px;">
-					<div class="form-group searchForm">
-						<input type="text" class="form-control" name="" id="searchContent" placeholder="输入查询内容"/>
-					</div>
-					<div class="searchImgDiv">
-						<button class="searchBtn">
-							<img alt="" src="../img/search.png">
-						</button>
-					</div>
-				</form>
-			</div>
+			<span class="divideSpan">每页显示</span>&nbsp;
+			<select class="pgszSlkt">
+				<option>请选择</option>
+				<c:forEach var="pageSize" items="${pageSizeList }">
+					<option>${pageSize }</option>
+				</c:forEach>
+			</select>&nbsp;条记录
+			<button onclick="javascript:openSearchDialog();" id="searchBtn" class="searchBtn">我要查询</button>
 		</div>
 		<table class="table table-bordered table-striped" cellpadding="0" cellspacing="0">
 			<thead>
@@ -109,13 +77,52 @@
 		<div class="record">
 			<span>共<font>${queryVo.recordCount }</font>条记录，当前是第<font>${queryVo.pageIndex }</font>页，共<font>${queryVo.pageCount }</font>页</span>
 		</div>
+		<div class="modal dialog" id="searchDialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title" style="font-size: 20px;">查询条件输入</h1>
+				</div>
+				<div class="modal-body">
+					<form action="">
+						<div class="checkbox">
+							<label for="viewAll">
+								<input type="checkbox" name="viewAll" id="viewAll" value="" onclick="hideFormElementWhenChooseViewAll();"/>
+							我要查看全部记录</label>
+						</div>
+						<div class="form-group" id="publishPersonDiv">
+							<label for="publishPerson">发布人姓名：</label>
+							<input type="text" class="form-control" id="publishPerson" placeholder="请输入发布人的真实姓名"/>
+						</div>
+						<div class="form-group" id="searchDateDiv">
+							<label for="pubForedate">发布日期从：</label>
+							<input type="date" class="form-control" id="pubForedate" placeholder="时间下限"/>
+							<label for="pubAfterdate">到：</label>
+							<input type="date" class="form-control" id="pubAfterdate" placeholder="时间上限"/>
+						</div>
+						<div class="form-group" id="companyNameDiv">
+							<label for="pubCompany">企事业单位名称：</label>
+							<input type="text" class="form-control" id="pubCompany" placeholder="请输入单位姓名"/>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" style="background-color: #50E450;color: #FFFFFF;" onclick="closeSearchDialog();">关闭</button>
+					<button type="button" class="btn" style="background-color: #1296db;color: #FFFFFF;">Go!-></button>
+				</div>
+			</div>
+		</div>
 	</div>
+	
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/recruitmentControl/recruitment_show.js"></script>
 <script type="text/javascript">
-	function changeSearch(obj,id) {
-		document.getElementById(id).innerHTML=obj.innerHTML;
+	function openSearchDialog() {
+		$("#searchDialog").slideToggle(200);
+	}
+	function closeSearchDialog() {
+		$("#searchBtn").click();
 	}
 </script>
 </html>
