@@ -8,7 +8,6 @@
     <class name="com.cem.pojo.Selfabilityquality" table="selfabilityquality" catalog="cemsys">
         <id name="userId" type="java.lang.Long">
             <column name="userId" />
-            <generator class="native" />
         </id>
         <property name="gumptionAndAchvConscious" type="java.lang.Short">
             <column name="gumptionAndAchvConscious" not-null="true">

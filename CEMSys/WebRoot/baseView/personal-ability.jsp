@@ -442,7 +442,7 @@ To change this template use File | Settings | File Templates.
 						<input type="button" value="提交" id="MajorabilitycultivationqualitySubmit"><input type="reset" value="重置">
 					</div>
 				</form>
-		<form action="${pageContext.request.contextPath}/surveySys/deleteByUserID">
+		<form action="${pageContext.request.contextPath}/surveySys/deleteByUserID"  style="display:none;">
 			<input type="submit" value="删除">
 		</form>
 			</div>

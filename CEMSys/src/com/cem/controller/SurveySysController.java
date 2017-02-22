@@ -35,8 +35,8 @@ public class SurveySysController {
 		response.setCharacterEncoding("UTF-8");
 		User user = (User) request.getSession().getAttribute("user");
 		String userID = user.getUserId().toString();
-		Selfabilityquality selfabilityquality  = surveySysService.SearchSelfabilityqualityByUserID(userID);
-		Majorabilitycultivationquality majorabilitycultivationquality = surveySysService.SearchMajorabilitycultivationqualityByUserID(userID);
+		Selfabilityquality selfabilityquality  = surveySysService.SearchSelfabilityqualityByUserID(Long.valueOf(userID));
+		Majorabilitycultivationquality majorabilitycultivationquality = surveySysService.SearchMajorabilitycultivationqualityByUserID(Long.valueOf(userID));
 		String data = null;
 		if(selfabilityquality!=null&&majorabilitycultivationquality!=null)
 			data = selfabilityquality.toString()+","+majorabilitycultivationquality.toString();
@@ -88,8 +88,8 @@ public class SurveySysController {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		User user = (User) request.getSession().getAttribute("user");
-		surveySysService.deleteSelfabilityqualityByUserID(user.getUserId().toString());
-		surveySysService.deleteMajorabilitycultivationqualityByUserID(user.getUserId().toString());
+		surveySysService.deleteSelfabilityqualityByUserID(Long.valueOf(user.getUserId()));
+		surveySysService.deleteMajorabilitycultivationqualityByUserID(Long.valueOf(user.getUserId()));
 		return "redirect:/baseView/personal-ability.jsp";
 	}
 	

@@ -24,24 +24,24 @@ public interface SurveySysService {
 	 * 查找----个人能力品质----根据用户ID
 	 * @param userID
 	 */
-	public Selfabilityquality SearchSelfabilityqualityByUserID(String userID);
+	public Selfabilityquality SearchSelfabilityqualityByUserID(Long userID);
 	
 	/**
 	 * 查找----专业能力培养----根据用户ID
 	 * @param userID
 	 * @return
 	 */
-	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(String userID);
+	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(Long userID);
 	
 	/**
 	 * 删除----个人能力品质----根据用户ID
 	 * @param userID
 	 */
-	public void deleteSelfabilityqualityByUserID(String userID);
+	public void deleteSelfabilityqualityByUserID(Long userID);
 	
 	/**
 	 * 删除----专业能力培养----根据用户ID
 	 * @param userID
 	 */
-	public void deleteMajorabilitycultivationqualityByUserID(String userID);
+	public void deleteMajorabilitycultivationqualityByUserID(Long userID);
 }
