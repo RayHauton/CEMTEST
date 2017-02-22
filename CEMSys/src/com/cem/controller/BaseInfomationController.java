@@ -66,10 +66,11 @@ public class BaseInfomationController {
 			HttpSession session) throws Exception {
 		System.out.println("调用JOB增加Con方法");
 		Companynature companynature = jobService.findComNature(jobinfomodule.getCompanyNature());
+		System.out.println(((User) session.getAttribute("user")).getMobile());
 		User user = userservice.findUserByMobile(((User) session.getAttribute("user")).getMobile(), true);
 		if (user != null && companynature != null) {
 			Jobinfomodule jobinfomodule2 = jobService
-					.findJobInfByUserId(String.valueOf(((User) session.getAttribute("user")).getUserId()));
+					.findJobInfByUserId(((User) session.getAttribute("user")).getUserId());
 			jobinfomodule.setUserId(((User) session.getAttribute("user")).getUserId());
 			jobinfomodule.setIsDeleted("0");
 			System.out.println("准备比较");

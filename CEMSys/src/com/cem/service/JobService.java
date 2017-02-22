@@ -8,7 +8,7 @@ import com.cem.pojo.Transferjobcount;
 
 public interface JobService {
 	public Companynature findComNature(String natureId) throws Exception;
-	public Jobinfomodule findJobInfByUserId(String userId) throws Exception;
+	public Jobinfomodule findJobInfByUserId(long userId) throws Exception;
 	public void insertJobInf(Jobinfomodule jobinfomodule) throws Exception;
 	public void deleteJobInf(Jobinfomodule jobinfomodule) throws Exception;
 	public Transferjobcount findTranCountByCountId(String countId) throws Exception;

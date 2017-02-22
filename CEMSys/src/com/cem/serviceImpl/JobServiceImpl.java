@@ -25,7 +25,7 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public Jobinfomodule findJobInfByUserId(String userId) throws Exception {
+	public Jobinfomodule findJobInfByUserId(long userId) throws Exception {
 		// TODO Auto-generated method stub
 		return jobDao.findJobinfomoduleByUserId(userId);
 	}
