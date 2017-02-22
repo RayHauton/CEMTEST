@@ -1,8 +1,9 @@
 package com.cem.service;
 
-import java.util.List;
+import java.util.Map;
 
 import com.cem.pojo.Recruitment;
+import com.cem.queryVO.RecruitmentQueryVo;
 
 public interface RecruitmentService {
 	/*
@@ -13,5 +14,5 @@ public interface RecruitmentService {
 	/*
 	 * 查询招聘信息（带分页）
 	 */
-	public List<Recruitment> findAll(int pageIndex,int pageSize) throws Exception;
+	public Map<String,Object> findAll(RecruitmentQueryVo queryVo) throws Exception;
 }

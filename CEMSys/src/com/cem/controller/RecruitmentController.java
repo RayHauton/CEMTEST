@@ -1,8 +1,12 @@
 package com.cem.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.sql.Timestamp;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -14,9 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cem.globalException.GlobalCustomException;
 import com.cem.pojo.Recruitment;
 import com.cem.queryVO.RecruitmentQueryVo;
 import com.cem.service.RecruitmentService;
@@ -30,7 +36,7 @@ public class RecruitmentController {
 	private Integer pageSizeDefault;
 	@Autowired
 	private RecruitmentService recruitmentService;
-	
+
 	/*
 	 * 打开发布招聘信息界面
 	 */
@@ -43,37 +49,91 @@ public class RecruitmentController {
 	}
 
 	/*
+	 * 招聘信息附件下载
+	 */
+	@RequestMapping(value = "/download")
+	public void download(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "filename") String filename) throws GlobalCustomException {
+		ServletContext context = request.getServletContext();
+		String realPath = context.getRealPath(path) + "/" + filename;
+		System.out.println(realPath);
+		response.setContentType("application/force-download");
+		response.addHeader("Content-Disposition", "attachment;fileName=" + filename);
+		/*
+		 * 创建io组件
+		 */
+		File file = new File(realPath);
+		FileInputStream fis = null;
+		BufferedInputStream bis = null;
+		// 定义缓冲区
+		byte[] buffer = new byte[1024];
+		try {
+			OutputStream os = response.getOutputStream();
+			fis = new FileInputStream(file);
+			bis = new BufferedInputStream(fis);
+			int bound = bis.read(buffer);
+			while (bound != -1) {
+				os.write(buffer, 0, bound);
+				bound = bis.read(buffer);
+			}
+			os.flush();//清空缓存区
+		} catch (Exception ex) {
+			throw new GlobalCustomException("IO异常");
+		} finally {
+			// 关闭资源
+
+			try {
+				if (bis != null) {
+					bis.close();
+				}
+				if (fis != null) {
+					fis.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/*
 	 * 获取招聘信息
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show")
-	public ModelAndView show(HttpServletRequest request, HttpServletResponse response, 
-			HttpSession session,
+	public ModelAndView show(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			RecruitmentQueryVo queryVo) throws Exception {
-		int pageIndex = (queryVo.getPageIndex()==null)?1:queryVo.getPageIndex();
-		int pageSize = queryVo.getPageSize()==null?pageSizeDefault:queryVo.getPageSize();
-		String searchCondition = queryVo.getQueryCondition();
-		ModelAndView modelAndView = new ModelAndView();
-		List<Recruitment> queryResult = null;
-		if(searchCondition!=null){
-			
-		}else{
-			queryResult=recruitmentService.findAll(pageIndex, pageSize);
+		/*
+		 * 判断queryVo是否含有pageIndex和pageSize值，没有提供默认值 默认值的设置在配置文件中设置
+		 */
+		if (queryVo.getPageIndex() == null) {
+			queryVo.setPageIndex(1);
 		}
-		modelAndView.addObject("recruitmentList",queryResult);
+		if (queryVo.getPageSize() == null) {
+			queryVo.setPageSize(pageSizeDefault);
+		}
+		ModelAndView modelAndView = new ModelAndView();
 		/*
-		 * 设置当前页码
+		 * 调用service获取查询结果
 		 */
-		queryVo.setPageIndex(pageIndex);
+		Map<String, Object> queryResult = recruitmentService.findAll(queryVo);
+		modelAndView.addObject("recruitmentList", (List<Recruitment>) queryResult.get("resultList"));
 		/*
-		 * 设置总记录数
+		 * 设置总记录数 不用list.size()查询记录数是因为耗内存；
 		 */
-		int recordCount = queryResult.size();
+		int recordCount = (int) queryResult.get("recordCount");
 		queryVo.setRecordCount(recordCount);
 		/*
 		 * 设置总页数
 		 */
-		queryVo.setPageCount(recordCount%pageSize==0?recordCount/pageSize:recordCount/pageSize+1);
-		modelAndView.addObject("queryVo",queryVo);
+		int pageSize = queryVo.getPageSize();
+		/*
+		 * 确定总页数用于前台展现
+		 */
+		queryVo.setPageCount(recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1);
+		/*
+		 * 向modelAndView填充数据
+		 */
+		modelAndView.addObject("queryVo", queryVo);
 		modelAndView.setViewName("baseView/recruitment_show");
 		return modelAndView;
 	}
@@ -87,23 +147,22 @@ public class RecruitmentController {
 		ServletContext context = request.getServletContext();
 		String dirRealPath = context.getRealPath(path);
 		System.out.println(dirRealPath);
-//		System.out.println(pageSizeString);
+		// System.out.println(pageSizeString);
 		/*
 		 * 文件默认放在/WebRoot/fileUpload文件夹中 最后项目完成更换成服务器的某个位置 这个地方
 		 * 尽管请求完毕后项目中的fileUpload目录仍然是空的 但是在tomcat的项目目录文件已经成功上传
 		 */
 		String oriFileName = attachment.getOriginalFilename();
-		if (attachment != null) {
+		if (oriFileName != null && oriFileName.length() != 0 && attachment != null) {
 			// 用户可能不上传附件
 			String newFileName = UUID.randomUUID() + oriFileName.substring(oriFileName.lastIndexOf("."));
 			File newFile = new File(dirRealPath + "/" + newFileName);
 			attachment.transferTo(newFile);
 			recruitment.setAttachmentPath(newFileName);
 		}
-		recruitment.setPublishDate(new Timestamp(new java.util.Date().getTime()));
+		recruitment.setPublishDate(new java.sql.Date(new java.util.Date().getTime()));
 		recruitment.setIsDeleted("0");
 		recruitmentService.insertRecruitment(recruitment);
-//		response.getWriter().write("succ");
 		return "redirect:show.action";
 	}
 }
