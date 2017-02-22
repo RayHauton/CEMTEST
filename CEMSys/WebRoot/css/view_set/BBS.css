@@ -1,62 +1,52 @@
-/*BBS CSS*/
-body{background-image:url("../../img/p2.jpg");background-repeat:repeat-x;background-position: fixed;width: 100%;height: 1000px;}
-/*head css*/
-.head{text-align: center;padding-top: 10px;height: 50px;width: 1080px;margin: 0 auto;}
-.head div{float: left;}
-.logo img{width: 50px;height: 50px;border-radius: 50%;}
-.nav{width: calc(100% - 60px);height: 100%;margin-left: 10px;}
-.nav li{width: 80px;height: 50px;float: left;padding: 0 10px;line-height: 50px;font-size: 18px;}
-.nav li a{display: block;border-radius: 18px;}
-.nav li>a:hover{background-color: lightgreen;}
-.nav span{line-height: 50px;font-size: 18px;float: right;margin-right: 50px;}
-#subnav{display: none;width: 180px;}
-#subnav a{width: 80px;height: 36px;display: inline-block;float: left;font-size: 16px;line-height: 36px;padding: 0 5px;}
-#subnav a:hover{background-color: purple;border-radius: 15px;}
-/*container css*/
-.box{width: 1080px;height: 1000px;margin: 100px auto;overflow: hidden;overflow-y: scroll;position: relative;}
-#content{width: 850px;position: absolute;top: 0;right: 10px;}
-.ul_list{width: 200px;float: left;position: absolute;top: 0;left: 0;}
-.ul_list li,
-.ul_list span{height: 36px;line-height: 36px;cursor: pointer;text-indent: 1em;font-size: 18px;border-radius: 10px;margin-bottom: 2px;}
-.ul_list span{display: block;}
-.ul_list li:hover,
-.ul_list span:hover{background-color: purple;}
-.ul_list li i{color: #f60;margin-left: 5px;}
-#imgShow img{width: 400px;height: 400px;}
-/*inputBox css*/
-/*.inputBox{width: 600px;margin: 0 auto;position: relative;background-color:#fff;}
-.inputBox textarea{width: 525px;height: 53px;padding: 5px 5px 0;font-size: 16px;border:1px solid #ccc;resize:none;outline: none;}
-.inputBox .file{width: 60px;height: 60px;position: absolute;top: 0;right: 2px;background:url("../../images/file.png") center no-repeat;background-size: cover;border-bottom:1px solid #ccc;}
-.inputBox input{border-radius: 10px;}
-.inputBox input[type="file"]{display: block;height: 60px;position: absolute;z-index:99;opacity: 0;}
-.inputBox p{border:1px solid #ccc;border-top: 0;}
-.inputBox input[type="button"]{display: block;width: 60px;height: 30px;border-radius: 5px;position: absolute;top: 65px;z-index: 99;right: 2px;background-color: skyblue;}
-.inputBox p a{width: 40px;height: 28px;display: inline-block;line-height: 30px;padding: 2px 10px;}*/
+body{background-color: purple;}
+/*BBS css*/
+/*BBS head css*/
+.box{width: 1200px;margin: 0 auto;}
+.head{height: 70px;}
+.logo{width: 70px;height: 70px;display: inline-block;}
+.logo img{width: 100%;height: 100%;border-radius: 50%;}
+.nav{width: 1120px;height: 36px;font-size: 16px;line-height: 36px;display: inline-block;text-align: center;padding-top: 12px;}
+.nav li{width: 120px;height: 100%;float: left;margin-left: 10px;position: relative;}
+.nav li>a{display: block;border-radius: 20px;}
+.nav li:hover .subNav{display: block;}
+.nav span{float: right;}
+.nav .subNav{position: absolute;width: 100%;top: 36px;left: 0;text-align: center;background-color: rgba(0,0,0,0.3);border-radius: 10px;display: none;transition: all 0.5s ease;}
+.nav .subNav a{display: block;}
+.nav .subNav a:hover{background-color: #fff;border-radius: 10px;}
+/*BBS inputBox css*/
+.container{margin-top: 180px;position: relative;}
+.fileBox{width: 500px;height: 300px;background-color: #fff;border-radius: 10px;position: absolute;top:-100px;left: 50%;margin-left: -250px;z-index: 99;border:1px solid #ccc;display: none;}
+.fileBox input{margin: 20px auto;display: block;}
+.fileBox .imgShow{border: 5px solid #ccc;}
+.fileBox hr{position: absolute;bottom: 54px;height: 3px;width: 100%;background-color: blue;}
+.fileBox .imgSubmit{position: absolute;bottom: 10px;right: 20px;}
+.fileBox .imgSubmit button{outline: none;width: 54px;height: 36px;font-size: 16px;line-height: 36px;float: right;margin-right: 20px;cursor: pointer;border-radius: 10px;}
 
-/*allmessage css*/
-.allmessage,.mymessage{position: relative;display: none;}
-#imgShow{width: 400px;height: 400px;background-color: yellow;position: absolute;top: 50%;left: 50%;margin-top: -200px;margin-left: -200px;display: none;z-index: 100;}
-.messageBox{width: 850px;margin: 0 auto;border:1px solid #ccc;border-radius: 10px;}
-/*massegeHead css*/
-.massegeHead{height: 60px;padding: 10px;}
-.massegeHead img{width: 60px;height: 60px;vertical-align:top;}
-.massegeHead span{width: 60px;position: relative;display: inline-block;height: 60px;}
-.massegeHead a{font-size: 16px;padding: 5px;line-height: 36px;display: inline-block;}
-.massegeHead i{display: block;position: absolute;bottom: 0;left: 10px;}
-.massegeText,.imgBox{max-height: 160px;padding: 10px;}
-.imgBox img{width: 80px;height: 80px;vertical-align:top;cursor: pointer;}
-.imgBox span{width: 80px;height: 80px;display: inline-block;font-size: 36px;line-height: 80px;text-align: center;font-weight: 700;}
-.massegeFoot{padding: 10px;}
-.massegeFoot i{font-size: 14px;display: inline-block;padding: 5px;}
-.massegeFoot input{height: 36px;text-indent: 1em;}
-.massegeFoot input[type="text"]{width: 790px;}
-.massegeFoot input[type="button"]{background-color: yellow;text-indent: 0;width: 36px;border-radius: 5px;}
-.commentBox{padding: 10px 0 0;height: 16px;overflow: hidden;position: relative;}
-.commentBox div{width: 50%;margin-left: 100px;}
-.commentBox div button{float: right;outline: none;cursor: pointer;}
-.commentBox span{width: 36px;color: #000;cursor: pointer;position: absolute;top: 10px;right: 20px;}
-.commentBox span:hover{color: blue;}
-#editor{width: 850px;height: 200px;margin: 10px auto;border-radius: 50px;}
-.mycommentBox{width: 100%;}
-.mycommentBox div button{float: right;outline: none;cursor: pointer;margin-right: 20px;}
-/*mymessage css*/
+.inputBox{width: 800px;margin: 0 auto;background-color: #fff;border-radius: 10px;padding: 0 10px;}
+.inputBox textarea{width: 724px;height: 50px;resize: none;padding: 5px;border-radius: 10px;vertical-align: top;border:1px solid #ccc;}
+.inputBox .file{width: 60px;height: 60px;display: inline-block;background-image: url("../../images/file.png");background-size: cover;}
+.inputBox input{display: inline-block;}
+.inputBox p{height: 36px;line-height: 36px;font-size: 14px;}
+.inputBox p a{display: inline-block;vertical-align: top;width: 36px;}
+.inputBox p a.expression{background-image: url("../../images/expression.gif");height: 36px;background-size: cover;}
+.inputBox p input{float: right;width: 60px;height: 100%;border-radius: 10px;font-size: 16px;cursor: pointer;}
+/*BBS message css*/
+.message{width: 798px;margin: 20px auto;border:1px solid #ccc;border-radius: 10px;padding: 10px;}
+.messageBox{width: 800px;}
+.messageBox img,.messageBox .nameBox{display: inline-block;vertical-align: top;height: 70px;}
+.messageBox img{width: 70px;}
+.messageBox .nameBox span{display: block;line-height: 35px;padding-left: 20px;}
+.messageBox .text{text-indent: 2em;font-size: 16px;padding-top: 20px;line-height: 24px;}
+.messageBox .img{padding-top: 20px;}
+.messageBox .img img,.messageBox .img span{width: 82px;height: 82px;border:5px solid #000;display: inline-block;}
+.messageBox .img span{font-size: 26px;line-height: 82px;text-align: center;font-weight: 700;background-color: rgba(0,0,0,0.5);color: #fff;}
+.content{width: 100%;height: 36px;margin-top: 10px;background-color: #fff;border-radius: 10px;}
+.content input{width: calc(100% - 84px);height: 34px;outline: none;text-indent: 1em;border: 1px solid #ccc;border-radius: 10px;}
+.content .c-epsion{width: 36px;height: 36px;display: inline-block;background-image: url("../../images/expression.gif");background-size: cover;vertical-align: top;cursor: pointer;}
+.content button{width: 36px;height: 36px;border-radius: 10px;cursor: pointer;}
+.contentBox{margin-top: 10px;/*height: 36px;*/overflow: hidden;}
+.contentBox p{width: 100%;line-height: 36px;position: relative;padding-left: 20px;}
+.contentBox p i{font-style: normal;font-size: 16px;position: absolute;right: 30px;}
+.contentBox p b{padding: 0 2px;}
+.contentBox p span{width: 70%;display: inline-block;vertical-align: top;}
+.contentBox p a{width: 36px;height: 36px;color: yellow;}
