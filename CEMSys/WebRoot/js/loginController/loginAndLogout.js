@@ -18,7 +18,9 @@ function login(prefix, action, target) {
 		success : function(data) {
 			if (data == "succ") {
 				window.open(prefix + target, "_self");
-				// window.location.href = prefix+target;
+//				window.open(willTo, "_self");
+//				window.open(willTo, "iframe");
+//				 window.location.href = prefix+target;
 				return;
 			} else if (data == "notExist") {
 				window.alert("用户不存在，请尝试其他登录方式！");
