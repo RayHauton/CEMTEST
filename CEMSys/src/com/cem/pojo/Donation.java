@@ -1,5 +1,5 @@
 package com.cem.pojo;
-// Generated 2017-2-24 16:54:12 by Hibernate Tools 4.0.1.Final
+// Generated 2017-2-24 22:31:30 by Hibernate Tools 4.0.1.Final
 
 import java.util.Date;
 
@@ -11,10 +11,10 @@ public class Donation implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3123334995972963145L;
-	private Long donationId;
+	private static final long serialVersionUID = -4890074618980788312L;
+	private int donationId;
 	private String truename;
-	private Long userId;
+	private Integer userId;
 	private String donationProject;
 	private Character donationType;
 	private Character donationItem;
@@ -24,12 +24,14 @@ public class Donation implements java.io.Serializable {
 	public Donation() {
 	}
 
-	public Donation(char isDeleted) {
+	public Donation(int donationId, char isDeleted) {
+		this.donationId = donationId;
 		this.isDeleted = isDeleted;
 	}
 
-	public Donation(String truename, Long userId, String donationProject, Character donationType,
+	public Donation(int donationId, String truename, Integer userId, String donationProject, Character donationType,
 			Character donationItem, Date donationDate, char isDeleted) {
+		this.donationId = donationId;
 		this.truename = truename;
 		this.userId = userId;
 		this.donationProject = donationProject;
@@ -39,11 +41,11 @@ public class Donation implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	public Long getDonationId() {
+	public int getDonationId() {
 		return this.donationId;
 	}
 
-	public void setDonationId(Long donationId) {
+	public void setDonationId(int donationId) {
 		this.donationId = donationId;
 	}
 
@@ -55,11 +57,11 @@ public class Donation implements java.io.Serializable {
 		this.truename = truename;
 	}
 
-	public Long getUserId() {
+	public Integer getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 

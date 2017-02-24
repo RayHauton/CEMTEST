@@ -1,21 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-2-24 16:54:12 by Hibernate Tools 4.0.1.Final -->
+<!-- Generated 2017-2-24 22:31:31 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
     <class name="com.cem.pojo.Donation" table="donation" catalog="cemsys">
-        <id name="donationId" type="java.lang.Long">
+        <id name="donationId" type="int">
             <column name="donationId" />
             <generator class="native" />
         </id>
         <property name="truename" type="string">
             <column name="truename" length="20" />
         </property>
-        <property name="userId" type="java.lang.Long">
+        <property name="userId" type="java.lang.Integer">
             <column name="userId" />
         </property>
         <property name="donationProject" type="string">
-            <column name="donationProject" length="200" />
+            <column name="donationProject" length="200">
+                <comment>???????</comment>
+            </column>
         </property>
         <property name="donationType" type="java.lang.Character">
             <column name="donationType" length="1" />
@@ -27,7 +29,9 @@
             <column name="donationDate" length="10" />
         </property>
         <property name="isDeleted" type="char">
-            <column name="isDeleted" length="1" not-null="true" />
+            <column name="isDeleted" length="1" not-null="true">
+                <comment>??????????</comment>
+            </column>
         </property>
     </class>
 </hibernate-mapping>
