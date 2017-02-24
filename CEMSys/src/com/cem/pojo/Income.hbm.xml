@@ -11,7 +11,7 @@
         <property name="incomeLevel" type="string">
             <column name="incomeLevel" length="20" not-null="true" />
         </property>
-        <property name="isDeleted" type="char">
+        <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true" />
         </property>
     </class>

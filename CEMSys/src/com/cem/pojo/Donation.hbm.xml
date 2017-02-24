@@ -19,16 +19,16 @@
                 <comment>???????</comment>
             </column>
         </property>
-        <property name="donationType" type="java.lang.Character">
+        <property name="donationType" type="java.lang.String">
             <column name="donationType" length="1" />
         </property>
-        <property name="donationItem" type="java.lang.Character">
+        <property name="donationItem" type="java.lang.String">
             <column name="donationItem" length="1" />
         </property>
         <property name="donationDate" type="date">
             <column name="donationDate" length="10" />
         </property>
-        <property name="isDeleted" type="char">
+        <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true">
                 <comment>??????????</comment>
             </column>

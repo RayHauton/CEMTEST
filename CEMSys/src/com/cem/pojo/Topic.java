@@ -14,17 +14,17 @@ public class Topic implements java.io.Serializable {
 	private String topicName;
 	private String description;
 	private String sequence;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Topic() {
 	}
 
-	public Topic(String topicId, char isDeleted) {
+	public Topic(String topicId, String isDeleted) {
 		this.topicId = topicId;
 		this.isDeleted = isDeleted;
 	}
 
-	public Topic(String topicId, String topicName, String description, String sequence, char isDeleted) {
+	public Topic(String topicId, String topicName, String description, String sequence, String isDeleted) {
 		this.topicId = topicId;
 		this.topicName = topicName;
 		this.description = description;
@@ -64,11 +64,11 @@ public class Topic implements java.io.Serializable {
 		this.sequence = sequence;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

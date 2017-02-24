@@ -13,17 +13,17 @@ public class Bbsrank implements java.io.Serializable {
 	private String rankId;
 	private String rankName;
 	private String icon;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Bbsrank() {
 	}
 
-	public Bbsrank(String rankId, char isDeleted) {
+	public Bbsrank(String rankId, String isDeleted) {
 		this.rankId = rankId;
 		this.isDeleted = isDeleted;
 	}
 
-	public Bbsrank(String rankId, String rankName, String icon, char isDeleted) {
+	public Bbsrank(String rankId, String rankName, String icon, String isDeleted) {
 		this.rankId = rankId;
 		this.rankName = rankName;
 		this.icon = icon;
@@ -54,11 +54,11 @@ public class Bbsrank implements java.io.Serializable {
 		this.icon = icon;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

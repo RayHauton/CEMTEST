@@ -55,12 +55,12 @@
                 <comment>????????</comment>
             </column>
         </property>
-        <property name="isFine" type="java.lang.Character">
+        <property name="isFine" type="java.lang.String">
             <column name="isFine" length="1">
                 <comment>??</comment>
             </column>
         </property>
-        <property name="isDeleted" type="char">
+        <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true">
                 <comment>??????</comment>
             </column>

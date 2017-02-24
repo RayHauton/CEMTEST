@@ -14,18 +14,18 @@ public class Forummodule implements java.io.Serializable {
 	private String forumModuleName;
 	private Integer forumCount;
 	private String statement;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Forummodule() {
 	}
 
-	public Forummodule(String forumModuleId, char isDeleted) {
+	public Forummodule(String forumModuleId, String isDeleted) {
 		this.forumModuleId = forumModuleId;
 		this.isDeleted = isDeleted;
 	}
 
 	public Forummodule(String forumModuleId, String forumModuleName, Integer forumCount, String statement,
-			char isDeleted) {
+			String isDeleted) {
 		this.forumModuleId = forumModuleId;
 		this.forumModuleName = forumModuleName;
 		this.forumCount = forumCount;
@@ -65,11 +65,11 @@ public class Forummodule implements java.io.Serializable {
 		this.statement = statement;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

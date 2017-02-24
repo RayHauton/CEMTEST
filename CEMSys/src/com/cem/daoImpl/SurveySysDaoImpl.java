@@ -37,7 +37,7 @@ public class SurveySysDaoImpl implements SurveySysDao {
 	}
 
 	@Override
-	public Selfabilityquality SearchSelfabilityqualityByUserID(Long userID) {
+	public Selfabilityquality SearchSelfabilityqualityByUserID(int userID) {
 		Session session = getSession();// 这个地方如果用getCurrentSession会报错，是因为没有延长session的作用范围；
 		Selfabilityquality selfabilityquality = (Selfabilityquality) session.load(Selfabilityquality.class, userID);
 		if (selfabilityquality != null && selfabilityquality.getIsDeleted().equals("1") == false)
@@ -47,7 +47,7 @@ public class SurveySysDaoImpl implements SurveySysDao {
 	}
 
 	@Override
-	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(Long userID) {
+	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(int userID) {
 		Session session = getSession();
 		Majorabilitycultivationquality majorabilitycultivationquality = (Majorabilitycultivationquality) session
 				.load(Majorabilitycultivationquality.class, userID);

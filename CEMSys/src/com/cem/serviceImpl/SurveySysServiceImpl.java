@@ -27,12 +27,12 @@ public class SurveySysServiceImpl implements SurveySysService {
 	}
 
 	@Override
-	public Selfabilityquality SearchSelfabilityqualityByUserID(Long userID) {
+	public Selfabilityquality SearchSelfabilityqualityByUserID(int userID) {
 		return surveySysDao.SearchSelfabilityqualityByUserID(userID);
 	}
 
 	@Override
-	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(Long userID) {
+	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(int userID) {
 		return surveySysDao.SearchMajorabilitycultivationqualityByUserID(userID);
 	}
 

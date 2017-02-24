@@ -12,12 +12,12 @@ public class Income implements java.io.Serializable {
 	private static final long serialVersionUID = 4387556509823100268L;
 	private String incomeId;
 	private String incomeLevel;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Income() {
 	}
 
-	public Income(String incomeId, String incomeLevel, char isDeleted) {
+	public Income(String incomeId, String incomeLevel, String isDeleted) {
 		this.incomeId = incomeId;
 		this.incomeLevel = incomeLevel;
 		this.isDeleted = isDeleted;
@@ -39,11 +39,11 @@ public class Income implements java.io.Serializable {
 		this.incomeLevel = incomeLevel;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

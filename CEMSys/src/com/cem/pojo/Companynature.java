@@ -12,12 +12,12 @@ public class Companynature implements java.io.Serializable {
 	private static final long serialVersionUID = -2736827183338967283L;
 	private String natureId;
 	private String natureName;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Companynature() {
 	}
 
-	public Companynature(String natureId, String natureName, char isDeleted) {
+	public Companynature(String natureId, String natureName, String isDeleted) {
 		this.natureId = natureId;
 		this.natureName = natureName;
 		this.isDeleted = isDeleted;
@@ -39,11 +39,11 @@ public class Companynature implements java.io.Serializable {
 		this.natureName = natureName;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

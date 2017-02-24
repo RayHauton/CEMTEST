@@ -20,7 +20,7 @@ public class Recruitment implements java.io.Serializable {
 	private String summary;
 	private String connectWay;
 	private String attachmentPath;
-	private Character isDeleted;
+	private String isDeleted;
 
 	public Recruitment() {
 	}
@@ -30,7 +30,7 @@ public class Recruitment implements java.io.Serializable {
 	}
 
 	public Recruitment(int recruitmentId, String userId, String truename, Date publishDate, String companyName,
-			String summary, String connectWay, String attachmentPath, Character isDeleted) {
+			String summary, String connectWay, String attachmentPath, String isDeleted) {
 		this.recruitmentId = recruitmentId;
 		this.userId = userId;
 		this.truename = truename;
@@ -106,11 +106,11 @@ public class Recruitment implements java.io.Serializable {
 		this.attachmentPath = attachmentPath;
 	}
 
-	public Character getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(Character isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

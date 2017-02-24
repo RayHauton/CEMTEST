@@ -21,18 +21,18 @@ public class Reply implements java.io.Serializable {
 	private Date replyTime;
 	private String parentReplyId;
 	private String replyObject;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Reply() {
 	}
 
-	public Reply(int replyId, char isDeleted) {
+	public Reply(int replyId, String isDeleted) {
 		this.replyId = replyId;
 		this.isDeleted = isDeleted;
 	}
 
 	public Reply(int replyId, String replyText, Integer publishUserId, String publishUser, String forum, Short floor,
-			Date replyTime, String parentReplyId, String replyObject, char isDeleted) {
+			Date replyTime, String parentReplyId, String replyObject, String isDeleted) {
 		this.replyId = replyId;
 		this.replyText = replyText;
 		this.publishUserId = publishUserId;
@@ -117,11 +117,11 @@ public class Reply implements java.io.Serializable {
 		this.replyObject = replyObject;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

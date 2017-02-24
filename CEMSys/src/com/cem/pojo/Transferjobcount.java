@@ -12,12 +12,12 @@ public class Transferjobcount implements java.io.Serializable {
 	private static final long serialVersionUID = -814546333898255095L;
 	private String countId;
 	private String countLabel;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Transferjobcount() {
 	}
 
-	public Transferjobcount(String countId, String countLabel, char isDeleted) {
+	public Transferjobcount(String countId, String countLabel, String isDeleted) {
 		this.countId = countId;
 		this.countLabel = countLabel;
 		this.isDeleted = isDeleted;
@@ -39,11 +39,11 @@ public class Transferjobcount implements java.io.Serializable {
 		this.countLabel = countLabel;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

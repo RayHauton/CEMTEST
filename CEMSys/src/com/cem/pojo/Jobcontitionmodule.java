@@ -22,14 +22,14 @@ public class Jobcontitionmodule implements java.io.Serializable {
 	private String income;
 	private short honorLevel;
 	private short companyExamine;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Jobcontitionmodule() {
 	}
 
 	public Jobcontitionmodule(int conditionId, int userId, int yearsToBusinessSelf, int firstPromote,
 			String satisLevelOfBusinessSelf, int transferJobCount, String satisLevelOfCurrJob, String income,
-			short honorLevel, short companyExamine, char isDeleted) {
+			short honorLevel, short companyExamine, String isDeleted) {
 		this.conditionId = conditionId;
 		this.userId = userId;
 		this.yearsToBusinessSelf = yearsToBusinessSelf;
@@ -45,7 +45,7 @@ public class Jobcontitionmodule implements java.io.Serializable {
 
 	public Jobcontitionmodule(int conditionId, int userId, int yearsToBusinessSelf, String honorName, int firstPromote,
 			String satisLevelOfBusinessSelf, String reasonOfNotStatis, int transferJobCount, String satisLevelOfCurrJob,
-			String income, short honorLevel, short companyExamine, char isDeleted) {
+			String income, short honorLevel, short companyExamine, String isDeleted) {
 		this.conditionId = conditionId;
 		this.userId = userId;
 		this.yearsToBusinessSelf = yearsToBusinessSelf;
@@ -157,11 +157,11 @@ public class Jobcontitionmodule implements java.io.Serializable {
 		this.companyExamine = companyExamine;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

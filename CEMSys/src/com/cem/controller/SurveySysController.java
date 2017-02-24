@@ -34,9 +34,9 @@ public class SurveySysController {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		User user = (User) request.getSession().getAttribute("user");
-		String userID = user.getUserId().toString();
-		Selfabilityquality selfabilityquality  = surveySysService.SearchSelfabilityqualityByUserID(Long.valueOf(userID));
-		Majorabilitycultivationquality majorabilitycultivationquality = surveySysService.SearchMajorabilitycultivationqualityByUserID(Long.valueOf(userID));
+		int userID = user.getUserId();
+		Selfabilityquality selfabilityquality  = surveySysService.SearchSelfabilityqualityByUserID(user.getUserId());
+		Majorabilitycultivationquality majorabilitycultivationquality = surveySysService.SearchMajorabilitycultivationqualityByUserID(userID);
 		String data = null;
 		if(selfabilityquality!=null&&majorabilitycultivationquality!=null)
 			data = selfabilityquality.toString()+","+majorabilitycultivationquality.toString();

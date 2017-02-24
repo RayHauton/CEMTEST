@@ -13,7 +13,7 @@
                 <comment>??????</comment>
             </column>
         </property>
-        <property name="isDeleted" type="java.lang.Character">
+        <property name="isDeleted" type="java.lang.String">
             <column name="isDeleted" length="1" />
         </property>
     </class>

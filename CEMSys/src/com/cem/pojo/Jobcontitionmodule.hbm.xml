@@ -43,7 +43,7 @@
         <property name="companyExamine" type="short">
             <column name="companyExamine" not-null="true" />
         </property>
-        <property name="isDeleted" type="char">
+        <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true" />
         </property>
     </class>

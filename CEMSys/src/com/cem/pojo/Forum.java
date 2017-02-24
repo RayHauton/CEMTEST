@@ -24,20 +24,20 @@ public class Forum implements java.io.Serializable {
 	private Integer replyCount;
 	private Integer viewCount;
 	private byte[] attachment;
-	private Character isFine;
-	private char isDeleted;
+	private String isFine;
+	private String isDeleted;
 
 	public Forum() {
 	}
 
-	public Forum(int forumId, char isDeleted) {
+	public Forum(int forumId, String isDeleted) {
 		this.forumId = forumId;
 		this.isDeleted = isDeleted;
 	}
 
 	public Forum(int forumId, String forumTitle, String forumModule, Integer userId, String username, String truename,
 			String topic, Date publishTime, Date updateTime, Integer replyCount, Integer viewCount, byte[] attachment,
-			Character isFine, char isDeleted) {
+			String isFine, String isDeleted) {
 		this.forumId = forumId;
 		this.forumTitle = forumTitle;
 		this.forumModule = forumModule;
@@ -150,19 +150,19 @@ public class Forum implements java.io.Serializable {
 		this.attachment = attachment;
 	}
 
-	public Character getIsFine() {
+	public String getIsFine() {
 		return this.isFine;
 	}
 
-	public void setIsFine(Character isFine) {
+	public void setIsFine(String isFine) {
 		this.isFine = isFine;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

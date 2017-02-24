@@ -12,7 +12,7 @@ public class Major implements java.io.Serializable {
 	private static final long serialVersionUID = -4999295679539023968L;
 	private String majorId;
 	private String majorName;
-	private Character isDeleted;
+	private String isDeleted;
 
 	public Major() {
 	}
@@ -21,7 +21,7 @@ public class Major implements java.io.Serializable {
 		this.majorId = majorId;
 	}
 
-	public Major(String majorId, String majorName, Character isDeleted) {
+	public Major(String majorId, String majorName, String isDeleted) {
 		this.majorId = majorId;
 		this.majorName = majorName;
 		this.isDeleted = isDeleted;
@@ -43,11 +43,11 @@ public class Major implements java.io.Serializable {
 		this.majorName = majorName;
 	}
 
-	public Character getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(Character isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

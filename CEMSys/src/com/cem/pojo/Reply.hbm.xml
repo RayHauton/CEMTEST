@@ -44,7 +44,7 @@
                 <comment>???????(??????????&#167;&#221;??)</comment>
             </column>
         </property>
-        <property name="isDeleted" type="char">
+        <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true">
                 <comment>???????</comment>
             </column>

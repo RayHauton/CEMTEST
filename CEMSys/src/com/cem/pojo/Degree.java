@@ -12,12 +12,12 @@ public class Degree implements java.io.Serializable {
 	private static final long serialVersionUID = -2103947972218190449L;
 	private String degreeId;
 	private String degreeName;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Degree() {
 	}
 
-	public Degree(String degreeId, String degreeName, char isDeleted) {
+	public Degree(String degreeId, String degreeName, String isDeleted) {
 		this.degreeId = degreeId;
 		this.degreeName = degreeName;
 		this.isDeleted = isDeleted;
@@ -39,11 +39,11 @@ public class Degree implements java.io.Serializable {
 		this.degreeName = degreeName;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

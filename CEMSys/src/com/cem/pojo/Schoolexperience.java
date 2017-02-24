@@ -13,12 +13,12 @@ public class Schoolexperience implements java.io.Serializable {
 	private String schooleExperienceId;
 	private String degreeId;
 	private String majorId;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Schoolexperience() {
 	}
 
-	public Schoolexperience(String schooleExperienceId, String degreeId, String majorId, char isDeleted) {
+	public Schoolexperience(String schooleExperienceId, String degreeId, String majorId, String isDeleted) {
 		this.schooleExperienceId = schooleExperienceId;
 		this.degreeId = degreeId;
 		this.majorId = majorId;
@@ -49,11 +49,11 @@ public class Schoolexperience implements java.io.Serializable {
 		this.majorId = majorId;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

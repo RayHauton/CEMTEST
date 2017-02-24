@@ -37,7 +37,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 	private Short projectExperience;
 	private Short scientificResearchOpportunity;
 	private Short scienReschSpiritAndAcademicMoral;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Majorabilitycultivationquality() {
 	}
@@ -49,7 +49,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 			short majorCompetitionActivity, short schoolAcademicLecture, short recreationalActivities,
 			short physicalFitness, short learningAtmosphereConstruction, short libraryEffect, short instructorWorking,
 			short logisticServiceWorking, short fellowConnectionWorking, short careerPlanningAndEmploymentGuidance,
-			short psychologyGrooming, char isDeleted) {
+			short psychologyGrooming, String isDeleted) {
 		this.userId = userId;
 		this.teacherProfessionalismLevel = teacherProfessionalismLevel;
 		this.teacherTeachingLevel = teacherTeachingLevel;
@@ -84,7 +84,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 			short physicalFitness, short learningAtmosphereConstruction, short libraryEffect, short instructorWorking,
 			short logisticServiceWorking, short fellowConnectionWorking, short careerPlanningAndEmploymentGuidance,
 			short psychologyGrooming, Short tutorGuidance, Short projectExperience, Short scientificResearchOpportunity,
-			Short scienReschSpiritAndAcademicMoral, char isDeleted) {
+			Short scienReschSpiritAndAcademicMoral, String isDeleted) {
 		this.userId = userId;
 		this.teacherProfessionalismLevel = teacherProfessionalismLevel;
 		this.teacherTeachingLevel = teacherTeachingLevel;
@@ -331,11 +331,11 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

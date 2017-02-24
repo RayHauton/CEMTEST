@@ -24,7 +24,7 @@ public class Selfabilityquality implements java.io.Serializable {
 	private short communicationAndOrganizeAbility;
 	private short wordsExpression;
 	private short psychologyBearAndAntiFrustration;
-	private char isDeleted;
+	private String isDeleted;
 
 	public Selfabilityquality() {
 	}
@@ -33,7 +33,7 @@ public class Selfabilityquality implements java.io.Serializable {
 			short professionalism, short majorBaseKnowledge, short knowledgeWidth, short foreignLanguage,
 			short acquireAndApplyKnowledge, short selfDealProblem, short practiceAndHandsOn, short motivationAbility,
 			short communicationAndOrganizeAbility, short wordsExpression, short psychologyBearAndAntiFrustration,
-			char isDeleted) {
+			String isDeleted) {
 		this.userId = userId;
 		this.gumptionAndAchvConscious = gumptionAndAchvConscious;
 		this.companyCooperation = companyCooperation;
@@ -163,11 +163,11 @@ public class Selfabilityquality implements java.io.Serializable {
 		this.psychologyBearAndAntiFrustration = psychologyBearAndAntiFrustration;
 	}
 
-	public char getIsDeleted() {
+	public String getIsDeleted() {
 		return this.isDeleted;
 	}
 
-	public void setIsDeleted(char isDeleted) {
+	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 
