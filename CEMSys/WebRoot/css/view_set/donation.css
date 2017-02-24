@@ -3,9 +3,11 @@ body{
 	font-family:微软雅黑;
 	margin: 0px;
 	padding: 0px;
+/* 	background-image: url("../../img/p2.jpg"); */
 }
 .header{
 	background-color: #0074ca;
+/* 	background-color: #50E450; */
 /* 	background-color: #1296db; */
 	height:80px;
 	width:880px;
@@ -46,6 +48,7 @@ body{
 /* 	background-color: silver; */
 	float: left;
 /* 	margin-left: 14px; */
+	font-size:12px;
 }
 .head_right_top{
 	width: 150px;
@@ -91,11 +94,81 @@ body{
 }
 .contentBody{
 	width: 880px;
-	height: 500px;
-	background-color: lightgreen;
+	height: 820px;
+/* 	background-color: lightblue; */
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 6px;
+	border:1px solid #0074ca;
+	margin-top:2px;
+}
+.searchDiv{
+	width: 878px;
+	height: 72px;
+/* 	background-color: #1296DB; */
+/* 	background-color: #0074ca; */
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+/* 	padding-top:6px; */
+	border-bottom: 1px solid #0074ca;
+	font-size:12px;
+	float: left;
+}
+.form-control{
+	height: 25px;
+	display: inline-block;
+	width:125px;
+	margin-top:6px;
+	font-size:12px;
+}
+.searchBtn{
+	height: 24px;
+	width:90px;
+	font-size:12px;
+}
+.btn{
+	padding: 0;
+}
+.searchContent{
+	height:70px;
+	width:630px;
+/* 	background-color: red; */
+	margin-left:15px;
+	float: left;
+}
+.searchLogo{
+	float: left;
+	width: 70px;
+	height:70px;
+/* 	background-color:red; */
+	margin-left:4px;
+}
+.searchLogo img{
+	width: 55px;
+	height:55px;
+	margin-left:8px;
+	margin-top:7px;
+}
+.btnGroup{
+	float: left;
+	width:150px;
+	height:70px;
+/* 	background-color: silver; */
+}
+.btnGroup button{
+	margin-left: 25px;
+	margin-top:8px;
+}
+table{
+	font-size:12px;
+}
+.dividePage{
+	width: 200px;
+	height:40px;
+	padding:0px;
+	background-color: green;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 

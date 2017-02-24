@@ -16,7 +16,7 @@ public class Donation implements java.io.Serializable {
 	private String truename;
 	private Long userId;
 	private String donationProject;
-	private Character dinationType;
+	private Character donationType;
 	private Character donationItem;
 	private Date donationDate;
 	private char isDeleted;
@@ -28,12 +28,12 @@ public class Donation implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	public Donation(String truename, Long userId, String donationProject, Character dinationType,
+	public Donation(String truename, Long userId, String donationProject, Character donationType,
 			Character donationItem, Date donationDate, char isDeleted) {
 		this.truename = truename;
 		this.userId = userId;
 		this.donationProject = donationProject;
-		this.dinationType = dinationType;
+		this.donationType = donationType;
 		this.donationItem = donationItem;
 		this.donationDate = donationDate;
 		this.isDeleted = isDeleted;
@@ -71,12 +71,12 @@ public class Donation implements java.io.Serializable {
 		this.donationProject = donationProject;
 	}
 
-	public Character getDinationType() {
-		return this.dinationType;
+	public Character getDonationType() {
+		return this.donationType;
 	}
 
-	public void setDinationType(Character dinationType) {
-		this.dinationType = dinationType;
+	public void setDonationType(Character donationType) {
+		this.donationType = donationType;
 	}
 
 	public Character getDonationItem() {
