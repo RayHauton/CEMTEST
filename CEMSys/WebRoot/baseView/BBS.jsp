@@ -40,7 +40,7 @@ To change this template use File | Settings | File Templates.
 							<a href="javascript:void(0);">我的主页</a>
 							<a href="javascript:void(0);">我的回复</a>
 							<a href="javascript:void(0);">修改资料</a>
-							<a href="${pageContext.request.contextPath }/recruitment/publish.action">发布信息</a>
+							<a href="${pageContext.request.contextPath }/recruitment/open.action">发布信息</a>
 						</div>
 					</li>
 					<li>
