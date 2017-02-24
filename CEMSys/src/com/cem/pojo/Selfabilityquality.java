@@ -50,6 +50,17 @@ public class Selfabilityquality implements java.io.Serializable {
 		this.psychologyBearAndAntiFrustration = psychologyBearAndAntiFrustration;
 		this.isDeleted = isDeleted;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return gumptionAndAchvConscious + "," + companyCooperation + "," + professionalism + ","
+				+ majorBaseKnowledge + "," + knowledgeWidth + "," + foreignLanguage + "," + acquireAndApplyKnowledge
+				+ "," + selfDealProblem + "," + practiceAndHandsOn + "," + motivationAbility + ","
+				+ communicationAndOrganizeAbility + "," + wordsExpression + "," + psychologyBearAndAntiFrustration + ","
+				+ isDeleted;
+	}
 
 	public int getUserId() {
 		return this.userId;

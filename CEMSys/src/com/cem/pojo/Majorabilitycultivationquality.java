@@ -114,6 +114,22 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 		this.scienReschSpiritAndAcademicMoral = scienReschSpiritAndAcademicMoral;
 		this.isDeleted = isDeleted;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return teacherProfessionalismLevel + "," + teacherTeachingLevel + ","
+				+ relationshipOfTcherAndStud + "," + majorCultivationTargetAndSocialFit + ","
+				+ internationalCommunicationLearning + "," + baseCourseLearning + "," + majorCourseLearning + ","
+				+ majorExperiment + "," + majorInternship + "," + graduationDesign + "," + textbookUsed + ","
+				+ majorCompetitionActivity + "," + schoolAcademicLecture + "," + recreationalActivities + ","
+				+ physicalFitness + "," + learningAtmosphereConstruction + "," + libraryEffect + "," + instructorWorking
+				+ "," + logisticServiceWorking + "," + fellowConnectionWorking + ","
+				+ careerPlanningAndEmploymentGuidance + "," + psychologyGrooming + "," + tutorGuidance + ","
+				+ projectExperience + "," + scientificResearchOpportunity + "," + scienReschSpiritAndAcademicMoral + ","
+				+ isDeleted;
+	}
 
 	public int getUserId() {
 		return this.userId;
