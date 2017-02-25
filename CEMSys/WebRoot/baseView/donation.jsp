@@ -27,8 +27,8 @@
 				<span style="font-size:12px;">返回主页</span>
 			</div>
 			<div class="head_right_bottom">
-				<span>林华栋林华栋</span>
-				<img alt="" src="../img/donation/user.png">
+				<span>${sessionScope.user.truename }</span>
+				<img alt="" src="../img/donation/user.png">&nbsp;
 			</div>
 		</div>
 	</div>
@@ -37,14 +37,14 @@
 			<div class="searchLogo">
 				<img alt="" src="../img/donation/search1.png">
 			</div>
-			<form action="${pageContext.request.contextPath }/donation/show.action" method="post">
+			<form action="${pageContext.request.contextPath }/donation/show.action" method="post" id="searchForm">
 				<div class="searchContent">
 					<font style="letter-spacing: 1px;">
 					捐&nbsp;赠&nbsp;人</font>：
 					<input type="text" class="form-control" name="truename" id="truename" value="${queryVo.truename }"/>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					捐赠用途：
-					<input type="text" class="form-control" name="donationProject" id="donationProject" value="${queryVo.truename }"/>
+					<input type="text" class="form-control" name="donationProject" id="donationProject" value="${queryVo.donationProject }"/>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					捐赠物品类别：
 					<select class="form-control" name="donationType" id="donationType"
@@ -52,7 +52,7 @@
 						<option value="">请选择</option>
 						<option value="0">基金</option>
 						<option value="1">其他</option>	
-					</select><br>
+					</select>
 					<!-- 这里写上js效果会好一些，不会看出下拉框被选的值有很明显的跳动 -->
 					<script type="text/javascript">
 						var options = document.getElementById("donationType").options;
@@ -65,17 +65,18 @@
 					</script>
 					捐赠时间：
 					<input type="date" class="form-control" name="foredate" id="foredate" value="${queryVo.foredate }"
-					style="font-size: 12px;padding: 0;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					style="font-size: 10px;padding: 0;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<font style="letter-spacing: 2px;">
-					至</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					至：</font>&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="date" class="form-control" name="afterdate" id="afterdate" value="${queryVo.afterdate }"
-					 style="font-size: 12px;padding: 0;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<font style="letter-spacing: 8px;">每页显示</font>:
+					 style="font-size: 10px;padding: 0;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<font style="letter-spacing: 6px;">每页显示</font>：
 					<select class="form-control" name="pageSize" id="pageSize" style="padding: 0px;">
 						<c:forEach var="pageSize" items="${pageSizeList }">
 							<option>${pageSize }</option>						
 						</c:forEach>
 					</select>
+					<input type="hidden" name="pageIndex" id="pageIndex"/>
 				</div>
 				<script type="text/javascript">
 					var options = document.getElementById("pageSize").options;
@@ -87,7 +88,7 @@
 					}
 				</script>
 				<div class="btnGroup">
-					<button type="reset" class="searchBtn btn btn-info" style="">重置</button>
+					<button type="button" class="searchBtn btn btn-info" onclick="resetForm();" style="">重置</button>
 					<button type="submit" class="searchBtn btn btn-success" style="">查询</button>
 				</div>
 			</form>
@@ -95,7 +96,7 @@
 		</div>
 		<table class="table table-bordered table-striped" cellpadding="0" cellspacing="0">
 			<thead>
-				<th>捐赠人</th>
+				<th style="width: 180px;">捐赠人(点击查看捐赠人详情)</th>
 				<th>捐赠的项目</th>
 				<th>捐赠种类</th>
 				<th>捐赠明细</th>
@@ -104,7 +105,8 @@
 			<tbody>
 				<c:forEach var="donation" items="${donationList }" >
 					<tr>
-						<td>${donation.truename }</td>
+						<td style="display: none;">${donation.userId }</td>
+						<td><a class="a-set" onclick="showInfoDialog();" title="点击查看捐赠人信息">${donation.truename }</a></td>
 						<td>${donation.donationProject }</td>
 						<td>${donation.donationType }</td>
 						<td>${donation.donationItem }</td>
@@ -113,9 +115,117 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="dividePage">
-			
+		<!-- 分页 -->
+		<div style="float: left;margin-left: 290px;margin-right: auto;">
+			<ul class="pagination dividePage">
+				<c:choose>
+					<c:when test="${queryVo.pageIndex>=2 }">
+						<li>
+						<a onclick="" style="cursor: pointer;">
+							<span>&laquo;</span>
+						</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li	 class="disabled"><span>&laquo;</span></li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach begin="${queryVo.pageIndex-queryVo.pageIndex%5+1 }" end="${queryVo.pageIndex-queryVo.pageIndex%5+5 }" step="1" varStatus="status">
+					<c:if test="${(status.current-1)!=0 and (status.current-1)%5 eq 0 }">
+						<li>
+							<a  name="pageTag" onclick="submitForm('${status.current-1 }');" style="cursor: pointer;">${status.current-1 }</a>
+						</li>
+					</c:if>
+					<c:if test="${status.current<=queryVo.pageCount }">
+						<li>
+							<a name="pageTag" onclick="submitForm('${status.current }')" style="cursor: pointer;">${status.current }</a>
+						</li>
+					</c:if>
+				</c:forEach>		
+<!-- 				<li class="active"><a href="#">1</a></li> -->
+				
+				<c:choose>
+					<c:when test="${queryVo.pageIndex<queryVo.pageCount }">
+						<li>
+						<a onclick="submitForm('${status.current }')" style="cursor: pointer;">
+							<span>&raquo;</span>
+						</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled"><span>&laquo;</span></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+			<script type="text/javascript">
+				var aTags = document.getElementsByName("pageTag");
+				var aTagCount = aTags.length;
+				for(var i=0;i<aTagCount;i++){
+					if(aTags[i].innerText=='${queryVo.pageIndex}'){
+						aTags[i].style.backgroundColor="#DDDDDD";
+					}
+				}
+			</script>
+		</div>
+		<div class="record">
+			<span>共<font>${queryVo.recordCount }</font>条记录，当前是第<font>${queryVo.pageIndex }</font>页，共<font>${queryVo.pageCount }</font>页</span>
+		</div>
+		<div class="modal dialog" id="infoDialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title" style="font-size: 18px;font-weight: normal;">捐赠人信息查看</h1>
+				</div>
+				<div class="modal-body">
+					<table class="table table-bordered border-striped" cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td>姓名</td>
+								<td>林华栋</td>
+							</tr>
+							<tr>
+								<td>入学年份</td>
+								<td>2014</td>
+							</tr>
+							<tr>
+								<td>攻读专业</td>
+								<td>信息管理与信息系统</td>
+							</tr>
+							<tr>
+								<td>学位</td>
+								<td>学士学位</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" style="width: 70px;height:32px;" 
+					onclick="showInfoDialog();">关闭</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
+<script src="../js/jquery-1.9.min.js"></script>
+<script type="text/javascript">
+	//提交分页查询表单
+	function submitForm(pageIndex) {
+		document.getElementById("pageIndex").value=pageIndex;
+		document.getElementById("searchForm").submit();
+	}
+	function resetForm(){
+		document.getElementById("truename").value="";
+		document.getElementById("donationProject").value="";
+		document.getElementById("foredate").value="";
+		document.getElementById("afterdate").value="";
+		document.getElementById("pageSize").options[0].selected=true;
+		document.getElementById("donationType").options[0].selected=true;
+	}
+	function showInfoDialog(){
+		$("#infoDialog").slideToggle(200);
+	}
+</script>
 </html>
+
+
+
+
