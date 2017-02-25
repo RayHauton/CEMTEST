@@ -66,95 +66,21 @@
 		<table class="table table-bordered table-striped" cellpadding="0" cellspacing="0">
 			<thead>
 				<th>捐赠人</th>
-				<th>入学年份</th>
-				<th>所在专业</th>
 				<th>捐赠的项目</th>
 				<th>捐赠种类</th>
 				<th>捐赠明细</th>
 				<th>捐赠时间</th>
 			</thead>
 			<tbody>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
-				<tr>
-					<td>林华栋</td>
-					<td>2014</td>
-					<td>信息管理与信息系统</td>
-					<td>学院建设</td>
-					<td>人民币</td>
-					<td>1000元</td>
-					<td>2017-02-24</td>
-				</tr>
+				<c:forEach var="donation" items="${donationList }" >
+					<tr>
+						<td>${donation.truename }</td>
+						<td>${donation.donationProject }</td>
+						<td>${donation.donationType }</td>
+						<td>${donation.donationItem }</td>
+						<td>${donation.donationDate }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div class="dividePage">
