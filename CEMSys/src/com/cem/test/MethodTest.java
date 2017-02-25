@@ -38,4 +38,8 @@ public class MethodTest {
     	majors.add(m2);
     	System.out.println(JsonUtil.generatorJsonForMajors(majors));
     }
+    @Test
+    public void testIntegerMax(){
+    	System.out.println(Integer.MAX_VALUE);
+    }
 }

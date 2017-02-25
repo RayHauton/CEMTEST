@@ -22,14 +22,14 @@ public interface SurveySysDao {
 	 * @param userID
 	 * @return
 	 */
-	public Selfabilityquality SearchSelfabilityqualityByUserID(Long userID);
+	public Selfabilityquality SearchSelfabilityqualityByUserID(int userID);
 	
 	/**
 	 * 查找----专业能力培养----根据用户ID
 	 * @param userID
 	 * @return
 	 */
-	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(Long userID);
+	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(int userID);
 	
 	/**
 	 * 删除----个人能力品质----根据用户ID

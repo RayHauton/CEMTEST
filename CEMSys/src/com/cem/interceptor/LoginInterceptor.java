@@ -41,6 +41,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         //代码执行到这里，说明用户尚未登录，需要登录验证
         request.setAttribute("toLogin","toLogin");
+        request.getSession().setAttribute("willTo", url);
 //        RequestDispatcher dis = request.getRequestDispatcher("/loginRedirect.jsp");
         request.getRequestDispatcher("/loginRedirect.jsp").forward(request,response);
         return false;

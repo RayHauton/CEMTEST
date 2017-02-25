@@ -1,6 +1,5 @@
 package com.cem.serviceImpl;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +27,12 @@ public class SurveySysServiceImpl implements SurveySysService {
 	}
 
 	@Override
-	public Selfabilityquality SearchSelfabilityqualityByUserID(Long userID) {
+	public Selfabilityquality SearchSelfabilityqualityByUserID(int userID) {
 		return surveySysDao.SearchSelfabilityqualityByUserID(userID);
 	}
 
 	@Override
-	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(Long userID) {
+	public Majorabilitycultivationquality SearchMajorabilitycultivationqualityByUserID(int userID) {
 		return surveySysDao.SearchMajorabilitycultivationqualityByUserID(userID);
 	}
 
