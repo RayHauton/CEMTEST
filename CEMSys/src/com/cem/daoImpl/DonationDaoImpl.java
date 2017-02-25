@@ -42,14 +42,14 @@ public class DonationDaoImpl implements DonationDao {
 			hql.append(" AND d.truename like '%" + truename + "%'");
 		}
 		if (donationProject != null && donationProject.length() != 0) {
-			hql.append(" AND d.donationProject='%" + donationProject + "%'");
+			hql.append(" AND d.donationProject like '%" + donationProject + "%'");
 		}
 		if (donationType != null && donationType.length() != 0) {
 			hql.append(" AND d.donationType='" + donationType + "'");
 		}
 		if (foredate != null && foredate.length() != 0) {
 			if (afterdate != null && afterdate.length() != 0) {
-				hql.append(" AND d.donationDate BETWEEN '" + afterdate + "' AND '" + afterdate + "'");
+				hql.append(" AND d.donationDate BETWEEN '" + foredate + "' AND '" + afterdate + "'");
 			} else {
 				hql.append(" AND d.donationDate >='" + foredate + "'");
 			}

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cem.pojo.Donation;
-import com.cem.pojo.Recruitment;
 import com.cem.queryVO.DonationQueryVo;
 import com.cem.service.DonationService;
 

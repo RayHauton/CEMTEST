@@ -37,28 +37,58 @@
 			<div class="searchLogo">
 				<img alt="" src="../img/donation/search1.png">
 			</div>
-			<form action="">
+			<form action="${pageContext.request.contextPath }/donation/show.action" method="post">
 				<div class="searchContent">
-					<font style="letter-spacing: 1px;">捐&nbsp;赠&nbsp;人</font>：<input type="text" class="form-control"/>&nbsp;&nbsp;&nbsp;&nbsp;
-					捐赠用途：<input type="text" class="form-control"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					捐赠物品类别：<select class="form-control" style="padding: 0;font-size: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;
-					<option>请选择</option>
-					<option>基金</option>
-					<option>其他</option>	
+					<font style="letter-spacing: 1px;">
+					捐&nbsp;赠&nbsp;人</font>：
+					<input type="text" class="form-control" name="truename" id="truename" value="${queryVo.truename }"/>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					捐赠用途：
+					<input type="text" class="form-control" name="donationProject" id="donationProject" value="${queryVo.truename }"/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					捐赠物品类别：
+					<select class="form-control" name="donationType" id="donationType"
+					 style="padding: 0;font-size: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;
+						<option value="">请选择</option>
+						<option value="0">基金</option>
+						<option value="1">其他</option>	
 					</select><br>
-					捐赠时间：<input type="date" class="form-control" style="font-size: 10px;"/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="letter-spacing: 2px;">至</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="date" class="form-control" style="font-size: 12px;"/>&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;<font style="letter-spacing: 7px;">每页显示</font>:
-					<select class="form-control" style="padding: 0px;">
+					<!-- 这里写上js效果会好一些，不会看出下拉框被选的值有很明显的跳动 -->
+					<script type="text/javascript">
+						var options = document.getElementById("donationType").options;
+						var size = options.length;
+						for(var i=0;i<size;i++){
+							if(options[i].value=='${queryVo.donationType}'){
+								options[i].selected=true;
+							}
+						}
+					</script>
+					捐赠时间：
+					<input type="date" class="form-control" name="foredate" id="foredate" value="${queryVo.foredate }"
+					style="font-size: 12px;padding: 0;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<font style="letter-spacing: 2px;">
+					至</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="date" class="form-control" name="afterdate" id="afterdate" value="${queryVo.afterdate }"
+					 style="font-size: 12px;padding: 0;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<font style="letter-spacing: 8px;">每页显示</font>:
+					<select class="form-control" name="pageSize" id="pageSize" style="padding: 0px;">
 						<c:forEach var="pageSize" items="${pageSizeList }">
 							<option>${pageSize }</option>						
 						</c:forEach>
 					</select>
 				</div>
+				<script type="text/javascript">
+					var options = document.getElementById("pageSize").options;
+					var size = options.length;
+					for(var i=0;i<size;i++){
+						if(options[i].value=='${queryVo.pageSize}'){
+							options[i].selected=true;
+						}
+					}
+				</script>
 				<div class="btnGroup">
 					<button type="reset" class="searchBtn btn btn-info" style="">重置</button>
-					<button type="button" class="searchBtn btn btn-success" style="">查询</button>
+					<button type="submit" class="searchBtn btn btn-success" style="">查询</button>
 				</div>
 			</form>
 			
