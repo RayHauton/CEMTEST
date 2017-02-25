@@ -2,7 +2,9 @@ package com.cem.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,6 +22,8 @@ public class BaseDataUtil {
 	private static Properties properties;
 	private static Integer defaultPageSize;
 	private static String fileUploadPath;
+	private static Map<String,Object> majorMap = new HashMap<>();
+	private static Map<String,Object> degreeMap = new HashMap<>();
 	private JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
 
 	static {
@@ -83,5 +87,37 @@ public class BaseDataUtil {
 	public <T> RowMapper<T> getRowMapper(Class<T> clazz) {
 		return new BeanPropertyRowMapper<>(clazz);
 	}
-
+	
+	/*
+	 * 获得所有专业的id-object值对
+	 * 这样不用每次查数据库
+	 */
+	public static Map<String,Object> getMajorMap() throws Exception{
+		if(majorMap.size()==0){
+			List<Major> majorList = new BaseDataUtil().getMajors();
+			for(Major item:majorList){
+				majorMap.put(item.getMajorId(), item);
+			}
+		}
+		return majorMap;
+	}
+	/*
+	 * 获得所有学历的id-object值对
+	 * 这样不用每次查数据库
+	 */
+	public static Map<String,Object> getDegreeMap() throws Exception{
+		if(degreeMap.size()==0){
+			List<Degree> degreeList = new BaseDataUtil().getDegrees();
+			for(Degree item:degreeList){
+				degreeMap.put(item.getDegreeId(), item);
+			}
+		}
+		return degreeMap;
+	}
 }
+
+
+
+
+
+

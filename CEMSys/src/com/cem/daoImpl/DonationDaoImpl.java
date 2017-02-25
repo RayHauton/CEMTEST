@@ -8,8 +8,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cem.customPojo.UserCustom;
 import com.cem.dao.DonationDao;
+import com.cem.pojo.Degree;
+import com.cem.pojo.Major;
+import com.cem.pojo.Schoolexperience;
 import com.cem.queryVO.DonationQueryVo;
+import com.cem.util.BaseDataUtil;
 
 @Repository
 public class DonationDaoImpl implements DonationDao {
@@ -19,6 +24,40 @@ public class DonationDaoImpl implements DonationDao {
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
+	}
+
+	@Override
+	public UserCustom findDonorInfo(UserCustom userCustom) throws Exception {
+		UserCustom user = new UserCustom();
+		/*
+		 * 首先根据userId查询学历Id
+		 */
+		Session session = getSession();
+		String schoolExperienceId = (String) session
+				.createQuery("SELECT schoolExperienceId FROM User WHERE userId=? AND isDeleted='0'")
+				.setParameter(0, userCustom.getUserId()).uniqueResult();
+		/*
+		 * 根据学历ID查找学历信息
+		 */
+		Schoolexperience se = (Schoolexperience) session
+				.createQuery("FROM Schoolexperience se WHERE se.isDeleted='0' AND se.schooleExperienceId=?")
+				.setParameter(0, schoolExperienceId).uniqueResult();
+		/*
+		 * 根据学历实体类查找对应的学位名称以及专业名称
+		 */
+		user.setMajorName(((Major) BaseDataUtil.getMajorMap().get(se.getMajorId())).getMajorName());
+		user.setDegreeName(((Degree) BaseDataUtil.getDegreeMap().get(se.getDegreeId())).getDegreeName());
+
+		/*
+		 * 查找用户入学时间
+		 */
+		Object[] userInfo = (Object[]) session
+				.createQuery("SELECT truename,entranceDate FROM User WHERE userId=? AND isDeleted='0'")
+				.setParameter(0, userCustom.getUserId()).uniqueResult();
+		user.setTruename((String)userInfo[0]);
+		user.setEntranceDate((String)userInfo[1]);
+		user.setUserId(userCustom.getUserId());
+		return user;
 	}
 
 	@Override

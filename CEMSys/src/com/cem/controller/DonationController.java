@@ -6,12 +6,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cem.customPojo.UserCustom;
 import com.cem.pojo.Donation;
 import com.cem.queryVO.DonationQueryVo;
 import com.cem.service.DonationService;
@@ -23,6 +27,14 @@ public class DonationController {
 	private Integer pageSizeDefault;
 	@Autowired
 	private DonationService donationService;
+	
+	@RequestMapping(value = "/getDonorInfo",produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public UserCustom getDonorInfo(UserCustom userCustom) throws Exception{
+		BeanUtils.copyProperties(userCustom, donationService.findDonorInfo(userCustom));
+		return userCustom;
+	}
+	
 	/*
 	 * 打开donation界面
 	 */

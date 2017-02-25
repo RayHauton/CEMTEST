@@ -15,26 +15,36 @@ function resetForm(){
 	document.getElementById("pageSize").options[0].selected=true;
 	document.getElementById("donationType").options[0].selected=true;
 }
-//弹出显示捐赠人信息的模态框
-function showInfoDialog(){
+//关闭显示捐赠人信息的模态框
+function closeInfoDialog(){
 	$("#infoDialog").slideToggle(200);
 }
-/*
- * 获取捐赠人的信息（异步加载）如果直接在表格显示捐赠人信息 
- * 那么后台关联查询不但会拖慢速度 内存压力也会增大，
- * 所以让用户触发获得其感兴趣的捐赠人的信息的事件
- */
-function getDonorInfo(userId){
+//弹出显示捐赠人信息的模态框
+function showInfoDialog(obj,url){
+	document.getElementById("infoTable").style.display="none";
+	document.getElementById("loading").style.display="block";
+	var parent = obj.parentNode;
+	var prev = parent.previousSibling.previousSibling;
+	var html = prev.innerHTML;
+	$("#infoDialog").slideToggle(200);
 	$.ajax({
 		type:'POST',
-		data:userId,
+		url:url,
+		data:'userId='+html,
 		async:true,
 		error:function(){
 			alert("服务器发生错误！");
 		},
 		success:function(data){
 			//解析json字符串
-			var obj = eval("("+data+")");
+			console.log(data);
+			var obj = eval(data);
+			document.getElementById("truename_json").innerHTML=obj.truename;
+			document.getElementById("entranceDate").innerHTML=obj.entranceDate;
+			document.getElementById("majorName").innerHTML=obj.majorName;
+			document.getElementById("degreeName").innerHTML=obj.degreeName;
+			document.getElementById("loading").style.display="none";
+			document.getElementById("infoTable").style.display="table";
 		}
 	});
 }

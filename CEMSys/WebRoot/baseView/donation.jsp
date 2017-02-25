@@ -105,8 +105,8 @@
 			<tbody>
 				<c:forEach var="donation" items="${donationList }" >
 					<tr>
-						<td style="display: none;">${donation.userId }</td>
-						<td><a class="a-set" onclick="showInfoDialog();" title="点击查看捐赠人信息">${donation.truename }</a></td>
+						<td class="prevTd" style="display: none;" id="${donation.userId }">${donation.userId }</td>
+						<td><a class="a-set" onclick="showInfoDialog(this,'${pageContext.request.contextPath}/donation/getDonorInfo.action');" title="点击查看捐赠人信息">${donation.truename }</a></td>
 						<td>${donation.donationProject }</td>
 						<td>${donation.donationType }</td>
 						<td>${donation.donationItem }</td>
@@ -176,53 +176,58 @@
 					<h1 class="modal-title" style="font-size: 18px;font-weight: normal;">捐赠人信息查看</h1>
 				</div>
 				<div class="modal-body">
-					<table class="table table-bordered border-striped" cellpadding="0" cellspacing="0">
+					<table id="infoTable" class="table table-bordered border-striped" cellpadding="0" cellspacing="0" style="display:none;">
 						<tbody>
 							<tr>
 								<td>姓名</td>
-								<td>林华栋</td>
+								<td id="truename_json"></td>
 							</tr>
 							<tr>
 								<td>入学年份</td>
-								<td>2014</td>
+								<td id="entranceDate"></td>
 							</tr>
 							<tr>
 								<td>攻读专业</td>
-								<td>信息管理与信息系统</td>
+								<td id="majorName"></td>
 							</tr>
 							<tr>
 								<td>学位</td>
-								<td>学士学位</td>
+								<td id="degreeName"></td>
 							</tr>
 						</tbody>
 					</table>
+					<div id="loading" style="display: block;margin-left:auto;margin-right:auto;width:30px;height:30px;">
+						<img src="../img/donation/loading.gif"
+						 style="margin-left:auto;margin-right:auto;width:30px;height:30px;">
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" style="width: 70px;height:32px;" 
-					onclick="showInfoDialog();">关闭</button>
+					onclick="closeInfoDialog();">关闭</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
+<script src="../js/donationControl/donation.js"></script>
 <script type="text/javascript">
-	//提交分页查询表单
-	function submitForm(pageIndex) {
-		document.getElementById("pageIndex").value=pageIndex;
-		document.getElementById("searchForm").submit();
-	}
-	function resetForm(){
-		document.getElementById("truename").value="";
-		document.getElementById("donationProject").value="";
-		document.getElementById("foredate").value="";
-		document.getElementById("afterdate").value="";
-		document.getElementById("pageSize").options[0].selected=true;
-		document.getElementById("donationType").options[0].selected=true;
-	}
-	function showInfoDialog(){
-		$("#infoDialog").slideToggle(200);
-	}
+// 	//提交分页查询表单
+// 	function submitForm(pageIndex) {
+// 		document.getElementById("pageIndex").value=pageIndex;
+// 		document.getElementById("searchForm").submit();
+// 	}
+// 	function resetForm(){
+// 		document.getElementById("truename").value="";
+// 		document.getElementById("donationProject").value="";
+// 		document.getElementById("foredate").value="";
+// 		document.getElementById("afterdate").value="";
+// 		document.getElementById("pageSize").options[0].selected=true;
+// 		document.getElementById("donationType").options[0].selected=true;
+// 	}
+// 	function showInfoDialog(){
+// 		$("#infoDialog").slideToggle(200);
+// 	}
 </script>
 </html>
 
