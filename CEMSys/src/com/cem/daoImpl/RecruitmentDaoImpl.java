@@ -50,28 +50,27 @@ public class RecruitmentDaoImpl implements RecruitmentDao {
 		 * 判断查询条件组装hql查询语句
 		 */
 		if (viewAll == null || viewAll.length() == 0) {// 说明查看全部记录
-			if (publishPerson != null && publishPerson.length()!=0) {
+			if (publishPerson != null && publishPerson.length() != 0) {
 				hql.append(" AND re.truename like '%" + publishPerson + "%'");
 			}
-			if (publishForedate != null && publishForedate.length()!=0) {
+			if (publishForedate != null && publishForedate.length() != 0) {
 				/*
 				 * 这里要分情况，如果只填写了开始日期，但是没有填写终止日期， 那么查询晚于起始日期的符合条件的所有记录
 				 */
-				if (publishAfterdate != null && publishAfterdate.length()!=0) {
+				if (publishAfterdate != null && publishAfterdate.length() != 0) {
 					hql.append(" AND re.publishDate BETWEEN '" + publishForedate + "' AND '" + publishAfterdate + "'");
 				} else {
 					hql.append(" AND re.publishDate >= '" + publishForedate + "'");
 				}
 			}
-			if(pubCompany!=null && pubCompany.length()!=0){
-				hql.append(" AND re.companyName like '%"+pubCompany+"%'");
+			if (pubCompany != null && pubCompany.length() != 0) {
+				hql.append(" AND re.companyName like '%" + pubCompany + "%'");
 			}
 		}
 		/*
 		 * 查询总记录数，暂时没想到一举两得的办法,只能执行两次查询
 		 */
-		int recordCount = Integer.parseInt(
-				String.valueOf((Long) session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
+		int recordCount = Integer.parseInt(String.valueOf((Long) session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
 		List<Recruitment> recruitmentList = session.createQuery(hql.toString() + " ORDER BY re.publishDate desc")
 				.setFirstResult((pageIndex - 1) * pageSize).setMaxResults(pageSize).list();
 		Map<String, Object> resultMap = new HashMap<String, Object>(2);
