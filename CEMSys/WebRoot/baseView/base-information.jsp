@@ -43,7 +43,7 @@ To change this template use File | Settings | File Templates.
 					</p>
 					<p>您工作或居住地址：</p>
 					<p>
-						<label><input type="radio" name="country">国内</label> <label><input
+						<label><input type="radio" name="country" value="中国">国内</label> <label><input
 							type="radio" name="country">国外</label>
 					</p>
 					<p>
