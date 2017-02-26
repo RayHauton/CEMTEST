@@ -24,7 +24,9 @@
 		<div class="head_right">
 			<div class="head_right_top">
 				<img alt="" src="../img/donation/return.png">
-				<span style="font-size:12px;">返回主页</span>
+				<span style="font-size:12px;" class="returnIndex">
+					<a href="${pageContext.request.contextPath }/index.jsp">返回主页</a>
+				</span>
 			</div>
 			<div class="head_right_bottom">
 				<span>${sessionScope.user.truename }</span>
@@ -121,7 +123,7 @@
 				<c:choose>
 					<c:when test="${queryVo.pageIndex>=2 }">
 						<li>
-						<a onclick="" style="cursor: pointer;">
+						<a onclick="submitForm('${queryVo.pageIndex-1 }');" style="cursor: pointer;">
 							<span>&laquo;</span>
 						</a>
 						</li>
@@ -147,7 +149,7 @@
 				<c:choose>
 					<c:when test="${queryVo.pageIndex<queryVo.pageCount }">
 						<li>
-						<a onclick="submitForm('${status.current }')" style="cursor: pointer;">
+						<a onclick="submitForm('${queryVo.pageIndex+1 }')" style="cursor: pointer;">
 							<span>&raquo;</span>
 						</a>
 						</li>

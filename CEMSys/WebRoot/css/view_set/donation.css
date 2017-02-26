@@ -189,6 +189,15 @@ table{
 	width: 500px;
 	margin-top:50px;
 }
+.returnIndex{
+	color:#FFFFFF;
+}
+.returnIndex a:HOVER{
+	color:deeppink;
+}
+.returnIndex a:VISITED {
+	color:#FFFFFF;
+}
 
 
 
