@@ -34,7 +34,7 @@ public class ForumController {
 	@RequestMapping(value="/p/{forumModuleId}")
 	private ModelAndView getForumList(HttpServletRequest request,HttpServletResponse response,HttpSession session,@PathVariable(value="forumModuleId") int id) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
-		String pageNum = request.getParameter("pageIndex");
+		String pageNum = request.getParameter("forumIndex");
 		if (pageNum == null) {
 			pageNum = "1";
 		}
@@ -46,11 +46,24 @@ public class ForumController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="/p/{forumId}")
+	private ModelAndView getReplyList(HttpServletRequest request,HttpServletResponse response,HttpSession session,@PathVariable(value="forumId") int forumId) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		String pageNum = request.getParameter("pageNum");
+		if (pageNum.trim() == "" || pageNum == null) {
+			pageNum = "1";
+		}
+		Map<String, Object> map = forumService.FindReplywhileGointoForum(forumId, Integer.parseInt(pageNum));
+		modelAndView.addAllObjects(map);
+		modelAndView.setViewName("/baseView/BBSTest");
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/insertForum")
 	private String insertForum(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
 		User user = (User) session.getAttribute("user");
 		Forum forum = new Forum();
-//		Reply reply = new Reply();
+		Reply reply = new Reply();
 		String forumTitle = request.getParameter("forumTitle");
 		System.out.println(forumTitle);
 		String forumModuleId = String.valueOf(session.getAttribute("forumModuleId"));
@@ -68,16 +81,17 @@ public class ForumController {
 		forum.setIsDeleted("0");
 		forumService.insertForum(forum);
 		
-		return "redirect:/forum/p/"+forumModuleId;
+		
 		//同时将发帖内容发送到回复表中 （BBS格式）
-//		reply.setFloor((short)1);
-//		reply.setForum(forumService.FindForumIdWhilePostForum(user.getUserId().toString(), forum.getPublishTime()));
-//		reply.setIsDeleted("0");
-//		reply.setPublishUser(user.getUserId().toString());
-//		reply.setReplyText(forumTitle);
-//		reply.setReplyTime(forum.getPublishTime());
-//		forumService.insertReply(reply);
-
+		reply.setFloor((short) 1);
+		reply.setForum(forumService.FindForumIdWhilePostForum(String.valueOf(user.getUserId()), forum.getPublishTime().toString()));
+		reply.setIsDeleted("0");
+		reply.setPublishUser(String.valueOf(user.getUserId()));
+		reply.setReplyText(forumTitle);
+		reply.setReplyTime(forum.getPublishTime());
+		forumService.insertReply(reply);
+		
+		return "redirect:/forum/p/"+forumModuleId;
 	}
 	
 	@RequestMapping(value="/insertReply")

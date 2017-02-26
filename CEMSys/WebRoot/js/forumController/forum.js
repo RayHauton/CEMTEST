@@ -2,16 +2,17 @@
  * 论坛的控制
  */
 function postForum(){
-	var forumTitle = document.getElementById("textArea").value;
+	var forumContent = document.getElementById("textArea").value;
+	var forumTitle = document.getElementById("forumTitle").value;
 	if(forumTitle == "" || forumTitle == null){
-		alert("发送内容不能为空");
+		alert("标题不能够为空");
 		return 
 	};
 	$.ajax({
 		type: "post",
 		async: false,
         url: $('#basePath').val()+"/forum/insertForum",
-        data: "forumTitle="+forumTitle,
+        data: "forumTitle="+forumTitle&"forumContent="+forumContent,
         dataType: "text",
         success: function (data) {
            alert('请求成功');

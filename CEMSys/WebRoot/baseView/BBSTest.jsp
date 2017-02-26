@@ -60,10 +60,11 @@ To change this template use File | Settings | File Templates.
 				</div>
 			</div>
 			<div class="inputBox">
-				<input type="text" id="forumTitle">
+				<input type="text" id="forumTitle" placeholder="标题"/>
+				<span>共可以输入25个字</span>
 				<textarea name="forumContent" id="textArea" placeholder="说点什么吧"
 					cols="" rows=""></textarea>
-				<a href="javascript:document.getElementById('file1').click();" class="file" >添加图片</a>
+				<a href="javascript:document.getElementById('file1').click();" class="file" ></a>
 				<input type="file" id="file1" accept=".jpg,bmp,.gig,.png,.tif,.rgb,.dib,.eps,.jpe,.pcx,.bmp,.gif" style="display:none;">
 				<p>
 					<a href="javascript:void(0);" class="expression" onclick="file();"></a>
