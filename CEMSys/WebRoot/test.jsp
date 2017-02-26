@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<!-- <link rel="stylesheet" href="css/view_set/base.css"> -->
+<!-- <link rel="stylesheet" href="css/view_set/BBS.css"> -->
 </head>
 <body>
 <c:choose>
@@ -17,5 +19,7 @@
 		
 	</c:otherwise>
 </c:choose>
+
+<a href="${pageContext.request.contextPath }/forum/p/1">随便你说</a>
 </body>
 </html>
