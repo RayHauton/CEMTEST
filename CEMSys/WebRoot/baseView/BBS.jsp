@@ -16,6 +16,8 @@ To change this template use File | Settings | File Templates.
 	<link rel="stylesheet" href="../css/view_set/BBS.css">
 </head>
 <body>
+
+<input type="hidden" value="${pageContext.request.contextPath }" id="basePath"/>
 	<div class="box">
 		<div class="head">
 			<div class="logo">
@@ -26,7 +28,7 @@ To change this template use File | Settings | File Templates.
 			<div class="nav">
 				<ul>
 					<li>
-						<a href="index.html">系统首页</a>
+						<a href="${pageContext.request.contextPath }/baseView/index.html">系统首页</a>
 						<div class="subNav">
 							<a href="javascript:void(0);">校友快讯</a>
 							<a href="javascript:void(0);">返校预约</a>
@@ -63,12 +65,12 @@ To change this template use File | Settings | File Templates.
 				</div>
 			</div>
 			<div class="inputBox">
-				<textarea name="" id="textArea" placeholder="说点什么吧"></textarea>
+				<textarea name="forumTitle" id="textArea" placeholder="说点什么吧"></textarea>
 				<a href="javascript:void(0);" class="file"></a>
 				<p>
 					<a href="javascript:void(0);" class="expression" onclick="file();"></a>
 					<a href="javascript:void(0);">艾特</a>
-					<input type="button" value="发送">
+					<input type="button" value="发送" onclick="postForum()">
 				</p>
 			</div>
 			<div class="message">
@@ -111,5 +113,8 @@ To change this template use File | Settings | File Templates.
 			</div>
 		</div>	
 	</div>
+	<script src="../js/jquery-1.9.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/forumController/forum.js"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@ public class Forum implements java.io.Serializable {
 	private static final long serialVersionUID = -4696824177219569933L;
 	private int forumId;
 	private String forumTitle;
+	private String forumContent;
 	private String forumModule;
 	private Integer userId;
 	private String username;
@@ -40,6 +41,36 @@ public class Forum implements java.io.Serializable {
 			String isFine, String isDeleted) {
 		this.forumId = forumId;
 		this.forumTitle = forumTitle;
+		this.forumModule = forumModule;
+		this.userId = userId;
+		this.username = username;
+		this.truename = truename;
+		this.topic = topic;
+		this.publishTime = publishTime;
+		this.updateTime = updateTime;
+		this.replyCount = replyCount;
+		this.viewCount = viewCount;
+		this.attachment = attachment;
+		this.isFine = isFine;
+		this.isDeleted = isDeleted;
+	}
+	
+
+	public String getForumContent() {
+		return forumContent;
+	}
+
+	public void setForumContent(String forumContent) {
+		this.forumContent = forumContent;
+	}
+
+	public Forum(int forumId, String forumTitle, String forumContent, String forumModule, Integer userId,
+			String username, String truename, String topic, Date publishTime, Date updateTime, Integer replyCount,
+			Integer viewCount, byte[] attachment, String isFine, String isDeleted) {
+		super();
+		this.forumId = forumId;
+		this.forumTitle = forumTitle;
+		this.forumContent = forumContent;
 		this.forumModule = forumModule;
 		this.userId = userId;
 		this.username = username;

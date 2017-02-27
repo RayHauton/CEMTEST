@@ -9,7 +9,12 @@
             <generator class="native" />
         </id>
         <property name="forumTitle" type="string">
-            <column name="forumTitle" length="10">
+            <column name="forumTitle" length="50">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="forumContent" type="string">
+            <column name="forumContent" length="2000">
                 <comment>????</comment>
             </column>
         </property>
