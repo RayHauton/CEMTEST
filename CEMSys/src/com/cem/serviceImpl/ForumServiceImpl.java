@@ -63,4 +63,10 @@ public class ForumServiceImpl implements ForumService{
 		return forumDao.FindForumByUserId(userId);
 	}
 
+	@Override
+	public Short getFloorWhenInsertReply(String forumId) {
+		// TODO Auto-generated method stub
+		return forumDao.getFloorWhenInsertReply(forumId);
+	}
+
 }

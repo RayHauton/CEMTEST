@@ -12,7 +12,10 @@ function postForum(){
 		type: "post",
 		async: false,
         url: $('#basePath').val()+"/forum/insertForum",
-        data: "forumTitle="+forumTitle&"forumContent="+forumContent,
+// data: {"forumTitle="+forumTitle ,"forumContent="+forumContent},
+        data:{forumTitle:forumTitle,
+        	forumContent:forumContent
+        },
         dataType: "text",
         success: function (data) {
            alert('请求成功');
@@ -23,11 +26,14 @@ function postForum(){
         }
 	})
 	
-//	document.location=$('#basePath').val()+"/forum/insertForum?forumTitle="+forumTitle;
+// document.location=$('#basePath').val()+"/forum/insertForum?forumTitle="+forumTitle;
 }
 
-function reply(hostId){
-	var replyContent = document.getElementById("replyToHost").value;
+function reply(test){
+	// 当前楼层的用户id hostId
+	var forumId = document.getElementById("forumId").value;
+	var floor = $(test).attr("name");
+	var replyContent = document.getElementById("replyToHost"+floor.toString()).value;
 	if(replyContent == "" || replyContent== null){
 		alert("请输入");
 		return;
@@ -36,17 +42,27 @@ function reply(hostId){
 		type: "post",
 		async: false,
         url: $('#basePath').val()+"/forum/insertReply",
-        data: "forumTitle="+forumTitle,
+        data: {
+        	replyText:replyContent,
+        	forumId:forumId,
+        	floor:floor
+        },
         dataType: "text",
-        success: function (data) {
+        success: function () {
            alert('请求成功');
            window.location.reload();
         },
-        error: function (msg) {
+        error: function () {
             alert("请求失败");
         }
 	});
 }
+
+// function reply(id){
+// alert(id);
+// var forumId = document.getElementById("forumId").value;
+// alert(forumId);
+// }
 
 
 function checkNull(){

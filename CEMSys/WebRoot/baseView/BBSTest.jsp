@@ -12,13 +12,16 @@ To change this template use File | Settings | File Templates.
 <head>
 <meta charset="UTF-8">
 <title>校友论坛</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/base.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/BBS.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/view_set/base.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/view_set/BBS.css">
 </head>
 <body>
 
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath" />
+	<input type="hidden" value="${thisForum.forumId }" id="forumId" />
 	<div class="box">
 		<div class="head">
 			<div class="logo">
@@ -59,61 +62,56 @@ To change this template use File | Settings | File Templates.
 					<button>确认</button>
 				</div>
 			</div>
-			<div class="inputBox">
-				<input type="text" id="forumTitle" placeholder="标题"/>
-				<span>共可以输入25个字</span>
-				<textarea name="forumContent" id="textArea" placeholder="说点什么吧"
-					cols="" rows=""></textarea>
-				<a href="javascript:document.getElementById('file1').click();" class="file" ></a>
-				<input type="file" id="file1" accept=".jpg,bmp,.gig,.png,.tif,.rgb,.dib,.eps,.jpe,.pcx,.bmp,.gif" style="display:none;">
-				<p>
-					<a href="javascript:void(0);" class="expression" onclick="file();"></a>
-					<a href="javascript:void(0);">艾特</a> <input type="button"
-						value="发送" onclick="javascript:postForum()">
-				</p>
-			</div>
-			<c:forEach var="test" items="${forumList }">
+			<h2>${thisForum.forumTitle }</h2>
+			<!-- 			<div class="inputBox"> -->
+			<!-- 				<input type="text" id="forumTitle" placeholder="标题" /> <span>共可以输入25个字</span> -->
+			<!-- 				<textarea name="forumContent" id="textArea" placeholder="说点什么吧" -->
+			<!-- 					cols="" rows=""></textarea> -->
+			<!-- 				<a href="javascript:document.getElementById('file1').click();" -->
+			<!-- 					class="file"></a> <input type="file" id="file1" -->
+			<!-- 					accept=".jpg,bmp,.gig,.png,.tif,.rgb,.dib,.eps,.jpe,.pcx,.bmp,.gif" -->
+			<!-- 					style="display: none;"> -->
+			<!-- 				<p> -->
+			<!-- 					<a href="javascript:void(0);" class="expression" onclick="file();"></a> -->
+			<!-- 					<a href="javascript:void(0);">艾特</a> <input type="button" -->
+			<!-- 						value="发送" onclick="javascript:postForum()"> -->
+			<!-- 				</p> -->
+			<!-- 			</div> -->
+			<c:forEach var="test" items="${replyList }">
 				<div class="message">
 					<div class="messageBox">
 						<div class="head">
 							<img alt="个人头像" src="" />
 							<div class="nameBox">
-								<span class="name">${test.username }</span> <span class="time">${test.publishTime }</span>
-								<input type="hidden" name="userId" value="${test.userId }"/>
+								<span class="name">${test.publishUser }</span> <span
+									class="time">${test.replyTime }</span> <input type="hidden"
+									name="userId" value="${test.publishUserId }" />
 							</div>
 						</div>
 						<div class="text">
-							<p>${test.forumTitle }</p>
+							<p>${test.replyText }</p>
 						</div>
 						<div class="img">
 							<img src="" alt="图片"> <img src="" alt="图片"> <img
 								src="" alt="图片"> <span>100</span>
 						</div>
 						<div class="content">
-							<input type="text" placeholder="说点什么吧"> <span
-								class="c-epsion" id="replyToHost" ></span>
-							<button calss="content-btn" onclick="javascript:reply(${test.userId})">评论</button>
-						</div>
-						<div class="contentBox">
-							<p>
-								<i>展开</i>
-							</p>
-							<p>
-								<b>昵称1</b>评论<b>昵称2</b>：<span>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</span>
-								<a href="javascript:void(0);">回复</a>
-							</p>
-							<p>
-								<b>昵称2</b>评论<b>昵称3</b>：<span>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</span>
-								<a href="javascript:void(0);">回复</a>
-							</p>
+							<input type="text" placeholder="说点什么吧"
+								id="replyToHost${test.floor }"> <span class="c-epsion"></span>
+							<button class="content-btn" name="${test.floor }" id="test"
+								onclick="javascript:reply(this)">评论</button>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath }/js/forumController/forum.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js"
+		type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/forumController/forum.js"
+		type="text/javascript"></script>
 </body>
 </html>

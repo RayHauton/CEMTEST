@@ -50,4 +50,11 @@ public interface ForumService {
 	 * 根据用户id查找用户发的说说,其他用户可以查看当前用户的说说
 	 */
 	public Map<String, Object> FindForumByUserId(String userId);
+
+	/**
+	 * 回复时得到回复的楼层
+	 * @param forumId
+	 * @return
+	 */
+	public Short getFloorWhenInsertReply(String forumId);
 }

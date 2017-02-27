@@ -1,5 +1,6 @@
 package com.cem.daoImpl;
 
+import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,10 @@ public class ForumDaoImpl implements ForumDao{
 	public String insertForum(Forum forum) throws Exception {
 		// TODO Auto-generated method stub
 		Session session = getSession();
+		forum.setIsDeleted("0");
+		forum.setIsFine("0");
+		forum.setViewCount(0);
+		forum.setReplyCount(1);
 		session.save(forum);
 		return "succ";
 	}
@@ -44,6 +49,7 @@ public class ForumDaoImpl implements ForumDao{
 	public String insertReply(Reply reply) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
+		reply.setIsDeleted("0");
 		session.save(reply);
 		return "succ";
 	}
@@ -93,7 +99,7 @@ public class ForumDaoImpl implements ForumDao{
 	@Override
 	public Map<String, Object> FindReplywhileGointoForum(int forumId, int pageIndex) {
 		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(3);
 		Session session = getSession();
 		if (pageIndex == 0) {
 			pageIndex = 1;
@@ -102,8 +108,13 @@ public class ForumDaoImpl implements ForumDao{
 		List<Reply> list = session.createQuery(sql).setString(0, String.valueOf(forumId)).setFirstResult((pageIndex-1)*32).list();
 		String count = "select count(*) from Reply r where r.forum=? and r.isDeleted='0'";
 		int count1 = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, String.valueOf(forumId)).uniqueResult()));
+		String sql2 = "select f from Forum f where f.forumId=?";
+		Forum forum = (Forum) session.createQuery(sql2).setString(0, String.valueOf(forumId)).uniqueResult();
+		forum.setViewCount(forum.getViewCount() + 1);
 		map.put("replyList", list);
 		map.put("replyCount", count1);
+		map.put("thisForum", forum);
+		session.update(forum);
 		return map;
 	}
 
@@ -111,7 +122,9 @@ public class ForumDaoImpl implements ForumDao{
 	public String FindForumIdWhilePostForum(String userId, String publishTime) {
 		// TODO Auto-generated method stub
 		String sql = "select forumId from forum where userId='" + userId + "' and publishTime ='" + publishTime + "'";
+//		String forumId = String.valueOf(jdbcTemplate.queryForObject(sql, int.class));
 		String forumId = jdbcTemplate.queryForObject(sql, String.class);
+		
 		return forumId;
 	}
 
@@ -120,13 +133,23 @@ public class ForumDaoImpl implements ForumDao{
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		Session session = getSession();
-		String sql = "select f from forum f where userId=? and isDeleted='0' order by forumId desc";
+		String sql = "select f from Forum f where userId=? and isDeleted='0' order by forumId desc";
 		String count = "select count(*) from f where userId=? and isDeleted='0'";
 		List<Forum> list = session.createQuery(sql).setString(0, userId).list();
 		int result = (int) session.createQuery(count).setString(0, userId).uniqueResult();
 		map.put("forumList", list);
 		map.put("count", result);
 		return map;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public Short getFloorWhenInsertReply(String forumId) {
+		// TODO Auto-generated method stub
+		String sql = "select max(floor)+1 from Reply r where r.forum='" + forumId +"'";
+		String result = jdbcTemplate.queryForObject(sql, String.class);
+		short floor = (short) Integer.parseInt(result);
+		return floor;
 	}
 
 }

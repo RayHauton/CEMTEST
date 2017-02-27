@@ -14,7 +14,7 @@ public class Reply implements java.io.Serializable {
 	private static final long serialVersionUID = 5650533817350174380L;
 	private int replyId;
 	private String replyText;
-	private Integer publishUserId;
+	private int publishUserId;
 	private String publishUser;
 	private String forum;
 	private Short floor;
@@ -31,7 +31,7 @@ public class Reply implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	public Reply(int replyId, String replyText, Integer publishUserId, String publishUser, String forum, Short floor,
+	public Reply(int replyId, String replyText, int publishUserId, String publishUser, String forum, Short floor,
 			Date replyTime, String parentReplyId, String replyObject, String isDeleted) {
 		this.replyId = replyId;
 		this.replyText = replyText;
@@ -61,11 +61,11 @@ public class Reply implements java.io.Serializable {
 		this.replyText = replyText;
 	}
 
-	public Integer getPublishUserId() {
+	public int getPublishUserId() {
 		return this.publishUserId;
 	}
 
-	public void setPublishUserId(Integer publishUserId) {
+	public void setPublishUserId(int publishUserId) {
 		this.publishUserId = publishUserId;
 	}
 
