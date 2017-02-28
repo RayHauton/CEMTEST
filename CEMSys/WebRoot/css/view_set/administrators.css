@@ -4,7 +4,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
-	background: none;
+	background: none!important;
 }
 
 .mine {
@@ -51,7 +51,7 @@ body {
 }
 
 .operation_list {
-	font-family: "微软雅黑 Light";
+	font-family: "微软雅黑";
 	font-size: 24px;
 	color: white;
 	text-align: center;
@@ -60,11 +60,11 @@ body {
 }
 
 #navigator {
-	font-family: 微软雅黑;
+	font-family: "微软雅黑";
 	margin-top: 0px;
 	background-color: #3B8270;
-	width: 200px;
-	height: calc(100% - 300px);
+	width: 200px; 
+	height: calc(100% - 150px);
 	padding-bottom: 50px;
 	display: inline-block;
 }
@@ -87,7 +87,7 @@ body {
 	display: block;
 	padding: 5px 5px 5px 0.5em;
 	text-decoration: none;
-	border-left: 12px solid yellow; /*左边的粗边*/
+	border-left: 12px solid yellow; 
 }
 
 #navigator ul li a:link {
@@ -109,7 +109,7 @@ body {
 #navigator ul li ul li {
 	border-top: 1px solid silver;
 	list-style-type: none;
-	font-family: "微软雅黑 Light";
+	font-family: "微软雅黑";
 	font-size: 14px;
 }
 
@@ -140,11 +140,11 @@ body {
 }
 
 iframe {
-	width: 1000px;
-	height: calc(100% - 300px);
-	display: inline-block;
+	width: calc(100% - 300px);
+	height: calc(100% - 100px);
 	border-left: 1px solid #ccc;
 	vertical-align: top;
+	background-color:yellow;
 }
 
 .dataList {
