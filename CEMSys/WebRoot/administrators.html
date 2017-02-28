@@ -1,0 +1,61 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>管理员</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" href="css/view_set/base.css">
+    <link rel="stylesheet" href="css/view_set/administrators.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        function slide(i){
+            $("#list_ul>li>ul:eq("+(i-1)+")").slideToggle(200);
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+	<div class="show_admin"><h2><span>welcome!管理员</span>校友信息管理系统</h2></div>
+<div class="operation_list">操作列表</div>
+<div id="navigator">
+	<div class="mine">
+       <!--  <img src="img/nuaa.jpg" alt=""> -->
+        <a href="javascript:void(0);">修改密码</a>
+        <a href="javascript:void(0);">账号注销</a>
+    </div>
+    <ul id="list_ul">
+        <!--这里<a>标签必须紧跟<li>标签，否则空白符会被认为是一个子节点 ，这样伸缩效果就失效了-->
+        <!-- <li><a href="administrator/review.html" target="iframe" onclick="slide(0);">用户管理</a>
+            <ul class="Hide">
+                <li><a href="javascript:void(0);" target="show_info">用户审核</a></li>
+                <li><a href="javascript:void(0);" target="show_info">用户添加</a></li>
+            </ul>
+        </li> -->
+        <li><a href="admin/notice.html" target="iframe" onclick="slide(1);">公告管理</a>
+            <ul class="Hide">
+                <li><a href="javascript:void(0);">校友会信息添加</a></li>
+                <li><a href="javascript:void(0);">学园事件录添加</a></li>
+                <li><a href="javascript:void(0);">捐款公告添加</a></li>
+            </ul>
+        </li>
+        <li><a href="admin/data.html" target="iframe" onclick="slide(2);">数据管理</a>
+            <ul class="Hide">
+            	<li><a href="javascript:void(0);" target="show_info">论坛审核</a></li>
+                <li><a href="javascript:void(0);">学历信息</a></li>
+                <li><a href="javascript:void(0);">学位信息</a></li>
+                <li><a href="javascript:void(0);">调研信息</a></li>
+            </ul>
+        </li>
+        <li><a href="admin/system.html" target="iframe" onclick="slide(3);">系统管理</a>
+            <ul class="Hide">
+                <li><a href="javascript:void(0);">祝福模板</a></li>
+                <li><a href="javascript:void(0);">返校公告</a></li>
+                <li><a href="javascript:void(0);">用户管理</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<iframe src="" frameborder="0" name="iframe"></iframe>
+</div>
+</body>
+</html>

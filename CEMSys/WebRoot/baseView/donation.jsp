@@ -51,7 +51,7 @@
 					捐赠物品类别：
 					<select class="form-control" name="donationType" id="donationType"
 					 style="padding: 0;font-size: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;
-						<option value="">请选择</option>
+						<option value="">全部</option>
 						<option value="0">基金</option>
 						<option value="1">其他</option>	
 					</select>
@@ -110,7 +110,16 @@
 						<td class="prevTd" style="display: none;" id="${donation.userId }">${donation.userId }</td>
 						<td><a class="a-set" onclick="showInfoDialog(this,'${pageContext.request.contextPath}/donation/getDonorInfo.action');" title="点击查看捐赠人信息">${donation.truename }</a></td>
 						<td>${donation.donationProject }</td>
-						<td>${donation.donationType }</td>
+						<td>
+							<c:choose>
+								<c:when test="${donation.donationType eq 0 }">
+									基金
+								</c:when>
+								<c:otherwise>
+									其他
+								</c:otherwise>
+							</c:choose>
+						</td>
 						<td>${donation.donationItem }</td>
 						<td>${donation.donationDate }</td>
 					</tr>
@@ -214,22 +223,6 @@
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/donationControl/donation.js"></script>
 <script type="text/javascript">
-// 	//提交分页查询表单
-// 	function submitForm(pageIndex) {
-// 		document.getElementById("pageIndex").value=pageIndex;
-// 		document.getElementById("searchForm").submit();
-// 	}
-// 	function resetForm(){
-// 		document.getElementById("truename").value="";
-// 		document.getElementById("donationProject").value="";
-// 		document.getElementById("foredate").value="";
-// 		document.getElementById("afterdate").value="";
-// 		document.getElementById("pageSize").options[0].selected=true;
-// 		document.getElementById("donationType").options[0].selected=true;
-// 	}
-// 	function showInfoDialog(){
-// 		$("#infoDialog").slideToggle(200);
-// 	}
 </script>
 </html>
 
