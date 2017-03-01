@@ -63,20 +63,6 @@ To change this template use File | Settings | File Templates.
 				</div>
 			</div>
 			<h2>${thisForum.forumTitle }</h2>
-			<!-- 			<div class="inputBox"> -->
-			<!-- 				<input type="text" id="forumTitle" placeholder="标题" /> <span>共可以输入25个字</span> -->
-			<!-- 				<textarea name="forumContent" id="textArea" placeholder="说点什么吧" -->
-			<!-- 					cols="" rows=""></textarea> -->
-			<!-- 				<a href="javascript:document.getElementById('file1').click();" -->
-			<!-- 					class="file"></a> <input type="file" id="file1" -->
-			<!-- 					accept=".jpg,bmp,.gig,.png,.tif,.rgb,.dib,.eps,.jpe,.pcx,.bmp,.gif" -->
-			<!-- 					style="display: none;"> -->
-			<!-- 				<p> -->
-			<!-- 					<a href="javascript:void(0);" class="expression" onclick="file();"></a> -->
-			<!-- 					<a href="javascript:void(0);">艾特</a> <input type="button" -->
-			<!-- 						value="发送" onclick="javascript:postForum()"> -->
-			<!-- 				</p> -->
-			<!-- 			</div> -->
 			<c:forEach var="test" items="${replyList }">
 				<div class="message">
 					<div class="messageBox">
@@ -90,10 +76,6 @@ To change this template use File | Settings | File Templates.
 						</div>
 						<div class="text">
 							<p>${test.replyText }</p>
-						</div>
-						<div class="img">
-							<img src="" alt="图片"> <img src="" alt="图片"> <img
-								src="" alt="图片"> <span>100</span>
 						</div>
 						<div class="content">
 							<input type="text" placeholder="说点什么吧"

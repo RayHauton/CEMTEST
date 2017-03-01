@@ -2,8 +2,9 @@
  * 论坛的控制
  */
 function postForum(){
-	var forumContent = document.getElementById("textArea").value;
+	var forumContent = ue.getPlainTxt();
 	var forumTitle = document.getElementById("forumTitle").value;
+	alert(forumContent);
 	if(forumTitle == "" || forumTitle == null){
 		alert("标题不能够为空");
 		return 
@@ -12,7 +13,6 @@ function postForum(){
 		type: "post",
 		async: false,
         url: $('#basePath').val()+"/forum/insertForum",
-// data: {"forumTitle="+forumTitle ,"forumContent="+forumContent},
         data:{forumTitle:forumTitle,
         	forumContent:forumContent
         },
@@ -73,69 +73,119 @@ function checkNull(){
 	}
 }
 
-function sAlert(strTitle,strContent ){
-	 var msgw,msgh,bordercolor;
-	 msgw=400;// 提示窗口的宽度
-	 msgh=100;// 提示窗口的高度
-	 titleheight=25 // 提示窗口标题高度
-	 bordercolor="#336699";// 提示窗口的边框颜色
-	 titlecolor="#99CCFF";// 提示窗口的标题颜色
-	 var sWidth,sHeight;
-	 sWidth=document.body.offsetWidth;
-	 sHeight=screen.height;
-	 var bgObj=document_createElement_x_x("div");
-	 bgObj.setAttribute('id','bgDiv');
-	 bgObj.style.position="absolute";
-	 bgObj.style.top="0";
-	 bgObj.style.background="#777";
-	 bgObj.style.filter="progid:DXImageTransform.Microsoft.Alpha(style=3,opacity=25,finishOpacity=75";
-	 bgObj.style.opacity="0.6";
-	 bgObj.style.left="0";
-	 bgObj.style.width=sWidth + "px";
-	 bgObj.style.height=sHeight + "px";
-	 bgObj.style.zIndex = "10000";
-	 document.body.a(bgObj);
-	 var msgObj=document_createElement_x_x("div")
-	 msgObj.setAttribute("id","msgDiv");
-	 msgObj.setAttribute("align","center");
-	 msgObj.style.background="white";
-	 msgObj.style.border="1px solid " + bordercolor;
-	 msgObj.style.position = "absolute";
-	 msgObj.style.left = "50%";
-	 msgObj.style.top = "50%";
-	 msgObj.style.font="12px/1.6em Verdana, Geneva, Arial, Helvetica, sans-serif";
-	 msgObj.style.marginLeft = "-225px" ;
-	 msgObj.style.marginTop = -75+document.documentElement.scrollTop+"px";
-	 msgObj.style.width = msgw + "px";
-	 msgObj.style.height =msgh + "px";
-	 msgObj.style.textAlign = "center";
-	 msgObj.style.lineHeight ="25px";
-	 msgObj.style.zIndex = "10001";
-	 var title=document_createElement_x_x("h4");
-	 title.setAttribute("id","msgTitle");
-	 title.setAttribute("align","right");
-	 title.style.margin="0";
-	 title.style.padding="3px";
-	 title.style.background=bordercolor;
-	 title.style.filter="progid:DXImageTransform.Microsoft.Alpha(startX=20, startY=20, finishX=100, finishY=100,style=1,opacity=75,finishOpacity=100);";
-	 title.style.opacity="0.75";
-	 title.style.border="1px solid " + bordercolor;
-	 title.style.height="18px";
-	 title.style.font="12px Verdana, Geneva, Arial, Helvetica, sans-serif";
-	 title.style.color="white";
-	 title.style.cursor="pointer";
-	 title.title = "点击关闭";
-	 title.innerHTML="<table border='0' width='100%'><tr><td align='left'><b>"+ strTitle +"</b></td><td>关闭</td></tr></table></div>";
-	 title.onclick=function(){
-	 document.body.removeChild(bgObj);
-	 document.getElementByIdx_x_x("msgDiv").removeChild(title);
-	 document.body.removeChild(msgObj);
-	 }
-	 document.body.a(msgObj);
-	 document.getElementByIdx_x_x("msgDiv").a(title);
-	 var txt=document_createElement_x_x("p");
-	 txt.style.margin="1em 0";
-	 txt.setAttribute("id","msgTxt");
-	 txt.innerHTML=strContent;
-	 document.getElementByIdx_x_x("msgDiv").a(txt);
-	}
+
+/**
+ * 以下是百度编辑器的js
+ */
+
+
+//实例化编辑器
+//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+var ue = UE.getEditor('editor');
+
+
+function isFocus(e){
+    alert(UE.getEditor('editor').isFocus());
+    UE.dom.domUtils.preventDefault(e)
+}
+function setblur(e){
+    UE.getEditor('editor').blur();
+    UE.dom.domUtils.preventDefault(e)
+}
+function insertHtml() {
+    var value = prompt('插入html代码', '');
+    UE.getEditor('editor').execCommand('insertHtml', value)
+}
+function createEditor() {
+    enableBtn();
+    UE.getEditor('editor');
+}
+function getAllHtml() {
+    alert(UE.getEditor('editor').getAllHtml())
+}
+function getContent() {
+    var arr = [];
+    arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+    arr.push("内容为：");
+    arr.push(UE.getEditor('editor').getContent());
+    alert(arr.join("\n"));
+}
+function getPlainTxt() {
+    var arr = [];
+    arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+    arr.push("内容为：");
+    arr.push(UE.getEditor('editor').getPlainTxt());
+    alert(arr.join('\n'))
+}
+function setContent(isAppendTo) {
+    var arr = [];
+    arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+    UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+    alert(arr.join("\n"));
+}
+function setDisabled() {
+    UE.getEditor('editor').setDisabled('fullscreen');
+    disableBtn("enable");
+}
+
+function setEnabled() {
+    UE.getEditor('editor').setEnabled();
+    enableBtn();
+}
+
+function getText() {
+    //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+    var range = UE.getEditor('editor').selection.getRange();
+    range.select();
+    var txt = UE.getEditor('editor').selection.getText();
+    alert(txt)
+}
+
+function getContentTxt() {
+    var arr = [];
+    arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+    arr.push("编辑器的纯文本内容为：");
+    arr.push(UE.getEditor('editor').getContentTxt());
+    alert(arr.join("\n"));
+}
+function hasContent() {
+    var arr = [];
+    arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+    arr.push("判断结果为：");
+    arr.push(UE.getEditor('editor').hasContents());
+    alert(arr.join("\n"));
+}
+function setFocus() {
+    UE.getEditor('editor').focus();
+}
+function deleteEditor() {
+    disableBtn();
+    UE.getEditor('editor').destroy();
+}
+function disableBtn(str) {
+    var div = document.getElementById('btns');
+    var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+    for (var i = 0, btn; btn = btns[i++];) {
+        if (btn.id == str) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        } else {
+            btn.setAttribute("disabled", "true");
+        }
+    }
+}
+function enableBtn() {
+    var div = document.getElementById('btns');
+    var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+    for (var i = 0, btn; btn = btns[i++];) {
+        UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+    }
+}
+
+function getLocalData () {
+    alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+}
+
+function clearLocalData () {
+    UE.getEditor('editor').execCommand( "clearlocaldata" );
+    alert("已清空草稿箱")
+}

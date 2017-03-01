@@ -4,19 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cem.pojo.Forum;
@@ -147,7 +142,7 @@ public class ForumController {
 		reply.setReplyTime(new Date());
 		reply.setReplyText(replyText);
 		reply.setReplyObject(floor);
-		reply.setFloor((Short)forumService.getFloorWhenInsertReply(forumId));
+		reply.setFloor(forumService.getFloorWhenInsertReply(forumId));
 		reply.setPublishUserId(user.getUserId());
 		reply.setPublishUser(user.getUsername());
 		forumService.insertReply(reply);
