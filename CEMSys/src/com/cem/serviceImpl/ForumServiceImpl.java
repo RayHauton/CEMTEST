@@ -22,9 +22,9 @@ public class ForumServiceImpl implements ForumService{
 	}
 
 	@Override
-	public String insertReply(Reply reply) {
+	public String insertReply(Reply reply, String forumId) {
 		// TODO Auto-generated method stub
-		return forumDao.insertReply(reply);
+		return forumDao.insertReply(reply,forumId);
 	}
 
 	@Override

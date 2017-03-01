@@ -62,7 +62,8 @@ To change this template use File | Settings | File Templates.
 					<button>确认</button>
 				</div>
 			</div>
-			<h2>${thisForum.forumTitle }</h2>
+			<h1>${thisForum.forumTitle }</h1>
+			<h2>共${thisForum.replyCount }回复</h2>
 			<!-- 			<div class="inputBox"> -->
 			<!-- 				<input type="text" id="forumTitle" placeholder="标题" /> <span>共可以输入25个字</span> -->
 			<!-- 				<textarea name="forumContent" id="textArea" placeholder="说点什么吧" -->
@@ -85,8 +86,9 @@ To change this template use File | Settings | File Templates.
 							<div class="nameBox">
 								<span class="name">${test.publishUser }</span> <span
 									class="time">${test.replyTime }</span> <input type="hidden"
-									name="userId" value="${test.publishUserId }" />
+									name="userId" value="${test.publishUserId }" /> 
 							</div>
+							<span>${test.floor }楼</span>
 						</div>
 						<div class="text">
 							<p>${test.replyText }</p>
@@ -104,6 +106,58 @@ To change this template use File | Settings | File Templates.
 					</div>
 				</div>
 			</c:forEach>
+			<p>共${totalReplyPage }页</p>
+			<a href="${pageContext.request.contextPath }/forum/p/${thisForum.forumId}?pageNum=1">首页</a>
+			<a href="${pageContext.request.contextPath }/forum/p/${thisForum.forumId}?pageNum=${totalReplyPage }">尾页</a>
+			<c:if test="${currentReplyPage>1 }">
+				<a href="${pageContext.request.contextPath }/forum/p/${thisForum.forumId}?pageNum=${currentReplyPage-1 }">上一页</a>
+			</c:if>
+			<c:if test="${currentReplyPage<totalReplyPage }">
+				<a href="${pageContext.request.contextPath }/forum/p/${thisForum.forumId}?pageNum=${currentReplyPage+1 }">下一页</a>
+			</c:if>
+			
+			<c:choose>
+				<c:when test="${totalReplyPage<=10 }">
+					<c:set var="begin" value="1"></c:set>
+					<c:set var="end" value="${totalReplyPage }"></c:set>
+				</c:when>
+				<c:otherwise>
+					<c:set var="begin" value="${currentReplyPage-5 }"></c:set>
+					<c:set var="end" value="${currentReplyPage+4 }"></c:set>
+					<c:if test="${begin<1 }">
+						<c:set var="begin" value="1"></c:set>
+						<c:set var="end" value="10"></c:set>
+					</c:if>
+					<c:if test="${end>totalReplyPage }">
+						<c:set var="begin" value="${totalReplyPage-9 }"></c:set>
+						<c:set var="end" value="${totalReplyPage }"></c:set>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${begin }" end="${end }">
+				<c:choose>
+					<c:when test="${i==currentReplyPage }">
+						[${i }]
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath }/forum/p/${thisForum.forumId}?pageNum=${i }">[${i }]</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			
+			<div class="inputBox">
+				<textarea name="replytext" id="textArea" placeholder="说点什么吧"
+					cols="" rows=""></textarea>
+				<a href="javascript:void(0);" class="file"></a>
+				<p>
+					<a href="javascript:void(0);" class="expression" onclick="file();"></a>
+					<a href="javascript:void(0);">艾特</a> <input type="button"
+						value="发送" onclick="javascript:replyHost()">
+				</p>
+			</div>
+
+		
 		</div>
 	</div>
 	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js"

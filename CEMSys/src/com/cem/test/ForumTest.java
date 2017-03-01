@@ -81,8 +81,8 @@ public class ForumTest {
 	@Test
 	public void tets(){
 		JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
-		String sql = "select max(floor)+1 from Reply r where r.forum='13'";
-		String result = jdbcTemplate.queryForObject(sql, String.class);
+		String sql = "update Forum set viewCount = viewCount+1 where forumId='13'";
+		int result = jdbcTemplate.update(sql);
 		System.out.println(result);
 	}
 }

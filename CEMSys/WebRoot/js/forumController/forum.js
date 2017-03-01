@@ -12,7 +12,6 @@ function postForum(){
 		type: "post",
 		async: false,
         url: $('#basePath').val()+"/forum/insertForum",
-// data: {"forumTitle="+forumTitle ,"forumContent="+forumContent},
         data:{forumTitle:forumTitle,
         	forumContent:forumContent
         },
@@ -46,6 +45,35 @@ function reply(test){
         	replyText:replyContent,
         	forumId:forumId,
         	floor:floor
+        },
+        dataType: "text",
+        success: function () {
+           alert('请求成功');
+           window.location.reload();
+        },
+        error: function () {
+            alert("请求失败");
+        }
+	});
+}
+
+function replyHost(){
+	alert(0);
+	var forumId = document.getElementById("forumId").value;
+	alert(1);
+	var replyContent = document.getElementById("textArea").value;
+	alert(2);
+	if(replyContent == "" || replyContent== null){
+		alert("请输入");
+		return;
+	}
+	$.ajax({
+		type: "post",
+		async: false,
+        url: $('#basePath').val()+"/forum/insertReply",
+        data: {
+        	replyText:replyContent,
+        	forumId:forumId,
         },
         dataType: "text",
         success: function () {
