@@ -15,8 +15,9 @@ public interface ForumDao {
 	
 	/**
 	 * 回复功能
+	 * @param forumId 
 	 */
-	public String insertReply(Reply reply);
+	public String insertReply(Reply reply, String forumId);
 	
 	/**
 	 * 删除帖子功能

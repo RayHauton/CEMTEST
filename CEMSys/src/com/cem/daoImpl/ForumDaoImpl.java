@@ -39,25 +39,27 @@ public class ForumDaoImpl implements ForumDao{
 		Session session = getSession();
 		forum.setIsDeleted("0");
 		forum.setIsFine("0");
-		forum.setViewCount(0);
-		forum.setReplyCount(1);
+		forum.setViewCount(1);
+		forum.setReplyCount(0);
 		session.save(forum);
 		return "succ";
 	}
 
 	@Override
-	public String insertReply(Reply reply) {
+	public String insertReply(Reply reply, String forumId) {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		reply.setIsDeleted("0");
 		session.save(reply);
+		String sql = "update Forum set replyCount=replyCount+1 where forumId='"+forumId+"'";
+		jdbcTemplate.update(sql);
 		return "succ";
 	}
 
 	@Override
 	public String deleteForum(int ForumId) {
 		// TODO Auto-generated method stub
-		String sql = "update forum set isDeleted='1' where forumId='"+ForumId+"'";
+		String sql = "update Forum set isDeleted='1' where forumId='"+ForumId+"'";
 		int result = jdbcTemplate.update(sql);
 		if (result > 0 ) {
 			return "succ";
@@ -69,7 +71,7 @@ public class ForumDaoImpl implements ForumDao{
 	@Override
 	public String deleteReply(int replyId) {
 		// TODO Auto-generated method stub
-		String sql = "update reply set isDeleted='1' where replyId='" + replyId+"'";
+		String sql = "update Reply set isDeleted='1' where replyId='" + replyId+"'";
 		int result = jdbcTemplate.update(sql);
 		if (result > 0) {
 			return "succ";
@@ -83,38 +85,46 @@ public class ForumDaoImpl implements ForumDao{
 	public Map<String, Object> FindForumwhileGointoModule(int forumModuleId, int pageIndex) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
+		int pageSize = 5;
 		Session session = getSession();
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
 		String sql = "select f from Forum f where f.forumModule=? and f.isDeleted='0' order by forumId desc";
-		List<Forum> list = session.createQuery(sql).setString(0, String.valueOf(forumModuleId)).setFirstResult((pageIndex - 1)*32).list();
+		List<Forum> list = session.createQuery(sql).setString(0, String.valueOf(forumModuleId)).setFirstResult((pageIndex - 1)*pageSize).setMaxResults(pageSize).list();
 		String count = "select count(*) from Forum f where f.forumModule=? and f.isDeleted='0'";
 		int count1 = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, String.valueOf(forumModuleId)).uniqueResult()));
-		map.put("forumList", list);
-		map.put("forumCount", count1);
+		int forumPage = count1>pageSize?(count1/pageSize)+1:1;
+		map.put("forumList", list);//forum列表
+		map.put("forumCount", count1);//一共多少个帖子
+		map.put("currentForumPage", pageIndex);//当前所在页面
+		map.put("totalForumPage", forumPage);//总页面数
 		return map;
 	}
 
 	@Override
 	public Map<String, Object> FindReplywhileGointoForum(int forumId, int pageIndex) {
 		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>(3);
+		Map<String, Object> map = new HashMap<>();
+		int pageSize = 5;
 		Session session = getSession();
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
 		String sql = "select r from Reply r where r.forum=? and r.isDeleted='0' order by replyTime asc";
-		List<Reply> list = session.createQuery(sql).setString(0, String.valueOf(forumId)).setFirstResult((pageIndex-1)*32).list();
+		List<Reply> list = session.createQuery(sql).setString(0, String.valueOf(forumId)).setFirstResult((pageIndex-1)*pageSize).setMaxResults(pageSize).list();
 		String count = "select count(*) from Reply r where r.forum=? and r.isDeleted='0'";
 		int count1 = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, String.valueOf(forumId)).uniqueResult()));
 		String sql2 = "select f from Forum f where f.forumId=?";
 		Forum forum = (Forum) session.createQuery(sql2).setString(0, String.valueOf(forumId)).uniqueResult();
 		forum.setViewCount(forum.getViewCount() + 1);
-		map.put("replyList", list);
-		map.put("replyCount", count1);
-		map.put("thisForum", forum);
-		session.update(forum);
+		String sql3 = "update Forum set viewCount = viewCount+1 where forumId='"+forumId+"'";
+		jdbcTemplate.update(sql3);
+		int replyPage = count1>pageSize?(count1/pageSize)+1:1;
+		map.put("replyList", list);//reply列表
+		map.put("totalReplyPage", replyPage);//总的回复页数
+		map.put("thisForum", forum);//所在的forum信息
+		map.put("currentReplyPage", pageIndex);//当前回复页面数
 		return map;
 	}
 

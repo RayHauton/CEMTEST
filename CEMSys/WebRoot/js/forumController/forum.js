@@ -58,6 +58,35 @@ function reply(test){
 	});
 }
 
+function replyHost(){
+	alert(0);
+	var forumId = document.getElementById("forumId").value;
+	alert(1);
+	var replyContent = document.getElementById("textArea").value;
+	alert(2);
+	if(replyContent == "" || replyContent== null){
+		alert("请输入");
+		return;
+	}
+	$.ajax({
+		type: "post",
+		async: false,
+        url: $('#basePath').val()+"/forum/insertReply",
+        data: {
+        	replyText:replyContent,
+        	forumId:forumId,
+        },
+        dataType: "text",
+        success: function () {
+           alert('请求成功');
+           window.location.reload();
+        },
+        error: function () {
+            alert("请求失败");
+        }
+	});
+}
+
 // function reply(id){
 // alert(id);
 // var forumId = document.getElementById("forumId").value;

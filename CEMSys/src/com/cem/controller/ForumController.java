@@ -112,12 +112,13 @@ public class ForumController {
 		
 		//同时将发帖内容发送到回复表中 （BBS格式）
 		reply.setFloor((short) 1);
-		reply.setForum(forumService.FindForumIdWhilePostForum(String.valueOf(user.getUserId()), getFormattedTime(forum.getPublishTime())));
+		String forumId = forumService.FindForumIdWhilePostForum(String.valueOf(user.getUserId()), getFormattedTime(forum.getPublishTime()));
+		reply.setForum(forumId);
 		reply.setPublishUserId(user.getUserId());
 		reply.setPublishUser(user.getUsername());
 		reply.setReplyText(content);
 		reply.setReplyTime(forum.getPublishTime());
-		forumService.insertReply(reply);
+		forumService.insertReply(reply,forumId);
 		
 		return "redirect:/forum/f/"+forumModuleId;
 	}
@@ -145,7 +146,7 @@ public class ForumController {
 		reply.setFloor(forumService.getFloorWhenInsertReply(forumId));
 		reply.setPublishUserId(user.getUserId());
 		reply.setPublishUser(user.getUsername());
-		forumService.insertReply(reply);
+		forumService.insertReply(reply,forumId);
 		
 		modelAndView.setViewName("redirect:/forum/p/"+forumId);
 		return modelAndView;
