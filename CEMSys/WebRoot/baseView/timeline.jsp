@@ -15,31 +15,39 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 	<div class="box">
-		<h2>学园事件录</h2>
+		<h2>经管历程</h2>
+		<div class="line"></div>
 		<div class="linebox">
-			<div class="line"></div>
+			<div class="time">2017<span>9-17</span></div>
 			<div class="container">
-				<div class="content left">
-					<span>时间节点</span>
-					<h3>title</h3>
-					<p>此处是重要事件的具体内容</p>
-				</div>
-				<div class="content right">
-					<span>时间节点</span>
-					<h3>title</h3>
-					<p>此处是重要事件的具体内容</p>
-				</div>
-				<div class="content left">
-					<span>时间节点</span>
-					<h3>title</h3>
-					<p>此处是重要事件的具体内容此处是重要事件的具体内容此处是重要事件的具体内容此处是重要事件的具体内容此处是重要事件的具体内容此处是重要事件的具体内容此处是重要事件的具体内容此处是重要事件的具体内容</p>
-				</div>
-				<div class="content right">
-					<span>时间节点</span>
-					<h3>title</h3>
-					<p>此处是重要事件的具体内容</p>
-				</div>
+				<div class="title">标题</div>
+				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
 			</div>
+			<div class="img"><img src="../img/p2.jpg" alt=""></div>
+		</div>
+		<div class="linebox">
+			<div class="time">2017<span>9-17</span></div>
+			<div class="container">
+				<div class="title">标题</div>
+				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
+			</div>
+			<div class="img"><img src="../img/p2.jpg" alt=""></div>
+		</div>
+		<div class="linebox">
+			<div class="time">2017<span>9-17</span></div>
+			<div class="container">
+				<div class="title">标题</div>
+				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
+			</div>
+			<div class="img"><img src="../img/p2.jpg" alt=""></div>
+		</div>
+		<div class="linebox">
+			<div class="time">2017<span>9-17</span></div>
+			<div class="container">
+				<div class="title">标题</div>
+				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
+			</div>
+			<div class="img"><img src="../img/p2.jpg" alt=""></div>
 		</div>
 	</div>
 </body>
