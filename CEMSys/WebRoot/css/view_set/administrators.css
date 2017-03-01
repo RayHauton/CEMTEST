@@ -1,50 +1,54 @@
 /*administrators css*/
 body {
-	/*background-image:url('../../img/p2.jpg');background-size:cover;*/
+	background-image:url('../../img/p2.jpg');background-size:cover;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
-	background: none!important;
+/* 	background: none!important; */
 }
 
 .mine {
 	width: 100%;
-	border-radius: 10px;
-	text-align: center;
-	padding-bottom: 10px;
+	
 }
-/*.mine img{height: 200px;border-radius: 50%;}*/
-.mine a {
-	display: inline-block;
-	font-size: 16px;
-	margin-top: 10px;
-	line-height: 36px;
-	padding: 0 10px;
-	border-radius: 10px;
+.mine a{
+	color:#FFFFFF;
+	font-size:16px;
 }
-
-.mine a:hover {
-	color: #fff;
-	background-color: rgba(0, 0, 0, 0.6);
-}
-
 .show_admin {
 	height: 60px;
-	background-color: #FE9D31;
+/* 	background-color: #FE9D31; */
+/* 	background-color: #1296db; */
+/* 	background-color: #0074ca; */
+	border-bottom:4px solid #50e450;
 }
-
-.show_admin h2 {
-	text-align: right;
-	padding: 20px;
-	font-size: 18px;
+.log{
+	width:60px;
+	height:60px;
+	float: left;
+	border-radius:30px;
+	margin-left: 10;
 }
-
-.show_admin span {
+.cemName{
 	display: inline-block;
 	float: left;
+	color:#FFFFFF;
+	font-size:32px;
+	margin-top:5px;
+	font-family:微软雅黑;
+	margin-left: 2px;
+}
+.sysName{
+	display: inline-block;
+	float:left;
+	color:#FFFFFF;
+	font-size:20px;
+	margin-top:20px;
+	margin-left:2px;
+	font-family:微软雅黑;
+/* 	background-color: red; */
 }
 
-\
 .show_admin ul li a {
 	font-size: 14px;
 	font-weight: 500;
@@ -59,12 +63,17 @@ body {
 	border-bottom: 1px solid silver;
 }
 
+.op_list{height: calc(100% - 115px);}
+
 #navigator {
 	font-family: "微软雅黑";
 	margin-top: 0px;
-	background-color: #3B8270;
+/* 	background-color: #3B8270; */
+/* 	background-color: #50e450; */
+/* 	background-color: #0074ca; */
+/* 	background-color: #9cd799; */
 	width: 200px; 
-	height: calc(100% - 150px);
+	height: 100%;
 	padding-bottom: 50px;
 	display: inline-block;
 }
@@ -91,13 +100,15 @@ body {
 }
 
 #navigator ul li a:link {
-	background-color: #2A2A2A;
+/* 	background-color: #2A2A2A; */
+	background-color: #0074ca;
 	color: #FFFFFF;
 	font-size: 18px;
 }
 
 #navigator ul li a:hover, #navigator ul li a:visited {
-	background-color: #2a2a2a;
+/* 	background-color: #2a2a2a; */
+	background-color: #0074ca;
 	color: #FFFFFF;
 }
 
@@ -141,8 +152,8 @@ body {
 
 iframe {
 	width: calc(100% - 300px);
-	height: calc(100% - 100px);
-	border-left: 1px solid #ccc;
+	height: 100%;
+/* 	border-left: 1px solid #ccc; */
 	vertical-align: top;
 	background-color:yellow;
 }
