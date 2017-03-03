@@ -2,12 +2,16 @@
  * 论坛的控制
  */
 function postForum(){
-	var forumContent = ue.getPlainTxt();
+//	var forumContent = ue.getPlainTxt();
+	var forumContent = ue.getContent();
 	var forumTitle = document.getElementById("forumTitle").value;
-	alert(forumContent);
 	if(forumTitle == "" || forumTitle == null){
 		alert("标题不能够为空");
 		return 
+	};
+	if(forumTitle.length>25){
+		alert("标题过长");
+		return
 	};
 	$.ajax({
 		type: "post",
@@ -27,6 +31,11 @@ function postForum(){
 	})
 	
 // document.location=$('#basePath').val()+"/forum/insertForum?forumTitle="+forumTitle;
+}
+
+function countChar(inputName,spanName){
+	var length = document.getElementById(inputName).value.length;
+	document.getElementById(spanName).innerHTML=length;
 }
 
 function reply(test){
@@ -102,6 +111,50 @@ function checkNull(){
 	}
 }
 
+function deleteForum(forumId){
+	var forumId = $(forumId).attr('name');
+	$.ajax({
+		type:'post',
+		async: false,
+        url: $('#basePath').val()+"/forum/deleteForum",
+        data: {
+        	forumId:forumId,
+        },
+        dataType: "text",
+        success: function () {
+           alert('请求成功');
+           window.location.reload();
+        },
+        error: function () {
+            alert("请求失败");
+        }
+	});
+	
+}
+
+function deleteReply(replyId){
+	var replyId = $(replyId).attr('name');
+	var forumId = document.getElementById("forumId").value;
+	$.ajax({
+		type:'post',
+		async: false,
+        url: $('#basePath').val()+"/forum/deleteReply",
+        data: {
+        	replyId:replyId,
+        	forumId:forumId
+        },
+        dataType: "text",
+        success: function () {
+           alert('请求成功');
+           window.location.reload();
+        },
+        error: function () {
+            alert("请求失败");
+        }
+	});
+}
+
+
 
 /**
  * 以下是百度编辑器的js
@@ -111,7 +164,7 @@ function checkNull(){
 //实例化编辑器
 //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 var ue = UE.getEditor('editor');
-
+//ue.setHeight(300);
 
 function isFocus(e){
     alert(UE.getEditor('editor').isFocus());

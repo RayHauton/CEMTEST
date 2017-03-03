@@ -10,6 +10,8 @@
 	href="${pageContext.request.contextPath }/css/view_set/base.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/view_set/BBS.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
 
 <!-- 	ueditor编辑器 -->
 <script type="text/javascript" charset="utf-8"
@@ -164,20 +166,75 @@ h1 {
 						target="_blank">${test.forumTitle }</a>
 					<p>查看量:${test.viewCount }</p>
 					<p>回复量：${test.replyCount }</p>
+					<c:if test="${user.role=='3' }">
+						<button type="button" class="btn btn-danger"
+							onclick="deleteForum(this)" name="${test.forumId }">删除</button>
+					</c:if>
 				</div>
 			</c:forEach>
 		</div>
+		<div class="container" style="text-align: center;">
+			<ul class="pagination">
+				<li><a href="#">共${totalForumPage }页</a></li>
+				<li><a
+					href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=1">首页</a></li>
+
+				<c:if test="${currentForumPage>1 }">
+					<li><a
+						href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage-1 }">上一页</a></li>
+				</c:if>
+				<c:choose>
+					<c:when test="${totalForumPage<=10 }">
+						<c:set var="begin" value="1"></c:set>
+						<c:set var="end" value="${totalForumPage }"></c:set>
+					</c:when>
+					<c:otherwise>
+						<c:set var="begin" value="${currentForumPage-5 }"></c:set>
+						<c:set var="end" value="${currentForumPage+4 }"></c:set>
+						<c:if test="${begin<1 }">
+							<c:set var="begin" value="1"></c:set>
+							<c:set var="end" value="10"></c:set>
+						</c:if>
+						<c:if test="${end>totalForumPage }">
+							<c:set var="begin" value="${totalForumPage-9 }"></c:set>
+							<c:set var="end" value="${totalForumPage }"></c:set>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${begin }" end="${end }">
+					<c:choose>
+						<c:when test="${i==currentForumPage }">
+							<li class="active"><a href="#">${i }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${currentForumPage<totalForumPage }">
+					<li><a
+						href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage+1 }">下一页</a></li>
+				</c:if>
+				<li><a
+					href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${totalForumPage }">尾页</a></li>
+			</ul>
+		</div>
 
 		<div class="inputBox">
-
-			<input type="text" id="forumTitle" placeholder="标题" /> <span>共可以输入25个字</span>
-			<textarea rows="5" cols="5" id="editor"></textarea>
+			<input type="text" id="forumTitle" placeholder="标题"
+				class="form-control" onkeydown="countChar('forumTitle','counter')"
+				onkeyup="countChar('forumTitle','counter')" /> 已经输入<span
+				id="counter">0</span>/25个字
+			<textarea rows="5" cols="5" id="editor" style="height: 300px"></textarea>
 			<p>
 				<input type="button" value="发送" onclick="javascript:postForum()"
 					class="btn">
 			</p>
-
 		</div>
+
+
+		<button class="btn" onclick=" UE.getEditor('editor').setHeight(300)">设置</button>
 	</div>
 	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js"
 		type="text/javascript"></script>
