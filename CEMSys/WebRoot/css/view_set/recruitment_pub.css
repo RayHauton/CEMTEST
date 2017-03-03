@@ -3,27 +3,27 @@
 body {
 	margin: 0px;
 	padding: 0px;
-	background-image: url("../../img/p2.jpg");
+/* 	background-image: url("../../img/p2.jpg"); */
 	background-size: cover;
 	font-family: 微软雅黑;
 }
 
 .outer {
-	width: 700px;
+	width: 998px;
 	height: 430px;
 	/* 	background-color: lightgreen; */
-	margin: 30px auto;
-	border-radius: 10px;
-	border: 1px #1296DB solid;
+	margin: 0px auto;
+	border-radius: 4px;
+	border: 1px #d7dbf5 solid;
 	padding: 0px;
 	background-color: #FFFFFF;
 }
 
 .head {
-	width: 700px;
+	width: 998px;
 	height: 35px;
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
 	background-color: #50e450;
 	padding: 0px;
 }
@@ -54,7 +54,7 @@ body {
 }
 
 .info {
-	width: 700px;
+	width: 998px;
 	height: 330px;
 	/* 	background-color:pink; */
 	border-bottom: 1px solid silver;

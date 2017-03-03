@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+div{
+	font-family: 微软雅黑;
+}
+.navBody{
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.navbar-default{
+}
+.navbar{
+	margin-bottom:0px;	
+}
+.header1{
+	width:1000px;
+/* 	height:75px; */
+	height:180px;
+	background-image:url("../../img/header_bg.png");
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:4px;
+	padding:0;
+	border:1px solid #d3d7cf;
+}
+.logo{
+	width:285px;
+	height:75px;
+	padding:0;
+	margin:0;
+	margin-top:1x;
+	background-color: red;
+	float: left;
+}
+.logo img{
+	width:280px;
+	height:55px;
+	margin-top:10px;
+	margin-left:2px;
+}
+.comment{
+	display:inline-block;
+	height:32px;
+	width:400px;
+	float:left;
+/* 	background-color: green; */
+	margin-top:30px;
+	margin-left:25px;
+	color:#0074ca;
+	font-size:25px;
+}
+.user{
+	float: right;
+/* 	background-color: pink; */
+	margin-top:25px;
+}
+
+.nav>li>a:hover, .nav>li>a:focus{background:none!important;}
+.dropdown-menu{right:0!important;}
+
+
+
+
+
+
+
+
+
+
+

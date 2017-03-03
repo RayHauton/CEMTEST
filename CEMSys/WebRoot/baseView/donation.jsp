@@ -11,29 +11,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/view_set/donation.css">
+<link rel="stylesheet" href="../css/view_set/head.css">
 <title>捐赠实时公告系统</title>
 </head>
 <body>
-	<div class="header">
-		<div class="logo">
-			<img alt="" src="../img/donation/logo3.png">
-		</div>
-		<div class="title">
-			经管院校友捐赠实时公告系统
-		</div>
-		<div class="head_right">
-			<div class="head_right_top">
-				<img alt="" src="../img/donation/return.png">
-				<span style="font-size:12px;" class="returnIndex">
-					<a href="${pageContext.request.contextPath }/index.jsp">返回主页</a>
-				</span>
-			</div>
-			<div class="head_right_bottom">
-				<span>${sessionScope.user.truename }</span>
-				<img alt="" src="../img/donation/user.png">&nbsp;
-			</div>
-		</div>
-	</div>
+<!-- 	<div class="header"> -->
+<!-- 		<div class="logo"> -->
+<!-- 			<img alt="" src="../img/donation/logo3.png"> -->
+<!-- 		</div> -->
+<!-- 		<div class="title"> -->
+<!-- 			经管院校友捐赠实时公告系统 -->
+<!-- 		</div> -->
+<!-- 		<div class="head_right"> -->
+<!-- 			<div class="head_right_top"> -->
+<!-- 				<img alt="" src="../img/donation/return.png"> -->
+<!-- 				<span style="font-size:12px;" class="returnIndex"> -->
+<%-- 					<a href="${pageContext.request.contextPath }/index.jsp">返回主页</a> --%>
+<!-- 				</span> -->
+<!-- 			</div> -->
+<!-- 			<div class="head_right_bottom"> -->
+<%-- 				<span>${sessionScope.user.truename }</span> --%>
+<!-- 				<img alt="" src="../img/donation/user.png">&nbsp; -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	<jsp:include page="header.jsp"></jsp:include>
 	<div class="contentBody">
 		<div class="searchDiv">
 			<div class="searchLogo">
@@ -219,8 +221,10 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <script src="../js/donationControl/donation.js"></script>
 <script type="text/javascript">
 </script>

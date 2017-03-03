@@ -19,15 +19,17 @@ body {
 	height: 60px;
 /* 	background-color: #FE9D31; */
 /* 	background-color: #1296db; */
-/* 	background-color: #0074ca; */
-	border-bottom:4px solid #50e450;
+	background-color: #0074ca;
+/* 	border-bottom:4px solid #50e450; */
+	border-bottom:2px solid #f3f3f3;
 }
 .log{
-	width:60px;
-	height:60px;
+	width:58px;
+	height:58px;
 	float: left;
-	border-radius:30px;
+	border-radius:29px;
 	margin-left: 10;
+	border:1px solid #1afa29;
 }
 .cemName{
 	display: inline-block;
@@ -72,7 +74,7 @@ body {
 /* 	background-color: #50e450; */
 /* 	background-color: #0074ca; */
 /* 	background-color: #9cd799; */
-	width: 200px; 
+	width: 180px; 
 	height: 100%;
 	padding-bottom: 50px;
 	display: inline-block;
@@ -96,14 +98,15 @@ body {
 	display: block;
 	padding: 5px 5px 5px 0.5em;
 	text-decoration: none;
-	border-left: 12px solid yellow; 
+/* 	border-left: 12px solid yellow;  */
+	border-left: 10px solid #50e450; 
 }
 
 #navigator ul li a:link {
 /* 	background-color: #2A2A2A; */
 	background-color: #0074ca;
 	color: #FFFFFF;
-	font-size: 18px;
+	font-size: 15px;
 }
 
 #navigator ul li a:hover, #navigator ul li a:visited {
@@ -128,13 +131,14 @@ body {
 	display: block;
 	padding: 3px 3px 3px 0.5em;
 	text-decoration: none;
-	border-left: 28px solid #3B8270;
-	border-right: 1px solid #711515;
+	border-left: 18px solid #3B8270;
+/* 	border-right: 1px solid #711515; */
 }
 
 #navigator ul li ul li a:link, #navigator ul li ul li a:visited {
 	background-color: #2A2A2A;
 	color: deepskyblue;
+/* 	color: #50e450; */
 }
 
 #navigator ul li ul li a:hover {

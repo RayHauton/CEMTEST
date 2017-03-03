@@ -5,7 +5,7 @@ body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-se
 }
 body {
 
-    background:url("../../img/p2.jpg");
+/*     background:url("../../img/p2.jpg"); */
     background-size:cover;
     background-repeat: repeat-x;
     background-attachment: fixed;
