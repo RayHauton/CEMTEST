@@ -8,7 +8,7 @@
 <!-- 		<span class="span-set">版权所有&copy;：南京航空航天大学经济与管理学院</span> -->
 	</div>
 	<div class="center">
-		<img src="../img/cemWord.png"/>
+		<img src="${pageContext.request.contextPath }/img/cemWord.png"/>
 		<span class="copy">
 			版权所有&copy;：南京航空航天大学经济与管理学院
 		</span>
