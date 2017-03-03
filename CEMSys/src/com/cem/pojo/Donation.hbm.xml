@@ -23,7 +23,7 @@
             <column name="donationType" length="1" />
         </property>
         <property name="donationItem" type="java.lang.String">
-            <column name="donationItem" length="1" />
+            <column name="donationItem" length="50" />
         </property>
         <property name="donationDate" type="date">
             <column name="donationDate" length="10" />

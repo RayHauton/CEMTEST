@@ -1,0 +1,210 @@
+/*administrators css*/
+body {
+	background-image:url('../../img/p2.jpg');background-size:cover;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+/* 	background: none!important; */
+}
+
+.mine {
+	width: 100%;
+	
+}
+.mine a{
+	color:#FFFFFF;
+	font-size:16px;
+}
+.show_admin {
+	height: 60px;
+/* 	background-color: #FE9D31; */
+/* 	background-color: #1296db; */
+	background-color: #0074ca;
+/* 	border-bottom:4px solid #50e450; */
+	border-bottom:2px solid #f3f3f3;
+}
+.log{
+	width:58px;
+	height:58px;
+	float: left;
+	border-radius:29px;
+	margin-left: 10;
+	border:1px solid #1afa29;
+}
+.cemName{
+	display: inline-block;
+	float: left;
+	color:#FFFFFF;
+	font-size:32px;
+	margin-top:5px;
+	font-family:微软雅黑;
+	margin-left: 2px;
+}
+.sysName{
+	display: inline-block;
+	float:left;
+	color:#FFFFFF;
+	font-size:20px;
+	margin-top:20px;
+	margin-left:2px;
+	font-family:微软雅黑;
+/* 	background-color: red; */
+}
+
+.show_admin ul li a {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.operation_list {
+	font-family: "微软雅黑";
+	font-size: 24px;
+	color: white;
+	text-align: center;
+	background-color: #2A2A2A;
+	border-bottom: 1px solid silver;
+}
+
+.op_list{height: calc(100% - 115px);}
+
+#navigator {
+	font-family: "微软雅黑";
+	margin-top: 0px;
+/* 	background-color: #3B8270; */
+/* 	background-color: #50e450; */
+/* 	background-color: #0074ca; */
+/* 	background-color: #9cd799; */
+	width: 180px; 
+	height: 100%;
+	padding-bottom: 50px;
+	display: inline-block;
+}
+
+#list_ul {
+	width: 200px;
+	margin: 0;
+	padding: 0;
+}
+
+#navigator ul li {
+	border-bottom: 1px solid #AD9f9f;
+	list-style-type: none;
+	margin-right: auto;
+	margin-left: auto;
+	text-indent: 10px;
+}
+
+#navigator ul li a {
+	display: block;
+	padding: 5px 5px 5px 0.5em;
+	text-decoration: none;
+/* 	border-left: 12px solid yellow;  */
+	border-left: 10px solid #50e450; 
+}
+
+#navigator ul li a:link {
+/* 	background-color: #2A2A2A; */
+	background-color: #0074ca;
+	color: #FFFFFF;
+	font-size: 15px;
+}
+
+#navigator ul li a:hover, #navigator ul li a:visited {
+/* 	background-color: #2a2a2a; */
+	background-color: #0074ca;
+	color: #FFFFFF;
+}
+
+#navigator ul li ul {
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#navigator ul li ul li {
+	border-top: 1px solid silver;
+	list-style-type: none;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+#navigator ul li ul li a {
+	display: block;
+	padding: 3px 3px 3px 0.5em;
+	text-decoration: none;
+	border-left: 18px solid #3B8270;
+/* 	border-right: 1px solid #711515; */
+}
+
+#navigator ul li ul li a:link, #navigator ul li ul li a:visited {
+	background-color: #2A2A2A;
+	color: deepskyblue;
+/* 	color: #50e450; */
+}
+
+#navigator ul li ul li a:hover {
+	background-color: #20a69e;
+	color: #ffff00;
+}
+
+.Show {
+	display: block;
+}
+
+.Hide {
+	display: none;
+}
+
+iframe {
+	width: calc(100% - 300px);
+	height: 100%;
+/* 	border-left: 1px solid #ccc; */
+	vertical-align: top;
+	background-color:yellow;
+}
+
+.dataList {
+	font-size: 16px;
+}
+
+.dataList table {
+	width: 900px;
+	margin: 10px auto;
+	text-align: center;
+}
+
+.dataList tr {
+	border: 1px solid #ccc;
+	width: 100%;
+	display: block;
+	line-height: 36px;
+}
+
+.dataList .t_body {
+	width: 658px;
+	border: 1px solid #ccc;
+	border-top: none;
+	border-bottom: none;
+}
+
+.dataList .t_head, .dataList .t_foot {
+	width: 120px;
+}
+
+.dataList p {
+	line-height: 36px;
+	padding-left: 50px;
+}
+
+.dataList input {
+	width: 500px;
+	height: 28px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+}
+
+.dataList input[type="button"] {
+	width: 72px;
+	border-radius: 10px;
+	cursor: pointer;
+}

@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>管理员</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="../css/view_set/base.css">
+<link rel="stylesheet" href="../css/view_set/administrators.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	function slide(i) {
+		$("#list_ul>li>ul:eq(" + (i - 1) + ")").slideToggle(200);
+	}
+</script>
+</head>
+<body>
+	<div class="box">
+		<div class="show_admin">
+			<img src="../img/cemLog.png" class="log"> <span class="cemName">南航经济与管理学院</span>
+			<span class="sysName">校友信息管理系统</span>
+		</div>
+		<!-- <div class="operation_list">操作列表</div> -->
+		<div class="op_list">
+			<div id="navigator">
+				<div class="mine">
+					<a href="javascript:void(0);">欢迎登录：管理员</a>
+				</div>
+				<ul id="list_ul">
+					<!--这里<a>标签必须紧跟<li>标签，否则空白符会被认为是一个子节点 ，这样伸缩效果就失效了-->
+					<!-- <li><a href="administrator/review.html" target="iframe" onclick="slide(0);">用户管理</a>
+	            <ul class="Hide">
+	                <li><a href="javascript:void(0);" target="show_info">用户审核</a></li>
+	                <li><a href="javascript:void(0);" target="show_info">用户添加</a></li>
+	            </ul>
+	        </li> -->
+					<li><a href="#" onclick="slide(1);">数据管理</a>
+						<ul class="Hide">
+							<li><a href="javascript:void(0);">校友会信息添加</a></li>
+							<li><a href="javascript:void(0);">学园事件录添加</a></li>
+							<li><a href="javascript:void(0);">学历管理</a></li>
+							<li><a href="javascript:void(0);">调研信息</a></li>
+						</ul></li>
+					<li><a href="#" onclick="slide(2);">公告管理</a>
+						<ul class="Hide">
+							<li><a href="javascript:void(0);">返校公告</a></li>
+							<li><a href="javascript:void(0);">捐款公告添加</a></li>
+						</ul></li>
+					<li><a href="#" onclick="slide(3);">系统管理</a>
+						<ul class="Hide">
+							<li><a href="javascript:void(0);" target="show_info">论坛审核</a></li>
+							<li><a href="javascript:void(0);">祝福模板</a></li>
+							<li><a href="javascript:void(0);">用户管理</a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<iframe src="" frameborder="0" name="iframe"></iframe>
+		</div>
+	</div>
+</body>
+</html>

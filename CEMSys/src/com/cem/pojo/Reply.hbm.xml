@@ -13,7 +13,7 @@
                 <comment>???????</comment>
             </column>
         </property>
-        <property name="publishUserId" type="java.lang.Integer">
+        <property name="publishUserId" type="int">
             <column name="publishUserId" />
         </property>
         <property name="publishUser" type="string">

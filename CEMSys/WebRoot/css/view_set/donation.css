@@ -6,7 +6,7 @@ body{
 /* 	background-image: url("../../img/p2.jpg"); */
 }
 .header{
-	background-color: #0074ca;
+/* 	background-color: #0074ca; */
 /* 	background-color: #50E450; */
 /* 	background-color: #1296db; */
 	height:80px;
@@ -93,31 +93,32 @@ body{
 	margin-top: 8px;
 }
 .contentBody{
-	width: 880px;
+/* 	width: 880px; */
+	width: 998px;
 	height: 820px;
 /* 	background-color: lightblue; */
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 6px;
-	border:1px solid #0074ca;
-	margin-top:2px;
+	border:1px solid #d3d7cf;
+/* 	margin-top:2px; */
 }
 .searchDiv{
-	width: 878px;
+	width: 980px;
 	height: 72px;
 /* 	background-color: #1296DB; */
 /* 	background-color: #0074ca; */
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 /* 	padding-top:6px; */
-	border-bottom: 1px solid #0074ca;
+/* 	border-bottom: 1px solid #0074ca; */
 	font-size:12px;
 	float: left;
 }
 .form-control{
 	height: 25px;
 	display: inline-block;
-	width:125px;
+	width:135px;
 	margin-top:6px;
 	font-size:12px;
 }
@@ -131,9 +132,9 @@ body{
 }
 .searchContent{
 	height:70px;
-	width:630px;
+	width:670px;
 /* 	background-color: red; */
-	margin-left:15px;
+	margin-left:12px;
 	float: left;
 }
 .searchLogo{
@@ -144,33 +145,61 @@ body{
 	margin-left:4px;
 }
 .searchLogo img{
-	width: 55px;
-	height:55px;
-	margin-left:8px;
-	margin-top:7px;
+	width: 45px;
+	height:45px;
+	margin-left:12px;
+	margin-top:9px;
 }
 .btnGroup{
 	float: left;
-	width:150px;
+	width:220px;
 	height:70px;
 /* 	background-color: silver; */
 }
 .btnGroup button{
-	margin-left: 25px;
-	margin-top:8px;
+	margin-left: 15px;
+	margin-top:18px;
+	height:35px;
 }
 table{
 	font-size:12px;
 }
 .dividePage{
-	width: 200px;
-	height:40px;
-	padding:0px;
-	background-color: green;
-	margin-left:auto;
-	margin-right:auto;
+	margin: 0 auto;
 }
-
+.record{
+	float: left;
+	margin-left: 10px;
+}
+.record span{
+	display: inline-block;
+/* 	margin-top:5px; */
+/* 	background-color: red; */
+	height: 33px;
+	border-radius: 4px;
+	line-height: 33px;
+	border: 1px solid #DDDDDD;
+	font-size:12px;
+}
+.a-set:HOVER{
+	color:#ff0080;
+	cursor:pointer;
+}
+.dialog{
+	margin-left: auto;
+	margin-right:auto;
+	width: 500px;
+	margin-top:50px;
+}
+.returnIndex{
+	color:#FFFFFF;
+}
+.returnIndex a:HOVER{
+	color:deeppink;
+}
+.returnIndex a:VISITED {
+	color:#FFFFFF;
+}
 
 
 

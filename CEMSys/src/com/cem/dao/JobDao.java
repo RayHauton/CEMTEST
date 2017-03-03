@@ -7,6 +7,8 @@ import com.cem.pojo.Jobinfomodule;
 import com.cem.pojo.Transferjobcount;
 
 public interface JobDao {
+	
+	
 	public Jobinfomodule findJobinfomoduleByUserId(long userId) throws Exception;
 	public void deleteJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
 	public void updateJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;

@@ -11,9 +11,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/view_set/recruitment_pub.css">
+<link rel="stylesheet" href="../css/view_set/head.css">
+<link rel="stylesheet" href="../css/view_set/footer.css">
 <title>发布招聘信息</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<input type="hidden" value="${pageContext.request.contextPath }" id="basePath"/>
 	<div class="outer">
 		<form action="${pageContext.request.contextPath }/recruitment/publish.action" method="post" enctype="multipart/form-data" id="form">
@@ -95,6 +98,7 @@
 			</div>
 		</form>
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
