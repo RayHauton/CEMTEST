@@ -93,8 +93,6 @@ public class ForumController {
 		Reply reply = new Reply();
 		String forumTitle = request.getParameter("forumTitle");
 		String content = request.getParameter("forumContent");
-//		System.out.println(forumTitle);
-//		System.out.println(content);
 		if (content == null) {
 			content = forumTitle;
 		}
@@ -108,6 +106,7 @@ public class ForumController {
 		forum.setUserId(user.getUserId());
 		forum.setUsername(user.getUsername());
 		forum.setForumModule(forumModuleId);
+		forum.setTruename(user.getTruename());
 		forumService.insertForum(forum);
 		
 		//同时将发帖内容发送到回复表中 （BBS格式）
@@ -149,6 +148,26 @@ public class ForumController {
 		forumService.insertReply(reply,forumId);
 		
 		modelAndView.setViewName("redirect:/forum/p/"+forumId);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/deleteForum")
+	public ModelAndView deleteForum(HttpServletRequest request,HttpSession session) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		String forumId = request.getParameter("forumId");
+		forumService.deleteForum(Integer.parseInt(forumId));
+		modelAndView.setViewName("redirect:/forum/f/1");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/deleteReply")
+	public ModelAndView deleteReply(HttpServletRequest request,HttpSession session) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		String replyId = request.getParameter("replyId");
+		String forumId = request.getParameter("forumId");
+		forumService.deleteReply(Integer.parseInt(replyId));
+		modelAndView.setViewName("redirect:/forum/p/" + forumId);
 		return modelAndView;
 	}
 }

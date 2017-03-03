@@ -24,10 +24,10 @@
     </bean>
    <bean class="com.cem.globalException.GlobalCustomExceptionResolver"></bean>
     <!--配置拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.cem.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--     <mvc:interceptors> -->
+<!--         <mvc:interceptor> -->
+<!--             <mvc:mapping path="/**"/> -->
+<!--             <bean class="com.cem.interceptor.LoginInterceptor"/> -->
+<!--         </mvc:interceptor> -->
+<!--     </mvc:interceptors> -->
 </beans>

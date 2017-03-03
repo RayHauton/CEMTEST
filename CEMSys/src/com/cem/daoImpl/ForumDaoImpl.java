@@ -50,9 +50,9 @@ public class ForumDaoImpl implements ForumDao{
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		reply.setIsDeleted("0");
-		session.save(reply);
 		String sql = "update Forum set replyCount=replyCount+1 where forumId='"+forumId+"'";
 		jdbcTemplate.update(sql);
+		session.save(reply);
 		return "succ";
 	}
 
@@ -95,6 +95,7 @@ public class ForumDaoImpl implements ForumDao{
 		String count = "select count(*) from Forum f where f.forumModule=? and f.isDeleted='0'";
 		int count1 = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, String.valueOf(forumModuleId)).uniqueResult()));
 		int forumPage = count1>pageSize?(count1/pageSize)+1:1;
+		map.put("forumModule", forumModuleId);
 		map.put("forumList", list);//forum列表
 		map.put("forumCount", count1);//一共多少个帖子
 		map.put("currentForumPage", pageIndex);//当前所在页面

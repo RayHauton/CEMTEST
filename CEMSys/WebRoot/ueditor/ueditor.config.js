@@ -37,16 +37,18 @@
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
         , toolbars: [[
 //            'fullscreen', 'source', '|',
-            'undo', 'redo', '|',
-            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', '|', 
-            'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
-            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-            'link', 'unlink', '|', 
+//            'undo', 'redo', '|',
+//            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', '|', 
+//            'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
+//            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+//            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+//            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+            'link', 'unlink', 
+//            '|', 
 //            'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'attachment', '|',
-            'horizontal', '|',
+            'simpleupload', 'insertimage', 'emotion', 'scrawl', 
+//            'attachment', '|',
+//            'horizontal', '|',
 //            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
 //            'print', 'preview', 'searchreplace', 'drafts', 'help'
         ]]
@@ -251,7 +253,7 @@
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        //,elementPathEnabled : true
+        ,elementPathEnabled : false
 
         //wordCount
         //,wordCount:true          //是否开启字数统计
@@ -281,7 +283,7 @@
 
         //autoHeightEnabled
         // 是否自动长高,默认true
-        //,autoHeightEnabled:true
+        ,autoHeightEnabled:false
 
         //scaleEnabled
         //是否可以拉伸长高,默认true(当开启时，自动长高失效)
