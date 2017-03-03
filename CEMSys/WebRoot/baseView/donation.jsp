@@ -227,6 +227,7 @@
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/donationControl/donation.js"></script>
+<script src="../js/loginController/loginAndLogout.js" ></script>
 <script type="text/javascript">
 </script>
 </html>
