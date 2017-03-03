@@ -5,13 +5,14 @@
 	<div class="logo">
 		<img src="../img/donation/logo3.png"/>
 	</div>
-	<span class="comment">
+	<div class="comment">
 		经济与管理学院校友信息管理系统
-	</span>
+	</div>
 	<div class="user">
 		<ul class="nav navbar-nav">
 			<li class="dropdown"><a data-toggle="dropdown"
-				class="dropdown-toggle" href="#" style="color:orange;">当前登录：不知道栋不知道栋<b class="caret"></b></a>
+				class="dropdown-toggle" href="#" style="color:deeppink;"><img src="../img/user.png" style="width:20px;height:20px;">
+				不知道栋不知道栋<b class="caret"></b></a>
 				<ul role="menu" class="dropdown-menu">
 					<li><a href="#">修改密码</a></li>
 					<li><a href="#">查看资料</a></li>
