@@ -28,7 +28,7 @@
 .center img{
 	width:400px;
 	height:90px;
-	margin-top:30px;
+	margin-top:20px;
 }
 .right{
 	margin-top:10px;
@@ -39,8 +39,8 @@
 }
 .span-set{
 	display: block;
-	margin-top:15px;
-	margin-left:20px;
+	margin-top:20px;
+	margin-left:25px;
 }
 .friendLink{
 	width:100px;
@@ -66,6 +66,10 @@
 }
 .links span a:HOVER {
 	color:orange;
+}
+.copy{
+	display: block;
+	margin-left: 60px;;
 }
 
 
