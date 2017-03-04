@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/view_set/footer.css">
 <style>
 </style>
-<title>Insert title here</title></head>
+<title>校友系统主页</title></head>
 <body>
 	<jsp:include page="baseView/header.jsp"></jsp:include>
 	<div style="text-align: center;font-size:30px;">欢迎登陆</div>

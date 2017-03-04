@@ -82,6 +82,7 @@ public class LoginController {
 		} else {
 			// 说明是直接访问的是login.action
 			response.sendRedirect("./login/login.jsp");
+//			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 		}
 
 	}
