@@ -51,7 +51,7 @@
             <div class="input-group form_style_control">
                 <button type="submit" id="submitLoginInfo"
                         class="from-control btn btn-success btn-style-set"
-                        onclick="checkIdentifyCode('${pageContext.request.contextPath}');return false;">确认登录</button>
+                        onclick="checkIdentifyCode('${pageContext.request.contextPath}','${sessionScope.willTo }');return false;">确认登录</button>
             </div>
             <div class="input-group form_style_control">
                 <button type="button" class="from-control btn btn-style-set btn-info" onclick="javascript:window.open('register.jsp');">注册账号</button>

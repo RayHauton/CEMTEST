@@ -30,6 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURI();
+        System.out.println(url);
         String urlKey = properties.getProperty(url.substring(systemName.length()));
         if (urlKey != null) {
             return true;
