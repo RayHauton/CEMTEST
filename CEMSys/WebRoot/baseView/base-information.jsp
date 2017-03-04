@@ -14,16 +14,105 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/view_set/base.css">
 <link rel="stylesheet" href="../css/view_set/base-information.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/view_set/head.css">
+<link rel="stylesheet" href="../css/view_set/footer.css">
 </head>
 <body>
-	<div class="box">
-		<div class="subnav">
-			<ul id="select" class="select">
-				<li style="cursor: pointer;">基础信息</li>
-				<li style="cursor: pointer;">职业信息</li>
-				<li style="cursor: pointer;">工作满意程度与待遇成就</li>
-			</ul>
+	<div class="header1">
+		<div class="logo">
+			<img src="${pageContext.request.contextPath }/img/donation/logo3.png" />
 		</div>
+		<div class="comment">经济与管理学院校友信息管理系统</div>
+		<div class="user">
+			<c:choose>
+				<c:when test="${sessionScope.user!= null }">
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="#" style="color: deeppink;"><img
+								src="${pageContext.request.contextPath }/img/user.png"
+								style="width: 20px; height: 20px;"> 林华栋<b class="caret"></b></a>
+							<ul role="menu" class="dropdown-menu">
+								<li><a href="#">修改密码</a></li>
+								<li><a href="#">查看资料</a></li>
+								<li><a
+									onclick="logout('${pageContext.request.contextPath}','/logout.action','/index.jsp');">注销</a></li>
+							</ul></li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath }/login.action"
+						style="color: deeppink; margin-right: 10px;">请登录 <img
+						src="${pageContext.request.contextPath }/img/mouse-pointer.png"
+						style="width: 20px; height: 20px;"></a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
+	<div class="navBody">
+		<nav role="navigation" class="navbar navbar-default">
+			<div class="navbar-header">
+				<button type="button" data-target="#navbarCollapse"
+					data-toggle="collapse" class="navbar-toggle">
+					<span class="sr-only">Toggle navigator</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand">系统导航</a>
+			</div>
+			<div id="navbarCollapse" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="../baseView/base-information.jsp">个人信息<b
+							class="caret"></b></a>
+						<ul role="menu" class="dropdown-menu" id="select">
+							<li style="cursor: pointer;"><a>基础信息</a></li>
+							<li style="cursor: pointer;"><a>职业信息</a></li>
+							<li style="cursor: pointer;"><a>工作满意程度与待遇成就</a></li>
+						</ul></li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle fontColor1" href="#">调研问卷<b
+							class="caret"></b></a>
+						<ul role="menu" class="dropdown-menu">
+							<li><a href="#">个人能力品质</a></li>
+							<li><a href="#">专业能力培养</a></li>
+						</ul></li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">返校服务<b class="caret"></b></a>
+						<ul role="menu" class="dropdown-menu">
+							<li><a href="#">返校指南</a></li>
+							<li><a href="#">周边住宿</a></li>
+							<li><a href="#">办理成绩单</a></li>
+							<li><a href="#">参观预约</a></li>
+						</ul></li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">校友快讯<b class="caret"></b></a>
+						<ul role="menu" class="dropdown-menu">
+							<li><a href="#">招聘信息</a></li>
+							<li><a href="#">校友风采</a></li>
+							<li><a href="#">新闻公告</a></li>
+						</ul></li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">校友联络<b class="caret"></b></a>
+						<ul role="menu" class="dropdown-menu">
+							<li><a href="#">校友会</a></li>
+							<li><a href="#">校友联络</a></li>
+							<li><a href="#">校友发声</a></li>
+						</ul></li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">校友捐赠<b class="caret"></b></a>
+						<ul role="menu" class="dropdown-menu">
+							<li><a href="#">捐赠指南</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/donation/open.action">捐赠公示</a></li>
+						</ul></li>
+					<li><a href="#">学院事件录</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div class="box" style="height:" id="box">
 		<div id="content" style="border-left: 2px solid mediumseagreen;">
 			<!-- 基础信息模块 -->
 			<div style="display: block; margin-left: 20px; font-size: 16px;">
@@ -43,8 +132,8 @@ To change this template use File | Settings | File Templates.
 					</p>
 					<p>您工作或居住地址：</p>
 					<p>
-						<label><input type="radio" name="country" value="中国">国内</label> <label><input
-							type="radio" name="country">国外</label>
+						<label><input type="radio" name="country" value="中国">国内</label>
+						<label><input type="radio" name="country">国外</label>
 					</p>
 					<p>
 						您的详细地址： <input type="text" placeholder="请输入详细地址" name="address">
@@ -110,7 +199,7 @@ To change this template use File | Settings | File Templates.
 						<label><input type="radio" name="honorLevel" value="5">国际级</label>
 					</p>
 					<p>
-						具体荣誉名称： <input type="text" name="honorName">
+						具体荣誉名称(请根据上一项填写)： <input type="text" name="honorName">
 					</p>
 					<p>您共有几次转换工作单位的经历：</p>
 					<p>
@@ -135,14 +224,16 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>工作内容：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="工作对象">工作对象</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作任务">工作任务</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作职责">工作职责</label>
+							type="checkbox" name="reasonOfNotStatis" value="工作任务">工作任务</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="工作职责">工作职责</label>
 					</p>
 					<p>
 						<span>工作强度：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="工作时间">工作时间</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作方式">工作方式</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作量">工作量</label>
+							type="checkbox" name="reasonOfNotStatis" value="工作方式">工作方式</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="工作量">工作量</label>
 					</p>
 					<p>
 						<span>工作环境：</span> <label><input type="checkbox"
@@ -152,8 +243,9 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>工作控制：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="直接上司">直接上司</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="监督管理">监督管理</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="绩效考核">绩效考核</label>
+							type="checkbox" name="reasonOfNotStatis" value="监督管理">监督管理</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="绩效考核">绩效考核</label>
 					</p>
 					<p>
 						<span>薪酬福利：</span> <label><input type="checkbox"
@@ -163,8 +255,9 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>个人发展：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="锦绣机会">锦绣机会</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="晋升空间">晋升空间</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="职业变通">职业变通</label>
+							type="checkbox" name="reasonOfNotStatis" value="晋升空间">晋升空间</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="职业变通">职业变通</label>
 					</p>
 					<p>
 						<span>社会资源：</span> <label><input type="checkbox"
@@ -174,10 +267,11 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>工作满意度：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="公平感">公平感</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="成就感">成就感</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="自我实现">自我实现</label>
+							type="checkbox" name="reasonOfNotStatis" value="成就感">成就感</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="自我实现">自我实现</label>
 					</p>
-					</p> 
+					</p>
 					<p>
 						在单位考核中，您最长评定为<select name="companyExamine" id="">
 							<option value="1">优秀</option>
@@ -219,7 +313,30 @@ To change this template use File | Settings | File Templates.
 			</div>
 		</div>
 	</div>
+	<div class=footer>
+		<div class="left">
+			<span class="span-set" style="margin-top: 35px;">管理员邮箱:15651646589@163.com</span>
+			<span class="span-set">地址：江苏省南京市江宁区将军大道29号</span> <span
+				class="span-set">邮政编码：211100</span>
+			<!-- 		<span class="span-set">版权所有&copy;：南京航空航天大学经济与管理学院</span> -->
+		</div>
+		<div class="center">
+			<img src="${pageContext.request.contextPath }/img/cemWord.png" /> <span
+				class="copy"> 版权所有&copy;：南京航空航天大学经济与管理学院 </span>
+		</div>
+		<div class="right">
+			<span class="friendLink"> <b>友情链接：</b>
+			</span>
+			<div class="links">
+				<span style="margin-top: 0px;"><a href="#">南京航空航天大学官网</a></span><br>
+				<span><a href="#">南京航空航天大学新闻网</a></span><br> <span><a
+					href="#">南京航空航天大学校友会</a></span><br> <span><a href="#">南京航空航天大学经济与管理学院</a></span>
+			</div>
+		</div>
+	</div>
 	<script src="../js/change.js"></script>
 	<script src="../js/jquery-1.9.min.js"></script>
+	<script src="../js/jquery-1.9.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
