@@ -19,99 +19,7 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="../css/view_set/footer.css">
 </head>
 <body>
-	<div class="header1">
-		<div class="logo">
-			<img src="${pageContext.request.contextPath }/img/donation/logo3.png" />
-		</div>
-		<div class="comment">经济与管理学院校友信息管理系统</div>
-		<div class="user">
-			<c:choose>
-				<c:when test="${sessionScope.user!= null }">
-					<ul class="nav navbar-nav">
-						<li class="dropdown"><a data-toggle="dropdown"
-							class="dropdown-toggle" href="#" style="color: deeppink;"><img
-								src="${pageContext.request.contextPath }/img/user.png"
-								style="width: 20px; height: 20px;"> 林华栋<b class="caret"></b></a>
-							<ul role="menu" class="dropdown-menu">
-								<li><a href="#">修改密码</a></li>
-								<li><a href="#">查看资料</a></li>
-								<li><a
-									onclick="logout('${pageContext.request.contextPath}','/logout.action','/index.jsp');">注销</a></li>
-							</ul></li>
-					</ul>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath }/login.action"
-						style="color: deeppink; margin-right: 10px;">请登录 <img
-						src="${pageContext.request.contextPath }/img/mouse-pointer.png"
-						style="width: 20px; height: 20px;"></a>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</div>
-	<div class="navBody">
-		<nav role="navigation" class="navbar navbar-default">
-			<div class="navbar-header">
-				<button type="button" data-target="#navbarCollapse"
-					data-toggle="collapse" class="navbar-toggle">
-					<span class="sr-only">Toggle navigator</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a href="#" class="navbar-brand">系统导航</a>
-			</div>
-			<div id="navbarCollapse" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="../baseView/base-information.jsp">个人信息<b
-							class="caret"></b></a>
-						<ul role="menu" class="dropdown-menu" id="select">
-							<li style="cursor: pointer;"><a>基础信息</a></li>
-							<li style="cursor: pointer;"><a>职业信息</a></li>
-							<li style="cursor: pointer;"><a>工作满意程度与待遇成就</a></li>
-						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle fontColor1" href="#">调研问卷<b
-							class="caret"></b></a>
-						<ul role="menu" class="dropdown-menu">
-							<li><a href="#">个人能力品质</a></li>
-							<li><a href="#">专业能力培养</a></li>
-						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#">返校服务<b class="caret"></b></a>
-						<ul role="menu" class="dropdown-menu">
-							<li><a href="#">返校指南</a></li>
-							<li><a href="#">周边住宿</a></li>
-							<li><a href="#">办理成绩单</a></li>
-							<li><a href="#">参观预约</a></li>
-						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#">校友快讯<b class="caret"></b></a>
-						<ul role="menu" class="dropdown-menu">
-							<li><a href="#">招聘信息</a></li>
-							<li><a href="#">校友风采</a></li>
-							<li><a href="#">新闻公告</a></li>
-						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#">校友联络<b class="caret"></b></a>
-						<ul role="menu" class="dropdown-menu">
-							<li><a href="#">校友会</a></li>
-							<li><a href="#">校友联络</a></li>
-							<li><a href="#">校友发声</a></li>
-						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#">校友捐赠<b class="caret"></b></a>
-						<ul role="menu" class="dropdown-menu">
-							<li><a href="#">捐赠指南</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/donation/open.action">捐赠公示</a></li>
-						</ul></li>
-					<li><a href="#">学院事件录</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
-
+	<jsp:include page="../baseView/header.jsp"></jsp:include>
 	<div class="box" style="height:" id="box">
 		<div id="content" style="border-left: 2px solid mediumseagreen;">
 			<!-- 基础信息模块 -->
@@ -313,29 +221,8 @@ To change this template use File | Settings | File Templates.
 			</div>
 		</div>
 	</div>
-	<div class=footer>
-		<div class="left">
-			<span class="span-set" style="margin-top: 35px;">管理员邮箱:15651646589@163.com</span>
-			<span class="span-set">地址：江苏省南京市江宁区将军大道29号</span> <span
-				class="span-set">邮政编码：211100</span>
-			<!-- 		<span class="span-set">版权所有&copy;：南京航空航天大学经济与管理学院</span> -->
-		</div>
-		<div class="center">
-			<img src="${pageContext.request.contextPath }/img/cemWord.png" /> <span
-				class="copy"> 版权所有&copy;：南京航空航天大学经济与管理学院 </span>
-		</div>
-		<div class="right">
-			<span class="friendLink"> <b>友情链接：</b>
-			</span>
-			<div class="links">
-				<span style="margin-top: 0px;"><a href="#">南京航空航天大学官网</a></span><br>
-				<span><a href="#">南京航空航天大学新闻网</a></span><br> <span><a
-					href="#">南京航空航天大学校友会</a></span><br> <span><a href="#">南京航空航天大学经济与管理学院</a></span>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="../baseView/footer.jsp"></jsp:include>
 	<script src="../js/change.js"></script>
-	<script src="../js/jquery-1.9.min.js"></script>
 	<script src="../js/jquery-1.9.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>

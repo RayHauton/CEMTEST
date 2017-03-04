@@ -130,6 +130,18 @@ function jobSkip() {
 };
 function mytest(){
 	o.style.height = $("#content").height()+40+"px";
-}
+	var AA = getId("select").children;
+/*	for (var i = 0; i < AA.length; i++) {
+		alert(AA[i].getElementsByTagName("a")[0].href);
+		};*/
+
+	for (var i = 0; i < AA.length; i++) {
+		AA[i].getElementsByTagName("a")[0].href = "#";
+		};
+	/*for (var i = 0; i < AA.length; i++) {
+		alert(AA[i].getElementsByTagName("a")[0].href);
+		};*/
+	};
+
 window.onload= mytest;
 

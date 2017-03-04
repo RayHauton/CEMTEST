@@ -50,7 +50,7 @@
 				<ul role="menu" class="dropdown-menu" id="select">
 					<li style="cursor: pointer;"><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">基础信息</a></li>
 					<li style="cursor: pointer;"><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">职业信息</a></li>
-					<li style="cursor: pointer;"><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">工作满意程度与待遇成就</a></li>
+					<li style="cursor: pointer;"><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">工作满意程度</a></li>
 				</ul></li>
 			<li class="dropdown"><a data-toggle="dropdown"
 				class="dropdown-toggle fontColor1" href="#">调研问卷<b class="caret"></b></a>
