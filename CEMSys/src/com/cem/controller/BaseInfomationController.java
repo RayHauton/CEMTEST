@@ -119,7 +119,7 @@ public class BaseInfomationController {
 			jobcontitionmodule.setUserId(((User) session.getAttribute("user")).getUserId());
 			jobcontitionmodule.setYearsToBusinessSelf(Integer.parseInt(request.getParameter("yearsToBusinessSelf")));
 			jobService.insertJobCon(jobcontitionmodule);
-			response.getWriter().write("succ");
+			response.getWriter().write("Thiredsucc");
 		} else {
 			response.getWriter().write("noExist");
 		}
