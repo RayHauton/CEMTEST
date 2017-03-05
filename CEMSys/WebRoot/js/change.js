@@ -16,7 +16,6 @@ function getId(id) {
 	return document.getElementById(id);
 };
 var liDom = getId("select").children;
-var o = document.getElementById('box');
 for (var i = 0; i < liDom.length; i++) {
 	liDom[i].index = i;// 记录索引
 	liDom[i].onclick = function() {// 绑定点击事件
@@ -29,9 +28,6 @@ for (var i = 0; i < liDom.length; i++) {
 		sibling(conDom, function() {// divDom的兄弟节点的display状态为none
 			this.style.display = "none";
 		});
-		o.style.height = $("#content").height()+40+"px";
-		
-		
 	};
 };
 
@@ -111,7 +107,7 @@ function jobSkip() {
 		async : false,
 		url : "../infoSys/jobCon.action",
 		data : params,
-		datatype : "text",
+		datatype:"text",
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			alert(XMLHttpRequest.status);
 			alert(XMLHttpRequest.readyState);
@@ -122,26 +118,9 @@ function jobSkip() {
 			if (data == "noExist") {
 				alert("用户不存在");
 			} else {
-				alert(data)
-				window.location.href = '../index.jsp';
-			}
+			alert(data)
+			window.location.href = '../login/login.jsp';
 		}
-	});
+	}});
 };
-function mytest(){
-	o.style.height = $("#content").height()+40+"px";
-	var AA = getId("select").children;
-/*	for (var i = 0; i < AA.length; i++) {
-		alert(AA[i].getElementsByTagName("a")[0].href);
-		};*/
-
-	for (var i = 0; i < AA.length; i++) {
-		AA[i].getElementsByTagName("a")[0].href = "#";
-		};
-	/*for (var i = 0; i < AA.length; i++) {
-		alert(AA[i].getElementsByTagName("a")[0].href);
-		};*/
-	};
-
-window.onload= mytest;
 

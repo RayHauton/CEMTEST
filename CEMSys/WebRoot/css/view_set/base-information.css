@@ -22,6 +22,9 @@
 
 	.subnav li:hover{color: #000;background-color: #acf45b;}
 	.on{background-color: #fff;color: #000!important;}
+	#majorName label{display: inline-block;}
+	#majorName p{display: none;}
+	#majorP{display: none;}
 	#content>div{display: none;}
 	#content{position: absolute;top: 20px;left: 200px;}
 	#content h2{font-size: 18px;margin-bottom: 20px;}
