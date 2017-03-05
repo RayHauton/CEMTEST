@@ -127,8 +127,7 @@ public class Majorabilitycultivationquality implements java.io.Serializable {
 				+ physicalFitness + "," + learningAtmosphereConstruction + "," + libraryEffect + "," + instructorWorking
 				+ "," + logisticServiceWorking + "," + fellowConnectionWorking + ","
 				+ careerPlanningAndEmploymentGuidance + "," + psychologyGrooming + "," + tutorGuidance + ","
-				+ projectExperience + "," + scientificResearchOpportunity + "," + scienReschSpiritAndAcademicMoral + ","
-				+ isDeleted;
+				+ projectExperience + "," + scientificResearchOpportunity + "," + scienReschSpiritAndAcademicMoral;
 	}
 
 	public int getUserId() {

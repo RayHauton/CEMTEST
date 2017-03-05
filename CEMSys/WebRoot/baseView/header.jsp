@@ -56,9 +56,9 @@
 				</li>
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle fontColor1" href="#">调研问卷<b class="caret"></b></a>
-					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">个人能力品质</a></li>
-						<li><a href="#">专业能力培养</a></li>
+					<ul role="menu" class="dropdown-menu" id="survey"> 
+						<li><a href="${pageContext.request.contextPath }/surveySys/open?SelfabilityqualityHref" id="SelfabilityqualityHref">个人能力品质</a></li>
+						<li><a href="${pageContext.request.contextPath }/surveySys/open?MajorabilitycultivationqualityHref" id="MajorabilitycultivationqualityHref">专业能力培养</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
