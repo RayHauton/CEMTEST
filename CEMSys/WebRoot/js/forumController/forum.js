@@ -41,8 +41,10 @@ function countChar(inputName,spanName){
 function reply(test){
 	// 当前楼层的用户id hostId
 	var forumId = document.getElementById("forumId").value;
+	var forumTitle = document.getElementById("forumTitle").value;
 	var floor = $(test).attr("name");
 	var replyContent = document.getElementById("replyToHost"+floor.toString()).value;
+	var userId = document.getElementById("userId"+floor.toString()).value;
 	if(replyContent == "" || replyContent== null){
 		alert("请输入");
 		return;
@@ -54,7 +56,9 @@ function reply(test){
         data: {
         	replyText:replyContent,
         	forumId:forumId,
-        	floor:floor
+        	floor:floor,
+        	forumTitle:forumTitle,
+        	userId:userId
         },
         dataType: "text",
         success: function () {
@@ -153,6 +157,42 @@ function deleteReply(replyId){
         }
 	});
 }
+
+/**
+ * 消息通知js
+ */
+setTimeout(function(){
+	Push();
+//	alert("set timeout");
+},200);
+
+setInterval(function(){
+	Push();
+//	alert("interval");
+},3000);
+
+function Push(){
+	$.ajax({
+		type:'post',
+		url:$('#basePath').val()+'/forum/messageInfo',
+		data:{},
+		beforeSend:function(){},
+		success:function(data){
+			var object = eval("("+data+")");//eval使用前要先加括号，才能得到完整的json数据
+			if(object.msg!=0){
+				$('#tongzhi-content').html(object.msg);//更新消息数目
+				$('#tongzhi').show();//将消息显示出来
+			}else{
+				$('#tongzhi').hide();//隐藏消息
+			}
+		},
+		error:function(){
+			alert("error");
+		}
+	});
+}
+
+
 
 
 

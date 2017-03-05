@@ -2,12 +2,16 @@ package com.cem.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import org.hibernate.persister.collection.ElementPropertyMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cem.pojo.Forum;
+import com.cem.pojo.ForumMessage;
 import com.cem.pojo.Reply;
 import com.cem.pojo.User;
 import com.cem.service.ForumService;
@@ -136,17 +141,28 @@ public class ForumController {
 		String forumId = request.getParameter("forumId");
 		String replyText = request.getParameter("replyText");
 		String floor = request.getParameter("floor");
+		String userId = request.getParameter("userId");
+		String forumTitle = request.getParameter("forumTitle");
 		Reply reply = new Reply();
+		ForumMessage message = new ForumMessage();
 		
-		reply.setForum(forumId);
-		reply.setReplyTime(new Date());
-		reply.setReplyText(replyText);
-		reply.setReplyObject(floor);
-		reply.setFloor(forumService.getFloorWhenInsertReply(forumId));
+		reply.setForum(forumId);//帖子id
+		reply.setReplyTime(new Date());//时间
+		reply.setReplyText(replyText);//回复内容
+		reply.setReplyObject(floor);//回复几楼
+		reply.setFloor(forumService.getFloorWhenInsertReply(forumId));//该回复所在楼层
 		reply.setPublishUserId(user.getUserId());
 		reply.setPublishUser(user.getUsername());
 		forumService.insertReply(reply,forumId);
 		
+		message.setForumId(Integer.parseInt(forumId));
+		message.setForumTitle(forumTitle);
+		message.setObjectReplyId(Integer.parseInt(userId));
+		message.setPersonId(user.getUserId());
+		message.setPersonName(user.getUsername());
+		message.setTime(reply.getReplyTime());
+		
+		forumService.insertMessage(message);
 		modelAndView.setViewName("redirect:/forum/p/"+forumId);
 		return modelAndView;
 	}
@@ -168,6 +184,34 @@ public class ForumController {
 		String forumId = request.getParameter("forumId");
 		forumService.deleteReply(Integer.parseInt(replyId));
 		modelAndView.setViewName("redirect:/forum/p/" + forumId);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/messageInfo")
+	public void messageInfo(HttpServletResponse response,HttpSession session,HttpServletRequest request){
+		StringBuffer json = new StringBuffer("{");
+		User user = (User) session.getAttribute("user");
+		int number = forumService.findNewMessageNumber(user.getUserId());
+		json.append("'msg':'"+number+"'}");
+		try {
+			response.getWriter().write(json.toString());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value="/myMessage")
+	public ModelAndView myMessage(HttpServletRequest request,HttpSession session){
+		ModelAndView modelAndView = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		String messagePageIndex = request.getParameter("messagePageIndex");
+		if (messagePageIndex == null) {
+			messagePageIndex = "1";
+		}
+		Map<String, Object> map = forumService.FindAllNewMessages(user.getUserId(), messagePageIndex);
+		modelAndView.setViewName("baseView/bbsmessage");
+		modelAndView.addAllObjects(map);
 		return modelAndView;
 	}
 }

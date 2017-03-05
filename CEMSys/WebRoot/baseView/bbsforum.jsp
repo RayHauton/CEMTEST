@@ -6,12 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/view_set/base.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/view_set/BBS.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/head.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/footer.css">
 
 <!-- 	ueditor编辑器 -->
 <script type="text/javascript" charset="utf-8"
@@ -131,34 +128,18 @@ h1 {
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath">
 	<div class="box">
+	<jsp:include page="/baseView/header.jsp"></jsp:include>
 		<div class="head">
 			<div class="logo">
 				<a href="javascipt:void(0);"> <img src="" alt="个人头像">
 				</a>
 			</div>
-			<div class="nav">
-				<ul>
-					<li><a
-						href="${pageContext.request.contextPath }/baseView/index.html">系统首页</a>
-						<div class="subNav">
-							<a href="javascript:void(0);">校友快讯</a> <a
-								href="javascript:void(0);">返校预约</a> <a
-								href="javascript:void(0);">经管历程</a> <a
-								href="javascript:void(0);">南航主页</a>
-						</div></li>
-					<li><a href="javascript:void(0);">个人中心</a>
-						<div class="subNav">
-							<a href="javascript:void(0);">我的主页</a> <a
-								href="javascript:void(0);">我的回复</a> <a
-								href="javascript:void(0);">修改资料</a> <a
-								href="${pageContext.request.contextPath }/recruitment/open.action">发布信息</a>
-						</div></li>
-					<li><a href="javascript:void(0);">我的帖子</a></li>
-				</ul>
-				<span>欢迎来到校友系统！</span>
-			</div>
 		</div>
-		<div class="tiezi">
+		
+		
+		
+		
+		<div class="tiezi" style="text-align:center">
 			<c:forEach var="test" items="${forumList }">
 				<div>
 					<a
@@ -221,7 +202,7 @@ h1 {
 			</ul>
 		</div>
 
-		<div class="inputBox">
+		<div class="inputBox" style="width:1000px;margin-left:auto;margin-right:auto;">
 			<input type="text" id="forumTitle" placeholder="标题"
 				class="form-control" onkeydown="countChar('forumTitle','counter')"
 				onkeyup="countChar('forumTitle','counter')" /> 已经输入<span
@@ -232,9 +213,9 @@ h1 {
 					class="btn">
 			</p>
 		</div>
+		
+		<jsp:include page="/baseView/footer.jsp"></jsp:include>
 
-
-		<button class="btn" onclick=" UE.getEditor('editor').setHeight(300)">设置</button>
 	</div>
 	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js"
 		type="text/javascript"></script>
