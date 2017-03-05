@@ -48,10 +48,10 @@
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">个人信息<b class="caret"></b></a>
-					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">基础信息</a></li>
-						<li><a href="#">职业信息</a></li>
-						<li><a href="#">工作待遇</a></li>
+					<ul role="menu" class="dropdown-menu" id="select">
+						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">基础信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">职业信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">工作待遇</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
