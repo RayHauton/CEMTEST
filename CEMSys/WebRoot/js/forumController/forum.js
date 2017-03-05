@@ -192,6 +192,31 @@ function Push(){
 	});
 }
 
+/**
+ * 对时间进行转换
+ */
+function timeTranslate(time){
+	function zeroize(num){
+		return (String(num).length==1?'0':'')+num;
+	}
+	var currentTime = parseInt(new Date().getTime / 1000);//获得当前时间
+	var timestamp =Date.parse(time)/1000;
+	return timestamp;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

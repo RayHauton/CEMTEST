@@ -41,8 +41,9 @@ To change this template use File | Settings | File Templates.
 						<div class="head">
 							<img alt="个人头像" src="" />
 							<div class="nameBox">
-								<span class="name">${test.publishUser }</span> <span
-									class="time">${test.replyTime }</span> 
+								<span class="name">${test.publishUser }</span> 
+								<span class="time">${test.replyTime }</span> 
+								<span class="time" value="timeTranslate(${test.replyTime })"></span>
 									<input type="hidden"
 									id="userId${test.floor }" value="${test.publishUserId }" />
 							</div>
