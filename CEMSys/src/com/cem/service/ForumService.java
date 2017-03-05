@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cem.pojo.Forum;
+import com.cem.pojo.ForumMessage;
 import com.cem.pojo.Reply;
 
 public interface ForumService {
@@ -58,4 +59,20 @@ public interface ForumService {
 	 * @return
 	 */
 	public Short getFloorWhenInsertReply(String forumId);
+	
+	/**
+	 * 消息提醒 插入到forumMessage表中
+	 */
+	public void insertMessage(ForumMessage forumMessage);
+	
+	/**
+	 * 新消息数目
+	 * @return 
+	 */
+	public int findNewMessageNumber(int userId);
+	
+	/**
+	 * 查看新消息同时全部置为已读
+	 */
+	public Map<String,Object> FindAllNewMessages(int userId,String messagePageIndex);
 }

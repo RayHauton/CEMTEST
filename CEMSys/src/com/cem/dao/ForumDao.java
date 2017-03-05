@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cem.pojo.Forum;
+import com.cem.pojo.ForumMessage;
 import com.cem.pojo.Reply;
 
 public interface ForumDao {
@@ -48,14 +49,35 @@ public interface ForumDao {
 	public String FindForumIdWhilePostForum(String userId,String publishTime);
 	
 	/**
-	 * 根据用户id查找用户发的说说,其他用户可以查看当前用户的说说
+	 * 根据用户id查找用户发的帖子,其他用户可以查看当前用户的帖子
 	 */
 	public Map<String, Object> FindForumByUserId(String userId);
 
+	/**
+	 * 根据用户id查找用户发的回复，其他用户可以查看
+	 */
+	public Map<String, Object> FindReplyByUserId(String userId);
+	
 	/**
 	 * 回复时得到此次回复所在楼层
 	 * @param forumId
 	 * @return
 	 */
 	public Short getFloorWhenInsertReply(String forumId);
+	
+	/**
+	 * 消息提醒 插入到forumMessage表中
+	 */
+	public void insertMessage(ForumMessage forumMessage);
+	
+	/**
+	 * 新消息数目
+	 * @return 
+	 */
+	public int findNewMessageNumber(int userId);
+	
+	/**
+	 * 查看新消息同时全部置为已读
+	 */
+	public Map<String,Object> FindAllNewMessages(int userId,String messagePageIndex);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cem.dao.ForumDao;
 import com.cem.pojo.Forum;
+import com.cem.pojo.ForumMessage;
 import com.cem.pojo.Reply;
 import com.cem.service.ForumService;
 @Service
@@ -67,6 +68,24 @@ public class ForumServiceImpl implements ForumService{
 	public Short getFloorWhenInsertReply(String forumId) {
 		// TODO Auto-generated method stub
 		return forumDao.getFloorWhenInsertReply(forumId);
+	}
+
+	@Override
+	public void insertMessage(ForumMessage forumMessage) {
+		// TODO Auto-generated method stub
+		forumDao.insertMessage(forumMessage);
+	}
+
+	@Override
+	public int findNewMessageNumber(int userId) {
+		// TODO Auto-generated method stub
+		return forumDao.findNewMessageNumber(userId);
+	}
+
+	@Override
+	public Map<String, Object> FindAllNewMessages(int userId,String messagePageIndex) {
+		// TODO Auto-generated method stub
+		return forumDao.FindAllNewMessages(userId,messagePageIndex);
 	}
 
 }

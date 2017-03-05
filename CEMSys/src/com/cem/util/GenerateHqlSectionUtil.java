@@ -22,4 +22,5 @@ public class GenerateHqlSectionUtil {
 		}
 		return in.substring(0, in.length()-1)+")";
 	}
+	
 }

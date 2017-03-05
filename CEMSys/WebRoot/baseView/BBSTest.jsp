@@ -12,58 +12,27 @@ To change this template use File | Settings | File Templates.
 <head>
 <meta charset="UTF-8">
 <title>校友论坛</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/view_set/base.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/view_set/BBS.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/head.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/footer.css">
 </head>
 <body>
 
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath" />
 	<input type="hidden" value="${thisForum.forumId }" id="forumId" />
-	<div class="box">
-		<div class="head">
-			<div class="logo">
-				<a href="javascipt:void(0);"> <img src="" alt="个人头像">
-				</a>
-			</div>
-			<div class="nav">
-				<ul>
-					<li><a
-						href="${pageContext.request.contextPath }/baseView/index.html">系统首页</a>
-						<div class="subNav">
-							<a href="javascript:void(0);">校友快讯</a> <a
-								href="javascript:void(0);">返校预约</a> <a
-								href="javascript:void(0);">经管历程</a> <a
-								href="javascript:void(0);">南航主页</a>
-						</div></li>
-					<li><a href="javascript:void(0);">个人中心</a>
-						<div class="subNav">
-							<a href="javascript:void(0);">我的主页</a> <a
-								href="javascript:void(0);">我的回复</a> <a
-								href="javascript:void(0);">修改资料</a> <a
-								href="${pageContext.request.contextPath }/recruitment/open.action">发布信息</a>
-						</div></li>
-					<li><a href="javascript:void(0);">我的帖子</a></li>
-				</ul>
-				<span>欢迎来到校友系统！</span>
-			</div>
-		</div>
-		<div class="container">
-			<div class="fileBox">
-				<div class="file">
-					<input type="file" multiple>
-				</div>
-				<div class="imgShow"></div>
-				<hr>
-				<div class="imgSubmit">
-					<button>取消</button>
-					<button>确认</button>
-				</div>
-			</div>
+	<input type="hidden" value="${thisForum.forumTitle }" id="forumTitle" />
+	<jsp:include page="/baseView/header.jsp"></jsp:include>
+	<div class="box" style="margin-left:auto;margin-right:auto;width:1000px" >
+		<div class="container" style="width:1000px;">
+			<a href="#" style="margin-left:auto;margin-right:auto;">消息</a>
+			
+			<div>
+			<p>消息通知测试</p>
+			<!--以下是消息通知测试  -->
+			<span id="tongzhi" style="display:none;">有<a href="${pageContext.request.contextPath }/forum/myMessage"><strong id="tongzhi-content">0</strong></a>条新消息</span>
+			</div>		
+			
 			<h1>${thisForum.forumTitle }</h1>
 			<h2>共${thisForum.replyCount }回复</h2>
 			<c:forEach var="test" items="${replyList }">
@@ -73,8 +42,9 @@ To change this template use File | Settings | File Templates.
 							<img alt="个人头像" src="" />
 							<div class="nameBox">
 								<span class="name">${test.publishUser }</span> <span
-									class="time">${test.replyTime }</span> <input type="hidden"
-									name="userId" value="${test.publishUserId }" />
+									class="time">${test.replyTime }</span> 
+									<input type="hidden"
+									id="userId${test.floor }" value="${test.publishUserId }" />
 							</div>
 							<span>${test.floor }楼</span>
 						</div>
@@ -155,9 +125,9 @@ To change this template use File | Settings | File Templates.
 				</p>
 			</div>
 
-
 		</div>
 	</div>
+	<jsp:include page="/baseView/footer.jsp"></jsp:include>
 	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js"
 		type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"

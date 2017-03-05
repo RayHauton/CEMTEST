@@ -23,6 +23,7 @@
 						</ul>
 					</li>
 				</ul>
+				
 			</c:when>
 			<c:otherwise>
 				<a href="${pageContext.request.contextPath }/login.action"

@@ -78,12 +78,27 @@ public class ForumTest {
 //		}
 //	}
 	
+//	@Test
+//	public void tets(){
+//		JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
+//		String sql = "update Forum set viewCount = viewCount+1 where forumId='13'";
+//		int result = jdbcTemplate.update(sql);
+//		System.out.println(result);
+//	}
+	
 	@Test
-	public void tets(){
+	public void test(){
 		JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
-		String sql = "update Forum set viewCount = viewCount+1 where forumId='13'";
-		int result = jdbcTemplate.update(sql);
-		System.out.println(result);
+		try {
+			String sql = "update ForumMessage set status='1' where personId='2'";
+			int result = jdbcTemplate.update(sql);
+			System.out.println(result);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
 

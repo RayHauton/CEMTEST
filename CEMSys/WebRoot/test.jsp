@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 <!-- <link rel="stylesheet" href="css/view_set/base.css"> -->
 <!-- <link rel="stylesheet" href="css/view_set/BBS.css"> -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/view_set/head.css">
+<link rel="stylesheet" href="css/view_set/footer.css">
 </head>
 <body>
 	<c:choose>
@@ -19,7 +22,11 @@
 		</c:otherwise>
 	</c:choose>
 
-	<a href="${pageContext.request.contextPath }/forum/f/1">随便你说</a>
-	<a href="${pageContext.request.contextPath }/forum/f/2">学术论坛</a>
+	<jsp:include page="/baseView/header.jsp"></jsp:include>
+	<div style="text-align:center;">
+	<p><a href="${pageContext.request.contextPath }/forum/f/1">随便你说</a></p>
+	<p><a href="${pageContext.request.contextPath }/forum/f/2">学术论坛</a></p>
+	</div>
+	<jsp:include page="/baseView/footer.jsp"></jsp:include>
 </body>
 </html>
