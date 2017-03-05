@@ -1,0 +1,42 @@
+/*
+	返校住宿
+*/
+@CHARSET "UTF-8";
+body{
+	font-family:微软雅黑;
+	margin: 0px;
+	padding: 0px;
+}
+.content{
+	width: 998px;
+	height: 1335px;
+	margin: 0 auto;
+	border-radius: 6px;
+	border:1px solid #d3d7cf;
+}
+.hotel{
+	height: 425px;
+	/*background: red;*/
+}
+.hotel h2{
+	text-align: center;
+	font-size: 25px;
+	font-family: 微软雅黑;
+}
+.hotel p{
+	font-size: 15px;
+	text-align:center;
+}
+#hotel1 h2{
+	margin-top: 12px;
+}
+#hotel3{
+	margin-bottom: 10px;
+}
+.hotel img{
+	width: 800px;
+	height: 350px; 
+	display: block;
+	margin: 0 auto;
+	border-radius: 6px;
+}

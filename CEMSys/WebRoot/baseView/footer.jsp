@@ -18,10 +18,10 @@
 			<b>友情链接：</b>
 		</span>
 		<div class="links">
-			<span style="margin-top:0px;"><a href="#">南京航空航天大学官网</a></span><br>
-			<span><a href="#">南京航空航天大学新闻网</a></span><br>
-			<span><a href="#">南京航空航天大学校友会</a></span><br>
-			<span><a href="#">南京航空航天大学经济与管理学院</a></span>
+			<span style="margin-top:0px;"><a href="http://www.nuaa.edu.cn/">南京航空航天大学官网</a></span><br>
+			<span><a href="http://newsweb.nuaa.edu.cn/">南京航空航天大学新闻网</a></span><br>
+			<span><a href="http://alumni.nuaa.edu.cn/">南京航空航天大学校友会</a></span><br>
+			<span><a href="http://cem.nuaa.edu.cn/">南京航空航天大学经济与管理学院</a></span>
 		</div>
 	</div>
 </div>
