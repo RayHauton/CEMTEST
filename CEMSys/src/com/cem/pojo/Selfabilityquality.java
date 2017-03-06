@@ -58,8 +58,7 @@ public class Selfabilityquality implements java.io.Serializable {
 		return gumptionAndAchvConscious + "," + companyCooperation + "," + professionalism + ","
 				+ majorBaseKnowledge + "," + knowledgeWidth + "," + foreignLanguage + "," + acquireAndApplyKnowledge
 				+ "," + selfDealProblem + "," + practiceAndHandsOn + "," + motivationAbility + ","
-				+ communicationAndOrganizeAbility + "," + wordsExpression + "," + psychologyBearAndAntiFrustration + ","
-				+ isDeleted;
+				+ communicationAndOrganizeAbility + "," + wordsExpression + "," + psychologyBearAndAntiFrustration ;
 	}
 
 	public int getUserId() {

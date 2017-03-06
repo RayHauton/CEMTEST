@@ -5,10 +5,7 @@
 	.subnav li{display: block;padding: 5px;color: #fff;font-size: 16px;cursor: pointer;}
 	.subnav li:hover{color: #000;background-color: yellow;}
 	.on{background-color: #fff;color: #000!important;}
-	#content>div{display: none;}
-	#content{position: absolute;top: 20px;left: 200px;}
 	#content h2{font-size: 18px;margin-bottom: 20px;padding: 10px;font-size: 24px;text-align: center;}
-	#content p{width: 80%;margin: 10px auto;font-size: 18px;text-indent: 2em;}
 	#content input{outline: none;padding: 2px;font-size: 14px;}
 	.w120{width: 220px;font-size: 16px;}
 	input[type="radio"]{width: 50%;height: 50%;display: inline-block;margin-top: 25px;}
@@ -18,7 +15,7 @@
 	table tr.border-top td{border-top: 0;}
 	table td{border-left: 1px solid #fff;}
 	table td.border-left{border-left: 0px;}
-	.btn{margin: 20px auto;text-align: center;}
+	.btn{margin: 0px auto;text-align: center;}
 	.btn input{width: 100px;height: 36px;background-color: yellow;font-size: 16px;display: inline-block;line-height: 36px;background-color: #f60;}
 }
 @media screen and (max-width: 760px) {
@@ -26,9 +23,7 @@
 	.subnav li{display: block;padding: 5px;color: #fff;font-size: 14px;}
 	.subnav li:hover{color: #000;background-color: yellow;}
 	.on{background-color: #fff;color: #000!important;}
-	#content>div{display: none;}
 	#content h2{font-size: 18px;margin-bottom: 20px;padding: 10px;font-size: 24px;text-align: center;}
-	#content p{width: 90%;margin: 10px auto;font-size: 18px;text-indent: 2em;}
 	#content input{outline: none;padding: 2px;font-size: 14px;}
 	.w120{width: 220px;font-size: 16px;}
 	input[type="radio"]{width: 24px;height: 24px;display: inline-block;margin-top: 12px;}
@@ -38,6 +33,6 @@
 	table tr.border-top td{border-top: 0;}
 	table td{border-left: 1px solid #fff;}
 	table td.border-left{border-left: 0px;}
-	.btn{margin: 20px auto;text-align: center;}
+	.btn{margin: 0px auto;text-align: center;}
 	.btn input{width: 100px;height: 36px;background-color: yellow;font-size: 16px;display: inline-block;line-height: 36px;background-color: #f60;}
  }

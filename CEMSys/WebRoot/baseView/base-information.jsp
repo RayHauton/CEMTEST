@@ -14,16 +14,13 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/view_set/base.css">
 <link rel="stylesheet" href="../css/view_set/base-information.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/view_set/head.css">
+<link rel="stylesheet" href="../css/view_set/footer.css">
 </head>
 <body>
-	<div class="box">
-		<div class="subnav">
-			<ul id="select" class="select">
-				<li style="cursor: pointer;">基础信息</li>
-				<li style="cursor: pointer;">职业信息</li>
-				<li style="cursor: pointer;">工作满意程度与待遇成就</li>
-			</ul>
-		</div>
+	<jsp:include page="../baseView/header.jsp"></jsp:include>
+	<div class="box" style="height:" id="box">
 		<div id="content" style="border-left: 2px solid mediumseagreen;">
 			<!-- 基础信息模块 -->
 			<div style="display: block; margin-left: 20px; font-size: 16px;">
@@ -135,14 +132,16 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>工作内容：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="工作对象">工作对象</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作任务">工作任务</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作职责">工作职责</label>
+							type="checkbox" name="reasonOfNotStatis" value="工作任务">工作任务</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="工作职责">工作职责</label>
 					</p>
 					<p>
 						<span>工作强度：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="工作时间">工作时间</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作方式">工作方式</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="工作量">工作量</label>
+							type="checkbox" name="reasonOfNotStatis" value="工作方式">工作方式</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="工作量">工作量</label>
 					</p>
 					<p>
 						<span>工作环境：</span> <label><input type="checkbox"
@@ -152,8 +151,9 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>工作控制：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="直接上司">直接上司</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="监督管理">监督管理</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="绩效考核">绩效考核</label>
+							type="checkbox" name="reasonOfNotStatis" value="监督管理">监督管理</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="绩效考核">绩效考核</label>
 					</p>
 					<p>
 						<span>薪酬福利：</span> <label><input type="checkbox"
@@ -163,8 +163,9 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>个人发展：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="锦绣机会">锦绣机会</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="晋升空间">晋升空间</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="职业变通">职业变通</label>
+							type="checkbox" name="reasonOfNotStatis" value="晋升空间">晋升空间</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="职业变通">职业变通</label>
 					</p>
 					<p>
 						<span>社会资源：</span> <label><input type="checkbox"
@@ -174,10 +175,11 @@ To change this template use File | Settings | File Templates.
 					<p>
 						<span>工作满意度：</span> <label><input type="checkbox"
 							name="reasonOfNotStatis" value="公平感">公平感</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="成就感">成就感</label> <label><input
-							type="checkbox" name="reasonOfNotStatis" value="自我实现">自我实现</label>
+							type="checkbox" name="reasonOfNotStatis" value="成就感">成就感</label>
+						<label><input type="checkbox" name="reasonOfNotStatis"
+							value="自我实现">自我实现</label>
 					</p>
-					</p> 
+					</p>
 					<p>
 						在单位考核中，您最长评定为<select name="companyExamine" id="">
 							<option value="1">优秀</option>
@@ -219,7 +221,9 @@ To change this template use File | Settings | File Templates.
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../baseView/footer.jsp"></jsp:include>
 	<script src="../js/change.js"></script>
 	<script src="../js/jquery-1.9.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

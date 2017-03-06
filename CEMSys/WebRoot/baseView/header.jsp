@@ -48,25 +48,25 @@
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">个人信息<b class="caret"></b></a>
-					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">基础信息</a></li>
-						<li><a href="#">职业信息</a></li>
-						<li><a href="#">工作待遇</a></li>
+					<ul role="menu" class="dropdown-menu" id="select">
+						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">基础信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">职业信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">工作待遇</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle fontColor1" href="#">调研问卷<b class="caret"></b></a>
-					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">个人能力品质</a></li>
-						<li><a href="#">专业能力培养</a></li>
+					<ul role="menu" class="dropdown-menu" id="survey"> 
+						<li><a href="${pageContext.request.contextPath }/surveySys/open?SelfabilityqualityHref" id="SelfabilityqualityHref">个人能力品质</a></li>
+						<li><a href="${pageContext.request.contextPath }/surveySys/open?MajorabilitycultivationqualityHref" id="MajorabilitycultivationqualityHref">专业能力培养</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">返校服务<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">返校指南</a></li>
-						<li><a href="#">周边住宿</a></li>
-						<li><a href="#">办理成绩单</a></li>
+						<li><a href="http://cem.nuaa.edu.cn/show11769449.htm">返校指南</a></li>
+						<li><a href="${pageContext.request.contextPath }/baseView/accommodation.jsp">周边住宿</a></li>
+						<li><a href="http://alumni.nuaa.edu.cn/a/bszn/183.html">办理成绩单</a></li>
 						<li><a href="#">参观预约</a></li>
 					</ul>
 				</li>
@@ -74,8 +74,8 @@
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">校友快讯<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#">招聘信息</a></li>
-						<li><a href="#">校友风采</a></li>
-						<li><a href="#">新闻公告</a></li>
+						<li><a href="http://cem.nuaa.edu.cn/list11710910.htm">校友风采</a></li>
+						<li><a href="http://cem.nuaa.edu.cn/list11710909.htm">新闻公告</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -89,7 +89,7 @@
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">校友捐赠<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">捐赠指南</a></li>
+						<li><a href="http://edf.nuaa.edu.cn/a/way/">捐赠指南</a></li>
 						<li><a href="${pageContext.request.contextPath }/donation/open.action">捐赠公示</a></li>
 					</ul>
 				</li>

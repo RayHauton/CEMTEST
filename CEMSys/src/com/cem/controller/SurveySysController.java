@@ -45,7 +45,7 @@ public class SurveySysController {
 		else if(selfabilityquality==null&&majorabilitycultivationquality!=null)
 			data = majorabilitycultivationquality.toString();
 		session.setAttribute("data",data);
-		return "redirect:/baseView/personal-ability.jsp";
+		return "/baseView/personal-ability";
 	}
 
 	@RequestMapping(value = "/saveSelfabilityquality")
