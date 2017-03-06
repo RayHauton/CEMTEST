@@ -9,7 +9,7 @@ body {
 
 .contentBody {
 	margin-top: 10px; width : 95%;
-	height: 500px;
+	min-height: 500px;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 6px;
@@ -17,14 +17,6 @@ body {
 	width: 95%;
 }
 
-.searchDiv {
-	width: 980px;
-	height: 500px;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	font-size: 12px;
-	float: left;
-}
 
 .searchLogo {
 	mergin:0px;
@@ -43,7 +35,7 @@ body {
 }
 
 #hr {
-	width: 103%;
+	width: 100%;
 	height: 3px;
 	border: none;
 	border-top: 2px solid #d3d7cf;
@@ -69,4 +61,5 @@ body {
 	width:150px;
 	height: 27px;
 }
+
 

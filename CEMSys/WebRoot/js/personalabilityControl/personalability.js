@@ -1,4 +1,5 @@
 $(function() {
+	alert(123);
 	$("#SelfabilityqualitySubmit")
 		.click(function() {
 			var flag = 0;
