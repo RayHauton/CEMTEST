@@ -93,7 +93,7 @@
 						<li><a href="${pageContext.request.contextPath }/donation/open.action">捐赠公示</a></li>
 					</ul>
 				</li>
-				<li><a href="#">学院事件录</a></li>
+				<li><a href="${pageContext.request.contextPath }/timeline/open.action">学院事件录</a></li>
 			</ul>
 		</div>
 	</nav>
