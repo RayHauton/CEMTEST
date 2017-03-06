@@ -161,15 +161,15 @@ function deleteReply(replyId){
 /**
  * 消息通知js
  */
-setTimeout(function(){
-	Push();
-//	alert("set timeout");
-},200);
-
-setInterval(function(){
-	Push();
-//	alert("interval");
-},3000);
+//setTimeout(function(){
+//	Push();
+////	alert("set timeout");
+//},200);
+//
+//setInterval(function(){
+//	Push();
+////	alert("interval");
+//},3000);
 
 function Push(){
 	$.ajax({
@@ -192,22 +192,71 @@ function Push(){
 	});
 }
 
+
 /**
- * 对时间进行转换
+ * 获取指定时间的友好时间字符串。
+ * @param str 指定的时间字符串，如yyyy-MM-dd HH:mm:ss
+ * @param now 当前时间，允许时间戳，GMT时间，如果该参数为undefined，则使用浏览器时间。
  */
-function timeTranslate(time){
-	function zeroize(num){
-		return (String(num).length==1?'0':'')+num;
-	}
-	var currentTime = parseInt(new Date().getTime / 1000);//获得当前时间
-	var timestamp =Date.parse(time)/1000;
-	return timestamp;
-	
+function getFriendlyTime(str){
+    var currentTime = new Date();
+    alert(currentTime);
+    var arr = str.split(/\s+/gi);
+    var temp = 0, arr1, arr2, oldTime, delta;
+    var getIntValue = function(ss, defaultValue){
+        try{
+            return parseInt(ss, 10);
+        }catch (e){
+            return defaultValue;
+        }
+    };
+    var getWidthString = function(num){
+        return num < 10 ? ("0" + num) : num;
+    };
+    if(arr.length >= 2){
+        arr1 = arr[0].split(/[\/\-]/gi);
+        arr2 = arr[1].split(":");
+        oldTime = new Date();
+        oldTime.setYear(getIntValue(arr1[0], currentTime.getFullYear()));
+        oldTime.setMonth(getIntValue(arr1[1], currentTime.getMonth() + 1) - 1);
+        oldTime.setDate(getIntValue(arr1[2], currentTime.getDate()));
+
+        oldTime.setHours(getIntValue(arr2[0], currentTime.getHours()));
+        oldTime.setMinutes(getIntValue(arr2[1], currentTime.getMinutes()));
+        oldTime.setSeconds(getIntValue(arr2[2], currentTime.getSeconds()));
+
+        delta = currentTime.getTime() - oldTime.getTime();
+
+        if(delta <= 6000){
+            return "1分钟内";
+        }
+        else if(delta < 60 * 60 * 1000){
+            return Math.floor(delta / (60 * 1000)) + "分钟前";
+        }
+        else if(delta < 24 * 60 * 60 * 1000){
+            return Math.floor(delta / (60 * 60 * 1000)) + "小时前";
+        }
+        else if(delta < 3 * 24 * 60 * 60 * 1000){
+            return Math.floor(delta / (24 * 60 * 60 * 1000)) + "天前";
+        }
+        else if(currentTime.getFullYear() != oldTime.getFullYear()){
+            return [getWidthString(oldTime.getFullYear()), getWidthString(oldTime.getMonth() + 1), getWidthString(oldTime.getDate())].join("-")
+        }
+        else{
+            return [getWidthString(oldTime.getMonth() + 1), getWidthString(oldTime.getDate())].join("-");
+        }
+    }
+    return "";
 }
 
+function getTime(){
+	test = "2017-3-5 16:12:12.2";
+	var friendlyTime = getFriendlyTime(test);
+}
 
-
-
+window.onload=function(){
+	
+}
 
 
 

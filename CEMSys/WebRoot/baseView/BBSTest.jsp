@@ -12,9 +12,12 @@ To change this template use File | Settings | File Templates.
 <head>
 <meta charset="UTF-8">
 <title>校友论坛</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/head.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/footer.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/view_set/head.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/view_set/footer.css">
 </head>
 <body>
 
@@ -23,16 +26,26 @@ To change this template use File | Settings | File Templates.
 	<input type="hidden" value="${thisForum.forumId }" id="forumId" />
 	<input type="hidden" value="${thisForum.forumTitle }" id="forumTitle" />
 	<jsp:include page="/baseView/header.jsp"></jsp:include>
-	<div class="box" style="margin-left:auto;margin-right:auto;width:1000px" >
-		<div class="container" style="width:1000px;">
-			<a href="#" style="margin-left:auto;margin-right:auto;">消息</a>
-			
+	<div class="box"
+		style="margin-left: auto; margin-right: auto; width: 1000px">
+		<div class="container" style="width: 1000px;">
+			<a href="#" style="margin-left: auto; margin-right: auto;">消息</a>
+
+			<p>友好时间测试</p>
+			<span id="friendlyTime_${test.floor }">111</span>
+
+
+
+
 			<div>
-			<p>消息通知测试</p>
-			<!--以下是消息通知测试  -->
-			<span id="tongzhi" style="display:none;">有<a href="${pageContext.request.contextPath }/forum/myMessage"><strong id="tongzhi-content">0</strong></a>条新消息</span>
-			</div>		
-			
+				<p>消息通知测试</p>
+				<!--以下是消息通知测试  -->
+				<span id="tongzhi" style="display: none;">有<a
+					href="${pageContext.request.contextPath }/forum/myMessage"><strong
+						id="tongzhi-content">0</strong></a>条新消息
+				</span>
+			</div>
+
 			<h1>${thisForum.forumTitle }</h1>
 			<h2>共${thisForum.replyCount }回复</h2>
 			<c:forEach var="test" items="${replyList }">
@@ -41,11 +54,10 @@ To change this template use File | Settings | File Templates.
 						<div class="head">
 							<img alt="个人头像" src="" />
 							<div class="nameBox">
-								<span class="name">${test.publishUser }</span> 
-								<span class="time">${test.replyTime }</span> 
-								<span class="time" value="timeTranslate(${test.replyTime })"></span>
-									<input type="hidden"
-									id="userId${test.floor }" value="${test.publishUserId }" />
+								<span class="name">${test.publishUser }</span> <span
+									class="time" id="friendlyTime_${test.floor }">${test.replyTime }</span>
+								<input type="hidden" id="userId${test.floor }"
+									value="${test.publishUserId }" />
 							</div>
 							<span>${test.floor }楼</span>
 						</div>
@@ -67,6 +79,11 @@ To change this template use File | Settings | File Templates.
 					</div>
 				</div>
 			</c:forEach>
+
+			
+
+
+
 			<div class="container" style="text-align: center;">
 				<ul class="pagination">
 					<li><a href="#">共${totalReplyPage }页</a></li>
