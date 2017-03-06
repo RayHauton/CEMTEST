@@ -6,9 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/head.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/view_set/footer.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/view_set/head.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/view_set/footer.css">
 
 <!-- 	ueditor编辑器 -->
 <script type="text/javascript" charset="utf-8"
@@ -128,32 +131,74 @@ h1 {
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath">
 	<div class="box">
-	<jsp:include page="/baseView/header.jsp"></jsp:include>
-		<div class="head">
-			<div class="logo">
-				<a href="javascipt:void(0);"> <img src="" alt="个人头像">
-				</a>
-			</div>
-		</div>
-		
-		
-		
-		
-		<div class="tiezi" style="text-align:center">
+		<jsp:include page="/baseView/header.jsp"></jsp:include>
+	<!-- 		<div class="head"> -->
+	<!-- 			<div class="logo"> -->
+	<!-- 				<a href="javascipt:void(0);"> <img src="" alt="个人头像"> -->
+	<!-- 				</a> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+
+
+
+
+<!-- 		<div class="tiezi" style="text-align: center"> -->
+<%-- 			<c:forEach var="test" items="${forumList }"> --%>
+<!-- 				<div> -->
+<!-- 					<a -->
+<%-- 						href="${pageContext.request.contextPath }/forum/p/${test.forumId}" --%>
+<%-- 						target="_blank">${test.forumTitle }</a> --%>
+<%-- 					<p>查看量:${test.viewCount }</p> --%>
+<%-- 					<p>回复量：${test.replyCount }</p> --%>
+<%-- 					<c:if test="${user.role=='3' }"> --%>
+<!-- 						<button type="button" class="btn btn-danger" -->
+<%-- 							onclick="deleteForum(this)" name="${test.forumId }">删除</button> --%>
+<%-- 					</c:if> --%>
+<!-- 				</div> -->
+<%-- 			</c:forEach> --%>
+<!-- 		</div> -->
+
+		<div class="list-group"
+			style="width: 700px; margin-left: auto; margin-right: auto;">
+				<a href="#" class="list-group-item active"> 随便你说 </a>
 			<c:forEach var="test" items="${forumList }">
-				<div>
-					<a
-						href="${pageContext.request.contextPath }/forum/p/${test.forumId}"
-						target="_blank">${test.forumTitle }</a>
-					<p>查看量:${test.viewCount }</p>
-					<p>回复量：${test.replyCount }</p>
-					<c:if test="${user.role=='3' }">
-						<button type="button" class="btn btn-danger"
-							onclick="deleteForum(this)" name="${test.forumId }">删除</button>
-					</c:if>
-				</div>
+				<a
+					href="${pageContext.request.contextPath }/forum/p/${test.forumId}"
+					class="list-group-item" style="height:80px;">
+					<span class="badge">回复量：${test.replyCount }</span>
+					<h4 class="list-group-item-heading">${test.forumTitle}</h4>
+					<span class="badge">查看量: ${test.viewCount }</span>
+<%-- 					<p class="list-group-item-text">${test.forumContent}</p> --%>
+				</a>
 			</c:forEach>
 		</div>
+
+		
+<table class="table table-striped table-hover">
+		<thead>
+		<tr>
+			<th>全部主题</th>
+			<th>作者</th>
+			<th>回复/查看</th>
+			<th>最后发表</th>
+		</tr></thead>
+		<tbody>
+			<c:forEach var="test" items="${forumList }">
+				<tr>
+					<td>${test.forumTitle }</td>
+					<td><p style="font-size:10px;">${test.username }</p><p>${test.publishTime }</p></td>
+					<td>${test.replyCount }/${test.viewCount }</td>
+					<td>${test.updateTime }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+
+
+
+
+
 		<div class="container" style="text-align: center;">
 			<ul class="pagination">
 				<li><a href="#">共${totalForumPage }页</a></li>
@@ -202,7 +247,8 @@ h1 {
 			</ul>
 		</div>
 
-		<div class="inputBox" style="width:1000px;margin-left:auto;margin-right:auto;">
+		<div class="inputBox"
+			style="width: 900px; margin-left: auto; margin-right: auto;">
 			<input type="text" id="forumTitle" placeholder="标题"
 				class="form-control" onkeydown="countChar('forumTitle','counter')"
 				onkeyup="countChar('forumTitle','counter')" /> 已经输入<span
@@ -213,7 +259,7 @@ h1 {
 					class="btn">
 			</p>
 		</div>
-		
+
 		<jsp:include page="/baseView/footer.jsp"></jsp:include>
 
 	</div>
