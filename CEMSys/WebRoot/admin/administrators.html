@@ -26,17 +26,10 @@
 					<a href="javascript:void(0);">欢迎登录：管理员</a>
 				</div>
 				<ul id="list_ul">
-					<!--这里<a>标签必须紧跟<li>标签，否则空白符会被认为是一个子节点 ，这样伸缩效果就失效了-->
-					<!-- <li><a href="administrator/review.html" target="iframe" onclick="slide(0);">用户管理</a>
-	            <ul class="Hide">
-	                <li><a href="javascript:void(0);" target="show_info">用户审核</a></li>
-	                <li><a href="javascript:void(0);" target="show_info">用户添加</a></li>
-	            </ul>
-	        </li> -->
 					<li><a href="#" onclick="slide(1);">数据管理</a>
 						<ul class="Hide">
 							<li><a href="notice.html" target="notice">校友会信息添加</a></li>
-							<li><a href="data.html" target="notice">学园事件录添加</a></li>
+							<li><a href="collegeEventSet.jsp" target="notice">学园事件录管理</a></li>
 							<li><a href="review.html" target="notice">学历管理</a></li>
 							<li><a href="system.html" target="notice">调研信息</a></li>
 						</ul></li>
@@ -53,7 +46,9 @@
 						</ul></li>
 				</ul>
 			</div>
-			<iframe src="" frameborder="0" name="notice"></iframe>
+			<div style="float: left;">
+				<iframe src="" frameborder="0" name="notice"></iframe>
+			</div>
 		</div>
 	</div>
 </body>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-6 17:24:33 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.cem.pojo.Collegeevent" table="collegeevent" catalog="cemsys">
+        <id name="eventId" type="java.lang.Integer">
+            <column name="eventId" />
+            <generator class="identity" />
+        </id>
+        <property name="eventTitle" type="string">
+            <column name="eventTitle" length="100" not-null="true" />
+        </property>
+        <property name="eventDetail" type="string">
+            <column name="eventDetail" length="1000" not-null="true" />
+        </property>
+        <property name="eventImg" type="string">
+            <column name="eventImg" length="100" />
+        </property>
+        <property name="eventDate" type="string">
+            <column name="eventDate" length="7" not-null="true" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="isDeleted" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

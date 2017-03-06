@@ -42,58 +42,34 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="#" class="navbar-brand">系统导航</a>
+			<a href="#" class="navbar-brand">功能导航</a>
 		</div>
 		<div id="navbarCollapse" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#">个人信息<b class="caret"></b></a>
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#">数据管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">基础信息</a></li>
-						<li><a href="#">职业信息</a></li>
-						<li><a href="#">工作待遇</a></li>
+						<li><a href="#">校友会信息添加</a></li>
+						<li><a href="#">学园事件录管理</a></li>
+						<li><a href="#">学历管理</a></li>
+						<li><a href="#">调研信息</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle fontColor1" href="#">调研问卷<b class="caret"></b></a>
+					<a data-toggle="dropdown" class="dropdown-toggle fontColor1" href="#">公告管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">个人能力品质</a></li>
-						<li><a href="#">专业能力培养</a></li>
+						<li><a href="#">返校公告</a></li>
+						<li><a href="#">捐款公告添加</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#">返校服务<b class="caret"></b></a>
+					<a data-toggle="dropdown" class="dropdown-toggle" href="#">系统管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">返校指南</a></li>
-						<li><a href="#">周边住宿</a></li>
-						<li><a href="#">办理成绩单</a></li>
-						<li><a href="#">参观预约</a></li>
+						<li><a href="#">论坛审核</a></li>
+						<li><a href="#">祝福模板</a></li>
+						<li><a href="#">用户管理</a></li>
 					</ul>
 				</li>
-				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#">校友快讯<b class="caret"></b></a>
-					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">招聘信息</a></li>
-						<li><a href="#">校友风采</a></li>
-						<li><a href="#">新闻公告</a></li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#">校友联络<b class="caret"></b></a>
-					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">校友会</a></li>
-						<li><a href="#">校友联络</a></li>
-						<li><a href="#">校友发声</a></li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#">校友捐赠<b class="caret"></b></a>
-					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">捐赠指南</a></li>
-						<li><a href="${pageContext.request.contextPath }/donation/open.action">捐赠公示</a></li>
-					</ul>
-				</li>
-				<li><a href="${pageContext.request.contextPath }/timeline/open.action">学院事件录</a></li>
 			</ul>
 		</div>
 	</nav>

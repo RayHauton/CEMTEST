@@ -12,43 +12,139 @@ To change this template use File | Settings | File Templates.
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/view_set/base.css">
 	<link rel="stylesheet" href="../css/view_set/timeline.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/view_set/head.css">
+	<link rel="stylesheet" href="../css/view_set/footer.css">
 </head>
 <body>
-	<div class="box">
-		<h2>经管历程</h2>
-		<div class="line"></div>
-		<div class="linebox">
-			<div class="time">2017<span>9-17</span></div>
-			<div class="container">
-				<div class="title">标题</div>
-				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
-			</div>
-			<div class="img"><img src="../img/p2.jpg" alt=""></div>
+	<jsp:include page="header.jsp"></jsp:include>
+<div class="box">
+	<!-- 单个事件 -->
+	<div class="each">
+		<div class="time">
+			2017-03-05
 		</div>
 		<div class="linebox">
-			<div class="time">2017<span>9-17</span></div>
-			<div class="container">
-				<div class="title">标题</div>
-				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
-			</div>
-			<div class="img"><img src="../img/p2.jpg" alt=""></div>
+			<div class="line"></div>
 		</div>
-		<div class="linebox">
-			<div class="time">2017<span>9-17</span></div>
-			<div class="container">
-				<div class="title">标题</div>
-				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
+		<div class="content">
+			<span class="title">事件一</span>
+			<div class="detail">
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
 			</div>
-			<div class="img"><img src="../img/p2.jpg" alt=""></div>
 		</div>
-		<div class="linebox">
-			<div class="time">2017<span>9-17</span></div>
-			<div class="container">
-				<div class="title">标题</div>
-				<div class="text">文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</div>
-			</div>
-			<div class="img"><img src="../img/p2.jpg" alt=""></div>
+		<div class="imgDiv">
+			<img alt="" src="../img/time_line.png">
 		</div>
 	</div>
+	<div class="each">
+		<div class="time">
+			2017-03-05
+		</div>
+		<div class="linebox">
+			<div class="line"></div>
+		</div>
+		<div class="content">
+			<span class="title">事件一</span>
+			<div class="detail">
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			</div>
+		</div>
+		<div class="imgDiv">
+			<img alt="" src="../img/time_line.png">
+		</div>
+	</div>
+	<div class="each">
+		<div class="time">
+			2017-03-05
+		</div>
+		<div class="linebox">
+			<div class="line"></div>
+		</div>
+		<div class="content">
+			<span class="title">事件一</span>
+			<div class="detail">
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			</div>
+		</div>
+		<div class="imgDiv">
+			<img alt="" src="../img/time_line.png">
+		</div>
+	</div>
+	<div class="each">
+		<div class="time">
+			2017-03-05
+		</div>
+		<div class="linebox">
+			<div class="line"></div>
+		</div>
+		<div class="content">
+			<span class="title">事件一</span>
+			<div class="detail">
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			</div>
+		</div>
+		<div class="imgDiv">
+			<img alt="" src="../img/time_line.png">
+		</div>
+	</div>
+	<div class="each">
+		<div class="time">
+			2017-03-05
+		</div>
+		<div class="linebox">
+			<div class="line"></div>
+		</div>
+		<div class="content">
+			<span class="title">事件一</span>
+			<div class="detail">
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			</div>
+		</div>
+		<div class="imgDiv">
+			<img alt="" src="../img/time_line.png">
+		</div>
+	</div>
+	<div class="each">
+		<div class="time">
+			2017-03-05
+		</div>
+		<div class="linebox">
+			<div class="line"></div>
+		</div>
+		<div class="content">
+			<span class="title">事件一</span>
+			<div class="detail">
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗你知道吗
+			</div>
+		</div>
+		<div class="imgDiv">
+			<img alt="" src="../img/time_line.png">
+		</div>
+	</div>
+</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
+<script src="../js/jquery-1.9.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

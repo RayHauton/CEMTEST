@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+body{
+/* 	font-family: 微软雅黑; */
+}
+h5 {
+	padding: 0;
+}
+
+hr {
+	margin: 0;
+	padding: 0;
+}
+.data{
+	background-color: pink;
+	width:500px;
+	height:500px;
+}
