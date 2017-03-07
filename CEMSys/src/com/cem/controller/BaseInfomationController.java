@@ -24,10 +24,10 @@ import com.cem.service.UserService;
 @RequestMapping(value = "/infoSys")
 public class BaseInfomationController {
 	@Autowired
-	UserService userservice = null;
+	private UserService userservice = null;
 
 	@Autowired
-	JobService jobService = null;
+	private JobService jobService = null;
 
 	@RequestMapping(value = "/open")
 	public String open() throws Exception {

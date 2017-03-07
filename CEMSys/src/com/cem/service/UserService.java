@@ -1,5 +1,7 @@
 package com.cem.service;
 
+import java.util.List;
+
 import com.cem.pojo.User;
 
 /**
@@ -46,4 +48,12 @@ public interface UserService {
 	 * 更新数据库记录
 	 */
 	public void updateUser(User user) throws Exception;
+	
+	
+	public List<User> findUsersByTrueName(String trueName,boolean passed,int pageSize)throws Exception;	
+	
+	public List<User> findUsersByEntranceDate(String entranceDate,boolean passed,int pagesize) throws Exception;
+	
+	public List<User> finUserByEnAndTrueName(String entranceDate,String trueName,boolean passed,int pageSize) throws Exception;
+	
 }

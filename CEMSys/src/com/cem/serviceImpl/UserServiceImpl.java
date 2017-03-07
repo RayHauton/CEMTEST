@@ -1,5 +1,7 @@
 package com.cem.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +60,24 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(User user) throws Exception {
 		userDao.updateUser(user);
+	}
+
+
+	@Override
+	public List<User> findUsersByTrueName(String trueName, boolean passed, int pageSize) throws Exception {
+		return userDao.findUsersByTruename(trueName, passed, pageSize);
+	}
+
+	@Override
+	public List<User> findUsersByEntranceDate(String entranceDate, boolean passed, int pagesize) throws Exception {
+		return userDao.findUserByEntranceDate(entranceDate, passed, pagesize);
+	}
+
+	@Override
+	public List<User> finUserByEnAndTrueName(String entranceDate, String trueName, boolean passed, int pageSize)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.findUserByEntAndTrueName(entranceDate, trueName, passed, pageSize);
 	}
 
 }
