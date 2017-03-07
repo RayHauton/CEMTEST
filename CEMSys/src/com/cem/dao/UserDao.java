@@ -1,5 +1,7 @@
 package com.cem.dao;
 
+import java.util.List;
+
 import com.cem.pojo.User;
 
 /**
@@ -47,4 +49,10 @@ public interface UserDao {
 	 * 更新数据库记录
 	 */
 	public void updateUser(User user) throws Exception;
+	
+	public List<User> findUsersByTruename(String trueName,boolean passed,int pageSize);
+	
+	public List<User> findUserByEntranceDate(String entranceDate,boolean passed,int pageSize);
+	
+	public List<User> findUserByEntAndTrueName(String entranceDate,String trueName,boolean passed,int pageSize);
 }

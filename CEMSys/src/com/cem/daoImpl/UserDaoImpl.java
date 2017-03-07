@@ -111,4 +111,48 @@ public class UserDaoImpl implements UserDao {
 		session.update(user);
 	}
 
+	@Override
+	public List<User> findUsersByTruename(String trueName, boolean passed, int pageSize) {
+		Session session = getSession();
+		String hql = null;
+		if (passed) {
+			hql = "FROM User where truename=? and isDeleted=? and checkOut='1'";
+		} else {
+			hql = "FROM User where truename=? and isDeleted=?";
+		}
+		List<User> users = session.createQuery(hql).setParameter(0, trueName).setParameter(1, "0").setFirstResult(0)
+				.setMaxResults(pageSize).list();
+		return users;
+	}
+
+	@Override
+	public List<User> findUserByEntranceDate(String entranceDate, boolean passed, int pageSize) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = null;
+		if (passed) {
+			hql = "from user where entranceDate = ? and idDeleted and checkOut =' 1' ";
+		} else {
+			hql = "from user where entranceDate = ? and idDeleted ";
+		}
+		List<User> uList = session.createQuery(hql).setParameter(0, entranceDate).setParameter(1, "0").setFirstResult(0)
+				.setMaxResults(pageSize).list();
+		return uList;
+	}
+
+	@Override
+	public List<User> findUserByEntAndTrueName(String entranceDate, String trueName, boolean passed, int pageSize) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		String hql = null;
+		if (passed) {
+			hql = "from user where entranceDate = ? and trueName = ? and idDeleted = ? and checkOut = '1' ";
+		} else {
+			hql = "from user where entranceDate = ? and trueName = ? and idDeleted = ? ";
+		}
+		List<User> uList = session.createQuery(hql).setParameter(0, entranceDate).setParameter(1, trueName)
+				.setParameter(2, "0").setFirstResult(0).setMaxResults(pageSize).list();
+		return uList;
+	}
+
 }
