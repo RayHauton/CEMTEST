@@ -50,7 +50,7 @@
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">数据管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#">校友会信息添加</a></li>
-						<li><a href="#">学园事件录管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/collegeEvent/open_adm.action">学园事件录管理</a></li>
 						<li><a href="#">学历管理</a></li>
 						<li><a href="#">调研信息</a></li>
 					</ul>
