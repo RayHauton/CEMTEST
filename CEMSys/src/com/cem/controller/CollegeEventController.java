@@ -1,15 +1,63 @@
 package com.cem.controller;
 
+import java.io.File;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.cem.pojo.Collegeevent;
+import com.cem.service.CollegeEventService;
 
 /*
  * 学院事件录Controller
  */
 @Controller
-@RequestMapping(value = "timeline")
+@RequestMapping(value = "/collegeEvent")
 public class CollegeEventController {
+	@Value("${file.path}")
+	private String path;
+	@Autowired
+	private CollegeEventService collegeEventService;
+	@RequestMapping(value="/add")
+	public void add(Collegeevent colgevnt,MultipartFile image,HttpServletRequest request) throws Exception{
+		String oriName = image.getOriginalFilename();
+		String dirRealPath = request.getServletContext().getRealPath(path);//获取真实物理路径
+		/*
+		 * 根据事件日期创建相应目录进行分级存放文件
+		 */
+		String date = colgevnt.getEventDate();
+		String dirName = date.substring(0,4);//截取年份，用年份来创建目录,原始数据格式为yyyy-MM
+		/*
+		 * 判断目标目录是否存在，不存在创建之
+		 */
+		String targetPath = dirRealPath+"/"+dirName;
+		File targetDir = new File(targetPath);
+		if(!targetDir.exists()){
+			targetDir.mkdirs();
+		}
+		String newName = UUID.randomUUID()+oriName.substring(oriName.lastIndexOf("."));
+		image.transferTo(new File(targetPath+"/"+newName));
+		colgevnt.setEventImg(newName);//设置pojo的文件路径
+//		colgevnt.setIsDeleted("0");
+		/*
+		 * 调用service进行存储
+		 */
+		collegeEventService.add(colgevnt);
+	}
+	
+	@RequestMapping(value = "/open_adm")
+	public ModelAndView open_adm() throws Exception{
+		ModelAndView modelAndView  = new ModelAndView();
+		modelAndView.setViewName("admin/collegeEventSet");
+		return modelAndView;
+	}
 	@RequestMapping(value = "/open")
 	public ModelAndView open() throws Exception{
 		ModelAndView modelAndView  = new ModelAndView();

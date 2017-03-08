@@ -1,17 +1,43 @@
 @CHARSET "UTF-8";
 body{
-/* 	font-family: 微软雅黑; */
+	font-family: 微软雅黑;
 }
-h5 {
+.outer{
+	width:1000px;
+	height:500px;
+	border-radius:4px;
+	border:1px solid #cecece;
+/* 	border-right:1px solid silver; */
+	margin-left:auto;
+	margin-right:auto;
+	border-top:0;
+}
+.btn-custom{
+	margin-left:10px;
+	margin-top:10px;
+}
+hr{
+	margin-top:10px;
 	padding: 0;
 }
-
-hr {
+.addDiv{
+	width:570px;
+/* 	height:460px; */
+/* 	background-color: red; */
+	margin-left: auto;
+	margin-right:auto;
+	padding: 0;
+}
+.modal-body{
+	padding: 0;
+}
+.errorInfoContent{
+	width:570px;
+	height:20px;
 	margin: 0;
 	padding: 0;
+/* 	background-color: green; */
 }
-.data{
-	background-color: pink;
-	width:500px;
-	height:500px;
+.form-group{
+	margin-top:5px;
 }
