@@ -15,7 +15,7 @@
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#" style="color:deeppink;"><img src="${pageContext.request.contextPath }/img/user.png" style="width:20px;height:20px;">
-						林华栋<b class="caret"></b></a>
+						${sessionScope.user.truename }<b class="caret"></b></a>
 						<ul role="menu" class="dropdown-menu">
 							<li><a href="#">修改密码</a></li>
 							<li><a href="#">查看资料</a></li>
@@ -93,7 +93,7 @@
 						<li><a href="${pageContext.request.contextPath }/donation/open.action">捐赠公示</a></li>
 					</ul>
 				</li>
-				<li><a href="${pageContext.request.contextPath }/timeline/open.action">学院事件录</a></li>
+				<li><a href="${pageContext.request.contextPath }/collegeEvent/show.action">学院事件录</a></li>
 			</ul>
 		</div>
 	</nav>

@@ -15,7 +15,7 @@
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#" style="color:deeppink;"><img src="${pageContext.request.contextPath }/img/user.png" style="width:20px;height:20px;">
-						林华栋<b class="caret"></b></a>
+						${sessionScope.user.truename }<b class="caret"></b></a>
 						<ul role="menu" class="dropdown-menu">
 							<li><a href="#">修改密码</a></li>
 							<li><a href="#">查看资料</a></li>
@@ -49,8 +49,8 @@
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">数据管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">校友会信息添加</a></li>
-						<li><a href="${pageContext.request.contextPath }/collegeEvent/open_adm.action">学园事件录管理</a></li>
+						<li><a href="#">校友会信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/collegeEvent/show_adm.action">学院事件录</a></li>
 						<li><a href="#">学历管理</a></li>
 						<li><a href="#">调研信息</a></li>
 					</ul>
@@ -58,8 +58,8 @@
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle fontColor1" href="#">公告管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">返校公告</a></li>
-						<li><a href="#">捐款公告添加</a></li>
+						<li><a href="#">新闻公告</a></li>
+						<li><a href="#">捐款公告</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">

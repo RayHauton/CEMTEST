@@ -14,8 +14,11 @@ function login(prefix, action, target) {
 			window.alert("服务器错误！");
 		},
 		success : function(data) {
-			if (data == "succ") {
+			if (data == "succ_g") {
 				window.open(target, "_self");
+				return;
+			} else if (data == "succ_a") {//管理员登录
+				window.open(prefix+"/admin/adminIndex.jsp", "_self");
 				return;
 			} else if (data == "notExist") {
 				window.alert("用户不存在，请尝试其他登录方式！");
@@ -37,26 +40,26 @@ function login(prefix, action, target) {
 /*
  * 这个地方我都觉得自己写的有点诡异，，，，，，
  */
-function checkIdentifyCode(prefix,willTo) {
+function checkIdentifyCode(prefix, willTo) {
 	var code = document.getElementById("idenCode").value;
 	$.ajax({
 		type : "POST",
-		url : prefix+"/getCode.action",
+		url : prefix + "/getCode.action",
 		data : {},
-		async:true,
-		error:function(){
+		async : true,
+		error : function() {
 			window.alert("服务器错误");
-//			customAlert("服务器错误！","error");
+			// customAlert("服务器错误！","error");
 		},
-		success:function(data){
-			if(data==code){
+		success : function(data) {
+			if (data == code) {
 				/*
 				 * 验证码通过，再检验用户名和密码
 				 */
-				login(prefix, "/login.action",willTo);
-			}else{
+				login(prefix, "/login.action", willTo);
+			} else {
 				window.alert("验证码不正确");
-//				customAlert("验证码不正确！","error");
+				// customAlert("验证码不正确！","error");
 			}
 		}
 	});
