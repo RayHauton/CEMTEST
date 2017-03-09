@@ -98,7 +98,7 @@ public class DonationDaoImpl implements DonationDao {
 		 * 获得记录数
 		 */
 		int recordCount = Integer.parseInt(
-				String.valueOf((Long) session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
+				String.valueOf(session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
 		resultMap.put("recordCount", recordCount);
 		/*
 		 * 获得记录

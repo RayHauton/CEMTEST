@@ -39,11 +39,11 @@
                 <comment>????</comment>
             </column>
         </property>
-        <property name="publishTime" type="timestamp">
-            <column name="publishTime" length="19" />
+        <property name="publishTime" type="string">
+            <column name="publishTime" length="20" />
         </property>
-        <property name="updateTime" type="timestamp">
-            <column name="updateTime" length="19" />
+        <property name="updateTime" type="string">
+            <column name="updateTime" length="20" />
         </property>
         <property name="replyCount" type="java.lang.Integer">
             <column name="replyCount">

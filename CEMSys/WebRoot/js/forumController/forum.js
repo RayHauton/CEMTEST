@@ -200,7 +200,6 @@ function Push(){
  */
 function getFriendlyTime(str){
     var currentTime = new Date();
-    alert(currentTime);
     var arr = str.split(/\s+/gi);
     var temp = 0, arr1, arr2, oldTime, delta;
     var getIntValue = function(ss, defaultValue){
@@ -249,15 +248,13 @@ function getFriendlyTime(str){
     return "";
 }
 
-function getTime(){
-	test = "2017-3-5 16:12:12.2";
-	var friendlyTime = getFriendlyTime(test);
+function getTime(test){
+	var time = document.getElementById('friendlyTime_'+test).value;
+	var friendlyTime = getFriendlyTime(time);
+//	alert(friendlyTime);
+	document.getElementById('friendlyTime_'+test).innerHTML = friendlyTime;//用于button
+//	document.getElementById('friendlyTime_'+test).innerHTML = "<lable>"+friendlyTime+"</lable>";
 }
-
-window.onload=function(){
-	
-}
-
 
 
 

@@ -31,8 +31,8 @@
                 <comment>???</comment>
             </column>
         </property>
-        <property name="replyTime" type="timestamp">
-            <column name="replyTime" length="19" />
+        <property name="replyTime" type="string">
+            <column name="replyTime" length="20" />
         </property>
         <property name="parentReplyId" type="string">
             <column name="parentReplyId" length="20">

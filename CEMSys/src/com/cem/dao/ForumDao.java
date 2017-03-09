@@ -1,6 +1,5 @@
 package com.cem.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import com.cem.pojo.Forum;
