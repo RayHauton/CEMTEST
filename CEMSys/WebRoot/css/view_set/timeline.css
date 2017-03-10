@@ -138,4 +138,22 @@ td{
 	background-color: #1269db;
 	color:#FFFFFF;
 }
-
+.dividePage{
+	margin: 0 auto;
+}
+.record{
+	float: left;
+	margin-left:10px;
+/* 	margin-top:20px; */
+	display: inline-block;
+}
+.record span{
+	display: inline-block;
+/* 	margin-top:5px; */
+/* 	background-color: red; */
+	height: 33px;
+	border-radius: 4px;
+	line-height: 33px;
+	border: 1px solid #DDDDDD;
+	font-size:12px;
+}

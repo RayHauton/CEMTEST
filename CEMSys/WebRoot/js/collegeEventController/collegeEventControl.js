@@ -10,9 +10,9 @@ var titleCheck = false;
 var summaryCheck = false;
 var dateCheck = false;
 var imgCheck = false;
-function checkTitle() {
-	var titleContent = document.getElementById("eventTitle").value;
-	var eventTitleError = document.getElementById("eventTitleError");
+function checkTitle(operation) {
+	var titleContent = document.getElementById("eventTitle_"+operation).value;
+	var eventTitleError = document.getElementById("eventTitleError_"+operation);
 	if (titleContent.length > 0) {
 		if (titleContent.length > 50) {
 			eventTitleError.style.display = "block";
@@ -28,9 +28,9 @@ function checkTitle() {
 	eventTitleError.style.display = "none";
 	titleCheck = true;
 }
-function checkDetail() {
-	var eventDetail = document.getElementById("eventDetail").value;
-	var eventDetailError = document.getElementById("eventDetailError");
+function checkDetail(operation) {
+	var eventDetail = document.getElementById("eventDetail_"+operation).value;
+	var eventDetailError = document.getElementById("eventDetailError_"+operation);
 	if (eventDetail.length > 0) {
 		if (eventDetail.length > 250) {
 			eventDetailError.style.display = "block";
@@ -47,9 +47,9 @@ function checkDetail() {
 	eventDetailError.style.display = "none";
 	summaryCheck = true;
 }
-function checkDate() {
-	var eventDate = document.getElementById("eventDate").value;
-	var eventDateError = document.getElementById("eventDateError");
+function checkDate(operation) {
+	var eventDate = document.getElementById("eventDate_"+operation).value;
+	var eventDateError = document.getElementById("eventDateError_"+operation);
 	if (eventDate.length == 0) {
 		eventDateError.style.display = "block";
 		eventDateError.innerHTML = prefix + "请输入或选择事件日期" + suffix;
@@ -59,9 +59,9 @@ function checkDate() {
 	eventDateError.style.display = "none";
 	dateCheck = true;
 }
-function checkImg() {
-	var image = document.getElementById("image").files[0];
-	var imageError = document.getElementById("imageError");
+function checkImg(operation) {
+	var image = document.getElementById("image_"+operation).files[0];
+	var imageError = document.getElementById("imageError_"+operation);
 	if (image == null) {
 		imageError.style.display = "block";
 		imageError.innerHTML = prefix + "请上传图片" + suffix;
@@ -79,17 +79,58 @@ function checkImg() {
 }
 function resetForm() {
 	var errorInfoDivs = document.getElementsByClassName("errorInfoContent");
-	document.getElementById("ff").reset();
+	document.getElementById("ff_add").reset();
 	for (var i = 0; i < errorInfoDivs.length; i++) {
 		errorInfoDivs[i].style.display = "none";
 		errorInfoDivs[i].innerHTML = "";
 	}
 }
-function submitForm() {
-	if (titleCheck && summaryCheck && dateCheck && imgCheck){
-		alert("Go!");
-		document.getElementById("ff").submit();
+function submitForm(operation,form,pageIndex) {
+	checkTitle(operation);
+	checkDetail(operation);
+	checkDate(operation);
+	checkImg(operation);
+	//如果是update操作那么上传图片的表单可以为空，因为用户可能不更改图片而是更改其他内容
+	if (titleCheck && summaryCheck && dateCheck){
+		if(operation!="update"){
+			if(imgCheck){
+				alert("Go!");
+			}else{
+				window.alert("提交的信息尚且存在错误，请检查");
+			}
+			
+		}else{
+			alert("Go!");
+		}
+		titleCheck = false;
+		summaryCheck = false;
+		dateCheck = false;
+		imgCheck = false;
+		if(form=='ff_add'){
+			document.getElementById(form).submit();
+		}else{//如果是更新操作 跳转到另一函数进行异步提交,这个地方我自己都觉得写得耦合太严重
+			document.getElementById("ff_update").submit();
+		}
 	}else{
 		window.alert("提交的信息尚且存在错误，请检查");
 	}
 }
+function fillUpdateInfo(obj){
+	var tds = obj.parentNode.parentNode.children;
+	document.getElementById("eventId_update").value=tds[0].innerText;
+	document.getElementById("eventTitle_update").value=tds[1].innerText;
+	document.getElementById("eventDetail_update").value=tds[2].innerText;
+	document.getElementById("eventDate_update").value=tds[3].innerText;
+	console.log(document.getElementById("eventId_update").value);
+}
+function submitFormOfQuery(pageIndex){
+	document.getElementById("pageIndex").value=pageIndex;
+	document.getElementById("ff_query").submit();
+}
+
+
+
+
+
+
+
