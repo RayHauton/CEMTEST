@@ -18,6 +18,29 @@ public class CollegeEventServiceImpl implements CollegeEventService {
 	@Value("${defaultPageSize}")
 	private Integer pageSizeDefault;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.cem.service.CollegeEventService#findById(java.lang.Integer)
+	 * 根据ID查询学员事件记录
+	 */
+	@Override
+	public Collegeevent findById(Integer eventId) throws Exception {
+		return collegeEventDao.findById(eventId);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.cem.service.CollegeEventService#update(com.cem.pojo.Collegeevent)
+	 * 更新学院事件记录
+	 */
+	@Override
+	public void saveOrUpdate(Collegeevent collegeevent) throws Exception {
+		collegeEventDao.saveOrUpdate(collegeevent);
+	}
+
 	@Override
 	public void add(Collegeevent collegeevent) throws Exception {
 		/*
@@ -29,10 +52,10 @@ public class CollegeEventServiceImpl implements CollegeEventService {
 
 	@Override
 	public Map<String, Object> findAll(CollegeEventQueryVo colgEvntQueryVo) throws Exception {
-		if(colgEvntQueryVo.getPageIndex()==null){
+		if (colgEvntQueryVo.getPageIndex() == null) {
 			colgEvntQueryVo.setPageIndex(1);
 		}
-		if(colgEvntQueryVo.getPageSize()==null){
+		if (colgEvntQueryVo.getPageSize() == null) {
 			colgEvntQueryVo.setPageSize(pageSizeDefault);
 		}
 		return collegeEventDao.findAll(colgEvntQueryVo);
