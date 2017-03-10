@@ -67,7 +67,7 @@
 						<li><a href="http://cem.nuaa.edu.cn/show11769449.htm">返校指南</a></li>
 						<li><a href="${pageContext.request.contextPath }/baseView/accommodation.jsp">周边住宿</a></li>
 						<li><a href="http://alumni.nuaa.edu.cn/a/bszn/183.html">办理成绩单</a></li>
-						<li><a href="#">参观预约</a></li>
+						<li><a href="${pageContext.request.contextPath }/baseView/appointment.jsp">参观预约</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">

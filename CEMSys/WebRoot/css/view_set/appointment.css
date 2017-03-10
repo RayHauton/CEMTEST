@@ -46,7 +46,7 @@ body{
     top:470px;left:275px;  
     display:inline-block;  
     border-radius:100%;  
-    background:#f00;  
+    background:#0074ca;  
     width:25px;height:25px;  
     line-height:25px;  
     cursor:pointer;  
@@ -78,7 +78,7 @@ body{
     75%,85% {margin-left: -3750px;}
     90%,100% {margin-left: -4500px;}
 }
-a:hover{
+#box a:hover{
 	text-decoration: none;
 	color: #fff;
 	font-size: 150%;
@@ -103,7 +103,7 @@ a:hover{
 	position: absolute;
 	top: 440px;
 	left: -40px;
-	opacity: 0.5;
+	/*opacity: 0.5;*/
 }
 #abstract li{
 	display: inline-block;
@@ -112,8 +112,8 @@ a:hover{
     margin: 0 275px;  
     float: left;  
     text-align: center;  
-    color: #fff;  
+    color: #fff; 
     border-radius: 10px;  
-    background: #000;
+    /*--- background: #000;---*/
 }
 

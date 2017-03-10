@@ -1,14 +1,20 @@
+<!-- 
+	预约参观静态页面
+ -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>校友系统-预约参观</title>
+	<title>校友系统-参观预约</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/view_set/appointment.css">
 	<link rel="stylesheet" href="../css/view_set/head.css">
 	<link rel="stylesheet" href="../css/view_set/footer.css">
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<div id="content">
 		<div class="title">
 			<h2>学院预约参观</h2>
@@ -23,13 +29,13 @@
 			<a id="a6" class="num">6</a>
 			<a id="a7" class="num">7</a>
 			<div id="picture" class="play">
-				<img src="../img/visit/h-museum1.jpg" >  
-				<img src="../img/visit/h-museum2.jpg">
-				<img src="../img/visit/library.jpg">
-				<img src="../img/visit/library1.jpg">
-				<img src="../img/visit/library2.jpg">
-				<img src="../img/visit/cafe.jpg">
-				<img src="../img/visit/cafe1.jpg">
+				<img src="${pageContext.request.contextPath }/img/visit/h-museum1.jpg" >  
+				<img src="${pageContext.request.contextPath }/img/visit/h-museum2.jpg">
+				<img src="${pageContext.request.contextPath }/img/visit/library.jpg">
+				<img src="${pageContext.request.contextPath }/img/visit/library1.jpg">
+				<img src="${pageContext.request.contextPath }/img/visit/library2.jpg">
+				<img src="${pageContext.request.contextPath }/img/visit/cafe.jpg">
+				<img src="${pageContext.request.contextPath }/img/visit/cafe1.jpg">
 				<ul id="abstract">
 					<li>学院院史馆</li>
 					<li>学院院史馆</li>
@@ -40,8 +46,11 @@
 					<li>W&M咖啡厅</li>
 				</ul>
 			</div>
-		</div>
-			
+		</div>		
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
+<script src="../js/jquery-1.9.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/loginController/loginAndLogout.js" ></script>
 </html>
