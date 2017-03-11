@@ -17,5 +17,5 @@ body {
     height: 100%;
 }
 #edui1_imagescale {
-    display:none; /*去除点击图片后出现的拉伸边框*/
+    display:none !important; 去除点击图片后出现的拉伸边框
 }			

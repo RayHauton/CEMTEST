@@ -64,7 +64,7 @@ To change this template use File | Settings | File Templates.
 										<div class="replytext">${test.replyText }</div>
 										<div class="replyinfo">
 											<div class="replyinfo-info">
-												<span>${test.publishUser }</span> <span>${test.replyTime }</span>
+												<span><img src="${pageContext.request.contextPath }/img/forum/user.png" alt="${test.publishUser }" style="width: 9px;height: 8px;">${test.publishUser }</span> <span>${test.replyTime }</span>
 												<input type="hidden" id="userId${test.floor }"
 													value="${test.publishUserId }" />
 											</div>
@@ -72,14 +72,12 @@ To change this template use File | Settings | File Templates.
 												<c:if
 													test="${user.role =='3' || user.userId == test.publishUserId }">
 													<ins class="element" style="text-decoration: none;">
-														<span class="glyphicon glyphicon-remove-circle"
-															style="color: #333; cursor: pointer; width: 50px;"
-															name="${test.replyId }" onclick="deleteReply(this)">删除</span>
+														<span style="color: #333; cursor: pointer; width: 50px;"
+															name="${test.replyId }" onclick="deleteReply(this)"><img src="${pageContext.request.contextPath }/img/forum/gantanhao.png" alt="" style="width: 15px;height: 20px;">删除</span>
 													</ins>
 												</c:if>
-												<span class="glyphicon glyphicon-edit"
-													style="color: #333; cursor: pointer;"
-													onclick="messagebox()">评论</span>
+												<span style="color: #333; cursor: pointer;"
+													onclick="messagebox()"><img src="${pageContext.request.contextPath }/img/forum/reply.png" alt="" style="width: 15px;height: 15px;">评论</span>
 											</div>
 											<div id="pp"
 												style="width: 800px; height: 150px; display: none;background-color: #f4fef6">

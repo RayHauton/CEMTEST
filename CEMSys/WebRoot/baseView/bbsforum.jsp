@@ -127,7 +127,6 @@ h1 {
 	-moz-box-shadow: none;
 	box-shadow: none;
 }
-
 }
 </style>
 </head>
@@ -149,7 +148,9 @@ h1 {
 											href="${pageContext.request.contextPath }/forum/p/${test.forumId}">${test.forumTitle }</a>
 									</div>
 									<div class="forum-content">
-										<span class="glyphicon glyphicon-user">${test.username }</span>
+										<span><img
+											src="${pageContext.request.contextPath }/img/forum/user.png"
+											alt="${test.username }" style="width: 9px; height: 8px;">${test.username }</span>
 										<span>回复数${test.replyCount }</span> <span>查看量${test.viewCount }</span>
 										<span title="最后回复时间">${test.updateTime }</</span>
 									</div>
@@ -225,7 +226,7 @@ h1 {
 		<jsp:include page="/baseView/footer.jsp"></jsp:include>
 
 	</div>
-	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js"
+	<script src="${pageContext.request.contextPath }/js/jquery.min.js"
 		type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"
 		type="text/javascript"></script>
