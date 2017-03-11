@@ -51,19 +51,23 @@
 				<td style="display: none;">${pojo.eventId }</td>
 				<td>
 				<span style="width: 240px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-				${pojo.eventTitle }
+					<a class="detailA" data-toggle="modal" data-target="#info" onclick="showInfo('${pageContext.request.contextPath}/collegeEvent/findInfo.action','title',this)">
+					${pojo.eventTitle }
+					</a>
 				</span>
 				</td>
 				<td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
 				<span style="width: 380px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-				${pojo.eventDetail }
+					<a class="detailA" data-toggle="modal" data-target="#info" onclick="showInfo('${pageContext.request.contextPath}/collegeEvent/findInfo.action','detail',this)">
+					${pojo.eventDetail }
+					</a>
 				</span>
 				</td>
 				<td>${pojo.eventDate }</td>
-				<td><a>查看图片</a></td>
+				<td><a data-toggle="modal" data-target="#showImg" class="detailA" onclick="loadImg('${pageContext.request.contextPath}/collegeEvent/loadImg.action',this)">查看图片</a></td>
 				<td>
 				<button class="btn btn-primary" data-toggle="modal" data-target="#update" onclick="fillUpdateInfo(this)">编辑</button>
-				<button class="btn btn-warning">删除</button>
+				<button class="btn btn-warning" onclick="deleteRecord('${pageContext.request.contextPath}/collegeEvent/delete.action',this,'${queryVo.pageIndex }')">删除</button>
 				</td>
 		</c:forEach>
 		</tr>
@@ -227,6 +231,56 @@
 				</div>
 			</div>
 		</form>
+		</div>
+	</div>
+	<!-- 查看事件详情 -->
+	<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_info" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel_info">
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="infoBody">
+					<div id="loading" style="display: block">
+<!-- 					<img alt="" src="../img/donation/loading.gif" width="20px" height="20px" style="margin-left: 270px;margin-top:20px;"> -->
+					</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 查看图片 -->
+	<div class="modal fade" id="showImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_img" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel_img">
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="infoBody">
+					<div id="loading" style="display: block;margin-left: auto;margin-right: auto;width: 300px;height: 200px;">
+						<img alt="" src="" id="imgInfo" width="300px" height="200px">
+					</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

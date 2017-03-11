@@ -27,5 +27,5 @@ public interface CollegeEventService {
 	/*
 	 * 更新学院事件记录
 	 */
-	public void saveOrUpdate(Collegeevent collegeevent) throws Exception;
+	public void merge(Collegeevent collegeevent) throws Exception;
 }

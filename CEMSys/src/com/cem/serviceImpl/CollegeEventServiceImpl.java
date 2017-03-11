@@ -37,8 +37,8 @@ public class CollegeEventServiceImpl implements CollegeEventService {
 	 * 更新学院事件记录
 	 */
 	@Override
-	public void saveOrUpdate(Collegeevent collegeevent) throws Exception {
-		collegeEventDao.saveOrUpdate(collegeevent);
+	public void merge(Collegeevent collegeevent) throws Exception {
+		collegeEventDao.merge(collegeevent);
 	}
 
 	@Override

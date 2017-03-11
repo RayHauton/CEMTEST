@@ -30,5 +30,9 @@ public interface CollegeEventDao {
 	/*
 	 * 更新事件记录
 	 */
-	public void saveOrUpdate(Collegeevent collegeevent) throws Exception;
+	public void merge(Collegeevent collegeevent) throws Exception;
+	/*
+	 * 删除事件记录
+	 */
+	public void deleteById(Integer eventId) throws Exception;
 }
