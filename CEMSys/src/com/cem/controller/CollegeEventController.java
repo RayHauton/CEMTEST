@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +35,32 @@ public class CollegeEventController {
 	@Autowired
 	private CollegeEventService collegeEventService;
 
+	@RequestMapping(value = "/loadImg")
+	public void loadImg(@RequestParam Integer eventId,HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("utf-8");
+		response.getWriter().write(collegeEventService.findById(eventId).getEventImg());
+	}
+	/*
+	 * 加载事件详细信息以及事件标题
+	 */
+	@RequestMapping(value = "/findInfo")
+	public void findInfo(@RequestParam Integer eventId,@RequestParam Integer flag,HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("utf-8");
+		if(flag==1){
+			response.getWriter().write(collegeEventService.findById(eventId).getEventDetail());
+		}else{
+			response.getWriter().write(collegeEventService.findById(eventId).getEventTitle());
+		}
+	}
+	
+	@RequestMapping(value = "/delete")
+	public void delete(@RequestParam Integer eventId,HttpServletResponse response) throws Exception{
+		Collegeevent persist = collegeEventService.findById(eventId);
+		persist.setIsDeleted("1");
+		collegeEventService.merge(persist);
+		response.getWriter().write("succ");
+	}
+	
 	@RequestMapping(value = "/update")
 	public String update(Collegeevent colgevnt, MultipartFile image, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -92,7 +119,7 @@ public class CollegeEventController {
 		 */
 		colgevnt.setIsDeleted("0");
 		//执行更新操作
-		collegeEventService.saveOrUpdate(colgevnt);
+		collegeEventService.merge(colgevnt);
 //		response.getWriter().write("succ");
 		return "redirect:show_adm";
 	}

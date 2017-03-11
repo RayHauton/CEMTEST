@@ -128,9 +128,72 @@ function submitFormOfQuery(pageIndex){
 	document.getElementById("ff_query").submit();
 }
 
-
-
-
+function deleteRecord(url,obj,pageIndex){
+	if(!window.confirm("确认要删除这条记录吗？")){
+		console.log(obj.parentNode.parentNode.children[0].innerText);
+		return;
+	}
+	$.ajax({
+		type:'POST',
+		url:url,
+		async:true,
+		data:"eventId="+obj.parentNode.parentNode.children[0].innerText,
+		error:function(){
+			window.alert("数据删除失败！");
+		},
+		success:function(){
+			window.alert("删除成功！");
+			//重新提交查询表单，刷新数据
+			submitFormOfQuery(pageIndex);
+		}
+	});
+}
+/*
+ * 加载事件标题以及时间详细介绍
+ */
+function showInfo(url,type,obj){
+	document.getElementById("infoBody").innerText="正在加载信息，请稍后...";
+	var tr = obj.parentNode.parentNode.parentNode;
+	var flag;
+	if(type=='detail'){
+		flag=1;
+		document.getElementById("myModalLabel_info").innerHTML="事件详细查看";
+	}else{
+		flag=2;
+		document.getElementById("myModalLabel_info").innerHTML="事件标题查看";
+	}
+	$.ajax({
+		type:'POST',
+		url:url,
+		async:true,
+		data:"eventId="+tr.children[0].innerText+"&flag="+flag,
+		error:function(){
+			window.alert("数据加载失败！");
+		},
+		success:function(data){
+			document.getElementById("infoBody").innerText=data;
+		}
+	});
+}
+/*
+ * 加载图片
+ */
+function loadImg(url,obj){
+	document.getElementById("infoBody").innerText="正在加载图片，请稍后...";
+	var tr = obj.parentNode.parentNode;
+	$.ajax({
+		type:'POST',
+		url:url,
+		async:true,
+		data:"eventId="+tr.children[0].innerText,
+		error:function(){
+			window.alert("数据加载失败！");
+		},
+		success:function(data){
+			document.getElementById("imgInfo").src="/fileUpload/collegeEventImgs/"+data;
+		}
+	});
+}
 
 
 

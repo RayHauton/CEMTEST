@@ -22,6 +22,18 @@ public class CollegeEventDaoImpl implements CollegeEventDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.cem.dao.CollegeEventDao#deleteById(java.lang.Integer)
+	 * 根据ID删除事件记录
+	 */
+	@Override
+	public void deleteById(Integer eventId) throws Exception {
+	}
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -46,7 +58,7 @@ public class CollegeEventDaoImpl implements CollegeEventDao {
 	 * @see com.cem.dao.CollegeEventDao#update(com.cem.pojo.Collegeevent) 更新记录
 	 */
 	@Override
-	public void saveOrUpdate(Collegeevent collegeevent) throws Exception {
+	public void merge(Collegeevent collegeevent) throws Exception {
 		Session session = getSession();
 		session.merge(collegeevent);
 	}
