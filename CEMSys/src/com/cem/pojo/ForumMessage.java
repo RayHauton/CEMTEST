@@ -1,7 +1,6 @@
 package com.cem.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ForumMessage implements Serializable{
 	/**
@@ -13,7 +12,7 @@ public class ForumMessage implements Serializable{
 	private String forumTitle;
 	private int personId;
 	private String personName;
-	private java.util.Date time;
+	private String time;
 	private int objectReplyId;
 	private String status;
 	
@@ -21,7 +20,7 @@ public class ForumMessage implements Serializable{
 		
 	}
 
-	public ForumMessage(int id, int forumId, String forumTitle, int personId, String personName, Date time,
+	public ForumMessage(int id, int forumId, String forumTitle, int personId, String personName, String time,
 			int objectReplyId, String status) {
 		super();
 		this.id = id;
@@ -74,11 +73,11 @@ public class ForumMessage implements Serializable{
 		this.personName = personName;
 	}
 
-	public java.util.Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(java.util.Date date) {
+	public void setTime(String date) {
 		this.time = date;
 	}
 

@@ -116,7 +116,7 @@ public class RecruitmentController {
 		 * 调用service获取查询结果
 		 */
 		Map<String, Object> queryResult = recruitmentService.findAll(queryVo);
-		modelAndView.addObject("recruitmentList", (List<Recruitment>) queryResult.get("resultList"));
+		modelAndView.addObject("recruitmentList", queryResult.get("resultList"));
 		/*
 		 * 设置总记录数 不用list.size()查询记录数是因为耗内存；
 		 */

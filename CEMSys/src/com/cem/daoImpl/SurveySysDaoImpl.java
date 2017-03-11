@@ -22,6 +22,7 @@ public class SurveySysDaoImpl implements SurveySysDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Override
 	public void saveSelfabilityquality(Selfabilityquality selfabilityquality) {
 		Session session = getSession();
 		if (selfabilityquality != null) {

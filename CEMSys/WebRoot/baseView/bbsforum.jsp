@@ -12,6 +12,8 @@
 	href="${pageContext.request.contextPath }/css/view_set/head.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/view_set/footer.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/view_set/forum.css">
 
 <!-- 	ueditor编辑器 -->
 <script type="text/javascript" charset="utf-8"
@@ -125,147 +127,108 @@ h1 {
 	-moz-box-shadow: none;
 	box-shadow: none;
 }
+}
 </style>
 </head>
-<body>
+<body class="ihome">
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath">
+
+	<jsp:include page="/baseView/header.jsp"></jsp:include>
 	<div class="box">
-		<jsp:include page="/baseView/header.jsp"></jsp:include>
-	<!-- 		<div class="head"> -->
-	<!-- 			<div class="logo"> -->
-	<!-- 				<a href="javascipt:void(0);"> <img src="" alt="个人头像"> -->
-	<!-- 				</a> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-
-
-
-
-<!-- 		<div class="tiezi" style="text-align: center"> -->
-<%-- 			<c:forEach var="test" items="${forumList }"> --%>
-<!-- 				<div> -->
-<!-- 					<a -->
-<%-- 						href="${pageContext.request.contextPath }/forum/p/${test.forumId}" --%>
-<%-- 						target="_blank">${test.forumTitle }</a> --%>
-<%-- 					<p>查看量:${test.viewCount }</p> --%>
-<%-- 					<p>回复量：${test.replyCount }</p> --%>
-<%-- 					<c:if test="${user.role=='3' }"> --%>
-<!-- 						<button type="button" class="btn btn-danger" -->
-<%-- 							onclick="deleteForum(this)" name="${test.forumId }">删除</button> --%>
-<%-- 					</c:if> --%>
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
-
-		<div class="list-group"
-			style="width: 700px; margin-left: auto; margin-right: auto;">
-				<a href="#" class="list-group-item active"> 随便你说 </a>
-			<c:forEach var="test" items="${forumList }">
-				<a
-					href="${pageContext.request.contextPath }/forum/p/${test.forumId}"
-					class="list-group-item" style="height:80px;">
-					<span class="badge">回复量：${test.replyCount }</span>
-					<h4 class="list-group-item-heading">${test.forumTitle}</h4>
-					<span class="badge">查看量: ${test.viewCount }</span>
-<%-- 					<p class="list-group-item-text">${test.forumContent}</p> --%>
-				</a>
-			</c:forEach>
-		</div>
-
-		
-<table class="table table-striped table-hover">
-		<thead>
-		<tr>
-			<th>全部主题</th>
-			<th>作者</th>
-			<th>回复/查看</th>
-			<th>最后发表</th>
-		</tr></thead>
-		<tbody>
-			<c:forEach var="test" items="${forumList }">
-				<tr>
-					<td>${test.forumTitle }</td>
-					<td><p style="font-size:10px;">${test.username }</p><p>${test.publishTime }</p></td>
-					<td>${test.replyCount }/${test.viewCount }</td>
-					<td>${test.updateTime }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
-
-
-
-
-
-		<div class="container" style="text-align: center;">
-			<ul class="pagination">
-				<li><a href="#">共${totalForumPage }页</a></li>
-				<li><a
-					href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=1">首页</a></li>
-
-				<c:if test="${currentForumPage>1 }">
-					<li><a
-						href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage-1 }">上一页</a></li>
-				</c:if>
-				<c:choose>
-					<c:when test="${totalForumPage<=10 }">
-						<c:set var="begin" value="1"></c:set>
-						<c:set var="end" value="${totalForumPage }"></c:set>
-					</c:when>
-					<c:otherwise>
-						<c:set var="begin" value="${currentForumPage-5 }"></c:set>
-						<c:set var="end" value="${currentForumPage+4 }"></c:set>
-						<c:if test="${begin<1 }">
-							<c:set var="begin" value="1"></c:set>
-							<c:set var="end" value="10"></c:set>
-						</c:if>
-						<c:if test="${end>totalForumPage }">
-							<c:set var="begin" value="${totalForumPage-9 }"></c:set>
-							<c:set var="end" value="${totalForumPage }"></c:set>
-						</c:if>
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="i" begin="${begin }" end="${end }">
-					<c:choose>
-						<c:when test="${i==currentForumPage }">
-							<li class="active"><a href="#">${i }</a></li>
-						</c:when>
-						<c:otherwise>
+		<div class="viewMain">
+			<div class="ihome-content">
+				<div class="forum-content">
+					<ul class="list-group">
+						<c:forEach var="test" items="${forumList }">
+							<li class="list-group-item forum"><span class="badge">精</span>
+								<div class="forum-main">
+									<div class="forum-title">
+										<a
+											href="${pageContext.request.contextPath }/forum/p/${test.forumId}">${test.forumTitle }</a>
+									</div>
+									<div class="forum-content">
+										<span><img
+											src="${pageContext.request.contextPath }/img/forum/user.png"
+											alt="${test.username }" style="width: 9px; height: 8px;">${test.username }</span>
+										<span>回复数${test.replyCount }</span> <span>查看量${test.viewCount }</span>
+										<span title="最后回复时间">${test.updateTime }</</span>
+									</div>
+								</div></li>
+						</c:forEach>
+					</ul>
+					<div class="container" style="text-align: center;">
+						<ul class="pagination">
+							<li><a href="#">共${totalForumPage }页</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${i }">${i }</a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:if test="${currentForumPage<totalForumPage }">
-					<li><a
-						href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage+1 }">下一页</a></li>
-				</c:if>
-				<li><a
-					href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${totalForumPage }">尾页</a></li>
-			</ul>
-		</div>
+								href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=1">首页</a></li>
 
-		<div class="inputBox"
-			style="width: 900px; margin-left: auto; margin-right: auto;">
-			<input type="text" id="forumTitle" placeholder="标题"
-				class="form-control" onkeydown="countChar('forumTitle','counter')"
-				onkeyup="countChar('forumTitle','counter')" /> 已经输入<span
-				id="counter">0</span>/25个字
-			<textarea rows="5" cols="5" id="editor" style="height: 300px"></textarea>
-			<p>
-				<input type="button" value="发送" onclick="javascript:postForum()"
-					class="btn">
-			</p>
+							<c:if test="${currentForumPage>1 }">
+								<li><a
+									href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage-1 }">上一页</a></li>
+							</c:if>
+							<c:choose>
+								<c:when test="${totalForumPage<=10 }">
+									<c:set var="begin" value="1"></c:set>
+									<c:set var="end" value="${totalForumPage }"></c:set>
+								</c:when>
+								<c:otherwise>
+									<c:set var="begin" value="${currentForumPage-5 }"></c:set>
+									<c:set var="end" value="${currentForumPage+4 }"></c:set>
+									<c:if test="${begin<1 }">
+										<c:set var="begin" value="1"></c:set>
+										<c:set var="end" value="10"></c:set>
+									</c:if>
+									<c:if test="${end>totalForumPage }">
+										<c:set var="begin" value="${totalForumPage-9 }"></c:set>
+										<c:set var="end" value="${totalForumPage }"></c:set>
+									</c:if>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="i" begin="${begin }" end="${end }">
+								<c:choose>
+									<c:when test="${i==currentForumPage }">
+										<li class="active"><a href="#">${i }</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a
+											href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${i }">${i }</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${currentForumPage<totalForumPage }">
+								<li><a
+									href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage+1 }">下一页</a></li>
+							</c:if>
+							<li><a
+								href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${totalForumPage }">尾页</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="aside">ddan</div>
+
+				<span>发表新帖 </span>
+				<div class="inputBox"
+					style="width: 819px; margin-left: auto; margin-right: auto;">
+					<input type="text" id="forumTitle" placeholder="标题"
+						class="form-control" onkeydown="countChar('forumTitle','counter')"
+						onkeyup="countChar('forumTitle','counter')" /> 已经输入<span
+						id="counter">0</span>/25个字
+					<textarea rows="5" cols="5" id="editor" style="height: 300px"></textarea>
+					<p>
+						<input type="button" value="发送" onclick="javascript:postForum()"
+							class="btn">
+					</p>
+				</div>
+			</div>
 		</div>
 
 		<jsp:include page="/baseView/footer.jsp"></jsp:include>
 
 	</div>
-	<script src="${pageContext.request.contextPath }/js/jquery-1.9.min.js"
+	<script src="${pageContext.request.contextPath }/js/jquery.min.js"
 		type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath }//js/bootstrap.min.js"
+	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"
 		type="text/javascript"></script>
 	<script
 		src="${pageContext.request.contextPath }/js/forumController/forum.js"

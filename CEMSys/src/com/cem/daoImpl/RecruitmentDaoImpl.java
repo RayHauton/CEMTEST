@@ -70,7 +70,7 @@ public class RecruitmentDaoImpl implements RecruitmentDao {
 		/*
 		 * 查询总记录数，暂时没想到一举两得的办法,只能执行两次查询
 		 */
-		int recordCount = Integer.parseInt(String.valueOf((Long) session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
+		int recordCount = Integer.parseInt(String.valueOf(session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
 		List<Recruitment> recruitmentList = session.createQuery(hql.toString() + " ORDER BY re.publishDate desc")
 				.setFirstResult((pageIndex - 1) * pageSize).setMaxResults(pageSize).list();
 		Map<String, Object> resultMap = new HashMap<String, Object>(2);

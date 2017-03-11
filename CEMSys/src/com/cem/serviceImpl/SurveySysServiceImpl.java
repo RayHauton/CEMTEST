@@ -17,6 +17,7 @@ public class SurveySysServiceImpl implements SurveySysService {
 	@Autowired
 	SurveySysDao surveySysDao = null;
 	
+	@Override
 	public void saveSelfabilityquality(Selfabilityquality selfabilityquality) {
 		surveySysDao.saveSelfabilityquality(selfabilityquality);
 	}

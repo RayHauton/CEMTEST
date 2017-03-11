@@ -1,13 +1,16 @@
 package com.cem.daoImpl;
 
-import java.text.Normalizer.Form;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import com.cem.dao.ForumDao;
 import com.cem.pojo.Forum;
 import com.cem.pojo.ForumMessage;
 import com.cem.pojo.Reply;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Repository
 public class ForumDaoImpl implements ForumDao {
@@ -59,7 +63,7 @@ public class ForumDaoImpl implements ForumDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		reply.setIsDeleted("0");
-		String sql = "update Forum set replyCount=replyCount+1 where forumId='" + forumId + "'";
+		String sql = "update Forum set replyCount=replyCount+1,updateTime ='" + reply.getReplyTime() + "' where forumId='" + forumId + "'";
 		jdbcTemplate.update(sql);
 		session.save(reply);
 		return "succ";
@@ -94,18 +98,29 @@ public class ForumDaoImpl implements ForumDao {
 	public Map<String, Object> FindForumwhileGointoModule(int forumModuleId, int pageIndex) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
+		Date date = new Date();
 		int pageSize = 5;
 		Session session = getSession();
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
-		String sql = "select f from Forum f where f.forumModule=? and f.isDeleted='0' order by forumId desc";
+		String sql = "select f from Forum f where f.forumModule=? and f.isDeleted='0' order by updateTime desc";
 		List<Forum> list = session.createQuery(sql).setString(0, String.valueOf(forumModuleId))
 				.setFirstResult((pageIndex - 1) * pageSize).setMaxResults(pageSize).list();
 		String count = "select count(*) from Forum f where f.forumModule=? and f.isDeleted='0'";
 		int count1 = Integer.parseInt(
 				String.valueOf(session.createQuery(count).setString(0, String.valueOf(forumModuleId)).uniqueResult()));
 		int forumPage = count1 > pageSize ? (count1 / pageSize) + 1 : 1;
+		try {
+			for (Forum forum : list) {
+				forum.setPublishTime(getFriendlyTime(forum.getPublishTime()));
+				forum.setUpdateTime(getFriendlyTime(forum.getUpdateTime()));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 		map.put("forumModule", forumModuleId);
 		map.put("forumList", list);// forum列表
 		map.put("forumCount", count1);// 一共多少个帖子
@@ -136,6 +151,13 @@ public class ForumDaoImpl implements ForumDao {
 		String sql3 = "update Forum set viewCount = viewCount+1 where forumId='" + forumId + "'";
 		jdbcTemplate.update(sql3);
 		int replyPage = count1 > pageSize ? (count1 / pageSize) + 1 : 1;
+		try {
+			for (Reply reply : list) {
+				reply.setReplyTime(getFriendlyTime(reply.getReplyTime()));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		map.put("replyList", list);// reply列表
 		map.put("totalReplyPage", replyPage);// 总的回复页数
 		map.put("thisForum", forum);// 所在的forum信息
@@ -162,6 +184,14 @@ public class ForumDaoImpl implements ForumDao {
 		String count = "select count(*) from Forum  where userId=? and isDeleted='0'";
 		List<Forum> list = session.createQuery(sql).setString(0, userId).list();
 		int result = (int) session.createQuery(count).setString(0, userId).uniqueResult();
+		try {
+			for (Forum forum : list) {
+				forum.setPublishTime(getFriendlyTime(forum.getPublishTime()));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		map.put("forumList", list);
 		map.put("count", result);
 		return map;
@@ -187,6 +217,14 @@ public class ForumDaoImpl implements ForumDao {
 		String count = "select count(*) from Reply where userId=? and isDeleted='0' ";
 		List<Reply> list = session.createQuery(sql).setString(0, userId).list();
 		int result = (int) session.createQuery(count).setString(0, userId).uniqueResult();
+		try {
+			for (Reply reply : list) {
+				reply.setReplyTime(getFriendlyTime(reply.getReplyTime()));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		map.put("replyList", list);
 		map.put("count", result);
 
@@ -228,5 +266,45 @@ public class ForumDaoImpl implements ForumDao {
 		String changeStatus = "update ForumMessage set status='1' where personId=?";
 		session.createQuery(changeStatus).setInteger(0, userId).executeUpdate();
 		return map;
+	}
+	
+	public String getFriendlyTime(String date) throws ParseException{
+		Date nowTime = new Date();
+		Date oldtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date);
+//		//精确到哪一个时间点
+		long ys = DateUtils.truncate(nowTime, Calendar.YEAR).getTime();//当前时间精确到年
+		long ds = DateUtils.truncate(nowTime, Calendar.DAY_OF_MONTH).getTime();//当前时间精确到日
+		long yd = DateUtils.truncate(oldtime, Calendar.DAY_OF_MONTH).getTime();//转换时间精确到日
+		
+		long n = nowTime.getTime();
+		long e = oldtime.getTime();
+		if (e < ys) {//时间转换成y-m-d//去年的
+			return new SimpleDateFormat("yyyy-MM-dd").format(oldtime);
+		}
+		if ((ds - yd) == (24 * 60 * 60 * 1000)) {//24h内
+			return new SimpleDateFormat("昨天 HH:mm").format(oldtime);
+		}
+		if (e < ds) {//今天以前的信息
+			String result = new SimpleDateFormat("MM-dd").format(oldtime);
+			if (result.substring(0, 1).equals("0")) {
+				result = result.substring(1, 5);
+			}
+			return result;
+		}
+		if (n - e > 60 * 60 * 1000) {//一小时之前的
+			String result = new SimpleDateFormat("HH:mm").format(oldtime);
+			if (result.substring(0, 1).equals("0")) {
+				result = result.substring(1, 5);
+			}
+			return "今天"+result;
+		}
+		if (n - e > 60 * 1000) {
+			//1d 是double 自动转换
+			return (long) Math.floor((n - e) * 1d / 60000) + "分钟前";
+		}
+		if (n - e > 1 * 1000) {
+			return "刚刚";
+		}
+		return date;
 	}
 }

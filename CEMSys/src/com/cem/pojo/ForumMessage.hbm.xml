@@ -24,8 +24,8 @@
             <column name="personName" length="20">
             </column>
         </property>
-        <property name="time" type="timestamp">
-            <column name="time" length="19" />
+        <property name="time" type="string">
+            <column name="time" length="20" />
         </property>
         <property name="objectReplyId" type="int">
             <column name="objectReplyId" length="11">
