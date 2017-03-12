@@ -1,8 +1,10 @@
 package com.cem.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cem.pojo.User;
+import com.cem.queryVO.UserManageVo;
 
 /**
  * Created by RayHauton on 2017/1/25.
@@ -49,11 +51,16 @@ public interface UserService {
 	 */
 	public void updateUser(User user) throws Exception;
 	
+	/*删除用户*/
+	public boolean deleteUser(User user) throws Exception;
 	
-	public List<User> findUsersByTrueName(String trueName,boolean passed,int pageSize)throws Exception;	
+	/*
+	 * userManage使用
+	 */
+	public Map<String, List<Object>> findUsersFromUserManage(UserManageVo userManageVo)throws Exception;	
 	
-	public List<User> findUsersByEntranceDate(String entranceDate,boolean passed,int pagesize) throws Exception;
+	public Map<String, List<Object>> findUsersFromUserManageWithOut(String audit) throws Exception;
 	
-	public List<User> finUserByEnAndTrueName(String entranceDate,String trueName,boolean passed,int pageSize) throws Exception;
+	public void checkUserStates(String[] studNumberArr,String[] auditArr)throws Exception;
 	
 }

@@ -67,7 +67,7 @@
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#">论坛审核</a></li>
 						<li><a href="#">祝福模板</a></li>
-						<li><a href="#">用户管理</a></li>
+						<li><a href="../admin/userManage.jsp">用户管理</a></li>
 					</ul>
 				</li>
 			</ul>

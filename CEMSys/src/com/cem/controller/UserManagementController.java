@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cem.pojo.User;
+import com.cem.queryVO.UserManageVo;
 import com.cem.service.UserService;
 
 @Controller
@@ -24,43 +25,69 @@ public class UserManagementController {
 	private UserService userService;
 
 	@RequestMapping(value = "/findUser")
-	public ModelAndView findUser(HttpServletRequest req, HttpServletResponse res, HttpSession session)
-			throws Exception {
+	public ModelAndView findUser(UserManageVo userManageVo) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
-		String studNumber = req.getParameter("studNumber");
-		String trueName = req.getParameter("trueName");
-		String entranceDate = req.getParameter("entranceDate");
-		int pagesize = Integer.parseInt(req.getParameter("pageSize"));
-		Map<String, Object> queryResult = new HashMap<>();
-		List<User> ulist = new ArrayList<>();
-		boolean audit;
-		if (req.getParameter("audit") == "0") {
-			audit = true;
+		// userManageVo.setPageSize("100");
+		Map<String, List<Object>> result = userService.findUsersFromUserManage(userManageVo);
+		if (result.get("approved") == null) {
+			modelAndView.addObject("approvedsum", 0);
 		} else {
-			audit = false;
+			modelAndView.addObject("approvedUserList", result.get("approved"));
+			modelAndView.addObject("approvedsum", result.get("approved").size());
 		}
-		if ((studNumber != null) && !("".equals(studNumber))) {
-			User user = userService.findUserByStudNum(studNumber, audit);
-			ulist.add(user);
-			modelAndView.addObject("userList", ulist);
-			modelAndView.addObject("sum", "1");
+		if (result.get("disapproved") == null) {
+			modelAndView.addObject("disapprovedsum", 0);
 		} else {
-			if (trueName != null && !("".equals(trueName)) && entranceDate == null && "".equals(entranceDate)) {
-				ulist = userService.findUsersByTrueName(trueName, audit, pagesize);
-				modelAndView.addObject("userList", ulist);
-				modelAndView.addObject("sum", ulist.size());
-			} else if (trueName == null && "".equals(trueName) && entranceDate != null || !("".equals(entranceDate))) {
-				ulist = userService.findUsersByEntranceDate(entranceDate, audit, pagesize);
-				modelAndView.addObject("userList", ulist);
-				modelAndView.addObject("sum", ulist.size());
-			}else if (trueName != null && !("".equals(trueName)) && entranceDate != null || !("".equals(entranceDate))) {
-				ulist = userService.finUserByEnAndTrueName(entranceDate, trueName, audit, pagesize);
-				modelAndView.addObject("userList", ulist);
-				modelAndView.addObject("sum", ulist.size());
-			}
+			modelAndView.addObject("disapprovedUserList", result.get("disapproved"));
+			modelAndView.addObject("disapprovedsum", result.get("disapproved").size());
+		}
+		modelAndView.setViewName("admin/userManage");
+		modelAndView.setViewName("admin/userManage");
+		System.out.println("修改成功");
+		System.out.println("//////");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/findUserWithout")
+	public ModelAndView findUserWithout(UserManageVo userManageVo) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		System.out.println("准备进入dao层");
+		Map<String, List<Object>> result = userService.findUsersFromUserManageWithOut(userManageVo.getAudit());
+		if (result.get("approved") == null) {
+			modelAndView.addObject("approvedsum", 0);
+		} else {
+			modelAndView.addObject("approvedUserList", result.get("approved"));
+			modelAndView.addObject("approvedsum", result.get("approved").size());
+		}
+		if (result.get("disapproved") == null) {
+			modelAndView.addObject("disapprovedsum", 0);
+		} else {
+			modelAndView.addObject("disapprovedUserList", result.get("disapproved"));
+			modelAndView.addObject("disapprovedsum", result.get("disapproved").size());
 		}
 		modelAndView.setViewName("admin/userManage");
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/userDelete")
+	public void userDelete(String studNumber, HttpServletResponse response) throws Exception {
+		System.out.println(studNumber);
+		System.out.println("准备删除");
+		User user = new User();
+		user.setStudNumber(studNumber);
+		if (userService.deleteUser(user))
+			response.getWriter().write("success");
+		else {
+			response.getWriter().write("noExist");
+		}
+	}
+	
+	@RequestMapping(value="/check")
+	public void checkUserStates(HttpServletRequest request,HttpServletResponse response)throws Exception{
+		String[] studNumberArr = request.getParameterValues("studNumber");
+		String[] auditArr  =request.getParameterValues("audit_states");
+		userService.checkUserStates(studNumberArr, auditArr);
+		response.getWriter().write("success");
 	}
 
 }
