@@ -193,4 +193,10 @@ public class User implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
+	@Override
+	public String toString() {
+		return username + "," + truename + "," + sex + "," + studNumber + "," + birth + "," + mobile + "," + email + ","
+				+ address + "," + entranceDate + "," + graduateDate;
+	}
+	
 }

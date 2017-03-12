@@ -3,16 +3,16 @@ body {
 	margin: 0;
 	font-family: 微软雅黑;
 }
-
 .box {
 	width: 1000px;
-	height: 1000px;
-	/* 	background-color: pink; */
+/* 	height: 1000px; */
+/* 		background-color: pink; */
 	margin-left: auto;
 	margin-right: auto;
 	border: 1px solid #d7d7d7;
 	border-radius: 4px;
 	border-top: none;
+	min-height:300px;
 }
 
 .each {
@@ -22,6 +22,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0;
+	border-bottom:1px dashed lightgreen;
 	/* 	padding-top:20px; */
 }
 
@@ -32,10 +33,13 @@ body {
 	margin-left: 20px;
 	float: left;
 	margin-top: 30px;
-	padding-top: 26px;
+	padding-top: 15px;
 	padding-left: 18px;
 	border-radius:4px;
-	border:1px solid blue;
+	font-size:16px;
+	font-weight:bold;
+/* 	border:1px solid blue; */
+	letter-spacing: 2px;
 }
 
 .linebox {
@@ -50,7 +54,7 @@ body {
 .line {
 	width: 5px;
 	height: 120px;
-	background-color: green;
+	background-color: #1296db;
 	margin-left: 12px;
 	display: inline-block;
 /* 	border:1px solid green; */
@@ -107,6 +111,49 @@ body {
 	border-radius:4px;
 	border:1px solid green;
 }
-
-
-
+.check{
+	width:990px;
+	height:40px;
+	border-bottom:1px dashed #0080ff;
+	padding-top: 6px;
+}
+table{
+	width:420px;
+	max-width: 420px;
+	margin-left: 10px;
+}
+.inputSet{
+	height:25px;
+	border-radius:4px;
+	border:1px solid #c5c5c5;
+}
+td{
+	font-size: 12px;
+}
+.btn-custom{
+	height:25px;
+	width:70px;
+	padding: 0;
+	border-radius:4px;
+	background-color: #1269db;
+	color:#FFFFFF;
+}
+.dividePage{
+	margin: 0 auto;
+}
+.record{
+	float: left;
+	margin-left:10px;
+/* 	margin-top:20px; */
+	display: inline-block;
+}
+.record span{
+	display: inline-block;
+/* 	margin-top:5px; */
+/* 	background-color: red; */
+	height: 33px;
+	border-radius: 4px;
+	line-height: 33px;
+	border: 1px solid #DDDDDD;
+	font-size:12px;
+}

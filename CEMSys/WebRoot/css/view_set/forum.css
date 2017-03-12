@@ -1,0 +1,120 @@
+.forum-main {
+	width: 635px;
+}
+
+.ihome-content {
+	background-color: #fff;
+	overflow: hidden;
+	border: solid 1px #dcdcdc;
+	border-top: 0;
+	margin-top: -1px;
+	width: 821px;
+	/* 	margin:auto; */
+}
+
+.forum-info {
+	margin-top: 15px;
+	font-size: 12px;
+	color: #c9c9c9;
+}
+
+.forum-body {
+	width: 635px;
+}
+
+.forum-title {
+	margin: 15px 0 16px;
+	line-height: 1.5;
+	font-size: 16px;
+	/*color: #000;*/
+	word-break: break-all;
+}
+
+.forum-content {
+	margin-top: 15px;
+	font-size: 12px;
+	color: #c9c9c9;
+}
+
+body.ihome {
+	font-size: 15px;
+	font-family: "Microsoft YaHei", SimSun, arial, "\5b8b\4f53";
+	background-color: #f3f3f3;
+}
+
+.forum:hover {
+	background-color: #f4fef6;
+}
+
+.viewMain {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* »Ø¸´µÄcss*/
+.wholepage {
+	background-color: #fff;
+	overflow: hidden;
+	border: solid 1px #dcdcdc;
+	border-top: 0;
+	margin-top: -1px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.reply {
+	width: 821px;
+	border-right: 1px solid #ebf0f1;
+}
+
+.replylist {
+	margin-bottom: 40px;
+	padding: 25px 60px;
+	background-color: #fff;
+	padding: 0;
+	zoom: 1;
+}
+
+.aside {
+	
+}
+
+.replytext {
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.replyinfo {
+	color: #9eadb6;
+}
+
+.replyinfo-info {
+	display: inline;
+	/*float: left;*/
+	padding-top: 5px;
+}
+
+.replyinfo-reply {
+	padding-top: 5px;
+	float: right;
+	margin-left: auto;
+	margin-right: 2px;
+	color: #333;
+}
+
+.every-reply:hover .element {
+	display: inline;
+}
+
+.element {
+	display: none;
+}
+
+.commentText {
+	width: 620px;
+	height: 150px;
+	display: none;
+	background-color: #f4fef6
+}

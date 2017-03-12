@@ -1,6 +1,5 @@
 package com.cem.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import com.cem.pojo.Forum;
@@ -51,12 +50,12 @@ public interface ForumDao {
 	/**
 	 * 根据用户id查找用户发的帖子,其他用户可以查看当前用户的帖子
 	 */
-	public Map<String, Object> FindForumByUserId(String userId);
+	public Map<String, Object> FindForumByUserId(String userId,String pageNum);
 
 	/**
 	 * 根据用户id查找用户发的回复，其他用户可以查看
 	 */
-	public Map<String, Object> FindReplyByUserId(String userId);
+	public Map<String, Object> FindReplyByUserId(String userId,String pageNum);
 	
 	/**
 	 * 回复时得到此次回复所在楼层

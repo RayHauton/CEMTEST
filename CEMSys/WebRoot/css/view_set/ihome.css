@@ -1,0 +1,187 @@
+
+.i_home{
+/*     margin-left: 50px; */
+    margin-right: auto;
+    width: 1000px;
+}
+
+.i_left{
+    float: left;
+    width: 820px;
+}
+
+.i_right{
+    float: right;
+    width: 180px;
+}
+
+.simple_block_container cite{
+    font-size: 12px;
+    color: #7f7f7f;
+    margin-right: 10px;
+    float: right;
+    font-style: normal;
+}
+
+.simple_block_container .reply_txt{
+    color: #666;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.simple_block_container .b_reply{
+    color: #666;
+    font-size: 12px;
+}
+
+.simple_block_container li{
+    border-bottom: 1px dotted #dbe1e6;
+    padding: 8px 5px;
+    font-size: 14px;
+    line-height: 23px;
+    zoom: 1;
+}
+
+ul{
+    list-style: none;
+}
+
+
+
+
+
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*以下是message的css*/
+.feed{
+    margin:0 6px;
+}
+
+.feed li{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.feed a{
+    text-decoration: none;
+}
+
+.feed a:hover{
+    text-decoration: underline;
+}
+
+.feed_item{
+    border-bottom: 1px dotted #E0E0E0;
+}
+
+.feed_item:hover{
+    background-color: #f9f9f9;
+}
+.feed_left{
+    float: left;
+    width: 600px;
+    padding: 20px 0 21px 10px;
+}
+.replyme{
+    font-size: 14px;
+    line-height: 20px;
+    padding-bottom: 10px;
+}
+.replyme a:link
+
+.replyme:hover{
+    text-decoration: underline;
+}
+.replyme_user{
+    float: left;
+}
+
+.replyme_content{
+    overflow: hidden;
+    word-wrap: break-word;
+}
+.feed_from{
+    color: #989898;
+    font-size: 12px;
+}
+.feed_forum{
+    color: #000;
+    padding: 0 3px;
+}
+.feed_right{
+    text-align: right;
+    color: #989898;
+    padding: 20px 10px 21px 0;
+}
+.feed_time{
+    font-size: 12px;
+
+    line-height: 20px;
+    padding-bottom: 10px;
+}
+.reply1{
+    font-size: 12px;
+}
+
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*以下是myReply的css*/
+
+.block{
+    margin: 0 0 7px;
+    /*border-bottom: 1px dotted #CBD2D8;*/
+    padding: 10px;
+    line-height: 23px;
+    zoom: 1;
+}
+
+.block h4{
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    line-height: 23px;
+    padding: 0 0 6px;
+}
+.left_up{
+    padding: 0;
+    width: 38px;
+    overflow: hidden;
+    float: left;
+    border: 0;
+    text-align: center;
+    margin: 2px;
+}
+.right_up{
+    margin-left: 48px;
+    border: 0;
+}
+.every_reply{
+    width: 600px;
+    padding-top:20px;
+}
+
+.table_main{
+    border-left: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    background: #fafafa;
+    padding: 12px 15px;
+    margin-left: 1px;
+    width: 587px;
+}
+
+.char img{
+    vertical-align: middle;
+    width: 12px;
+    height: 8px;
+}

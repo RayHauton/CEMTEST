@@ -1,9 +1,8 @@
 $(function() {
-	alert(123);
 	$("#SelfabilityqualitySubmit")
 		.click(function() {
 			var flag = 0;
-			for (var i = 26; i < 39; i++) {
+			for (var i = 1; i < 13; i++) {
 				var val = $('#SelfabilityqualityTable input:radio[id='+ i + ']:checked').val();
 				if (val == null) {
 					alert("第" + i + "题未选择")
@@ -38,7 +37,7 @@ $(function() {
 	$("#MajorabilitycultivationqualitySubmit")
 		.click(function() {
 			var flag = 0;
-			for (var i = 39; i < 64; i++) {
+			for (var i = 14; i < 39; i++) {
 				var val = $('#Majorabilitycultivationquality input:radio[id='+ i + ']:checked').val();
 				if (val == null) {
 					alert("第" + i + "题未选择")

@@ -20,6 +20,7 @@ public class InitServlet extends HttpServlet {
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
+	@Override
 	public void init() throws ServletException {
 		super.init();
 	}
@@ -27,6 +28,7 @@ public class InitServlet extends HttpServlet {
 	/**
 	 * @see Servlet#destroy()
 	 */
+	@Override
 	public void destroy() {
 	}
 

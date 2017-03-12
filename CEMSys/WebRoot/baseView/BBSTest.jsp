@@ -19,7 +19,7 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/view_set/footer.css">
 </head>
-<body>
+<body onload="getTime('1');getTime('2');getTime('3');getTime('4');getTime('5');">
 
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath" />
@@ -32,7 +32,7 @@ To change this template use File | Settings | File Templates.
 			<a href="#" style="margin-left: auto; margin-right: auto;">消息</a>
 
 			<p>友好时间测试</p>
-			<span id="friendlyTime_${test.floor }">111</span>
+<%-- 			<span id="friendlyTime_${test.floor }">111</span> --%>
 
 
 
@@ -48,14 +48,18 @@ To change this template use File | Settings | File Templates.
 
 			<h1>${thisForum.forumTitle }</h1>
 			<h2>共${thisForum.replyCount }回复</h2>
-			<c:forEach var="test" items="${replyList }">
+			<c:forEach var="test" items="${replyList }" varStatus="status">
 				<div class="message">
 					<div class="messageBox">
 						<div class="head">
 							<img alt="个人头像" src="" />
 							<div class="nameBox">
-								<span class="name">${test.publishUser }</span> <span
-									class="time" id="friendlyTime_${test.floor }">${test.replyTime }</span>
+								<span class="name">${test.publishUser }</span> 
+<!-- 								<span -->
+<%-- 									class="time" id="friendlyTime_${status.count }" value="${test.replyTime }"></span> --%>
+									
+									
+								<button class="btn btn-success" style="" id="friendlyTime_${status.count }" value="${test.replyTime }"></button>
 								<input type="hidden" id="userId${test.floor }"
 									value="${test.publishUserId }" />
 							</div>
@@ -115,7 +119,7 @@ To change this template use File | Settings | File Templates.
 					<c:forEach var="i" begin="${begin }" end="${end }">
 						<c:choose>
 							<c:when test="${i==currentReplyPage }">
-								<li class="disabled"><a href="#">${1 }</a></li>
+								<li class="disabled"><a href="#">${i }</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="active"><a

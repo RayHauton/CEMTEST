@@ -12,7 +12,9 @@
 <title>校友系统主页</title></head>
 <body>
 	<jsp:include page="baseView/header.jsp"></jsp:include>
-	<div style="text-align: center;font-size:30px;">欢迎登陆</div>
+	<div style="text-align: center;font-size:30px;min-height: 300px;
+	border-radius: 4px;border:1px solid #DDDDDD;width: 1000px;margin-left: auto;margin-right: auto;">
+	欢迎登陆</div>
 	<jsp:include page="baseView/footer.jsp"></jsp:include>
 </body>
 <script src="js/jquery-1.9.min.js"></script>

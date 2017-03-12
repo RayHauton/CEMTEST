@@ -18,4 +18,14 @@ public interface CollegeEventService {
 	 * 获取学院大事件
 	 */
 	public Map<String, Object> findAll(CollegeEventQueryVo colgEvntQueryVo) throws Exception;
+
+	/*
+	 * 根据id获取学院事件
+	 */
+	public Collegeevent findById(Integer eventId) throws Exception;
+
+	/*
+	 * 更新学院事件记录
+	 */
+	public void merge(Collegeevent collegeevent) throws Exception;
 }

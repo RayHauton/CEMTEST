@@ -2,16 +2,12 @@ package com.cem.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import org.hibernate.persister.collection.ElementPropertyMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,7 +75,7 @@ public class ForumController {
 		}
 		Map<String, Object> map = forumService.FindReplywhileGointoForum(forumId, Integer.parseInt(pageNum));
 		modelAndView.addAllObjects(map);
-		modelAndView.setViewName("/baseView/BBSTest");
+		modelAndView.setViewName("/baseView/bbstest4css");
 		return modelAndView;
 	}
 	
@@ -106,7 +102,7 @@ public class ForumController {
 		//对forum进行设置
 		forum.setForumTitle(forumTitle);
 		forum.setForumContent(content);
-		forum.setPublishTime(new Date());
+		forum.setPublishTime(getFormattedTime(new Date()));
 		forum.setUpdateTime(forum.getPublishTime());
 		forum.setUserId(user.getUserId());
 		forum.setUsername(user.getUsername());
@@ -116,7 +112,7 @@ public class ForumController {
 		
 		//同时将发帖内容发送到回复表中 （BBS格式）
 		reply.setFloor((short) 1);
-		String forumId = forumService.FindForumIdWhilePostForum(String.valueOf(user.getUserId()), getFormattedTime(forum.getPublishTime()));
+		String forumId = forumService.FindForumIdWhilePostForum(String.valueOf(user.getUserId()), forum.getPublishTime());
 		reply.setForum(forumId);
 		reply.setPublishUserId(user.getUserId());
 		reply.setPublishUser(user.getUsername());
@@ -147,7 +143,7 @@ public class ForumController {
 		ForumMessage message = new ForumMessage();
 		
 		reply.setForum(forumId);//帖子id
-		reply.setReplyTime(new Date());//时间
+		reply.setReplyTime(getFormattedTime(new Date()));//时间
 		reply.setReplyText(replyText);//回复内容
 		reply.setReplyObject(floor);//回复几楼
 		reply.setFloor(forumService.getFloorWhenInsertReply(forumId));//该回复所在楼层
@@ -210,7 +206,35 @@ public class ForumController {
 			messagePageIndex = "1";
 		}
 		Map<String, Object> map = forumService.FindAllNewMessages(user.getUserId(), messagePageIndex);
-		modelAndView.setViewName("baseView/bbsmessage");
+		modelAndView.setViewName("/baseView/bbsmessage");
+		modelAndView.addAllObjects(map);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/ihome_tie")
+	public ModelAndView findForumsById(HttpServletRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String userId = request.getParameter("uid");
+		String pageNum = request.getParameter("pageIndex");
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		Map<String, Object> map = forumService.FindForumByUserId(userId,pageNum);
+		modelAndView.setViewName("redirect:/forum/my_tie");
+		modelAndView.addAllObjects(map);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/ihome_reply")
+	public ModelAndView findReplyById(HttpServletRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String userId = request.getParameter("uid");
+		String pageNum = request.getParameter("pageIndex");
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		Map<String, Object> map = forumService.FindReplyByUserId(userId,pageNum);
+		modelAndView.setViewName("redirect:/forum/my_reply");
 		modelAndView.addAllObjects(map);
 		return modelAndView;
 	}

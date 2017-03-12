@@ -6,6 +6,8 @@ package com.cem.queryVO;
 public class CollegeEventQueryVo {
 	private Integer pageIndex;
 	private Integer pageCount;
+	private Integer pageSize;
+
 	private Integer recordCount;
 	private String foredate;
 	private String afterdate;
@@ -24,6 +26,14 @@ public class CollegeEventQueryVo {
 
 	public void setPageCount(Integer pageCount) {
 		this.pageCount = pageCount;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
 	}
 
 	public Integer getRecordCount() {

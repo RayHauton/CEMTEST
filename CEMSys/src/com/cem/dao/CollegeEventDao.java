@@ -7,6 +7,7 @@ import com.cem.queryVO.CollegeEventQueryVo;
 
 /**
  * 学园事件录
+ * 
  * @author RayHauton
  *
  */
@@ -20,4 +21,18 @@ public interface CollegeEventDao {
 	 * 获取学院大事件
 	 */
 	public Map<String, Object> findAll(CollegeEventQueryVo colgEvntQueryVo) throws Exception;
+
+	/*
+	 * 根据ID查询事件记录
+	 */
+	public Collegeevent findById(Integer eventId) throws Exception;
+
+	/*
+	 * 更新事件记录
+	 */
+	public void merge(Collegeevent collegeevent) throws Exception;
+	/*
+	 * 删除事件记录
+	 */
+	public void deleteById(Integer eventId) throws Exception;
 }

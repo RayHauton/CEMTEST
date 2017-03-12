@@ -1,6 +1,5 @@
 package com.cem.service;
 
-import java.util.List;
 import java.util.Map;
 
 import com.cem.pojo.Forum;
@@ -51,8 +50,13 @@ public interface ForumService {
 	/**
 	 * 根据用户id查找用户发的说说,其他用户可以查看当前用户的说说
 	 */
-	public Map<String, Object> FindForumByUserId(String userId);
+	public Map<String, Object> FindForumByUserId(String userId,String pageNum);
 
+	/**
+	 * 根据用户id查找用户发的回复，其他用户可以查看
+	 */
+	public Map<String, Object> FindReplyByUserId(String userId,String pageNum);
+	
 	/**
 	 * 回复时得到回复的楼层
 	 * @param forumId

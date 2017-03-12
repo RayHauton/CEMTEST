@@ -67,7 +67,11 @@ public class LoginController {
 					// 用户审核通过
 					if (password.equals(user.getPassword())) {
 						session.setAttribute("user", user);
-						response.getWriter().write("succ");
+						if(user.getRole().equals("0")){
+							response.getWriter().write("succ_g");
+						}else{
+							response.getWriter().write("succ_a");
+						}
 					} else {
 						response.getWriter().write("error");
 					}

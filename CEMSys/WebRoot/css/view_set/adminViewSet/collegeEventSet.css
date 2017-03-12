@@ -1,17 +1,91 @@
 @CHARSET "UTF-8";
 body{
-/* 	font-family: 微软雅黑; */
+	font-family: 微软雅黑;
 }
-h5 {
+.outer{
+	width:1000px;
+/* 	height:500px; */
+	min-height:450px;
+	border-radius:4px;
+	border:1px solid #cecece;
+/* 	border-right:1px solid silver; */
+	margin-left:auto;
+	margin-right:auto;
+	border-top:0;
+}
+.btn-custom{
+	margin-left:10px;
+	margin-top:10px;
+}
+hr{
+	margin-top:10px;
 	padding: 0;
 }
-
-hr {
+.addDiv{
+	width:570px;
+/* 	height:460px; */
+/* 	background-color: red; */
+	margin-left: auto;
+	margin-right:auto;
+	padding: 0;
+}
+.modal-body{
+	padding: 0;
+}
+.errorInfoContent{
+	width:570px;
+	height:20px;
 	margin: 0;
 	padding: 0;
+/* 	background-color: green; */
 }
-.data{
-	background-color: pink;
-	width:500px;
-	height:500px;
+.form-group{
+	margin-top:5px;
 }
+.query{
+	width:990px;
+	height:45px;
+	border-bottom:1px dashed #0080ff;
+/* 	background-color: red; */
+	margin-top:10px;
+	font-size:12px;
+}
+.query input,select{
+	height:28px;
+	border-radius:4px;
+	border:1px solid #cacaca;
+	margin-top:5px;
+	margin-left:5px;
+	width:140px;
+}
+.dividePage{
+	margin: 0 auto;
+}
+.record{
+	float: left;
+	margin-left:10px;
+/* 	margin-top:20px; */
+	display: inline-block;
+}
+.record span{
+	display: inline-block;
+/* 	margin-top:5px; */
+/* 	background-color: red; */
+	height: 33px;
+	border-radius: 4px;
+	line-height: 33px;
+	border: 1px solid #DDDDDD;
+	font-size:12px;
+}
+.detailA{
+	 color:black;
+	 cursor: pointer;
+}
+#infoBody{
+	width:580px;
+	min-height: 100px;
+/* 	background-color: red; */
+	margin-left:auto;
+	margin-right:auto;
+}
+
