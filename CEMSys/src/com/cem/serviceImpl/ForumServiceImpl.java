@@ -58,9 +58,9 @@ public class ForumServiceImpl implements ForumService{
 	}
 
 	@Override
-	public Map<String, Object> FindForumByUserId(String userId) {
+	public Map<String, Object> FindForumByUserId(String userId,String pageNum) {
 		// TODO Auto-generated method stub
-		return forumDao.FindForumByUserId(userId);
+		return forumDao.FindForumByUserId(userId,pageNum);
 	}
 
 	@Override
@@ -85,6 +85,12 @@ public class ForumServiceImpl implements ForumService{
 	public Map<String, Object> FindAllNewMessages(int userId,String messagePageIndex) {
 		// TODO Auto-generated method stub
 		return forumDao.FindAllNewMessages(userId,messagePageIndex);
+	}
+
+	@Override
+	public Map<String, Object> FindReplyByUserId(String userId,String pageNum) {
+		// TODO Auto-generated method stub
+		return forumDao.FindReplyByUserId(userId,pageNum);
 	}
 
 }

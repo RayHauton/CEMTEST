@@ -26,13 +26,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Repository
 public class ForumDaoImpl implements ForumDao {
 	/**
-	 * 所有页面默认显示条数大小为32
-	 * 可根据情况进行修改
-	 * 可能不同页面显示不同 没有全局变量pageSize
-	 * crtl+f 检索 pageSize
+	 * 所有页面默认显示条数大小为32 可根据情况进行修改 可能不同页面显示不同 没有全局变量pageSize crtl+f 检索 pageSize
 	 */
-	
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -63,7 +59,8 @@ public class ForumDaoImpl implements ForumDao {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		reply.setIsDeleted("0");
-		String sql = "update Forum set replyCount=replyCount+1,updateTime ='" + reply.getReplyTime() + "' where forumId='" + forumId + "'";
+		String sql = "update Forum set replyCount=replyCount+1,updateTime ='" + reply.getReplyTime()
+				+ "' where forumId='" + forumId + "'";
 		jdbcTemplate.update(sql);
 		session.save(reply);
 		return "succ";
@@ -120,7 +117,7 @@ public class ForumDaoImpl implements ForumDao {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+
 		map.put("forumModule", forumModuleId);
 		map.put("forumList", list);// forum列表
 		map.put("forumCount", count1);// 一共多少个帖子
@@ -175,14 +172,17 @@ public class ForumDaoImpl implements ForumDao {
 		return forumId;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Map<String, Object> FindForumByUserId(String userId) {
+	public Map<String, Object> FindForumByUserId(String userId, String pageNum) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		Session session = getSession();
+		int pageSize = 5;
 		String sql = "select f from Forum f where userId=? and isDeleted='0' order by forumId desc";
 		String count = "select count(*) from Forum  where userId=? and isDeleted='0'";
-		List<Forum> list = session.createQuery(sql).setString(0, userId).list();
+		List<Forum> list = session.createQuery(sql).setString(0, userId)
+				.setFirstResult((Integer.parseInt(pageNum) - 1) * pageSize).setMaxResults(pageSize).list();
 		int result = (int) session.createQuery(count).setString(0, userId).uniqueResult();
 		try {
 			for (Forum forum : list) {
@@ -209,13 +209,14 @@ public class ForumDaoImpl implements ForumDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Map<String, Object> FindReplyByUserId(String userId) {
+	public Map<String, Object> FindReplyByUserId(String userId, String pageNum) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		Session session = getSession();
+		int pageSize = 5;
 		String sql = "select * from Reply where userId=? and isDeleted='0' order by replyId desc";
 		String count = "select count(*) from Reply where userId=? and isDeleted='0' ";
-		List<Reply> list = session.createQuery(sql).setString(0, userId).list();
+		List<Reply> list = session.createQuery(sql).setString(0, userId).setFirstResult((Integer.parseInt(pageNum)-1)*pageSize).setMaxResults(pageSize).list();
 		int result = (int) session.createQuery(count).setString(0, userId).uniqueResult();
 		try {
 			for (Reply reply : list) {
@@ -242,64 +243,75 @@ public class ForumDaoImpl implements ForumDao {
 	@Override
 	public int findNewMessageNumber(int userId) {
 		// TODO Auto-generated method stub
-		//1
-//		Session session = getSession();
-//		String sql = "select count(*) from ForumMessage where personId=? and status='0' ";
-//		int count = Integer
-//				.parseInt(String.valueOf(session.createQuery(sql).setString(0, String.valueOf(userId)).uniqueResult()));
-		//2 which is better? i dont know sry,but i prefer 2.
-		String sql = "select count(*) from ForumMessage where personId='"+userId +"' and status='0' ";
+		// 1
+		// Session session = getSession();
+		// String sql = "select count(*) from ForumMessage where personId=? and
+		// status='0' ";
+		// int count = Integer
+		// .parseInt(String.valueOf(session.createQuery(sql).setString(0,
+		// String.valueOf(userId)).uniqueResult()));
+		// 2 which is better? i dont know sry,but i prefer 2.
+		String sql = "select count(*) from ForumMessage where objectReplyId='" + userId + "' and status='0' and personId <> '" + userId +"'";
 		int count = Integer.parseInt(jdbcTemplate.queryForObject(sql, String.class));
 		return count;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Map<String, Object> FindAllNewMessages(int userId,String messagePageIndex) {
+	public Map<String, Object> FindAllNewMessages(int userId, String messagePageIndex) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		int pageSize = 5;
 		Session session = getSession();
-		String sql = "select f from ForumMessage f where personId=? order by id desc";
-		List<ForumMessage> list = session.createQuery(sql).setString(0, String.valueOf(userId)).setMaxResults(pageSize).setFirstResult((Integer.parseInt(messagePageIndex)-1)*pageSize).list();
+		String sql = "select f from ForumMessage f where objectReplyId=? and personId <> ? order by id desc";
+		List<ForumMessage> list = session.createQuery(sql).setString(0, String.valueOf(userId)).setString(1, String.valueOf(userId)).setMaxResults(pageSize)
+				.setFirstResult((Integer.parseInt(messagePageIndex) - 1) * pageSize).list();
+		for (ForumMessage forumMessage : list) {
+			try {
+				forumMessage.setTime(getFriendlyTime(forumMessage.getTime()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		map.put("messageList", list);
 		String changeStatus = "update ForumMessage set status='1' where personId=?";
 		session.createQuery(changeStatus).setInteger(0, userId).executeUpdate();
 		return map;
 	}
-	
-	public String getFriendlyTime(String date) throws ParseException{
+
+	public String getFriendlyTime(String date) throws ParseException {
 		Date nowTime = new Date();
 		Date oldtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date);
-//		//精确到哪一个时间点
-		long ys = DateUtils.truncate(nowTime, Calendar.YEAR).getTime();//当前时间精确到年
-		long ds = DateUtils.truncate(nowTime, Calendar.DAY_OF_MONTH).getTime();//当前时间精确到日
-		long yd = DateUtils.truncate(oldtime, Calendar.DAY_OF_MONTH).getTime();//转换时间精确到日
-		
+		// //精确到哪一个时间点
+		long ys = DateUtils.truncate(nowTime, Calendar.YEAR).getTime();// 当前时间精确到年
+		long ds = DateUtils.truncate(nowTime, Calendar.DAY_OF_MONTH).getTime();// 当前时间精确到日
+		long yd = DateUtils.truncate(oldtime, Calendar.DAY_OF_MONTH).getTime();// 转换时间精确到日
+
 		long n = nowTime.getTime();
 		long e = oldtime.getTime();
-		if (e < ys) {//时间转换成y-m-d//去年的
+		if (e < ys) {// 时间转换成y-m-d//去年的
 			return new SimpleDateFormat("yyyy-MM-dd").format(oldtime);
 		}
-		if ((ds - yd) == (24 * 60 * 60 * 1000)) {//24h内
+		if ((ds - yd) == (24 * 60 * 60 * 1000)) {// 24h内
 			return new SimpleDateFormat("昨天 HH:mm").format(oldtime);
 		}
-		if (e < ds) {//今天以前的信息
+		if (e < ds) {// 今天以前的信息
 			String result = new SimpleDateFormat("MM-dd").format(oldtime);
 			if (result.substring(0, 1).equals("0")) {
 				result = result.substring(1, 5);
 			}
 			return result;
 		}
-		if (n - e > 60 * 60 * 1000) {//一小时之前的
+		if (n - e > 60 * 60 * 1000) {// 一小时之前的
 			String result = new SimpleDateFormat("HH:mm").format(oldtime);
-			if (result.substring(0, 1).equals("0")) {
-				result = result.substring(1, 5);
-			}
-			return "今天"+result;
+//			if (result.substring(0, 1).equals("0")) {
+//				result = result.substring(1, 5);
+//			}
+			return "今天" + result;
 		}
 		if (n - e > 60 * 1000) {
-			//1d 是double 自动转换
+			// 1d 是double 自动转换
 			return (long) Math.floor((n - e) * 1d / 60000) + "分钟前";
 		}
 		if (n - e > 1 * 1000) {
