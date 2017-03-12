@@ -206,7 +206,35 @@ public class ForumController {
 			messagePageIndex = "1";
 		}
 		Map<String, Object> map = forumService.FindAllNewMessages(user.getUserId(), messagePageIndex);
-		modelAndView.setViewName("baseView/bbsmessage");
+		modelAndView.setViewName("/baseView/bbsmessage");
+		modelAndView.addAllObjects(map);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/ihome_tie")
+	public ModelAndView findForumsById(HttpServletRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String userId = request.getParameter("uid");
+		String pageNum = request.getParameter("pageIndex");
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		Map<String, Object> map = forumService.FindForumByUserId(userId,pageNum);
+		modelAndView.setViewName("redirect:/forum/my_tie");
+		modelAndView.addAllObjects(map);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/ihome_reply")
+	public ModelAndView findReplyById(HttpServletRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String userId = request.getParameter("uid");
+		String pageNum = request.getParameter("pageIndex");
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		Map<String, Object> map = forumService.FindReplyByUserId(userId,pageNum);
+		modelAndView.setViewName("redirect:/forum/my_reply");
 		modelAndView.addAllObjects(map);
 		return modelAndView;
 	}

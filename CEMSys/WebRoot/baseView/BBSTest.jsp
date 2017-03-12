@@ -119,7 +119,7 @@ To change this template use File | Settings | File Templates.
 					<c:forEach var="i" begin="${begin }" end="${end }">
 						<c:choose>
 							<c:when test="${i==currentReplyPage }">
-								<li class="disabled"><a href="#">${1 }</a></li>
+								<li class="disabled"><a href="#">${i }</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="active"><a
