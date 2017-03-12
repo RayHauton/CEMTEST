@@ -1,5 +1,7 @@
 package com.cem.test;
 
+import java.util.Random;
+
 import org.junit.Test;
 
 import com.cem.customPojo.UserCustom;
@@ -14,4 +16,5 @@ public class DaoTest {
 		DonationDao donationDao = new DonationDaoImpl();
 		UserCustom user = donationDao.findDonorInfo(userCustom);
 	}
+	
 }
