@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-2-24 22:31:31 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
-    <class name="com.cem.pojo.User" table="user" catalog="cemsys">
+    <class name="com.cem.pojo.User" table="user" catalog="cemsys" lazy="false">
         <id name="userId" type="int">
             <column name="userId" />
             <generator class="native" />
