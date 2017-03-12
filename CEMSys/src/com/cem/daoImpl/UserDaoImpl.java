@@ -2,13 +2,16 @@ package com.cem.daoImpl;
 
 import java.util.List;
 
+import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.Where;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cem.dao.UserDao;
 import com.cem.pojo.User;
+import com.cem.queryVO.UserManageVo;
 
 /**
  * Created by RayHauton on 2017/1/25.
@@ -106,53 +109,80 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void updateUser(User user) throws Exception {
+	public boolean updateUser(User user) throws Exception {
 		Session session = getSession();
-		session.update(user);
+		session.merge(user);
+		session.flush();
+		return true;
 	}
 
 	@Override
-	public List<User> findUsersByTruename(String trueName, boolean passed, int pageSize) {
+	public List<Object> findUsersFromUserManage(UserManageVo userManageVo) throws Exception {
+		System.out.println("dao层开始");
 		Session session = getSession();
-		String hql = null;
-		if (passed) {
-			hql = "FROM User where truename=? and isDeleted=? and checkOut='1'";
-		} else {
-			hql = "FROM User where truename=? and isDeleted=?";
+		String studNumber = userManageVo.getStudNumber();
+		String truename = userManageVo.getTruename();
+		String entranceDate = userManageVo.getEntranceDate();
+		String majorId = userManageVo.getMajorId();
+		String degreeId = userManageVo.getDegreeId();
+		System.out.println(studNumber);
+		System.out.println(truename);
+		System.out.println(entranceDate);
+		System.out.println(majorId);
+		System.out.println(degreeId);
+		String passed = userManageVo.getAudit();
+
+		if ((studNumber == null | "".equals(studNumber)) && (truename == null | "".equals(truename))
+				&& (entranceDate == null | "".equals(entranceDate)) && (majorId == null | "".equals(majorId))
+				&& (degreeId == null | "".equals(degreeId))) {
+			System.out.println("错误查询");
+			return null;
 		}
-		List<User> users = session.createQuery(hql).setParameter(0, trueName).setParameter(1, "0").setFirstResult(0)
-				.setMaxResults(pageSize).list();
-		return users;
+		StringBuilder hql = new StringBuilder(
+				"select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate from User u join SchoolExperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) where u.isDeleted  = '0' ");
+		if ("0".equals(passed))
+			hql.append("And u.checkOut='0' ");
+		else if ("1".equals(passed)) {
+			hql.append("And u.checkOut='1' ");
+		}
+		if (studNumber != null && !("".equals(studNumber)))
+			hql.append("And u.studNumber= " + studNumber);
+		else {
+			if (truename != null && !("".equals(truename))) {
+				hql.append("And u.truename = " + truename);
+			}
+			if (entranceDate != null && !("".equals(entranceDate))) {
+				hql.append("And u.entranceDate = " + entranceDate);
+			}
+			if (majorId != null && !("".equals(majorId)))
+				hql.append("And s.majorId = '" + majorId + "'");
+			if (degreeId != null && !("".equals(degreeId)))
+				hql.append("And s.degreeId  = '" + degreeId + "'");
+		}
+		System.out.println(hql.toString());
+		return session.createSQLQuery(hql.toString()).setFirstResult(0).list();
+
 	}
 
 	@Override
-	public List<User> findUserByEntranceDate(String entranceDate, boolean passed, int pageSize) {
-		// TODO Auto-generated method stub
+	public List<Object> finddUsersFromUserManageWithOut(String passed) throws Exception {
 		Session session = getSession();
 		String hql = null;
-		if (passed) {
-			hql = "from user where entranceDate = ? and idDeleted and checkOut =' 1' ";
-		} else {
-			hql = "from user where entranceDate = ? and idDeleted ";
+		System.out.println(passed);
+		if ("1".equals(passed))
+			hql = "select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
+					+ "from User u join SchoolExperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) "
+					+ "where u.isDeleted  = '0' and u.checkOut = '1' ";
+		else if ("3".equals(passed)) {
+			hql = "select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
+					+ "from User u join SchoolExperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) "
+					+ "where u.isDeleted  = '0' ";
+		} else if ("0".equals(passed)) {
+			hql = "select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
+					+ "from User u join SchoolExperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) "
+					+ "where u.isDeleted  = '0' and u.checkOut = '0' ";
 		}
-		List<User> uList = session.createQuery(hql).setParameter(0, entranceDate).setParameter(1, "0").setFirstResult(0)
-				.setMaxResults(pageSize).list();
-		return uList;
-	}
-
-	@Override
-	public List<User> findUserByEntAndTrueName(String entranceDate, String trueName, boolean passed, int pageSize) {
-		// TODO Auto-generated method stub
-		Session session = getSession();
-		String hql = null;
-		if (passed) {
-			hql = "from user where entranceDate = ? and trueName = ? and idDeleted = ? and checkOut = '1' ";
-		} else {
-			hql = "from user where entranceDate = ? and trueName = ? and idDeleted = ? ";
-		}
-		List<User> uList = session.createQuery(hql).setParameter(0, entranceDate).setParameter(1, trueName)
-				.setParameter(2, "0").setFirstResult(0).setMaxResults(pageSize).list();
-		return uList;
+		return session.createSQLQuery(hql).setFirstResult(0).list();
 	}
 
 }

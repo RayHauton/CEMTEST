@@ -2,7 +2,10 @@ package com.cem.dao;
 
 import java.util.List;
 
+import javax.swing.tree.ExpandVetoException;
+
 import com.cem.pojo.User;
+import com.cem.queryVO.UserManageVo;
 
 /**
  * Created by RayHauton on 2017/1/25.
@@ -48,11 +51,17 @@ public interface UserDao {
 	/*
 	 * 更新数据库记录
 	 */
-	public void updateUser(User user) throws Exception;
+	public boolean updateUser(User user) throws Exception;
 	
-	public List<User> findUsersByTruename(String trueName,boolean passed,int pageSize);
 	
-	public List<User> findUserByEntranceDate(String entranceDate,boolean passed,int pageSize);
+//	public void deleteUser(User user) throws Exception;
+
+	/*
+	 * 被usermanage使用
+	 */
+	public List<Object> findUsersFromUserManage(UserManageVo userManageVo) throws Exception;
 	
-	public List<User> findUserByEntAndTrueName(String entranceDate,String trueName,boolean passed,int pageSize);
+	public List<Object> finddUsersFromUserManageWithOut(String passed) throws Exception;
+	
+	
 }
