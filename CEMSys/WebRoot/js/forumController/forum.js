@@ -37,11 +37,17 @@ function countChar(inputName,spanName){
 	document.getElementById(spanName).innerHTML=length;
 }
 
+/*<div class="table_main">引用${test.replyObject }L：引用内容</div>
+									<div class="every_reply">
+									<div id="id${test.floor }">${test.replyText }</div> 
+									</div>*/
 function reply(test){
 	// 当前楼层的用户id hostId
 	var forumId = document.getElementById("forumId").value;
 	var forumTitle = document.getElementById("forumTitle").value;
 	var floor = $(test).attr("name");
+	var objectReplyContent = document.getElementById("id"+floor).innerText;
+	alert(objectReplyContent);
 	var replyContent = document.getElementById("replyToHost"+floor.toString()).value;
 	var userId = document.getElementById("userId"+floor.toString()).value;
 	if(replyContent == "" || replyContent== null){
@@ -54,6 +60,8 @@ function reply(test){
         url: $('#basePath').val()+"/forum/insertReply",
         data: {
         	replyText:replyContent,
+//        	replyText:"<div class='table_main'>引用"+floor+"L："+ objectReplyContent +"</div><div class='every_reply'><div id='id"+floor+"'>"+replyContent+"</div></div>",
+        	objectReplyContent:objectReplyContent,
         	forumId:forumId,
         	floor:floor,
         	forumTitle:forumTitle,

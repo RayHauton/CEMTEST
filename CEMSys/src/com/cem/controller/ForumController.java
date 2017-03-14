@@ -139,6 +139,7 @@ public class ForumController {
 		String floor = request.getParameter("floor");
 		String userId = request.getParameter("userId");
 		String forumTitle = request.getParameter("forumTitle");
+		String objectReplyContent = request.getParameter("objectReplyContent");
 		Reply reply = new Reply();
 		ForumMessage message = new ForumMessage();
 		
@@ -149,6 +150,13 @@ public class ForumController {
 		reply.setFloor(forumService.getFloorWhenInsertReply(forumId));//该回复所在楼层
 		reply.setPublishUserId(user.getUserId());
 		reply.setPublishUser(user.getUsername());
+		if (objectReplyContent != null) {
+			if (objectReplyContent.length() > 200) {
+				reply.setParentReplyId(objectReplyContent.substring(0, 200));
+			}else{
+				reply.setParentReplyId(objectReplyContent);
+			}
+		}
 		forumService.insertReply(reply,forumId);
 		
 		message.setForumId(Integer.parseInt(forumId));
@@ -220,7 +228,7 @@ public class ForumController {
 			pageNum = "1";
 		}
 		Map<String, Object> map = forumService.FindForumByUserId(userId,pageNum);
-		modelAndView.setViewName("redirect:/forum/my_tie");
+		modelAndView.setViewName("/forum/ihome_tie");
 		modelAndView.addAllObjects(map);
 		return modelAndView;
 	}
@@ -234,7 +242,7 @@ public class ForumController {
 			pageNum = "1";
 		}
 		Map<String, Object> map = forumService.FindReplyByUserId(userId,pageNum);
-		modelAndView.setViewName("redirect:/forum/my_reply");
+		modelAndView.setViewName("/forum/ihome_reply");
 		modelAndView.addAllObjects(map);
 		return modelAndView;
 	}

@@ -2,6 +2,7 @@ package com.cem.daoImpl;
 
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,7 +22,6 @@ import com.cem.dao.ForumDao;
 import com.cem.pojo.Forum;
 import com.cem.pojo.ForumMessage;
 import com.cem.pojo.Reply;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Repository
 public class ForumDaoImpl implements ForumDao {
@@ -131,6 +131,7 @@ public class ForumDaoImpl implements ForumDao {
 	public Map<String, Object> FindReplywhileGointoForum(int forumId, int pageIndex) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
+		List<Reply> objectReplyList = new ArrayList<>();
 		int pageSize = 5;
 		Session session = getSession();
 		if (pageIndex == 0) {
@@ -183,7 +184,7 @@ public class ForumDaoImpl implements ForumDao {
 		String count = "select count(*) from Forum  where userId=? and isDeleted='0'";
 		List<Forum> list = session.createQuery(sql).setString(0, userId)
 				.setFirstResult((Integer.parseInt(pageNum) - 1) * pageSize).setMaxResults(pageSize).list();
-		int result = (int) session.createQuery(count).setString(0, userId).uniqueResult();
+		int result = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, userId).uniqueResult()));
 		try {
 			for (Forum forum : list) {
 				forum.setPublishTime(getFriendlyTime(forum.getPublishTime()));
@@ -194,6 +195,8 @@ public class ForumDaoImpl implements ForumDao {
 		}
 		map.put("forumList", list);
 		map.put("count", result);
+		map.put("currentUserId", userId);
+		
 		return map;
 	}
 
@@ -214,10 +217,10 @@ public class ForumDaoImpl implements ForumDao {
 		Map<String, Object> map = new HashMap<>();
 		Session session = getSession();
 		int pageSize = 5;
-		String sql = "select * from Reply where userId=? and isDeleted='0' order by replyId desc";
-		String count = "select count(*) from Reply where userId=? and isDeleted='0' ";
+		String sql = "select r from Reply r where publishUserId=? and isDeleted='0' order by replyId desc";
+		String count = "select count(*) from Reply where publishUserId=? and isDeleted='0' ";
 		List<Reply> list = session.createQuery(sql).setString(0, userId).setFirstResult((Integer.parseInt(pageNum)-1)*pageSize).setMaxResults(pageSize).list();
-		int result = (int) session.createQuery(count).setString(0, userId).uniqueResult();
+		int result = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, userId).uniqueResult()));
 		try {
 			for (Reply reply : list) {
 				reply.setReplyTime(getFriendlyTime(reply.getReplyTime()));
@@ -228,7 +231,8 @@ public class ForumDaoImpl implements ForumDao {
 		}
 		map.put("replyList", list);
 		map.put("count", result);
-
+		map.put("currentUserId", userId);
+		
 		return map;
 	}
 

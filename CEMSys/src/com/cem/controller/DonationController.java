@@ -1,6 +1,5 @@
 package com.cem.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cem.customPojo.UserCustom;
-import com.cem.pojo.Donation;
 import com.cem.queryVO.DonationQueryVo;
 import com.cem.service.DonationService;
 

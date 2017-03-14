@@ -52,56 +52,10 @@ img {
 			<div class="forum">
 				<h1 name="title">${thisForum.forumTitle }</h1>
 			</div>
-<!-- 			<div class="replylist"> -->
-<!-- 				<ul class="list-group"> -->
-<%-- 					<c:forEach var="test" items="${replyList }" varStatus="status"> --%>
-<!-- 						<li class="list-group-item forum"> -->
-<!-- 							<div class="every-reply"> -->
-<%-- 								<div class="replytext">${test.replyText }</div> --%>
-<!-- 								<div class="replyinfo"> -->
-<!-- 									<div class="replyinfo-info"> -->
-<!-- 										<span><img -->
-<%-- 											src="${pageContext.request.contextPath }/img/forum/user.png" --%>
-<%-- 											alt="${test.publishUser }" style="width: 9px; height: 8px;">${test.publishUser }</span> --%>
-<%-- 										<span>${test.replyTime }</span> <input type="hidden" --%>
-<%-- 											id="userId${test.floor }" value="${test.publishUserId }" /> --%>
-<!-- 									</div> -->
-<!-- 									<div class="replyinfo-reply"> -->
-<%-- 										<c:if --%>
-<%-- 											test="${user.role =='3' || user.userId == test.publishUserId }"> --%>
-<!-- 											<ins class="element" style="text-decoration: none;"> -->
-<!-- 												<span style="color: #333; cursor: pointer; width: 50px;" -->
-<%-- 													name="${test.replyId }" onclick="deleteReply(this)"><img --%>
-<%-- 													src="${pageContext.request.contextPath }/img/forum/gantanhao.png" --%>
-<!-- 													alt="" style="width: 15px; height: 20px;">删除</span> -->
-<!-- 											</ins> -->
-<%-- 										</c:if> --%>
-<!-- 										<span style="color: #333; cursor: pointer;" -->
-<!-- 											onclick="messagebox()"><img -->
-<%-- 											src="${pageContext.request.contextPath }/img/forum/reply.png" --%>
-<!-- 											alt="" style="width: 15px; height: 15px;">评论</span> -->
-<!-- 									</div> -->
-<!-- 									<div id="pp" -->
-<!-- 										style="width: 800px; height: 150px; display: none; background-color: #f4fef6"> -->
-<%-- 										<textarea placeholder="请输入内容" id="replyToHost${test.floor }" --%>
-<!-- 											style="width: 660px; height: 102px;"></textarea> -->
-<%-- 										<input type="button" name="${test.floor }" value="发表评论" --%>
-<!-- 											onclick="javascript:reply(this)" class="btn btn-default"> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</li> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</ul> -->
-<!-- 			</div> -->
-
-
-
 			<div class="simple_block_container">
 				<ul>
 					<c:forEach var="test" items="${replyList }" varStatus="status">
-
-						<li>
+						<li id="${test.replyId }">
 							<div class="block">
 								<div class="left_up">
 									<span><img src="" alt="">头像</span>
@@ -112,15 +66,16 @@ img {
 											value="${test.publishUserId }" /> <cite>${test.replyTime }&nbsp;${test.floor }</cite>
 										<a href="#">${test.publishUser }</a> 回复
 									</h4>
-									<div class="table_main">引用${test.replyObject }L：什么男朋友？</div>
+									<div class="table_main">引用${test.replyObject }L：${test.parentReplyId }</div>
 									<div class="every_reply">
-										<span class="char"><img
-											src="${pageContext.request.contextPath }/img/forum/left_char.png"
-											alt="逗号"> </span>
-											${test.replyText } 
-											<span class="char"><img
-											src="${pageContext.request.contextPath }/img/forum/right_char.png"
-											alt="逗号"></span>
+<!-- 										<span class="char"> <img -->
+<%-- 											src="${pageContext.request.contextPath }/img/forum/left_char.png" --%>
+<!-- 											alt="逗号"> -->
+<!-- 										</span> -->
+										<div id="id${test.floor }">${test.replyText }</div>
+<!-- 										<span class="char"> <img -->
+<%-- 											src="${pageContext.request.contextPath }/img/forum/right_char.png" --%>
+<!-- 											alt="逗号"></span> -->
 									</div>
 									<div class="replyinfo-reply">
 										<c:if
@@ -132,7 +87,8 @@ img {
 													alt="" style="width: 15px; height: 20px;">删除</span>
 											</ins>
 										</c:if>
-										<span name="${test.floor }" style="color: #333; cursor: pointer;"
+										<span name="${test.floor }"
+											style="color: #333; cursor: pointer;"
 											onclick="messagebox(this)"><img
 											src="${pageContext.request.contextPath }/img/forum/reply.png"
 											alt="" style="width: 15px; height: 15px;">评论</span>
@@ -222,7 +178,7 @@ img {
 	<script type="text/javascript">
 		function messagebox(test) {
 			var floor = $(test).attr('name');
-			$('#pp'+floor).toggle();
+			$('#pp' + floor).toggle();
 		}
 	</script>
 

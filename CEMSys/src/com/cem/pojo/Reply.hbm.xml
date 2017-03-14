@@ -35,7 +35,7 @@
             <column name="replyTime" length="20" />
         </property>
         <property name="parentReplyId" type="string">
-            <column name="parentReplyId" length="20">
+            <column name="parentReplyId" length="200">
                 <comment>???????Id</comment>
             </column>
         </property>
