@@ -54,13 +54,17 @@ public interface UserService {
 	/*删除用户*/
 	public boolean deleteUser(User user) throws Exception;
 	
+	
+	public List<User> findUserWithOut() throws Exception;
 	/*
 	 * userManage使用
 	 */
-	public Map<String, List<Object>> findUsersFromUserManage(UserManageVo userManageVo)throws Exception;	
+	public Map<String, Object> findUsersFromUserManage(UserManageVo userManageVo)throws Exception;	
 	
-	public Map<String, List<Object>> findUsersFromUserManageWithOut(String audit) throws Exception;
+	public Map<String, Object> findUsersFromUserManageWithOut(UserManageVo userManageVo) throws Exception;
 	
 	public void checkUserStates(String[] studNumberArr,String[] auditArr)throws Exception;
+	
+	public void downloadUsers(List<User> uList) throws Exception;
 	
 }
