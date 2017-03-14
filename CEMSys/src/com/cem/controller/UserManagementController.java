@@ -14,8 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cem.pojo.Jobinfomodule;
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
+import com.cem.service.JobService;
+import com.cem.service.SurveySysService;
 import com.cem.service.UserService;
 
 @Controller
@@ -23,9 +26,29 @@ import com.cem.service.UserService;
 public class UserManagementController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private JobService jobService;
+	@Autowired
+	SurveySysService surveySysService;
+	
+	@RequestMapping(value = "/open")
+	public ModelAndView openJsp(HttpSession session) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		String mobile = user.getMobile();
+		if (userService.findUserByMobile(mobile, true) != null)
+			modelAndView.setViewName("admin/userManage");
+		else {
+			modelAndView.setViewName("login/login");
+		}
 
-	@RequestMapping(value = "/findUser")
-	public ModelAndView findUser(UserManageVo userManageVo) throws Exception {
+		modelAndView.addObject("approvedsum", 0);
+		modelAndView.addObject("disapprovedsum", 0);
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/findUsers")
+	public ModelAndView findUsers(UserManageVo userManageVo) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		// userManageVo.setPageSize("100");
 		Map<String, List<Object>> result = userService.findUsersFromUserManage(userManageVo);
@@ -42,10 +65,30 @@ public class UserManagementController {
 			modelAndView.addObject("disapprovedsum", result.get("disapproved").size());
 		}
 		modelAndView.setViewName("admin/userManage");
-		modelAndView.setViewName("admin/userManage");
 		System.out.println("修改成功");
 		System.out.println("//////");
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/findUser")
+	public void findUser(UserManageVo userManageVo, HttpServletResponse response, HttpSession session)
+			throws Exception {
+		// ModelAndView modelAndView =new ModelAndView();
+		System.out.println(userManageVo.getStudNumber());
+		User user = userService.findUserByStudNum(userManageVo.getStudNumber(), false);
+		if (user == null)
+			System.out.println("失敗");
+		else {
+			// modelAndView.addObject("userDetail", user);
+			System.out.println("");
+			String result = user.getUsername() + "/" + user.getTruename() + "/" + user.getSex() + "/"
+					+ user.getStudNumber() + "/" + user.getBirth() + "/" + user.getMobile() + "/" + user.getEmail()
+					+ "/" + user.getAddress() + "/" + user.getEntranceDate() + "/" + user.getGraduateDate();
+			response.setCharacterEncoding("UTF-8");  
+		    response.setContentType("text/html; charset=UTF-8"); 
+			response.getWriter().write(result);
+		}
+
 	}
 
 	@RequestMapping(value = "/findUserWithout")
@@ -75,17 +118,22 @@ public class UserManagementController {
 		System.out.println("准备删除");
 		User user = new User();
 		user.setStudNumber(studNumber);
-		if (userService.deleteUser(user))
-			response.getWriter().write("success");
+		if (userService.deleteUser(user)){
+			jobService.deleteJobInf(jobService.findJobInfByUserId(user.getUserId()));
+			jobService.deleteJobCon(jobService.finJobConByUserId(user.getUserId()));
+			surveySysService.deleteSelfabilityqualityByUserID(user.getUserId());
+			surveySysService.deleteMajorabilitycultivationqualityByUserID(user.getUserId());
+			response.getWriter().write("success");}
 		else {
 			response.getWriter().write("noExist");
 		}
+		
 	}
-	
-	@RequestMapping(value="/check")
-	public void checkUserStates(HttpServletRequest request,HttpServletResponse response)throws Exception{
+
+	@RequestMapping(value = "/check")
+	public void checkUserStates(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String[] studNumberArr = request.getParameterValues("studNumber");
-		String[] auditArr  =request.getParameterValues("audit_states");
+		String[] auditArr = request.getParameterValues("audit_states");
 		userService.checkUserStates(studNumberArr, auditArr);
 		response.getWriter().write("success");
 	}

@@ -132,9 +132,9 @@ public class UserDaoImpl implements UserDao {
 		System.out.println(degreeId);
 		String passed = userManageVo.getAudit();
 
-		if ((studNumber == null | "".equals(studNumber)) && (truename == null | "".equals(truename))
-				&& (entranceDate == null | "".equals(entranceDate)) && (majorId == null | "".equals(majorId))
-				&& (degreeId == null | "".equals(degreeId))) {
+		if ((studNumber == null & "".equals(studNumber)) && (truename == null & "".equals(truename))
+				&& (entranceDate == null & "".equals(entranceDate)) && (majorId == null & "".equals(majorId))
+				&& (degreeId == null & "".equals(degreeId)) && (passed == null & "".equals(passed))) {
 			System.out.println("错误查询");
 			return null;
 		}

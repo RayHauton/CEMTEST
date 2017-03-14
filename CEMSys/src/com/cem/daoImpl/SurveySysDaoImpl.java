@@ -60,14 +60,14 @@ public class SurveySysDaoImpl implements SurveySysDao {
 	}
 
 	@Override
-	public void deleteSelfabilityqualityByUserID(Long userID) {
+	public void deleteSelfabilityqualityByUserID(int userID) {
 		Session session = getSession();
 		String hql = "update Selfabilityquality s set s.isDeleted=1 where s.userId='" + userID + "';";
 		session.createSQLQuery(hql).executeUpdate();
 	}
 
 	@Override
-	public void deleteMajorabilitycultivationqualityByUserID(Long userID) {
+	public void deleteMajorabilitycultivationqualityByUserID(int userID) {
 		Session session = getSession();
 		String hql = "update Majorabilitycultivationquality m set m.isDeleted=1 where m.userId=" + userID + ";";
 		session.createSQLQuery(hql).executeUpdate();

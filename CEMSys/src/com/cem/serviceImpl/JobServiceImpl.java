@@ -24,7 +24,7 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public Jobinfomodule findJobInfByUserId(long userId) throws Exception {
+	public Jobinfomodule findJobInfByUserId(int userId) throws Exception {
 		// TODO Auto-generated method stub
 		return jobDao.findJobinfomoduleByUserId(userId);
 	}
@@ -58,6 +58,19 @@ public class JobServiceImpl implements JobService {
 	public void insertJobCon(Jobcontitionmodule jobcontitionmodule) throws Exception {
 		// TODO Auto-generated method stub
 		jobDao.insertJobcontitionmodule(jobcontitionmodule);
+	}
+
+	@Override
+	public Jobcontitionmodule finJobConByUserId(int userId) throws Exception {
+		// TODO Auto-generated method stub
+		jobDao.findJobcontitionmoduleByUserId(userId);
+		return null;
+	}
+
+	@Override
+	public void deleteJobCon(Jobcontitionmodule jobcontitionmodule) throws Exception {
+		// TODO Auto-generated method stub
+		jobDao.deleteJobcontitionmodule(jobcontitionmodule);
 	}
 
 }

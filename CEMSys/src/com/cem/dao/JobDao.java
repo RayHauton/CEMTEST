@@ -9,7 +9,7 @@ import com.cem.pojo.Transferjobcount;
 public interface JobDao {
 	
 	
-	public Jobinfomodule findJobinfomoduleByUserId(long userId) throws Exception;
+	public Jobinfomodule findJobinfomoduleByUserId(int userId) throws Exception;
 	public void deleteJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
 	public void updateJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
 	public void insertJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
@@ -19,7 +19,7 @@ public interface JobDao {
 	public void updataCompanynature(Companynature companynature) throws Exception;
 	public void insertCompanynature(Companynature companynature) throws Exception;
 	
-	public Jobcontitionmodule findJobcontitionmoduleByUserId(long userId) throws Exception;
+	public Jobcontitionmodule findJobcontitionmoduleByUserId(int userId) throws Exception;
 	public void deleteJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception;
 	public void updateJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception;
 	public void insertJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception;
