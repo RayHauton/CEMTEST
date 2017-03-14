@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+.outer{
+	width:1000px;
+	min-height:300px;
+	margin-left:auto;
+	margin-right:auto;
+/* 	background-color: deeppink; */
+	font-family:微软雅黑;
+	border-radius:4px;
+	border:1px solid #cecece;
+	margin-top:transparent;
+}
+.btn-custom{
+	margin-left:10px;
+	margin-top:10px;
+}
+.query{
+	width:990px;
+	height:80px;
+	border-bottom:1px dashed #0080ff;
+/* 	background-color: red; */
+	margin-top:10px;
+	font-size:12px;
+}
+.queryTable{
+	width:720px;
+	height:70px;
+	margin-left:10px;
+}
+.queryTable tr td{
+	text-align: center;
+}
+input{
+	padding:0;
+	margin:0;
+	border:1px solid #c6c6c6;
+	border-radius:3px;
+	height:25px;
+}
+.pageSizeSelection{
+	width:140px;
+	height:25px;
+	border-radius:3px;
+	border:1px #c6c6c6 solid;
+}
+.date{
+	width:140px;
+}
+.btn-query{
+	width:70px;
+	height:25px;
+	border:1px solid transparent;
+	color:#FFFFFF;
+/* 	background-color: #5BC0DE; */
+}

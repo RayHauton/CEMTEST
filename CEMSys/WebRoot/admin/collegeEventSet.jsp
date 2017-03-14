@@ -37,7 +37,7 @@
 			<button type="submit" class="btn btn-success" style="height:28px;padding: 0;width: 70px;margin-left: 10px;">查询</button>
 		</form>
 	</div>
-	<hr>
+<!-- 	<hr> -->
 	<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 		<thead>
 			<th width="240px">事件标题（点击查看详情）</th>
@@ -170,9 +170,9 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 					</button>
-					<button type="button" class="btn btn-warning" onclick="resetForm();">重置
+					<button type="button" class="btn btn-info" onclick="resetForm();">重置
 					</button>
-					<button type="button" class="btn btn-primary" onclick="submitForm('add','ff_add','${queryVo.pageIndex }');">
+					<button type="button" class="btn btn-success" onclick="submitForm('add','ff_add','${queryVo.pageIndex }');">
 						提交
 					</button>
 				</div>

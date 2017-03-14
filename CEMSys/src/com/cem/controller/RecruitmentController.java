@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -98,7 +97,6 @@ public class RecruitmentController {
 	/*
 	 * 获取招聘信息
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show")
 	public ModelAndView show(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			RecruitmentQueryVo queryVo) throws Exception {

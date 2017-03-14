@@ -3,6 +3,7 @@ package com.cem.dao;
 import java.util.Map;
 
 import com.cem.customPojo.UserCustom;
+import com.cem.pojo.Donation;
 import com.cem.queryVO.DonationQueryVo;
 
 /*
@@ -18,4 +19,9 @@ public interface DonationDao {
 	 * 查找相应捐赠人的部分信息
 	 */
 	public UserCustom findDonorInfo(UserCustom userCustom) throws Exception;
+	
+	/*
+	 * 添加捐赠记录
+	 */
+	public void insert(Donation donation) throws Exception;
 }

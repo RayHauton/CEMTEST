@@ -1,6 +1,5 @@
 package com.cem.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +27,11 @@ public class DonationController {
 	@Autowired
 	private DonationService donationService;
 	
+	@RequestMapping(value = "/insert")
+	public void insert(Donation donation) throws Exception{
+		
+	}
+	
 	@RequestMapping(value = "/getDonorInfo",produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public UserCustom getDonorInfo(UserCustom userCustom) throws Exception{
@@ -45,7 +49,6 @@ public class DonationController {
 	/*
 	 * 获取捐赠信息
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show")
 	public ModelAndView show(DonationQueryVo queryVo) throws Exception{
 		/*
