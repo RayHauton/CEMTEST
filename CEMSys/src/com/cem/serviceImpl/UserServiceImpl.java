@@ -39,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findUserByStudNum(String studNum, boolean passed) throws Exception {
+		if(studNum.length()==8)
+			studNum="0"+studNum;
+		System.out.println(studNum);
 		return userDao.findUserByStudNum(studNum, passed);
 	}
 

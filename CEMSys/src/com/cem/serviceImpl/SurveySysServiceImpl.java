@@ -38,12 +38,12 @@ public class SurveySysServiceImpl implements SurveySysService {
 	}
 
 	@Override
-	public void deleteSelfabilityqualityByUserID(Long userID) {
+	public void deleteSelfabilityqualityByUserID(int userID) {
 		surveySysDao.deleteSelfabilityqualityByUserID(userID);
 	}
 
 	@Override
-	public void deleteMajorabilitycultivationqualityByUserID(Long userID) {
+	public void deleteMajorabilitycultivationqualityByUserID(int userID) {
 		surveySysDao.deleteMajorabilitycultivationqualityByUserID(userID);
 	}
 

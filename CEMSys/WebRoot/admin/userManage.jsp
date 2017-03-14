@@ -26,14 +26,12 @@
 				style="margin-left: 7%; margin-top: 7px;">根据个人信息查询</button>
 			<button type="button" class="btn btn-info"
 				style="margin-left: 15%; margin-top: 7px;">根据调研信息查询</button> -->
-			<button type="button" class="btn btn-info"
-				style="margin-left: 7%; margin-top: 7px;">用户信息导出成Excel</button>
 			<div id="searchTermA">
 				<hr id="hr" />
 				<div class="searchLogo">
 					<img alt="" src="../img/donation/search1.png">
 				</div>
-				<form action="../userManage/findUser" method="get">
+				<form action="../userManage/findUsers" method="get">
 					<div style="margin-bottom: 13px">
 						<label>学号</label> <input class="form-control" placeholder="输入学号"
 							name="studNumber"> <label>姓名</label> <input
@@ -66,9 +64,9 @@
 							<option value="M08">国际贸易</option>
 						</select> <label>审核状态</label> <select class="form-control" name="audit"
 							id="audit">
+							<option value="3">全部</option>
 							<option value="0">未审核</option>
 							<option value="1">已审核</option>
-							<option value="3">全部</option>
 
 						</select>
 						<!--  <label>每页显示</label> <select class="form-control" name="pageSize"
@@ -83,26 +81,27 @@
 						<button type="submit" class="btn btn-success form-control">&ensp;查询&ensp;</button>
 						<button type="button" class="btn btn-success form-control"
 							onclick="queryAll();">&ensp;查询全部&ensp;</button>
+						<button type="button" class="btn btn-success form-control" style="background-color: #2894FF;border: none;">用户信息导出成Excel</button>
 					</div>
 				</form>
 				<hr id="hr" />
 			</div>
 			<div id="approved-table"
-				style="width: 90%; margin-left: none; margin-top: 10px;">
+				style="width: 98%; margin-left: 1%; margin-top: 10px;">
 				<label>共查询到<span style="color: red">${approvedsum} </span>条记录
 				</label>
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>&emsp;&emsp;&emsp;姓名</th>
+							<th>&emsp;姓名</th>
 							<th>&emsp;&emsp;&emsp;学号</th>
-							<th>&emsp;&emsp;&emsp;专业</th>
-							<th>&emsp;&emsp;&emsp;电话</th>
-							<th>&emsp;&emsp;&emsp;Email</th>
-							<th>&emsp;&emsp;&emsp;入学时间</th>
-							<th>&emsp;&emsp;&emsp;毕业时间</th>
-							<th>&emsp;&emsp;&emsp;删除</th>
-							<th>&emsp;&emsp;&emsp;详情</th>
+							<th>&emsp;专业</th>
+							<!-- <th>&emsp;&emsp;&emsp;电话</th>
+							<th>&emsp;&emsp;&emsp;&emsp;&emsp;Email</th> -->
+							<th>&emsp;入学时间</th>
+							<th>&emsp;毕业时间</th>
+							<th>&emsp;&emsp;&emsp;&emsp;删除</th>
+							<th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;详情</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -112,21 +111,23 @@
 								<td>${app_users[0]}</td>
 								<td>${ app_users[1]}</td>
 								<td>${ app_users[2]}</td>
-								<td>${ app_users[3]}</td>
-								<td>${ app_users[4]}</td>
+								<%-- <td>${ app_users[3]}</td>
+								<td>${ app_users[4]}</td> --%>
 								<td>${app_users[5]}</td>
 								<td>${app_users[6]}</td>
 								<td><button onclick="deleteFun(${ app_users[1]});"
-										class="btn btn-success form-control">删除</button></td>
-								<td>详情</td>
+										class="btn btn-success form-control"
+										style="width: 77px; background-color: #FF2D2D;">删除</button></td>
+								<td><button class="btn btn-success form-control"
+										data-toggle="modal" data-target="#detail-bg"
+										onclick="detail(${ app_users[1]});">详情</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-
 			<div id="disapproved-table"
-				style="width: 90%; margin-left: none; margin-top: 10px;">
+				style="width: 98%; margin-left: 1%; margin-top: 10px;">
 				<label>共查询到<span style="color: red">${disapprovedsum}
 				</span>条记录
 				</label>
@@ -134,15 +135,15 @@
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>&emsp;&emsp;&emsp;姓名</th>
+								<th>&emsp;姓名</th>
 								<th>&emsp;&emsp;&emsp;学号</th>
-								<th>&emsp;&emsp;&emsp;专业</th>
-								<th>&emsp;&emsp;&emsp;电话</th>
-								<th>&emsp;&emsp;&emsp;Email</th>
+								<th>&emsp;专业</th>
+								<!-- <th>&emsp;&emsp;&emsp;电话</th>
+								<th>&emsp;&emsp;&emsp;&emsp;Email</th> -->
 								<th>&emsp;&emsp;&emsp;入学时间</th>
 								<th>&emsp;&emsp;&emsp;毕业时间</th>
 								<th>&emsp;&emsp;&emsp;审核</th>
-								<th>&emsp;&emsp;&emsp;详情</th>
+								<th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;详情</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -151,25 +152,28 @@
 
 									<td>${dis_users[0]}</td>
 									<td><input type="text" name="studNumber"
-										value="${ dis_users[1]}"></td>
+										value="${ dis_users[1]}" style="width: 90px;"></td>
 									<td>${ dis_users[2]}</td>
-									<td>${ dis_users[3]}</td>
-									<td>${ dis_users[4]}</td>
+									<%-- <td>${ dis_users[3]}</td>
+									<td>${ dis_users[4]}</td> --%>
 									<td>${dis_users[5]}</td>
 									<td>${dis_users[6]}</td>
-									<td><select name="audit_states"><option
-												value="1" id="select_audit">通过审核</option>
+									<td><select name="audit_states"><option value="1"
+												id="select_audit">通过审核</option>
 											<option value="2">不通过</option></select></td>
-									<td>详情</td>
+									<td><button class="btn btn-success form-control"
+											data-toggle="modal" data-target="#detail-bg" type="button"
+											onclick="detail(${ dis_users[1]});">详情</button></td>
 								</tr>
 							</c:forEach>
 							<tr>
 								<td></td>
 								<td></td>
 								<td></td>
-								<td><button type="reset" class="form-control">重置</button></td>
+								<td><button type="reset" class="form-control"
+										style="width: 90px;">重置</button></td>
 								<td><button type="button" class="form-control"
-										onclick="check();">提交</button></td>
+										onclick="check();" style="width: 90px;">提交</button></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -179,6 +183,71 @@
 				</form>
 			</div>
 		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="detail-bg" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">${app_users[0]}</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-bordered table-striped">
+						<tr>
+							<td>用户名</td>
+							<td id="username"></td>
+						</tr>
+						<tr>
+							<td>真实姓名</td>
+							<td id="truename"></td>
+						</tr>
+						<tr>
+							<td>性别</td>
+							<td id="sex"></td>
+						</tr>
+						<tr>
+							<td>学号</td>
+							<td id="studnumber"></td>
+						</tr>
+						<tr>
+							<td>生日</td>
+							<td id="birth"></td>
+						</tr>
+						<tr>
+							<td>手机号</td>
+							<td id="mobile"></td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td id="email"></td>
+						</tr>
+						<tr>
+							<td>地址</td>
+							<td id="address"></td>
+						</tr>
+						<tr>
+							<td>入学日期</td>
+							<td id="entranceDate"></td>
+						</tr>
+						<tr>
+							<td>毕业日期</td>
+							<td id="graduateDate"></td>
+						</tr>
+						<<%-- tr> <td>学历</td> <td id="degree">${userDetail.degree}</td>
+						</tr> <tr> <td>专业</td> <td id="major">${userDetail.major}</td>
+						</tr> --%>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
 	</div>
 	<jsp:include page="../baseView/footer.jsp"></jsp:include>
 </body>
@@ -239,6 +308,60 @@
 				alert("成功");
 				queryAll();
 			}
+		})
+	}
+	
+	function detail(studNumber){
+		var params={};
+		params.studNumber = studNumber;
+		$.ajax({
+			type:"post",
+			async:false,
+			url:"../userManage/findUser",
+			data:params,
+			error:function(){
+				alert("失败")
+			},
+			success:function(data){
+				var de = new Array();
+				de = data.split("/")
+				for(i = 0;i<de.length;i++){
+					switch (i) {
+					case 0:
+						document.getElementById("username").innerHTML=de[i];
+						break;
+					case 1:
+						document.getElementById("truename").innerHTML=de[i];
+						break;
+					case 2:
+						document.getElementById("sex").innerHTML=de[i];
+						break;
+					case 3:
+						document.getElementById("studnumber").innerHTML=de[i];
+						break;
+					case 4:
+						document.getElementById("birth").innerHTML=de[i];
+						break;
+					case 5:
+						document.getElementById("mobile").innerHTML=de[i];
+						break;
+					case 6:
+						document.getElementById("email").innerHTML=de[i];
+						break;
+					case 7:
+						document.getElementById("address").innerHTML=de[i];
+						break;
+					case 8:
+						document.getElementById("entranceDate").innerHTML=de[i];
+						
+						break;
+					case 9:
+						document.getElementById("graduateDate").innerHTML=de[i];
+						break;
+					}
+				} 
+			}
+			
 		})
 	}
 	

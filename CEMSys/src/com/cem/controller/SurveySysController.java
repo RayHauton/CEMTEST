@@ -82,17 +82,4 @@ public class SurveySysController {
 		response.getWriter().close();
 //		return "redirect:/baseView/personal-ability.jsp";
 	}
-	
-	@RequestMapping(value = "/deleteByUserID")
-	public String deleteByUserID(HttpServletRequest request,HttpServletResponse response){
-		response.setContentType("text/html;charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		User user = (User) request.getSession().getAttribute("user");
-		surveySysService.deleteSelfabilityqualityByUserID(Long.valueOf(user.getUserId()));
-		surveySysService.deleteMajorabilitycultivationqualityByUserID(Long.valueOf(user.getUserId()));
-		return "redirect:/baseView/personal-ability.jsp";
-	}
-	
-	
-	
 }

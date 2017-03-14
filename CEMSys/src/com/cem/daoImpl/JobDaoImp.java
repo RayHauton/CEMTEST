@@ -25,7 +25,7 @@ public class JobDaoImp implements JobDao{
 	}
 
 	@Override
-	public Jobinfomodule findJobinfomoduleByUserId(long userId) throws Exception {
+	public Jobinfomodule findJobinfomoduleByUserId(int userId) throws Exception {
 		Session session = getSession();
 		String hql = "FROM Jobinfomodule job WHERE job.userId=? and job.isDeleted=? ";
 		@SuppressWarnings("unchecked")
@@ -92,7 +92,7 @@ public class JobDaoImp implements JobDao{
 	}
 
 	@Override
-	public Jobcontitionmodule findJobcontitionmoduleByUserId(long userId) throws Exception {
+	public Jobcontitionmodule findJobcontitionmoduleByUserId(int userId) throws Exception {
 		Session session = getSession();
 		String hql = "FROM Jobcontitionmodule job WHERE job.userId=? and job.isDeleted=? ";
 		@SuppressWarnings("unchecked")

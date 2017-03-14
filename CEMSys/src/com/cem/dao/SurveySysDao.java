@@ -35,11 +35,11 @@ public interface SurveySysDao {
 	 * 删除----个人能力品质----根据用户ID
 	 * @param userID
 	 */
-	public void deleteSelfabilityqualityByUserID(Long userID);
+	public void deleteSelfabilityqualityByUserID(int userID);
 	
 	/**
 	 * 删除----专业能力培养----根据用户ID
 	 * @param userID
 	 */
-	public void deleteMajorabilitycultivationqualityByUserID(Long userID);
+	public void deleteMajorabilitycultivationqualityByUserID(int userID);
 }
