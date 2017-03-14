@@ -95,7 +95,8 @@ body{
 .contentBody{
 /* 	width: 880px; */
 	width: 998px;
-	height: 820px;
+/* 	height: 820px; */
+	min-height:400px;
 /* 	background-color: lightblue; */
 	margin-left: auto;
 	margin-right: auto;
