@@ -97,7 +97,6 @@ public class RecruitmentController {
 	/*
 	 * 获取招聘信息
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show")
 	public ModelAndView show(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			RecruitmentQueryVo queryVo) throws Exception {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.cem.customPojo.UserCustom;
 import com.cem.dao.DonationDao;
 import com.cem.pojo.Degree;
+import com.cem.pojo.Donation;
 import com.cem.pojo.Major;
 import com.cem.pojo.Schoolexperience;
 import com.cem.queryVO.DonationQueryVo;
@@ -106,6 +107,12 @@ public class DonationDaoImpl implements DonationDao {
 		resultMap.put("resultList", session.createQuery(hql.toString()).setFirstResult((pageIndex - 1) * pageSize)
 				.setMaxResults(pageSize).list());
 		return resultMap;
+	}
+
+	@Override
+	public void insert(Donation donation) throws Exception {
+		Session session = getSession();
+		session.save(donation);
 	}
 
 }
