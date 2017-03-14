@@ -64,7 +64,7 @@
 						<div>
 							<ul class="nav navbar-nav">
 								<li class="active"><a
-									href="${pageContext.request.contextPath }/forum/myMessage?uid=${sessionScope.user.userId }">我的消息</a></li>
+									href="${pageContext.request.contextPath }/forum/myMessage?uid=${sessionScope.user.userId }">回复我的</a></li>
 								<li><a
 									href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${sessionScope.user.userId }">我的帖子</a></li>
 								<li><a
@@ -81,14 +81,11 @@
 								<div class="feed_left">
 									<div class="replyme">
 										<div class="replyme_user">
-											<a href="#" target="_blank">${test.personName }&nbsp;:&nbsp;</a>
-										</div>
-										<div class="replyme_content">
-											<a href="#">我ye喜欢你</a>
+											<a href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${test.personId }" target="_blank">${test.personName }&nbsp;:&nbsp;</a>
 										</div>
 									</div>
 									<div class="feed_from">
-										回复我的主题：“<a href="#" class="feed_forum" title=""
+										回复我的主题：“<a href="${pageContext.request.contextPath }/forum/p/forumId" class="feed_forum" title=""
 											target="_blank">${test.forumTitle }</a>”
 									</div>
 								</div>

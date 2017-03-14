@@ -42,6 +42,10 @@ body.ihome {
 	background-color: #f3f3f3;
 }
 
+.forum{
+	border-bottom: 1px dotted #dbe1e6;
+}
+
 .forum:hover {
 	background-color: #f4fef6;
 }
@@ -67,6 +71,7 @@ body.ihome {
 .reply {
 	width: 821px;
 	border-right: 1px solid #ebf0f1;
+	float:left;
 }
 
 .replylist {
@@ -78,7 +83,8 @@ body.ihome {
 }
 
 .aside {
-	
+	float:right;
+	padding-right:50px;
 }
 
 .replytext {
@@ -104,7 +110,7 @@ body.ihome {
 	color: #333;
 }
 
-.every-reply:hover .element {
+.right_up:hover .element {
 	display: inline;
 }
 

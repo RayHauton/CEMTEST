@@ -47,7 +47,6 @@ function reply(test){
 	var forumTitle = document.getElementById("forumTitle").value;
 	var floor = $(test).attr("name");
 	var objectReplyContent = document.getElementById("id"+floor).innerText;
-	alert(objectReplyContent);
 	var replyContent = document.getElementById("replyToHost"+floor.toString()).value;
 	var userId = document.getElementById("userId"+floor.toString()).value;
 	if(replyContent == "" || replyContent== null){
