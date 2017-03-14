@@ -13,9 +13,10 @@
 	href="${pageContext.request.contextPath }/css/view_set/footer.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/view_set/ihome.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/view_set/forum.css">
 </head>
 <body>
-
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath" />
 	<div class="header1">
@@ -57,13 +58,26 @@
 					<nav class="navbar navbar-default" role="navigation">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a href="www.baidu.com" class="navbar-brand">论坛主页</a>
+								<a href="${pageContext.request.contextPath }/forum/f/1" class="navbar-brand">论坛主页</a>
 							</div>
 							<div>
 								<ul class="nav navbar-nav">
-									<li><a href="#">我的消息</a></li>
-									<li><a href="#">我的帖子</a></li>
-									<li class="active"><a href="#">我的回复</a></li>
+									<c:choose>
+										<c:when test="${sessionScope.user.userId == currentUserId }">
+											<li><a
+												href="${pageContext.request.contextPath }/forum/myMessage?uid=${currentUserId }">我的消息</a></li>
+											<li class="active"><a
+												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId }">我的帖子</a></li>
+											<li><a
+												href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId }">我的回复</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="active"><a
+												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId }">Ta的帖子</a></li>
+											<li><a
+												href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId }">Ta的回复</a></li>
+										</c:otherwise>
+									</c:choose>
 								</ul>
 							</div>
 						</div>
