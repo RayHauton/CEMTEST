@@ -136,7 +136,7 @@ public class CollegeEventController {
 		int pageSize = queryVo.getPageSize();
 		queryVo.setRecordCount(recordCount);
 		queryVo.setPageCount(recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1);
-		modelAndView.addObject("resultList", (List<Collegeevent>) resultMap.get("resultList"));
+		modelAndView.addObject("resultList", resultMap.get("resultList"));
 		// modelAndView.addObject("rootDir", rootDir+"/");
 		modelAndView.addObject("queryVo", queryVo);
 		modelAndView.setViewName("admin/collegeEventSet");
@@ -153,7 +153,7 @@ public class CollegeEventController {
 		int pageSize = queryVo.getPageSize();
 		queryVo.setRecordCount(recordCount);
 		queryVo.setPageCount(recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1);
-		modelAndView.addObject("resultList", (List<Collegeevent>) resultMap.get("resultList"));
+		modelAndView.addObject("resultList", resultMap.get("resultList"));
 		// modelAndView.addObject("rootDir", rootDir+"/");
 		modelAndView.addObject("queryVo", queryVo);
 		modelAndView.setViewName("baseView/timeline");

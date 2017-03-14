@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>校友论坛</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -18,6 +17,7 @@
 	href="${pageContext.request.contextPath }/css/view_set/forum.css">
 </head>
 <body>
+
 	<input type="hidden" value="${pageContext.request.contextPath }"
 		id="basePath" />
 	<div class="header1">
@@ -57,49 +57,52 @@
 			<div class="i_left">
 				<div class="navigation1">
 					<nav class="navbar navbar-default" role="navigation">
-					<div class="container-fluid">
-						<div class="navbar-header">
-							<a href="${pageContext.request.contextPath }/forum/f/1" class="navbar-brand">论坛主页</a>
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<a href="${pageContext.request.contextPath }/forum/f/1" class="navbar-brand">论坛主页</a>
+							</div>
+							<div>
+								<ul class="nav navbar-nav">
+									<c:choose>
+										<c:when test="${sessionScope.user.userId == currentUserId }">
+											<li><a
+												href="${pageContext.request.contextPath }/forum/myMessage?uid=${currentUserId }">我的消息</a></li>
+											<li><a
+												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId }">我的帖子</a></li>
+											<li class="active"><a href="#">我的回复</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a
+												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId }">Ta的帖子</a></li>
+											<li class="active"><a
+												href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId }">Ta的回复</a></li>
+										</c:otherwise>
+									</c:choose>
+								</ul>
+							</div>
 						</div>
-						<div>
-							<ul class="nav navbar-nav">
-								<li class="active"><a
-									href="${pageContext.request.contextPath }/forum/myMessage?uid=${sessionScope.user.userId }">我的消息</a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${sessionScope.user.userId }">我的帖子</a></li>
-								<li><a
-									href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${sessionScope.user.userId }">我的回复</a></li>
-							</ul>
-						</div>
-					</div>
 					</nav>
 				</div>
-				<div class="feed">
+				<div class="simple_block_container">
 					<ul>
-						<c:forEach items="${messageList }" var="test">
-							<li class="feed_item">
-								<div class="feed_left">
-									<div class="replyme">
-										<div class="replyme_user">
-											<a href="#" target="_blank">${test.personName }&nbsp;:&nbsp;</a>
-										</div>
-										<div class="replyme_content">
-											<a href="#">我ye喜欢你</a>
-										</div>
-									</div>
-									<div class="feed_from">
-										回复我的主题：“<a href="#" class="feed_forum" title=""
-											target="_blank">${test.forumTitle }</a>”
-									</div>
-								</div>
-								<div class="feed_right">
-									<div class="feed_time">${test.time }</div>
-									<div class="reply1">
-										<img src="" alt=""><a href="#" target="_blank">回复</a>
-									</div>
-								</div>
-							</li>
-						</c:forEach>
+						<li><cite>10-22</cite>
+							<div class="wrap_container">
+								发帖 <a href="#" class="wrap">我好喜欢你</a>
+								<nobr>
+									<span class="reply_txt"> <a href="#" class="b_reply"
+										target="_blank">回复</a> (10)
+									</span>
+								</nobr>
+							</div></li>
+						<li><cite>10-22</cite>
+							<div class="wrap_container">
+								发帖 <a href="#" class="wrap">我是你爹</a>
+								<nobr>
+									<span class="reply_txt"> <a href="#" class="b_reply"
+										target="_blank">回复</a> (10)
+									</span>
+								</nobr>
+							</div></li>
 					</ul>
 				</div>
 			</div>

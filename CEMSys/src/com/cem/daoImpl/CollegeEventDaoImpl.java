@@ -81,7 +81,7 @@ public class CollegeEventDaoImpl implements CollegeEventDao {
 		Object o = query.uniqueResult();
 		int recordCount = 0;
 		if (o != null) {
-			recordCount = Integer.parseInt(String.valueOf((Long) query.uniqueResult()));
+			recordCount = Integer.parseInt(String.valueOf(query.uniqueResult()));
 		}
 		resultMap.put("recordCount", recordCount);
 		query = session.createQuery(oriHql.toString());
