@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,6 +34,26 @@ public class DonationController {
 
 	@Autowired
 	private UserService userService;
+	
+	/**
+	 * 更新记录
+	 * @param donationId 记录ID
+	 * @param response HttpServletResponse
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/update")
+	public String update(Donation donation) throws Exception{
+		donationService.update(donation);
+		return "redirect:show_admin";
+	}
+	/*
+	 * 删除记录
+	 */
+	@RequestMapping(value = "/delete")
+	public void delete(@RequestParam int donationId,HttpServletResponse response) throws Exception{
+		donationService.delete(donationId);
+		response.getWriter().write("succ");
+	}
 
 	/*
 	 * 根据学号查找相应的用户的姓名，以校验前端信息添加是否有误
@@ -51,7 +73,10 @@ public class DonationController {
 			out.write("notExist");
 		}
 	}
-
+	
+	/*
+	 * 管理员界面的查询捐赠记录
+	 */
 	@RequestMapping(value = "/show_admin")
 	public ModelAndView show_admin(DonationQueryVo queryVo) throws Exception {
 		ModelAndView modelAndView = this.show(queryVo);
@@ -59,11 +84,18 @@ public class DonationController {
 		return modelAndView;
 	}
 
+	/*
+	 * 新增记录
+	 */
 	@RequestMapping(value = "/insert")
-	public void insert(Donation donation) throws Exception {
-		
+	public String insert(@ModelAttribute Donation donation) throws Exception {
+		donationService.insert(donation);
+		return "redirect:show_admin";
 	}
 
+	/*
+	 * 获取用户信息
+	 */
 	@RequestMapping(value = "/getDonorInfo", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public UserCustom getDonorInfo(UserCustom userCustom) throws Exception {

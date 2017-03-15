@@ -16,9 +16,19 @@ public interface DonationService {
 	 * 查找相应捐赠人的部分信息
 	 */
 	public UserCustom findDonorInfo(UserCustom userCustom) throws Exception;
-	
+
 	/*
 	 * 添加捐赠记录
 	 */
-	public void insert(Donation donation) throws Exception; 
+	public void insert(Donation donation) throws Exception;
+
+	/*
+	 * 根据捐赠记录ID删除记录
+	 */
+	public void delete(Integer donationId) throws Exception;
+
+	/*
+	 * 更新捐赠记录
+	 */
+	public void update(Donation donation) throws Exception;
 }
