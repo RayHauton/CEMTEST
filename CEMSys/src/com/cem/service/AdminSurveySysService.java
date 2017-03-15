@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import com.cem.pojo.Majorabilitycultivationquality;
 import com.cem.pojo.Selfabilityquality;
 import com.cem.pojo.User;
+import com.cem.queryVO.AdminSurveyQueryVo;
 
 
 public interface AdminSurveySysService {
 
 	/**
 	 * 关联Selfabilityquality和Majorabilitycultivationquality，获取满足条件的userId
-	 * @param titleNum
-	 * @param scoreNum
+	 * @param adminSurveyQueryVo
 	 * @return
 	 */
-	public List<Integer> searchSMCondition(String[] titleNum,String[] scoreNum);
+	public List<Integer> searchSMCondition(AdminSurveyQueryVo adminSurveyQueryVo);
 	
 	/**
 	 * 根据userId查询到该用户对应的信息
-	 * @param list
+	 * @param userId
 	 * @return
 	 */
 	public User searchUserByUserId(int userId);
@@ -42,5 +42,10 @@ public interface AdminSurveySysService {
 	 */
 	public void download()throws Exception;
 	
+	/**
+	 * 查找出User表中所有的用户ID号
+	 * @return
+	 * @throws Exception
+	 */
 	public String[] searchAllUser()throws Exception;
 }

@@ -193,10 +193,15 @@ public class User implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
+	public String toStringView() {
+		return username + "," + truename + "," + sex + "," + studNumber + "," + birth + "," + mobile
+				+ "," + email + "," + address + "," + entranceDate + "," + graduateDate;
+	}
+
 	@Override
 	public String toString() {
-		return username + "," + truename + "," + sex + "," + studNumber + "," + birth + "," + mobile + "," + email + ","
-				+ address + "," + entranceDate + "," + graduateDate;
+		return truename + "," + sex + "," + birth + "," + entranceDate + "," + graduateDate;
 	}
+	
 	
 }
