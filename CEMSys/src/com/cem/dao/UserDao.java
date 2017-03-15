@@ -20,7 +20,7 @@ public interface UserDao {
 	/*
 	 * 根据学号查找用户
 	 */
-	public User findUserByStudNum(String userId, boolean passed) throws Exception;
+	public User findUserByStudNum(String studNumber, boolean passed) throws Exception;
 
 	/*
 	 * 根据用户名查找用户

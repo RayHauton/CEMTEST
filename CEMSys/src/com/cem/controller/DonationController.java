@@ -1,5 +1,6 @@
 package com.cem.controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,41 +16,83 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cem.customPojo.UserCustom;
+import com.cem.pojo.Donation;
+import com.cem.pojo.User;
 import com.cem.queryVO.DonationQueryVo;
 import com.cem.service.DonationService;
+import com.cem.service.UserService;
 
 @Controller
-@RequestMapping(value="/donation")
+@RequestMapping(value = "/donation")
 public class DonationController {
 	@Value("${defaultPageSize}")
 	private Integer pageSizeDefault;
 	@Autowired
 	private DonationService donationService;
-	
+
+	@Autowired
+	private UserService userService;
+
+	/*
+	 * 根据学号查找相应的用户的姓名，以校验前端信息添加是否有误
+	 */
+	@RequestMapping(value = "/checkUserInfo")
+	public void checkUserInfo(String studNumber, String truename, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		User user = userService.findUserByStudNum(studNumber, true);
+		PrintWriter out = response.getWriter();
+		if (user != null) {// 说明该学号对应的用户存在
+			if(user.getTruename().equals(truename)){//判断查出的真实姓名与前端输入的姓名是否一致
+				out.write("right");//一致
+			}else{
+				out.write("fault");//不一致
+			}
+		} else {// 该学号对应的用户不存在，拒绝添加记录
+			out.write("notExist");
+		}
+	}
+
+	@RequestMapping(value = "/show_admin")
+	public ModelAndView show_admin(DonationQueryVo queryVo) throws Exception {
+		ModelAndView modelAndView = this.show(queryVo);
+		modelAndView.setViewName("admin/donation_adm");
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/insert")
-	public void insert(Donation donation) throws Exception{
+	public void insert(Donation donation) throws Exception {
 		
 	}
-	
-	@RequestMapping(value = "/getDonorInfo",produces=MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "/getDonorInfo", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public UserCustom getDonorInfo(UserCustom userCustom) throws Exception{
+	public UserCustom getDonorInfo(UserCustom userCustom) throws Exception {
 		BeanUtils.copyProperties(userCustom, donationService.findDonorInfo(userCustom));
 		return userCustom;
 	}
-	
+
 	/*
-	 * 打开donation界面
+	 * 打开donation界面（管理员）
 	 */
-	@RequestMapping(value="/open")
-	public void open(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		request.getRequestDispatcher("/baseView/donation.jsp").forward(request, response);;
+	@RequestMapping(value = "/open_adm")
+	public void open_adm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.getRequestDispatcher("/admin/donation_adm.jsp").forward(request, response);
+		;
 	}
+
+	/*
+	 * 打开donation界面(普通用户)
+	 */
+	@RequestMapping(value = "/open")
+	public void open(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.getRequestDispatcher("/baseView/donation.jsp").forward(request, response);
+	}
+
 	/*
 	 * 获取捐赠信息
 	 */
 	@RequestMapping(value = "/show")
-	public ModelAndView show(DonationQueryVo queryVo) throws Exception{
+	public ModelAndView show(DonationQueryVo queryVo) throws Exception {
 		/*
 		 * 判断queryVo是否含有pageIndex和pageSize值，没有提供默认值 默认值的设置在配置文件中设置
 		 */
@@ -85,5 +128,5 @@ public class DonationController {
 		modelAndView.setViewName("baseView/donation");
 		return modelAndView;
 	}
-	
+
 }

@@ -14,9 +14,11 @@
         <property name="userId" type="java.lang.Integer">
             <column name="userId" />
         </property>
+         <property name="studNumber" type="string">
+            <column name="studNumber" length="12" />
+        </property>
         <property name="donationProject" type="string">
             <column name="donationProject" length="200">
-                <comment>???????</comment>
             </column>
         </property>
         <property name="donationType" type="java.lang.String">
@@ -30,7 +32,6 @@
         </property>
         <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true">
-                <comment>??????????</comment>
             </column>
         </property>
     </class>
