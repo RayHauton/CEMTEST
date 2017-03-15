@@ -47,6 +47,8 @@ public interface UserDao {
 	 * 存在就直接更新对应的记录，没有就添加新纪录
 	 */
 	public User findIfUserExist(String username, String mobile, String studNum, String email) throws Exception;
+	
+	public List<User> findUsersWithOut()throws Exception;
 
 	/*
 	 * 更新数据库记录
@@ -61,7 +63,17 @@ public interface UserDao {
 	 */
 	public List<Object> findUsersFromUserManage(UserManageVo userManageVo) throws Exception;
 	
-	public List<Object> finddUsersFromUserManageWithOut(String passed) throws Exception;
+	public List<Object> finddUsersFromUserManageWithOut(String passed,int pageSize,int pageIndex) throws Exception;
+	
+	public int countUsers(UserManageVo userManageVo)throws Exception;
+	
+	public int countUsersWithOut(String passed)throws Exception;
+	/*下载用户信息相关*/
+	
+	public void dataToExcel(List<User> userList) throws Exception; 
+	
+	public void download()throws Exception;
+	
 	
 	
 }

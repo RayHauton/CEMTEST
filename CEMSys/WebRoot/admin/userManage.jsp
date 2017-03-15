@@ -34,10 +34,10 @@
 				<form action="../userManage/findUsers" method="get">
 					<div style="margin-bottom: 13px">
 						<label>学号</label> <input class="form-control" placeholder="输入学号"
-							name="studNumber"> <label>姓名</label> <input
-							class="form-control" placeholder="输入姓名" name="truename">
-						<label>入学时间</label> <select class="form-control"
-							name="entranceDate">
+							name="studNumber" id="studNumber"> <label>姓名</label> <input
+							class="form-control" placeholder="输入姓名" name="truename"
+							id="truename"> <label>入学时间</label> <select
+							class="form-control" name="entranceDate">
 							<option value=""></option>
 							<option value="volvo">Volvo</option>
 							<option value="saab">Saab</option>
@@ -45,14 +45,15 @@
 							<option value="audi">Audi</option>
 
 						</select> <br /> <label>学位</label><select name="degreeId"
-							class="form-control">
+							class="form-control" id="degreeId">
 							<option value="">-----</option>
 							<option value="D01">专科</option>
 							<option value="D02">本科</option>
 							<option value="D03">硕士</option>
 							<option value="D04">博士</option>
 							<option value="D05">博士后</option>
-						</select> <label>专业</label><select name="majorId" class="form-control">
+						</select> <label>专业</label><select name="majorId" class="form-control"
+							id="majorId">
 							<option value="">-----</option>
 							<option value="M01">工业工程</option>
 							<option value="M02">信息管理与信息系统</option>
@@ -64,32 +65,35 @@
 							<option value="M08">国际贸易</option>
 						</select> <label>审核状态</label> <select class="form-control" name="audit"
 							id="audit">
-							<option value="3">全部</option>
-							<option value="0">未审核</option>
+							<!-- <option value="3">全部</option> -->
 							<option value="1">已审核</option>
+							<option value="0">未审核</option>
 
 						</select>
-						<!--  <label>每页显示</label> <select class="form-control" name="pageSize"
-							id="pageSize" style="padding: 0px;">
-							<c:forEach var="pageSize" items="${pageSizeList }">
-								<option value=${pageSize }>${pageSize }</option>
-							</c:forEach>
-						</select>-->
 					</div>
 					<div style="margin-top: 15px; margin-left: 0px;">
 						<button type="reset" class="btn btn-success form-control">&ensp;重置&ensp;</button>
 						<button type="submit" class="btn btn-success form-control">&ensp;查询&ensp;</button>
 						<button type="button" class="btn btn-success form-control"
 							onclick="queryAll();">&ensp;查询全部&ensp;</button>
-						<button type="button" class="btn btn-success form-control" style="background-color: #2894FF;border: none;">用户信息导出成Excel</button>
+						<button type="button" class="btn btn-success form-control"
+							style="background-color: #2894FF; border: none;"
+							onclick="downloadUsers();">导出全部用户信息</button>
+						<label>每页显示</label> <select class="btn btn-success form-control"
+							name="pageSize" id="pageSize" style="padding: 0px; width: 77px;">
+							<c:forEach var="pageSize" items="${pageSizeList }">
+								<option value=${pageSize }>${pageSize }</option>
+							</c:forEach>
+						</select>
 					</div>
 				</form>
 				<hr id="hr" />
 			</div>
 			<div id="approved-table"
 				style="width: 98%; margin-left: 1%; margin-top: 10px;">
-				<label>共查询到<span style="color: red">${approvedsum} </span>条记录
-				</label>
+				<span>共<font id="approvedsum" style="color: red;">${approvedsum}
+				</font>条记录
+				</span>
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -125,12 +129,18 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div class="record">
+					<span><a id="lastPage1" onclick="lastpage();"href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
+						id="nextPage1" onclick="nextpage();"href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
+					</span>
+				</div>
+
 			</div>
 			<div id="disapproved-table"
 				style="width: 98%; margin-left: 1%; margin-top: 10px;">
-				<label>共查询到<span style="color: red">${disapprovedsum}
-				</span>条记录
-				</label>
+				<span>共<font id="disapprovedsum" style="color: red;">${disapprovedsum}
+				</font>条记录
+				</span>
 				<form id="disapproved">
 					<table class="table table-bordered table-striped">
 						<thead>
@@ -181,6 +191,13 @@
 						</tbody>
 					</table>
 				</form>
+				<div class="record">
+					<span><a id="lastPage2" onclick="lastpage();"href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
+						id="nextPage2" onclick="nextpage"href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
+
+
+					
+				</div>
 			</div>
 		</div>
 	</div>
@@ -253,127 +270,88 @@
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/userManage.js"></script>
 <script type="text/javascript">
-	function getDatesSession() {
+function queryAll() {
+	var pSize = document.getElementById("pageSize").value;
+	var status = document.getElementById("audit").value;
+	var aim = "../userManage/findUserWithout?studNumber=&trueName=&entranceDate=&degreeId=&majorId=&audit="+status+"&pageSize="+pSize;
+	window.location.assign(aim);
+};
 
-	}
+function lastpage(){
+	var last = parseInt('${userManageVo.pageIndex}')-1;
+	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+last;
+	window.location.assign(aim);
+}
 
-	function queryAll() {
-		var pSize = 100;
-		var status = document.getElementById("audit").value;
-		var aim = "../userManage/findUserWithout?studNumber=&trueName=&entranceDate=&degreeId=&majorId=&audit="+status+"&pageSize="+pSize;
-		window.location.assign(aim);
+function nextpage(){
+	var next = parseInt('${userManageVo.pageIndex}')+1;
+	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+next;
+	window.location.assign(aim);
+}
+
+var options = document.getElementById("pageSize").options;
+var size = options.length;
+for(var i=0;i<size;i++){
+	if(options[i].value=='${userManageVo.pageSize}'){
+		options[i].selected=true;
+	}
+};
+var options = document.getElementById("majorId").options;
+var size = options.length;
+for(var i=0;i<size;i++){
+	if(options[i].value=='${userManageVo.majorId}'){
+		options[i].selected=true;
+	}
+};
+var options = document.getElementById("degreeId").options;
+var size = options.length;
+for(var i=0;i<size;i++){
+	if(options[i].value=='${userManageVo.degreeId}'){
+		options[i].selected=true;
+	}
+};
+var options = document.getElementById("audit").options;
+var size = options.length;
+for(var i=0;i<size;i++){
+	if(options[i].value=='${userManageVo.audit}'){
+		options[i].selected=true;
+	}
+};
+
+	
+window.onload=function selectStyle(){
+	var app_table =document.getElementById("approved-table");
+	var dis_table =document.getElementById("disapproved-table");
+	var lastpage1  = document.getElementById("lastPage1");
+	var lastpage2  = document.getElementById("lastPage2");
+	var nextpage1 = document.getElementById("nextPage1");
+	var nextpage2 = document.getElementById("nextPage2");
+	if('${approvedsum}'=="0"){
+		app_table.style.display="none";
+	}
+	if('${disapprovedsum}'=="0"){
+		dis_table.style.display="none";
+	}
+	if('${userManageVo.pageIndex}'==1){
+		lastpage1.style.display = "none";
+		lastpage2.style.display = "none";
+		
+	}
+	if('${userManageVo.pageIndex}'=='${userManageVo.pageCount}'){
+		nextpage1.style.display = "none";
+		nextpage2.style.display = "none";
+		
 	}
 	
-	function deleteFun(studNumber) {
-		var result =confirm('是否删除此用户');
-		if(result){
-			var params={};
-			params.studNumber = studNumber;
-			$.ajax({
-				type:"POST",
-				async:false,
-				url:"../userManage/userDelete.action",
-				data:params,
-				error:function(){
-					alert("失败");
-				},
-				success:function(date){
-					if(date=="success"){
-						alert("删除成功");
-						queryAll();
-					}					
-					else{
-						alert("用户不存在或用户已被删除");
-					}
-				}
-				
-			})
-			}
-		else
-			alert("确认取消删除");
-	}
+var studNumber = document.getElementById("studNumber");
+if('${userManageVo.studNumber}'!=null )
+	studNumber.value = '${userManageVo.studNumber}';
 	
-	function check(){
-		var params =  $('#disapproved').serializeArray();
-		$.ajax({
-			type:"post",
-			async:false,
-			url:"../userManage/check",
-			data:params,
-			error:function(){
-				alert("失败");
-			},
-			success:function(data){
-				alert("成功");
-				queryAll();
-			}
-		})
-	}
-	
-	function detail(studNumber){
-		var params={};
-		params.studNumber = studNumber;
-		$.ajax({
-			type:"post",
-			async:false,
-			url:"../userManage/findUser",
-			data:params,
-			error:function(){
-				alert("失败")
-			},
-			success:function(data){
-				var de = new Array();
-				de = data.split("/")
-				for(i = 0;i<de.length;i++){
-					switch (i) {
-					case 0:
-						document.getElementById("username").innerHTML=de[i];
-						break;
-					case 1:
-						document.getElementById("truename").innerHTML=de[i];
-						break;
-					case 2:
-						document.getElementById("sex").innerHTML=de[i];
-						break;
-					case 3:
-						document.getElementById("studnumber").innerHTML=de[i];
-						break;
-					case 4:
-						document.getElementById("birth").innerHTML=de[i];
-						break;
-					case 5:
-						document.getElementById("mobile").innerHTML=de[i];
-						break;
-					case 6:
-						document.getElementById("email").innerHTML=de[i];
-						break;
-					case 7:
-						document.getElementById("address").innerHTML=de[i];
-						break;
-					case 8:
-						document.getElementById("entranceDate").innerHTML=de[i];
-						
-						break;
-					case 9:
-						document.getElementById("graduateDate").innerHTML=de[i];
-						break;
-					}
-				} 
-			}
-			
-		})
-	}
-	
-	window.onload=function selectStyle(){
-		var app_table =document.getElementById("approved-table");
-		var dis_table =document.getElementById("disapproved-table");
-		if(${approvedsum}=="0"){
-			app_table.style.display="none";
-		}
-		if(${disapprovedsum}=="0"){
-			dis_table.style.display="none";
-		}
-	}
+var truename = document.getElementById("truename");
+if('${userManageVo.truename}'!=null )
+	truename.value = '${userManageVo.truename}';
+};
 </script>
 </html>

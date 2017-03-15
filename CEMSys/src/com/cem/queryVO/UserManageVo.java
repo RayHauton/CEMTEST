@@ -6,8 +6,43 @@ public class UserManageVo {
 	private String entranceDate;
 	private String majorId;
 	private String degreeId;
-//	private String pageSize;
 	private String audit;
+	private String accessMode;//访问的方式
+	private String pageSize;//每一页可容纳最大记录条数
+	private String pageIndex;//当前页面数
+	private String recordCount;//总记录条数
+	private int pageCount;//总共的页数
+	public String getAccessMode() {
+		return accessMode;
+	}
+
+	public void setAccessMode(String accessMode) {
+		this.accessMode = accessMode;
+	}
+
+	public int getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+
+	public String getRecordCount() {
+		return recordCount;
+	}
+
+	public void setRecordCount(String recordCount) {
+		this.recordCount = recordCount;
+	}
+
+	public String getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(String pageIndex) {
+		this.pageIndex = pageIndex;
+	}
 
 	public String getAudit() {
 		return audit;
@@ -57,12 +92,12 @@ public class UserManageVo {
 		this.degreeId = degreeId;
 	}
 
-//	public String getPageSize() {
-//		return pageSize;
-//	}
-//
-//	public void setPageSize(String pageSize) {
-//		this.pageSize = pageSize;
-//	}
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
 
 }

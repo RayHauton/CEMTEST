@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findUserByStudNum(String studNum, boolean passed) throws Exception {
-		if(studNum.length()==8)
-			studNum="0"+studNum;
+		if (studNum.length() == 8)
+			studNum = "0" + studNum;
 		System.out.println(studNum);
 		return userDao.findUserByStudNum(studNum, passed);
 	}
@@ -71,39 +71,62 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Map<String, List<Object>> findUsersFromUserManage(UserManageVo userManageVo) throws Exception {
-		// TODO Auto-generated method stub
-		Map<String, List<Object>> result= new HashMap<>();
-		if("3".equals(userManageVo.getAudit())){
-			userManageVo.setAudit("1");
-			result.put("approved", userDao.findUsersFromUserManage(userManageVo));
-			userManageVo.setAudit("0");
-			result.put("disapproved", userDao.findUsersFromUserManage(userManageVo));
-		}else if ("0".equals(userManageVo.getAudit())) {
+	public Map<String, Object> findUsersFromUserManage(UserManageVo userManageVo) throws Exception {
+		// // TODO Auto-generated method stub
+		Map<String, Object> result = new HashMap<>();
+		// if ("3".equals(userManageVo.getAudit())) {
+		// userManageVo.setAudit("1");
+		// result.put("approved",
+		// userDao.findUsersFromUserManage(userManageVo));
+		// userManageVo.setAudit("0");
+		// result.put("disapproved",
+		// userDao.findUsersFromUserManage(userManageVo));
+		// } else
+		if ("0".equals(userManageVo.getAudit())) {
 			result.put("disapproved", userDao.findUsersFromUserManage(userManageVo));
 			result.put("approved", null);
-		}else {
+		} else {
 			result.put("approved", userDao.findUsersFromUserManage(userManageVo));
 			result.put("disapproved", null);
 		}
+		userManageVo.setRecordCount(String.valueOf(userDao.countUsers(userManageVo)));
+		result.put("userManageVo", userManageVo);
 		return result;
 	}
 
 	@Override
-	public Map<String, List<Object>> findUsersFromUserManageWithOut(String audit) throws Exception {
-		Map<String, List<Object>> result= new HashMap<>();
-		if("3".equals(audit)){
-			result.put("approved", userDao.finddUsersFromUserManageWithOut("1"));
-			result.put("disapproved", userDao.finddUsersFromUserManageWithOut("0"));
-		}else if ("0".equals(audit)) {
-			result.put("disapproved", userDao.finddUsersFromUserManageWithOut("0"));
+	public Map<String, Object> findUsersFromUserManageWithOut(UserManageVo userManageVo) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		String audit = userManageVo.getAudit();
+		System.out.println(userManageVo.getPageSize());
+		System.out.println(userManageVo.getPageIndex());
+		int pageS = Integer.parseInt(userManageVo.getPageSize());
+		int pageI;
+		if (userManageVo.getPageIndex() == null || "".equals(userManageVo.getPageIndex())) {
+			userManageVo.setPageIndex("1");
+			pageI = 1;
+		} else {
+			pageI = Integer.parseInt(userManageVo.getPageIndex());
+		}
+		// if ("3".equals(audit)) {
+		// result.put("approved", userDao.finddUsersFromUserManageWithOut("1",
+		// pageS, pageI));
+		// result.put("disapproved",
+		// userDao.finddUsersFromUserManageWithOut("0", pageS, pageI));
+		// userManageVo.setRecordCount(String.valueOf(userDao.countUsersWithOut(audit)));
+		// result.put("userManageVo", userManageVo);
+		// } else
+		if ("0".equals(audit)) {
+			result.put("disapproved", userDao.finddUsersFromUserManageWithOut("0", pageS, pageI));
 			result.put("approved", null);
-		}else if("1".equals(audit)){
-			result.put("approved", userDao.finddUsersFromUserManageWithOut("1"));
+		} else if ("1".equals(audit)) {
+			result.put("approved", userDao.finddUsersFromUserManageWithOut("1", pageS, pageI));
 			result.put("disapproved", null);
 		}
+		userManageVo.setRecordCount(String.valueOf(userDao.countUsersWithOut(audit)));
+		result.put("userManageVo", userManageVo);
 		return result;
-		
+
 	}
 
 	@Override
@@ -129,13 +152,25 @@ public class UserServiceImpl implements UserService {
 	public void checkUserStates(String[] studNumberArr, String[] auditArr) throws Exception {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < studNumberArr.length; i++) {
-			User user  =userDao.findUserByStudNum(studNumberArr[i], false);
-			if("1".equals(auditArr[i]))
+			User user = userDao.findUserByStudNum(studNumberArr[i], false);
+			if ("1".equals(auditArr[i]))
 				user.setCheckOut("1");
-			else 
+			else
 				user.setCheckOut("2");
 			userDao.updateUser(user);
 		}
+	}
+
+	@Override
+	public List<User> findUserWithOut() throws Exception {
+		return userDao.findUsersWithOut();
+	}
+
+	@Override
+	public void downloadUsers(List<User> uList) throws Exception {
+		userDao.dataToExcel(uList);
+		userDao.download();
+
 	}
 
 }

@@ -24,52 +24,59 @@ import com.cem.service.UserService;
 @Controller
 @RequestMapping(value = "/userManage")
 public class UserManagementController {
+	private static final int Object = 0;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private JobService jobService;
 	@Autowired
 	SurveySysService surveySysService;
-	
+
 	@RequestMapping(value = "/open")
 	public ModelAndView openJsp(HttpSession session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = (User) session.getAttribute("user");
 		String mobile = user.getMobile();
-		if (userService.findUserByMobile(mobile, true) != null)
+		if (userService.findUserByMobile(mobile, true) != null) {
 			modelAndView.setViewName("admin/userManage");
-		else {
+			modelAndView.addObject("approvedsum", 0);
+			modelAndView.addObject("disapprovedsum", 0);
+		} else {
 			modelAndView.setViewName("login/login");
 		}
 
-		modelAndView.addObject("approvedsum", 0);
-		modelAndView.addObject("disapprovedsum", 0);
 		return modelAndView;
 	}
 
+	/* 大量查询用户信息 */
 	@RequestMapping(value = "/findUsers")
 	public ModelAndView findUsers(UserManageVo userManageVo) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		// userManageVo.setPageSize("100");
-		Map<String, List<Object>> result = userService.findUsersFromUserManage(userManageVo);
+		Map<String, Object> result = userService.findUsersFromUserManage(userManageVo);
 		if (result.get("approved") == null) {
 			modelAndView.addObject("approvedsum", 0);
 		} else {
 			modelAndView.addObject("approvedUserList", result.get("approved"));
-			modelAndView.addObject("approvedsum", result.get("approved").size());
+			modelAndView.addObject("approvedsum", ((UserManageVo) result.get("userManageVo")).getRecordCount());
 		}
 		if (result.get("disapproved") == null) {
 			modelAndView.addObject("disapprovedsum", 0);
 		} else {
 			modelAndView.addObject("disapprovedUserList", result.get("disapproved"));
-			modelAndView.addObject("disapprovedsum", result.get("disapproved").size());
+			modelAndView.addObject("disapprovedsum", ((UserManageVo) result.get("userManageVo")).getRecordCount());
 		}
+		int recordCount = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getRecordCount());
+		int pageSize = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getPageSize());
+		int pageCount = recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1;
+		((UserManageVo) result.get("userManageVo")).setPageCount(pageCount);
+		((UserManageVo)result.get("userManageVo")).setAccessMode("findUsers");
+		modelAndView.addObject("userManageVo", result.get("userManageVo"));
 		modelAndView.setViewName("admin/userManage");
-		System.out.println("修改成功");
-		System.out.println("//////");
 		return modelAndView;
 	}
 
+	/* 单个用户详情查询 */
 	@RequestMapping(value = "/findUser")
 	public void findUser(UserManageVo userManageVo, HttpServletResponse response, HttpSession session)
 			throws Exception {
@@ -84,8 +91,8 @@ public class UserManagementController {
 			String result = user.getUsername() + "/" + user.getTruename() + "/" + user.getSex() + "/"
 					+ user.getStudNumber() + "/" + user.getBirth() + "/" + user.getMobile() + "/" + user.getEmail()
 					+ "/" + user.getAddress() + "/" + user.getEntranceDate() + "/" + user.getGraduateDate();
-			response.setCharacterEncoding("UTF-8");  
-		    response.setContentType("text/html; charset=UTF-8"); 
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().write(result);
 		}
 
@@ -95,19 +102,25 @@ public class UserManagementController {
 	public ModelAndView findUserWithout(UserManageVo userManageVo) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("准备进入dao层");
-		Map<String, List<Object>> result = userService.findUsersFromUserManageWithOut(userManageVo.getAudit());
+		Map<String, Object> result = userService.findUsersFromUserManageWithOut(userManageVo);
 		if (result.get("approved") == null) {
 			modelAndView.addObject("approvedsum", 0);
 		} else {
 			modelAndView.addObject("approvedUserList", result.get("approved"));
-			modelAndView.addObject("approvedsum", result.get("approved").size());
+			modelAndView.addObject("approvedsum", ((UserManageVo) result.get("userManageVo")).getRecordCount());
 		}
 		if (result.get("disapproved") == null) {
 			modelAndView.addObject("disapprovedsum", 0);
 		} else {
 			modelAndView.addObject("disapprovedUserList", result.get("disapproved"));
-			modelAndView.addObject("disapprovedsum", result.get("disapproved").size());
+			modelAndView.addObject("disapprovedsum", ((UserManageVo) result.get("userManageVo")).getRecordCount());
 		}
+		int recordCount = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getRecordCount());
+		int pageSize = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getPageSize());
+		int pageCount = recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1;
+		((UserManageVo) result.get("userManageVo")).setPageCount(pageCount);
+		((UserManageVo)result.get("userManageVo")).setAccessMode("findUserWithout");
+		modelAndView.addObject("userManageVo", result.get("userManageVo"));
 		modelAndView.setViewName("admin/userManage");
 		return modelAndView;
 	}
@@ -118,16 +131,16 @@ public class UserManagementController {
 		System.out.println("准备删除");
 		User user = new User();
 		user.setStudNumber(studNumber);
-		if (userService.deleteUser(user)){
+		if (userService.deleteUser(user)) {
 			jobService.deleteJobInf(jobService.findJobInfByUserId(user.getUserId()));
 			jobService.deleteJobCon(jobService.finJobConByUserId(user.getUserId()));
 			surveySysService.deleteSelfabilityqualityByUserID(user.getUserId());
 			surveySysService.deleteMajorabilitycultivationqualityByUserID(user.getUserId());
-			response.getWriter().write("success");}
-		else {
+			response.getWriter().write("success");
+		} else {
 			response.getWriter().write("noExist");
 		}
-		
+
 	}
 
 	@RequestMapping(value = "/check")
@@ -136,6 +149,12 @@ public class UserManagementController {
 		String[] auditArr = request.getParameterValues("audit_states");
 		userService.checkUserStates(studNumberArr, auditArr);
 		response.getWriter().write("success");
+	}
+
+	@RequestMapping(value = "/downloadUsers")
+	public void downloadUsers() throws Exception {
+		List<User> uList = userService.findUserWithOut();
+		userService.downloadUsers(uList);
 	}
 
 }
