@@ -59,7 +59,7 @@
 					<a data-toggle="dropdown" class="dropdown-toggle fontColor1" href="#">公告管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#">新闻公告</a></li>
-						<li><a href="#">捐款公告</a></li>
+						<li><a href="${pageContext.request.contextPath }/donation/open_adm.action">捐款公告</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">

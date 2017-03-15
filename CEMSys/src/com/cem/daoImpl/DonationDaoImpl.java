@@ -94,6 +94,7 @@ public class DonationDaoImpl implements DonationDao {
 				hql.append(" AND d.donationDate >='" + foredate + "'");
 			}
 		}
+		hql.append(" ORDER BY d.donationDate desc");
 		Session session = getSession();
 		/*
 		 * 获得记录数

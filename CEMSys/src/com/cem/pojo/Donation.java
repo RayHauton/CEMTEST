@@ -15,6 +15,7 @@ public class Donation implements java.io.Serializable {
 	private int donationId;
 	private String truename;
 	private Integer userId;
+	private String studNumber;
 	private String donationProject;
 	private String donationType;
 	private String donationItem;
@@ -29,11 +30,12 @@ public class Donation implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	public Donation(int donationId, String truename, Integer userId, String donationProject, String donationType,
-			String donationItem, Date donationDate, String isDeleted) {
+	public Donation(int donationId, String truename, Integer userId, String studNumber, String donationProject,
+			String donationType, String donationItem, Date donationDate, String isDeleted) {
 		this.donationId = donationId;
 		this.truename = truename;
 		this.userId = userId;
+		this.studNumber = studNumber;
 		this.donationProject = donationProject;
 		this.donationType = donationType;
 		this.donationItem = donationItem;
@@ -63,6 +65,14 @@ public class Donation implements java.io.Serializable {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public String getStudNumber() {
+		return studNumber;
+	}
+
+	public void setStudNumber(String studNumber) {
+		this.studNumber = studNumber;
 	}
 
 	public String getDonationProject() {
