@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cem.customPojo.UserCustom;
 import com.cem.dao.DonationDao;
+import com.cem.pojo.Donation;
 import com.cem.queryVO.DonationQueryVo;
 import com.cem.service.DonationService;
 @Service
@@ -23,6 +24,12 @@ public class DonationServiceImpl implements DonationService {
 	@Override
 	public UserCustom findDonorInfo(UserCustom userCustom) throws Exception {
 		return donationDao.findDonorInfo(userCustom);
+	}
+
+	@Override
+	public void insert(Donation donation) throws Exception {
+		donation.setIsDeleted("0");
+		donationDao.insert(donation);
 	}
 	
 

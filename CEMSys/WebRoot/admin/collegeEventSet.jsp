@@ -17,75 +17,67 @@
 	href="../css/view_set/adminViewSet/collegeEventSet.css">
 </head>
 <body>
-	<jsp:include page="header_admin.jsp"></jsp:include>
-	<div class="outer">
-		<!-- 	<button class="btn btn-primary btn-custom" id="addBtn">添加学院事件</button> -->
-		<button class="btn btn-primary btn-custom" data-toggle="modal"
-			data-target="#add">添加学院事件</button>
-		<div class="query">
-			<form
-				action="${pageContext.request.contextPath }/collegeEvent/show_adm.action"
-				method="post" id="ff_query">
-				&nbsp;&nbsp;从：<input type="month" name="foredate" id="foredate"
-					value="${queryVo.foredate }"> &nbsp;至：<input type="month"
-					name="afterdate" id="afterdate" value="${queryVo.afterdate }">
-				&nbsp;每页显示： <select class="" name="pageSize" id="pageSize"
-					style="padding: 0px;">
-					<c:forEach var="pageSize" items="${pageSizeList }">
-						<option value="${pageSize }">${pageSize }</option>
-					</c:forEach>
-				</select>
-				<!-- 分页页码隐藏表单 -->
-				<input type="hidden" name="pageIndex" id="pageIndex">
-				<button type="submit" class="btn btn-success"
-					style="height: 28px; padding: 0; width: 70px; margin-left: 10px;">查询</button>
-			</form>
-		</div>
-		<hr>
-		<table class="table table-striped table-bordered" cellpadding="0"
-			cellspacing="0">
-			<thead>
-				<th width="240px">事件标题（点击查看详情）</th>
-				<th width="380px">事件简介（点击查看详情）</th>
-				<th width="80px">事件日期</th>
-				<th width="100px">事件配图</th>
-				<th width="150px">操作</th>
-			</thead>
-			<c:forEach var="pojo" items="${resultList }">
-				<tr>
-					<td style="display: none;">${pojo.eventId }</td>
-					<td><span
-						style="width: 240px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-							<a class="detailA" data-toggle="modal" data-target="#info"
-							onclick="showInfo('${pageContext.request.contextPath}/collegeEvent/findInfo.action','title',this)">
-								${pojo.eventTitle } </a>
-					</span></td>
-					<td
-						style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-						<span
-						style="width: 380px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-							<a class="detailA" data-toggle="modal" data-target="#info"
-							onclick="showInfo('${pageContext.request.contextPath}/collegeEvent/findInfo.action','detail',this)">
-								${pojo.eventDetail } </a>
-					</span>
-					</td>
-					<td>${pojo.eventDate }</td>
-					<td><a data-toggle="modal" data-target="#showImg"
-						class="detailA"
-						onclick="loadImg('${pageContext.request.contextPath}/collegeEvent/loadImg.action',this)">查看图片</a></td>
-					<td>
-						<button class="btn btn-primary" data-toggle="modal"
-							data-target="#update" onclick="fillUpdateInfo(this)">编辑</button>
-						<button class="btn btn-warning"
-							onclick="deleteRecord('${pageContext.request.contextPath}/collegeEvent/delete.action',this,'${queryVo.pageIndex }')">删除</button>
-					</td>
-			</c:forEach>
-			</tr>
-		</table>
-		<!-- 分页 -->
-		<div
-			style="display: inline-block; margin-left: 290px; margin-right: auto; margin-top: 20px;">
-			<ul class="pagination dividePage" style="margin-top: 0; float: left;">
+
+<jsp:include page="header_admin.jsp"></jsp:include>
+<div class="outer">
+<!-- 	<button class="btn btn-primary btn-custom" id="addBtn">添加学院事件</button> -->
+	<button class="btn btn-primary btn-custom" data-toggle="modal" data-target="#add">
+		添加学院事件
+	</button>
+	<div class="query">
+		<form action="${pageContext.request.contextPath }/collegeEvent/show_adm.action" method="post" id="ff_query">
+			&nbsp;&nbsp;从：<input type="month" name="foredate" id="foredate" value="${queryVo.foredate }">
+			&nbsp;至：<input type="month" name="afterdate" id="afterdate" value="${queryVo.afterdate }">
+			&nbsp;每页显示：
+			<select class="" name="pageSize" id="pageSize" style="padding: 0px;">
+				<c:forEach var="pageSize" items="${pageSizeList }">
+					<option value="${pageSize }">${pageSize }</option>						
+				</c:forEach>
+			</select>
+			<!-- 分页页码隐藏表单 -->
+			<input type="hidden" name="pageIndex"  id="pageIndex">
+			<button type="submit" class="btn btn-success" style="height:28px;padding: 0;width: 70px;margin-left: 10px;">查询</button>
+		</form>
+	</div>
+<!-- 	<hr> -->
+	<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
+		<thead>
+			<th width="240px">事件标题（点击查看详情）</th>
+			<th width="380px">事件简介（点击查看详情）</th>
+			<th width="80px">事件日期</th>
+			<th width="100px">事件配图</th>
+			<th width="150px">操作</th>
+		</thead>
+		<c:forEach var="pojo" items="${resultList }">
+			<tr>
+				<td style="display: none;">${pojo.eventId }</td>
+				<td>
+				<span style="width: 240px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+					<a class="detailA" data-toggle="modal" data-target="#info" onclick="showInfo('${pageContext.request.contextPath}/collegeEvent/findInfo.action','title',this)">
+					${pojo.eventTitle }
+					</a>
+				</span>
+				</td>
+				<td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+				<span style="width: 380px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+					<a class="detailA" data-toggle="modal" data-target="#info" onclick="showInfo('${pageContext.request.contextPath}/collegeEvent/findInfo.action','detail',this)">
+					${pojo.eventDetail }
+					</a>
+				</span>
+				</td>
+				<td>${pojo.eventDate }</td>
+				<td><a data-toggle="modal" data-target="#showImg" class="detailA" onclick="loadImg('${pageContext.request.contextPath}/collegeEvent/loadImg.action',this)">查看图片</a></td>
+				<td>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#update" onclick="fillUpdateInfo(this)">编辑</button>
+				<button class="btn btn-warning" onclick="deleteRecord('${pageContext.request.contextPath}/collegeEvent/delete.action',this,'${queryVo.pageIndex }')">删除</button>
+				</td>
+		</c:forEach>
+		</tr>
+	</table>
+	<!-- 分页 -->
+		<div style="display:inline-block;margin-left: 290px;margin-right: auto;margin-top: 20px;">
+			<ul class="pagination dividePage"  style="margin-top: 0;float: left;">
+<!-- >>>>>>> 809468c7311d9482a3aeb4fc325a2e4834735dbf -->
 				<c:choose>
 					<c:when test="${queryVo.pageIndex>=2 }">
 						<li><a
@@ -198,6 +190,18 @@
 						</div>
 					</div>
 				</form>
+					<div class="errorInfoContent" id="imageError_add" style="display: none;"></div>
+				</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-info" onclick="resetForm();">重置
+					</button>
+					<button type="button" class="btn btn-success" onclick="submitForm('add','ff_add','${queryVo.pageIndex }');">
+						提交
+					</button>
+				</div>
 			</div>
 		</div>
 		<!-- 编辑事件内容 -->

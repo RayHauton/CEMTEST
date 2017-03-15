@@ -38,14 +38,6 @@ img {
 	<input type="hidden" value="${thisForum.forumTitle }" id="forumTitle" />
 	<input type="hidden" value="${thisForum.userId }" id="hostId">
 	<jsp:include page="/baseView/header.jsp"></jsp:include>
-	<p>友好时间测试</p>
-	<div>
-		<p>消息通知测试</p>
-		以下是消息通知测试 <span id="tongzhi" style="display: none;">有<a
-			href="${pageContext.request.contextPath }/forum/myMessage"><strong
-				id="tongzhi-content">0</strong></a>条新消息
-		</span>
-	</div>
 
 	<div class="wholepage">
 		<div class="reply">
@@ -68,14 +60,14 @@ img {
 									</h4>
 									<div class="table_main">引用${test.replyObject }L：${test.parentReplyId }</div>
 									<div class="every_reply">
-<!-- 										<span class="char"> <img -->
-<%-- 											src="${pageContext.request.contextPath }/img/forum/left_char.png" --%>
-<!-- 											alt="逗号"> -->
-<!-- 										</span> -->
+										<!-- 										<span class="char"> <img -->
+										<%-- 											src="${pageContext.request.contextPath }/img/forum/left_char.png" --%>
+										<!-- 											alt="逗号"> -->
+										<!-- 										</span> -->
 										<div id="id${test.floor }">${test.replyText }</div>
-<!-- 										<span class="char"> <img -->
-<%-- 											src="${pageContext.request.contextPath }/img/forum/right_char.png" --%>
-<!-- 											alt="逗号"></span> -->
+										<!-- 										<span class="char"> <img -->
+										<%-- 											src="${pageContext.request.contextPath }/img/forum/right_char.png" --%>
+										<!-- 											alt="逗号"></span> -->
 									</div>
 									<div class="replyinfo-reply">
 										<c:if
@@ -164,7 +156,16 @@ img {
 			</div>
 		</div>
 
-		<div class="aside">我是侧边栏</div>
+		<div class="aside">
+			<p>友好时间测试</p>
+			<div>
+				<p>消息通知测试</p>
+				以下是消息通知测试 <span id="tongzhi" style="display: none;">有<a
+					href="${pageContext.request.contextPath }/forum/myMessage"><strong
+						id="tongzhi-content">0</strong></a>条新消息
+				</span>
+			</div>
+		</div>
 	</div>
 
 	<jsp:include page="/baseView/footer.jsp"></jsp:include>

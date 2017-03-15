@@ -65,7 +65,7 @@
 									<c:choose>
 										<c:when test="${sessionScope.user.userId == currentUserId }">
 											<li><a
-												href="${pageContext.request.contextPath }/forum/myMessage?uid=${currentUserId }">我的消息</a></li>
+												href="${pageContext.request.contextPath }/forum/myMessage?uid=${currentUserId }">回复我的</a></li>
 											<li class="active"><a
 												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId }">我的帖子</a></li>
 											<li><a
@@ -85,24 +85,17 @@
 				</div>
 				<div class="simple_block_container">
 					<ul>
-						<li><cite>10-22</cite>
+						<c:forEach items="${forumList }" var="test">
+						<li><cite>${test.publishTime }</cite>
 							<div class="wrap_container">
-								发帖 <a href="#" class="wrap">我好喜欢你</a>
+								发帖 <a href="${pageContext.request.contextPath }/forum/p/${test.forumId }" class="wrap">${test.forumTitle }</a>
 								<nobr>
 									<span class="reply_txt"> <a href="#" class="b_reply"
-										target="_blank">回复</a> (10)
+										target="_blank">回复</a> (${test.replyCount })
 									</span>
 								</nobr>
 							</div></li>
-						<li><cite>10-22</cite>
-							<div class="wrap_container">
-								发帖 <a href="#" class="wrap">我是你爹</a>
-								<nobr>
-									<span class="reply_txt"> <a href="#" class="b_reply"
-										target="_blank">回复</a> (10)
-									</span>
-								</nobr>
-							</div></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>

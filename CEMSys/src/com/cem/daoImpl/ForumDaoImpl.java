@@ -294,7 +294,7 @@ public class ForumDaoImpl implements ForumDao {
 
 		long n = nowTime.getTime();
 		long e = oldtime.getTime();
-		if (e < ys) {// 时间转换成y-m-d//去年的
+		if (e < ys) {// 时间转换成y-m-d//去年以前的
 			return new SimpleDateFormat("yyyy-MM-dd").format(oldtime);
 		}
 		if ((ds - yd) == (24 * 60 * 60 * 1000)) {// 24h内
@@ -309,9 +309,6 @@ public class ForumDaoImpl implements ForumDao {
 		}
 		if (n - e > 60 * 60 * 1000) {// 一小时之前的
 			String result = new SimpleDateFormat("HH:mm").format(oldtime);
-//			if (result.substring(0, 1).equals("0")) {
-//				result = result.substring(1, 5);
-//			}
 			return "今天" + result;
 		}
 		if (n - e > 60 * 1000) {

@@ -66,10 +66,10 @@
 									<c:choose>
 										<c:when test="${sessionScope.user.userId == currentUserId }">
 											<li><a
-												href="${pageContext.request.contextPath }/forum/myMessage?uid=${currentUserId }">我的消息</a></li>
+												href="${pageContext.request.contextPath }/forum/myMessage?uid=${currentUserId }">回复我的</a></li>
 											<li><a
 												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId }">我的帖子</a></li>
-											<li class="active"><a href="#">我的回复</a></li>
+											<li class="active"><a href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId }">我的回复</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a
