@@ -70,6 +70,7 @@ public class UserManagementController {
 		int pageSize = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getPageSize());
 		int pageCount = recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1;
 		((UserManageVo) result.get("userManageVo")).setPageCount(pageCount);
+		((UserManageVo)result.get("userManageVo")).setAccessMode("findUsers");
 		modelAndView.addObject("userManageVo", result.get("userManageVo"));
 		modelAndView.setViewName("admin/userManage");
 		return modelAndView;
@@ -118,6 +119,7 @@ public class UserManagementController {
 		int pageSize = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getPageSize());
 		int pageCount = recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1;
 		((UserManageVo) result.get("userManageVo")).setPageCount(pageCount);
+		((UserManageVo)result.get("userManageVo")).setAccessMode("findUserWithout");
 		modelAndView.addObject("userManageVo", result.get("userManageVo"));
 		modelAndView.setViewName("admin/userManage");
 		return modelAndView;

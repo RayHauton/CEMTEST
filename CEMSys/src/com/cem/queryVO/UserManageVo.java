@@ -7,10 +7,19 @@ public class UserManageVo {
 	private String majorId;
 	private String degreeId;
 	private String audit;
+	private String accessMode;//访问的方式
 	private String pageSize;//每一页可容纳最大记录条数
 	private String pageIndex;//当前页面数
 	private String recordCount;//总记录条数
 	private int pageCount;//总共的页数
+	public String getAccessMode() {
+		return accessMode;
+	}
+
+	public void setAccessMode(String accessMode) {
+		this.accessMode = accessMode;
+	}
+
 	public int getPageCount() {
 		return pageCount;
 	}

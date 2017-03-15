@@ -91,7 +91,9 @@
 			</div>
 			<div id="approved-table"
 				style="width: 98%; margin-left: 1%; margin-top: 10px;">
-				</label>
+				<span>共<font id="approvedsum" style="color: red;">${approvedsum}
+				</font>条记录
+				</span>
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -128,13 +130,17 @@
 					</tbody>
 				</table>
 				<div class="record">
-					<span>共<font id="approvedsum">${approvedsum} </font>条记录，当前是第<font>${userManageVo.pageIndex }</font>页，共<font>${userManageVo.pageCount }</font>页
+					<span><a id="lastPage1" onclick="lastpage();"href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
+						id="nextPage1" onclick="nextpage();"href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
 					</span>
 				</div>
 
 			</div>
 			<div id="disapproved-table"
 				style="width: 98%; margin-left: 1%; margin-top: 10px;">
+				<span>共<font id="disapprovedsum" style="color: red;">${disapprovedsum}
+				</font>条记录
+				</span>
 				<form id="disapproved">
 					<table class="table table-bordered table-striped">
 						<thead>
@@ -186,8 +192,11 @@
 					</table>
 				</form>
 				<div class="record">
-					<span>共<font id="disapprovedsum">${disapprovedsum} </font>条记录，当前是第<font>${userManageVo.pageIndex }</font>页，共<font>${userManageVo.pageCount }</font>页
-					</span>
+					<span><a id="lastPage2" onclick="lastpage();"href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
+						id="nextPage2" onclick="nextpage"href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
+
+
+					
 				</div>
 			</div>
 		</div>
@@ -270,6 +279,18 @@ function queryAll() {
 	window.location.assign(aim);
 };
 
+function lastpage(){
+	var last = parseInt('${userManageVo.pageIndex}')-1;
+	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+last;
+	window.location.assign(aim);
+}
+
+function nextpage(){
+	var next = parseInt('${userManageVo.pageIndex}')+1;
+	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+next;
+	window.location.assign(aim);
+}
+
 var options = document.getElementById("pageSize").options;
 var size = options.length;
 for(var i=0;i<size;i++){
@@ -303,11 +324,25 @@ for(var i=0;i<size;i++){
 window.onload=function selectStyle(){
 	var app_table =document.getElementById("approved-table");
 	var dis_table =document.getElementById("disapproved-table");
-	if(${approvedsum}=="0"){
+	var lastpage1  = document.getElementById("lastPage1");
+	var lastpage2  = document.getElementById("lastPage2");
+	var nextpage1 = document.getElementById("nextPage1");
+	var nextpage2 = document.getElementById("nextPage2");
+	if('${approvedsum}'=="0"){
 		app_table.style.display="none";
 	}
-	if(${disapprovedsum}=="0"){
+	if('${disapprovedsum}'=="0"){
 		dis_table.style.display="none";
+	}
+	if('${userManageVo.pageIndex}'==1){
+		lastpage1.style.display = "none";
+		lastpage2.style.display = "none";
+		
+	}
+	if('${userManageVo.pageIndex}'=='${userManageVo.pageCount}'){
+		nextpage1.style.display = "none";
+		nextpage2.style.display = "none";
+		
 	}
 	
 var studNumber = document.getElementById("studNumber");
