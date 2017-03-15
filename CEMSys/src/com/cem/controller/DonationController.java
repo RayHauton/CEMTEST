@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cem.customPojo.UserCustom;
+import com.cem.pojo.Donation;
 import com.cem.queryVO.DonationQueryVo;
 import com.cem.service.DonationService;
 
