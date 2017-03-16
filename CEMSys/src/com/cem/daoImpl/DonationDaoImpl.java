@@ -27,6 +27,33 @@ public class DonationDaoImpl implements DonationDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.cem.dao.DonationDao#update(com.cem.pojo.Donation)
+	 * 更新记录信息
+	 */
+	@Override
+	public void update(Donation donation) throws Exception {
+		getSession().merge(donation);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.cem.dao.DonationDao#findById(java.lang.Integer) 根据donationID查询记录
+	 */
+	@Override
+	public Donation findById(Integer donationId) throws Exception {
+		return (Donation) getSession().createQuery("FROM Donation WHERE isDeleted='0' AND donationId=" + donationId)
+				.uniqueResult();
+	}
+
+	@Override
+	public void delete(Donation donation) throws Exception {
+		Session session = getSession();
+		session.merge(donation);
+	}
+
 	@Override
 	public UserCustom findDonorInfo(UserCustom userCustom) throws Exception {
 		UserCustom user = new UserCustom();
@@ -55,8 +82,8 @@ public class DonationDaoImpl implements DonationDao {
 		Object[] userInfo = (Object[]) session
 				.createQuery("SELECT truename,entranceDate FROM User WHERE userId=? AND isDeleted='0'")
 				.setParameter(0, userCustom.getUserId()).uniqueResult();
-		user.setTruename((String)userInfo[0]);
-		user.setEntranceDate((String)userInfo[1]);
+		user.setTruename((String) userInfo[0]);
+		user.setEntranceDate((String) userInfo[1]);
 		user.setUserId(userCustom.getUserId());
 		return user;
 	}
@@ -99,8 +126,8 @@ public class DonationDaoImpl implements DonationDao {
 		/*
 		 * 获得记录数
 		 */
-		int recordCount = Integer.parseInt(
-				String.valueOf(session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
+		int recordCount = Integer
+				.parseInt(String.valueOf(session.createQuery("SELECT COUNT(*) " + hql.toString()).uniqueResult()));
 		resultMap.put("recordCount", recordCount);
 		/*
 		 * 获得记录

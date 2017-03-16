@@ -27,7 +27,7 @@
         <property name="donationItem" type="java.lang.String">
             <column name="donationItem" length="50" />
         </property>
-        <property name="donationDate" type="date">
+        <property name="donationDate" type="string">
             <column name="donationDate" length="10" />
         </property>
         <property name="isDeleted" type="string">

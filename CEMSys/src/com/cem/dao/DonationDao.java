@@ -13,15 +13,30 @@ public interface DonationDao {
 	/*
 	 * 查询捐赠信息（带分页）
 	 */
-	public Map<String,Object> findAll(DonationQueryVo queryVo) throws Exception;
-	
+	public Map<String, Object> findAll(DonationQueryVo queryVo) throws Exception;
+
 	/*
 	 * 查找相应捐赠人的部分信息
 	 */
 	public UserCustom findDonorInfo(UserCustom userCustom) throws Exception;
-	
+
 	/*
 	 * 添加捐赠记录
 	 */
 	public void insert(Donation donation) throws Exception;
+
+	/*
+	 * 删除捐赠记录
+	 */
+	public void delete(Donation donation) throws Exception;
+
+	/*
+	 * 根据Id查询记录
+	 */
+	public Donation findById(Integer donationId) throws Exception;
+
+	/*
+	 * 更新捐赠记录
+	 */
+	public void update(Donation donation) throws Exception;
 }

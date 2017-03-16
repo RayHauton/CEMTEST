@@ -54,7 +54,7 @@
 				</c:forEach>
 			</select>
 			</td>
-			<td><input type="reset" value="重置" class="btn-query" style="background-color: #5CB85C;"/></td>
+			<td><input type="button" value="重置" class="btn-query" style="background-color: #5CB85C;" onclick="resetForm();"/></td>
 		</tr>
 		</table>
 		<!-- 隐藏表单提交pageIndex -->
@@ -81,17 +81,19 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<th>捐赠人</th>
+			<th width="100px">捐赠学号</th>
 			<th>捐赠用途</th>
-			<th>捐赠物品类别</th>
+			<th width="100px">捐赠物品类别</th>
 			<th>捐赠明细</th>
-			<th>捐赠时间</th>
+			<th width="100px">捐赠时间</th>
 			<th width="140px;">操作</th>
 		</thead>
 		<tbody>
 			<c:forEach var="donation" items="${donationList }">
 			<tr>
-				<td style="display: none;">${donation.studNumber }</td>
+				<td style="display: none;">${donation.donationId }</td>
 				<td>${donation.truename }</td>
+				<td>${donation.studNumber }</td>
 				<td>${donation.donationProject }</td>
 				<td>
 					<c:choose>
@@ -106,8 +108,8 @@
 				<td>${donation.donationItem }</td>
 				<td>${donation.donationDate }</td>
 				<td>
-				<button class="btn btn-primary">编辑</button>
-				<button class="btn btn-warning">删除</button>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#update" onclick="fillTheUpdateForm(this);">编辑</button>
+				<button class="btn btn-warning" onclick="deleteRecord('${pageContext.request.contextPath}','${queryVo.pageIndex }',this);">删除</button>
 				</td>
 			</tr>
 			</c:forEach>
@@ -171,7 +173,6 @@
 	<!-- 添加捐赠记录 -->
 	<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
 		<div class="modal-dialog">
-		<form action="${pageContext.request.contextPath }/donation/insert.action" enctype="multipart/form-data" method="post" id="ff_add">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -181,50 +182,121 @@
 						添加捐赠记录
 					</h4>
 				</div>
+				<form action="${pageContext.request.contextPath }/donation/insert.action" method="post" id="ff_add">
 				<div class="modal-body">
-				<div class="addDiv">
-					<div class="form-group">
-						<label for="truename_add">捐赠人：</label>
-						<input class="form-control" id="truename_add" name="truename"/>
+					<div class="addDiv">
+						<div class="form-group">
+							<label for="truename_add">捐赠人：</label>
+							<input class="form-control" id="truename_add" name="truename"/>
+						</div>
+						<div class="errorInfoContent" id="truenameError_add" style="display: none;"></div>
+						<div class="form-group">
+							<label for="studNumber_add">捐赠人学号：</label>
+							<input class="form-control" id="studNumber_add" name="studNumber"/>
+						</div>
+						<div class="errorInfoContent" id="studNumberError_add" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationProject_add">捐赠用途：</label>
+							<input class="form-control" id="donationProject_add" name="donationProject" />
+						</div>
+						<div class="errorInfoContent" id="donationProjectError_add" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationType_add">捐赠物品的类别：</label>
+							<select class="form-control" id="donationType_add" name="donationType">
+	<!-- 							<option value="">全部</option> -->
+								<option value="0">基金</option>
+								<option value="1">其他</option>	
+							</select>
+						</div>
+						<div class="errorInfoContent" id="donationTypeError_add" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationItem_add">捐赠明细：</label>
+							<input type="text" class="form-control" id="donationItem_add" name="donationItem">
+						</div>
+						<div class="errorInfoContent" id="donationItemError_add" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationDate_add">捐赠日期：</label>
+							<input type="date" class="form-control" id="donationDate_add" name="donationDate">
+						</div>
+						<div class="errorInfoContent" id="donationDateError_add" style="display: none;"></div>
 					</div>
-					<div class="errorInfoContent" id="truenameError_add" style="display: none;"></div>
-					<div class="form-group">
-						<label for="studNumber_add">捐赠人学号：</label>
-						<input class="form-control" id="studNumber_add" name="studNumber"/>
-					</div>
-					<div class="errorInfoContent" id="studNumberError_add" style="display: none;"></div>
-					<div class="form-group">
-						<label for="donationProject_add">捐赠用途：</label>
-						<input class="form-control" id="donationProject_add" name="donationProject" onblur="checkDetail('add');"/>
-					</div>
-					<div class="errorInfoContent" id="donationProjectError_add" style="display: none;"></div>
-					<div class="form-group">
-						<label for="donationType_add">捐赠物品的类别：</label>
-						<select class="form-control" id="donationType_add" name="donationType">
-<!-- 							<option value="">全部</option> -->
-							<option value="0">基金</option>
-							<option value="1">其他</option>	
-						</select>
-					</div>
-					<div class="errorInfoContent" id="donationTypeError_add" style="display: none;"></div>
-					<div class="form-group">
-						<label for="donationDate_add">捐赠日期：</label>
-						<input type="date" class="form-control" id="donationDate_add" name="donationDate">
-					</div>
-					<div class="errorInfoContent" id="donationDateError_add" style="display: none;"></div>
 				</div>
-				</div>
+				</form>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 					</button>
 					<button type="button" class="btn btn-info" onclick="resetForm();">重置
 					</button>
-					<button type="button" class="btn btn-success" onclick="submitInsertForm();">
+					<button type="button" class="btn btn-success" onclick="submitInsertForm('${pageContext.request.contextPath}','add');">
 						提交
 					</button>
 				</div>
 			</div>
-		</form>
+		</div>
+	</div>
+	<!-- 更新捐赠记录 -->
+	<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="customModal_update" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="customModal_update">
+						添加捐赠记录
+					</h4>
+				</div>
+				<form action="${pageContext.request.contextPath }/donation/update.action" method="post" id="ff_update">
+				<div class="modal-body">
+					<div class="addDiv">
+						<input type="hidden" id="donationId_update" name="donationId"/>
+						<div class="form-group">
+							<label for="truename_update">捐赠人：</label>
+							<input class="form-control" id="truename_update" name="truename"/>
+						</div>
+						<div class="errorInfoContent" id="truenameError_update" style="display: none;"></div>
+						<div class="form-group">
+							<label for="studNumber_update">捐赠人学号：</label>
+							<input class="form-control" id="studNumber_update" name="studNumber"/>
+						</div>
+						<div class="errorInfoContent" id="studNumberError_update" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationProject_update">捐赠用途：</label>
+							<input class="form-control" id="donationProject_update" name="donationProject" />
+						</div>
+						<div class="errorInfoContent" id="donationProjectError_update" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationType_update">捐赠物品的类别：</label>
+							<select class="form-control" id="donationType_update" name="donationType">
+	<!-- 							<option value="">全部</option> -->
+								<option value="0">基金</option>
+								<option value="1">其他</option>	
+							</select>
+						</div>
+						<div class="errorInfoContent" id="donationTypeError_update" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationItem_update">捐赠明细：</label>
+							<input type="text" class="form-control" id="donationItem_update" name="donationItem">
+						</div>
+						<div class="errorInfoContent" id="donationItemError_update" style="display: none;"></div>
+						<div class="form-group">
+							<label for="donationDate_update">捐赠日期：</label>
+							<input type="date" class="form-control" id="donationDate_update" name="donationDate">
+						</div>
+						<div class="errorInfoContent" id="donationDateError_update" style="display: none;"></div>
+					</div>
+				</div>
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-info" onclick="resetForm();">重置
+					</button>
+					<button type="button" class="btn btn-success" onclick="submitUpdateForm('${pageContext.request.contextPath}','update');">
+						更新
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
