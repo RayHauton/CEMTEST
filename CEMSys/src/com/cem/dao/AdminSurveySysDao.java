@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import com.cem.pojo.Majorabilitycultivationquality;
 import com.cem.pojo.Selfabilityquality;
 import com.cem.pojo.User;
+import com.cem.queryVO.AdminSurveyQueryVo;
 
 
 public interface AdminSurveySysDao {
 	
 	/**
 	 * 关联Selfabilityquality和Majorabilitycultivationquality，获取满足条件的userId
-	 * @param titleNum
-	 * @param scoreNum
+	 * @param adminSurveyQueryVo
 	 * @return
 	 */
-	public List<Integer> searchSMCondition(String[] titleNum,String[] scoreNum);
+	public List<Integer> searchSMCondition(AdminSurveyQueryVo adminSurveyQueryVo);
 	
 	
 	
@@ -28,21 +28,13 @@ public interface AdminSurveySysDao {
 	 */
 	public User searchUserByUserId(int userId);
 	
+	
+
 	/**
-	 * 将所查询到的信息写到Excel中
-	 * @param userList
-	 * @param sList
-	 * @param mList
+	 * 查找出User表中所有的用户ID号
+	 * @return
 	 * @throws Exception
 	 */
-	public void dataToExcel(List<User> userList,List<Selfabilityquality> sList,List<Majorabilitycultivationquality> mList) throws Exception;
-	
-	/**
-	 * 下载生成的Excel文件并删除本地生成的临时文件
-	 * @throws Exception
-	 */
-	public void download()throws Exception;
-	
 	public String[] searchAllUser()throws Exception;
 	
 }

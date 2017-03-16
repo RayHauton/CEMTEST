@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.cem.util.BaseDataUtil"%>
+<%@ page import="com.cem.util.BaseDataUtil" %>
+<%
+	request.setAttribute("pageSizeList", BaseDataUtil.getPageSizes());
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,38 +15,60 @@
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
 <link rel="stylesheet" href="../css/view_set/adminViewSet/adminIndex.css">
-<title>调查</title>
+<title>调研信息管理界面</title>
 </head>
 <body>
 		<jsp:include page="header_admin.jsp"></jsp:include>
 		<div class="contentBody">
 			<button type="button" class="btn btn-info" style="margin-left:7%;margin-top:7px;">根据个人信息查询</button>
 			<button type="button" class="btn btn-info" style="margin-left:15%;margin-top:7px;">根据调研信息查询</button>
-			<a type="button" class="btn btn-info" style="margin-left:15%;margin-top:7px;" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload">调研信息导出成Excel</a>
+<%-- 			<a type="button" class="btn btn-info" style="margin-left:15%;margin-top:7px;" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload">调研信息导出成Excel</a> --%>
+				<div class="btn-group" style="margin-left:15%;margin-top:7px;">
+				  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    &emsp;导出EXCEL&emsp; <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" id="dropdown-menu">
+				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?part=1">导出个人能力品质调研表</a></li>
+				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?part=2">导出专业能力培养质量调研表</a></li>
+				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload">导出全部信息</a></li>
+				  </ul>
+				</div>
 			<div id="searchTermA">
 				<hr id="hr"/>
 				<div class="searchLogo"style="z-index:1px;position:absolute;">
 					<img alt="" src="../img/donation/search1.png">
 				</div>
+				<h5>根据题号与对应的得分查询，若不输入则默认查询全部信息</h5>
 				<form action="${pageContext.request.contextPath}/adminSurveySys/search" method="post" id="form">
 					<div style="margin-bottom:13px">
 						<div id="test"></div>
 						<div id="addDiv">
 							<div id="addDiv0">
-								<label>第</label>
-								<input class="form-control" placeholder="输入1-39内的整数" name="titleNum"onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
-								<label>&emsp;题&emsp;选择</label>
-								<input class="form-control" placeholder="输入1-5内的整数" name="scoreNum" >
+								<label style="margin-left:20px;">题号</label>
+								<input class="form-control" placeholder="输入1-39内的整数" name="titleNum" id="titleNum" value="${sessionScope.adminSurveyQueryVo.titleNum}">
+								<label style="margin-left:20px;">得分</label>
+								<input class="form-control" placeholder="输入1-5内的整数" name="scoreNum" id="scoreNum"  value="${sessionScope.adminSurveyQueryVo.scoreNum}">
 <%-- 								<input class="form-control" placeholder="输入1-5内的整数" name="scoreNum"  onkeypress="return event.keyCode>=48&&event.keyCode<=57"> --%>
-								<label>&emsp;分&emsp;</label>
-								<img alt="" src="../images/add.png" height=20px; id="addImg">
+								<label style="margin-left:20px;">每页显示</label>
+								<select class="form-control" name="pageSize" id="pageSize" style="padding: 0px;">
+									<c:forEach var="pageSize" items="${pageSizeList }">
+										<option>${pageSize }</option>						
+									</c:forEach>
+								</select>
+								<script type="text/javascript">
+									var options = document.getElementById("pageSize").options;
+									var size = options.length;
+									for(var i=0;i<size;i++){
+										if(options[i].value=='${sessionScope.adminSurveyQueryVo.pageSize}'){
+											options[i].selected=true;
+										}
+									}
+								</script>
+								<input type="hidden" name="pageIndex" id="pageIndex"/>
 								<br/>
 							</div>
 						</div>
 					</div>
-					<div id="notice" style="border:0px;">
-						<span style="color:red;margin-left:4px;" id="noticeSpan"></span>
-					</div>					
 					<div style="margin-top:15px;margin-left:0px;">
 					    <button type="reset" class="btn btn-primary form-control">&ensp;重置&ensp;</button>
 					    <button type="submit" class="btn btn-primary form-control" id="submitButton">&ensp;查询&ensp;</button>
@@ -52,7 +77,16 @@
 				<hr id="hr"/>
 				<div id="tableDiv" style="width:70%;margin-left:15%;margin-top:10px;">
 					<label>共查询到<span style="color:red">&emsp;${sessionScope.listNum}</span>&emsp;条记录</label><br/>
-					 <a type="submit" id="userIds" class="btn btn-primary control0" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?userIds=${sessionScope.userIds}">将表中人员调研信息导出Excel</a>
+					<div class="btn-group" >
+					  <button type="button" class="btn btn-primary control0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    将查询到的调研信息导出EXCEL <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" id="dropdown-menu">
+					    <li><a id="ExportTable1" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?downloadPart=part&part=1">导出个人能力品质调研表</a></li>
+					    <li><a id="ExportTable2" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?downloadPart=part&part=2">导出专业能力培养质量调研表</a></li>
+					    <li><a id="ExportTable3" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?downloadPart=part">导出全部信息</a></li>
+					  </ul>
+					</div>
 					<table class="table table-bordered table-striped" style="width:100%;">
 						<thead style="font-size:20px">
 							<tr>
@@ -71,17 +105,64 @@
 								<td>${userList.truename }</td>
 								<td>${userList.studNumber }</td>
 								<td><button class="btn btn-danger control" name="surveyDetails">调研详情</button></td>
-								<td><button class="btn btn-danger control" >用户详情</button></td>
-								<td style="display:none">${userList.userId }</td>
+								<td><button class="btn btn-danger control" name="userDetails">用户详情</button></td>
+								<td>${userList.userId }</td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+					<ul class="pagination dividePage">
+						<c:choose>
+							<c:when test="${sessionScope.adminSurveyQueryVo.pageIndex>=2 }">
+								<li>
+								<a onclick="submitForm('${sessionScope.adminSurveyQueryVo.pageIndex-1 }');" style="cursor: pointer;">
+									<span>&laquo;</span>
+								</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="disabled"><span>&laquo;</span></li>
+							</c:otherwise>
+						</c:choose>
+						<c:forEach begin="${sessionScope.adminSurveyQueryVo.pageIndex-sessionScope.adminSurveyQueryVo.pageIndex%5+1 }" end="${sessionScope.adminSurveyQueryVo.pageIndex-sessionScope.adminSurveyQueryVo.pageIndex%5+5 }" step="1" varStatus="status">
+							<c:if test="${(status.current-1)!=0 and (status.current-1)%5 eq 0 }">
+								<li>
+									<a  name="pageTag" onclick="submitForm('${status.current-1 }');" style="cursor: pointer;">${status.current-1 }</a>
+								</li>
+							</c:if>
+							<c:if test="${status.current<=sessionScope.pageCount }">
+								<li>
+									<a name="pageTag" onclick="submitForm('${status.current }')" style="cursor: pointer;">${status.current }</a>
+								</li>
+							</c:if>
+						</c:forEach>		
+						<c:choose>
+							<c:when test="${sessionScope.adminSurveyQueryVo.pageIndex<sessionScope.pageCount }">
+								<li>
+								<a onclick="submitForm('${sessionScope.adminSurveyQueryVo.pageIndex+1 }')" style="cursor: pointer;">
+									<span>&raquo;</span>
+								</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="disabled"><span>&raquo; </span></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+					<script type="text/javascript">
+						var aTags = document.getElementsByName("pageTag");
+						var aTagCount = aTags.length;
+						for(var i=0;i<aTagCount;i++){
+							if(aTags[i].innerText=='${queryVo.pageIndex}'){
+								aTags[i].style.backgroundColor="#DDDDDD";
+							}
+						}
+					</script>
 				</div>
 			</div>
 			<div id="fade" class="black_overlay"></div>  
-			<div id="light" class="white2_content">
-				<a href="javascript:void(0)" id="aLight">
+			<div id="surveyLight" class="white2_content">
+				<a href="javascript:void(0)" id="surveyClose">
 					<img src="../images/close.png" style="width:15px;margin-left:27%;;margin-top:10px;position:fixed;z-index: 2001;" >
 				</a>
 				<div id="Selfabilityquality">
@@ -637,6 +718,49 @@
 					</table>
 				</div>
 			</div>
+			<div id="userLight" class="white2_content" style="width:50%;right: 25%;">
+				<a href="javascript:void(0)" id="userClose">
+					<img src="../images/close.png" style="width:15px;margin-left:22%;;margin-top:10px;position:fixed;z-index: 2001;" >
+				</a>
+				<div id="user">
+				    <span style="font-size:30px;">用户个人信息详情</span>
+				    <br/>
+				    <br/>
+				    <fieldset>
+				      <label class="label1">用户ID：</label><label class="label2" id="UserId"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">用户名：</label><label class="label2" id="Username"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">真实姓名：</label><label class="label2" id="Truename"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">性别：</label><label class="label2" id="Sex"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">学号：</label><label class="label2" id="StudentNum"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">出生年月：</label><label class="label2" id="Birth"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">手机号：</label><label class="label2" id="Mobile"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">邮箱：</label><label class="label2" id="EMail"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">籍贯：</label><label class="label2" id="Address"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">入学年份：</label><label class="label2" id="EntranceDate"></label>
+				    </fieldset>
+				    <fieldset>
+				    	<label class="label1">毕业年份：</label><label class="label2" id="GraduateDate"></label>
+				    </fieldset>
+				</div>
+			</div>
 		</div>
 		<jsp:include page="../baseView/footer.jsp"></jsp:include>
 </body>
@@ -660,10 +784,22 @@ $(function() {
 $(function() {
 	var userIds = "${sessionScope.userIds}";
 	if(userIds==""){
-		$("#userIds").removeAttr("href");
+		$("#ExportTable1").removeAttr("href");
+		$("#ExportTable2").removeAttr("href");
+		$("#ExportTable3").removeAttr("href");
 	}
-// 	var a = "${sessionScope.userList}";
-// 	alert(a);
+});
+$(function(){
+	 $("a[name='pageTag']").each(function(){ 
+		 var page = $(this).html(); 
+		 var pageIndex = "${sessionScope.adminSurveyQueryVo.pageIndex}";
+		 if(page==pageIndex){
+			$(this).removeAttr('onclick');
+			$(this).css("color","#a0a0a0");
+			$(this).css({cursor:"default"});
+			$(this).parent().hover("background-color","white");
+		 }
+	 });
 });
 </script>
 </html>

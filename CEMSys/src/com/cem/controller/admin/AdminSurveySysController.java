@@ -1,6 +1,5 @@
 package com.cem.controller.admin;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,17 +7,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.openmbean.OpenDataException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cem.pojo.Majorabilitycultivationquality;
 import com.cem.pojo.Selfabilityquality;
 import com.cem.pojo.User;
+import com.cem.queryVO.AdminSurveyQueryVo;
 import com.cem.service.AdminSurveySysService;
 import com.cem.service.SurveySysService;
 
@@ -34,8 +36,16 @@ public class AdminSurveySysController {
 	@Autowired
 	AdminSurveySysService adminSurveySysService;
 	
+	@Value("${defaultPageSize}")
+	private Integer pageSizeDefault;
+	
 	@Autowired
 	SurveySysService surveySysService;
+	
+	@RequestMapping(value = "/open")
+	public String open(){
+		return "redirect:/admin/survey.jsp";
+	}
 	
 	/**
 	 * 
@@ -46,39 +56,56 @@ public class AdminSurveySysController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/search")
-	public String search(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+	public String search(AdminSurveyQueryVo adminSurveyQueryVo,HttpServletRequest request) throws Exception {
+		if (adminSurveyQueryVo.getPageIndex() == null) {
+			adminSurveyQueryVo.setPageIndex(1);
+		}
+		if (adminSurveyQueryVo.getPageSize() == null) {
+			adminSurveyQueryVo.setPageSize(pageSizeDefault);
+		}
+		int pageIndex = adminSurveyQueryVo.getPageIndex();
+		int pageSize = adminSurveyQueryVo.getPageSize();
 		//获取查询条件，题号与对应的得分
-		String[] titleNum = request.getParameterValues("titleNum");
-		String[] scoreNum = request.getParameterValues("scoreNum");
-		List<Integer> list = adminSurveySysService.searchSMCondition(titleNum, scoreNum);
+		List<Integer> list = adminSurveySysService.searchSMCondition(adminSurveyQueryVo);
+		
+		String userIds = "";
+		//将所有获取到的userId拼接成字符串传到前台，便于查询
+		for (int id : list) {
+			userIds = userIds + id +","; 
+		}
+		int listNum = list.size();
+		request.getSession().setAttribute("userIds", userIds);
+		request.getSession().setAttribute("listNum", listNum);
+		request.getSession().setAttribute("pageCount", listNum%pageSize==0?listNum/pageSize:listNum/pageSize+1);
+
+		//截取当前页面的userId数
+		int tempInt = pageIndex*pageSize;
+		if(tempInt>list.size())	tempInt = list.size();
+		list = list.subList((pageIndex-1)*pageSize,tempInt);
+		
 		List<User> userList = new ArrayList<User>();
 		for (Integer integer : list) {
 			User user = adminSurveySysService.searchUserByUserId(integer);
-			System.out.println(user);
 			userList.add(user);
 		}
 		
 		request.getSession().setAttribute("userList", userList);
-		request.getSession().setAttribute("listNum", list.size());
+		request.getSession().setAttribute("adminSurveyQueryVo", adminSurveyQueryVo);
 		
-		String userIds = "";
-		//将所有获取到的userId拼接成字符串传到前台，便于查询
-		for (User user : userList) {
-			userIds = userIds + user.getUserId()+","; 
-		}
-		request.getSession().setAttribute("userIds", userIds);
 		return "redirect:/admin/survey.jsp";
 	}
 	
 	
 	@RequestMapping(value = "/exportToExcelAndDownload")
-	public void exportToExcelAndDownload(HttpServletRequest request,HttpServletResponse response,HttpSession session)throws Exception{
-		String userIdtemp = request.getParameter("userIds");
+	public void exportToExcelAndDownload(HttpServletRequest request)throws Exception{
+		String downloadPart = request.getParameter("downloadPart");//是否为下载查询到的部分，part表示只下载查询到的信息
+		String part = request.getParameter("part");//获取导出部分，1表示第一张表，2表示第二张表，无表示全部导出
 		String[] userIds = null;
-		if(userIdtemp != null)
-			userIds = userIdtemp.split(",");
-		if(userIdtemp == null){
+		if(downloadPart == null)
 			userIds=adminSurveySysService.searchAllUser();
+		else if(downloadPart.equals("part")){
+			String userIdtemp = (String) request.getSession().getAttribute("userIds");//获取查询到的所有用户信息
+			userIds = userIdtemp.split(",");
 		}
 		List<User> userList = new ArrayList<User>();
 		List<Selfabilityquality> sList = new ArrayList<Selfabilityquality>();
@@ -87,11 +114,19 @@ public class AdminSurveySysController {
 		for (String string : userIds) {
 			int userId = Integer.valueOf(string);
 			User user = adminSurveySysService.searchUserByUserId(userId);
-			Selfabilityquality selfabilityquality  = surveySysService.SearchSelfabilityqualityByUserID(userId);
-			Majorabilitycultivationquality majorabilitycultivationquality = surveySysService.SearchMajorabilitycultivationqualityByUserID(userId);
 			userList.add(user);
-			sList.add(selfabilityquality);
-			mList.add(majorabilitycultivationquality);
+			if(part==null){
+				Selfabilityquality selfabilityquality  = surveySysService.SearchSelfabilityqualityByUserID(userId);
+				Majorabilitycultivationquality majorabilitycultivationquality = surveySysService.SearchMajorabilitycultivationqualityByUserID(userId);
+				sList.add(selfabilityquality);
+				mList.add(majorabilitycultivationquality);
+			}else if (part.equals("1")) {
+				Selfabilityquality selfabilityquality = surveySysService.SearchSelfabilityqualityByUserID(userId);
+				sList.add(selfabilityquality);
+			}else if(part.equals("2")){
+				Majorabilitycultivationquality majorabilitycultivationquality = surveySysService.SearchMajorabilitycultivationqualityByUserID(userId);
+				mList.add(majorabilitycultivationquality);
+			}
 		}
 		//将数据写入Excel
 		adminSurveySysService.dataToExcel(userList,sList,mList);
@@ -118,12 +153,29 @@ public class AdminSurveySysController {
 			data = majorabilitycultivationquality.toString();
 		//用map将拼接而成的字符串传给前台
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("activityName", data);
+		map.put("surveyData", data);
 		String s = JSONArray.fromObject(map).toString();
 		response.getWriter().write(s);
 		response.getWriter().flush();
 		response.getWriter().close();
-		System.out.println("over");
+	}
+	
+	
+	@RequestMapping(value = "/showUserDetail")
+	public void showUserDetail(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		//获取前台传来的用户ID号
+		int userID = Integer.valueOf(request.getParameter("userId"));
+		System.out.println(userID);
+		User user = adminSurveySysService.searchUserByUserId(userID);
+		String userString = user.toStringView();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userData", userString);
+		String s = JSONArray.fromObject(map).toString();
+		response.getWriter().write(s);
+		response.getWriter().flush();
+		response.getWriter().close();
 	}
 	
 	

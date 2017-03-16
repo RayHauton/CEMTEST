@@ -75,7 +75,7 @@ body {
 	padding-top:0px;
 	padding-bottom:0px;
 	display: inline-block;
-	width:210px;
+	width:230px;
 	height: 25px;
 }
 td{
@@ -124,4 +124,36 @@ td{
 	background-image: url('../images/dialog.png');
 	background-size: 100px 23px;
 	background-repeat: no-repeat;
+}
+#user {
+	font-family:"Open Sans", Helvetica, Arial, sans-serif;
+	font-weight:300;
+	font-size: 14px;
+	line-height:30px;
+	color:#777;
+	padding:25px;
+	margin:5px 0;
+}
+
+fieldset {
+	border: medium none !important;
+	margin: 0 0 8px;
+	min-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+.label1{
+	height:30px;
+	width:140px;
+	background-color: #EAEAEA; 
+}
+
+.label2{
+	height:30px;
+	width:260px;
+	background-color: #EAEAEA; 
+}
+#dropdown-menu{
+	min-width: 210px;
 }
