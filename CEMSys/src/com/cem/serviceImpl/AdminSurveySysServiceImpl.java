@@ -103,6 +103,7 @@ public class AdminSurveySysServiceImpl implements AdminSurveySysService {
 		return adminSurveySysDao.searchUserByUserId(userId);
 	}
 
+	@SuppressWarnings("unused")
 	public void dataToExcel(List<User> userList,List<Selfabilityquality> sList,List<Majorabilitycultivationquality> mList) throws Exception {
 		
 		String realPath = request.getServletContext().getRealPath("/") + "tempFile";

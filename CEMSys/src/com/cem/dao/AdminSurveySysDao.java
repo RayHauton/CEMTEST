@@ -2,10 +2,6 @@ package com.cem.dao;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.cem.pojo.Majorabilitycultivationquality;
-import com.cem.pojo.Selfabilityquality;
 import com.cem.pojo.User;
 import com.cem.queryVO.AdminSurveyQueryVo;
 

@@ -1,7 +1,6 @@
 package com.cem.controller;
 
 import java.io.File;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -153,7 +152,6 @@ public class CollegeEventController {
 		return "redirect:show_adm";
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show_adm")
 	public ModelAndView show_adm(CollegeEventQueryVo queryVo, HttpServletRequest request) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
@@ -170,7 +168,6 @@ public class CollegeEventController {
 		return modelAndView;
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show")
 	public ModelAndView show(CollegeEventQueryVo queryVo, HttpServletRequest request) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();

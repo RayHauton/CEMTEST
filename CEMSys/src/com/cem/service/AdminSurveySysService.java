@@ -2,7 +2,6 @@ package com.cem.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import com.cem.pojo.Majorabilitycultivationquality;
 import com.cem.pojo.Selfabilityquality;

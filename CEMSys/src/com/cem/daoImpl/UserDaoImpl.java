@@ -11,16 +11,12 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.annotations.Where;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cem.dao.UserDao;
-import com.cem.pojo.Majorabilitycultivationquality;
-import com.cem.pojo.Selfabilityquality;
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
 
@@ -142,6 +138,7 @@ public class UserDaoImpl implements UserDao {
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> findUsersFromUserManage(UserManageVo userManageVo) throws Exception {
 		System.out.println("dao层开始");
@@ -245,6 +242,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	/* 将数据转为Excel */
+	@SuppressWarnings("unused")
 	public void dataToExcel(List<User> userList) throws Exception {
 		// 获取文件地址
 		String realPath = request.getServletContext().getRealPath("/") + "tempFile";
@@ -354,6 +352,7 @@ public class UserDaoImpl implements UserDao {
 		file.delete();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findUsersWithOut() throws Exception {
 		Session session = getSession();
@@ -362,6 +361,7 @@ public class UserDaoImpl implements UserDao {
 		return uList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> finddUsersFromUserManageWithOut(String passed, int pageSize, int pageIndex) throws Exception {
 		Session session = getSession();
