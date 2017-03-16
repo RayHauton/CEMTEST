@@ -3,7 +3,12 @@ package com.cem.daoImpl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cem.customPojo.UserBaseInfo;
 import com.cem.dao.UserDao;
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
@@ -45,6 +52,58 @@ public class UserDaoImpl implements UserDao {
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
+	}
+
+	/**
+	 * @param classNo 班号
+	 */
+	@Override
+	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception {
+		Session session = getSession();
+		List<UserBaseInfo> userInfoList = new ArrayList<>();
+		//因为没有外键，此时两表查询使用笛卡尔积，爆炸，，，所以跳过hibernate直接调用原生jdbc
+		session.doWork(new Work() {
+			@Override
+			public void execute(Connection connection){
+				String sql = "select u.truename,u.mobile,u.email,job.companyName "
+						+ "from user u left outer join jobinfomodule job "
+						+ "on u.userId=job.userId and u.isDeleted='0' and job.isDeleted='0' "
+						+ "and u.classNo=?";
+				PreparedStatement pstmt =null;
+				ResultSet rs=null;
+				try{
+					pstmt = connection.prepareStatement(sql);
+					pstmt.setString(0, classNo);
+					rs = pstmt.executeQuery();
+					UserBaseInfo userBaseInfo = null;
+					while(rs.next()){
+						userBaseInfo = new UserBaseInfo();
+						userBaseInfo.setTruename(rs.getString(1));
+						userBaseInfo.setMobile(rs.getString(2));
+						userBaseInfo.setEmail(rs.getString(3));
+						userBaseInfo.setCompanyName(rs.getString(4));
+						userInfoList.add(userBaseInfo);
+					}
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				} finally{
+					try{
+						if(rs!=null){
+							rs.close();
+						}
+						if(pstmt!=null){
+							pstmt.close();
+						}
+						if(connection!=null){
+							connection.close();
+						}
+					}catch(SQLException ex){
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
+		return userInfoList;
 	}
 
 	@Override
@@ -176,13 +235,13 @@ public class UserDaoImpl implements UserDao {
 			hql.append("And u.checkOut='1' ");
 		}
 		if (studNumber != null && !("".equals(studNumber)))
-			hql.append("And u.studNumber= '" + studNumber+"'");
+			hql.append("And u.studNumber= '" + studNumber + "'");
 		else {
 			if (truename != null && !("".equals(truename))) {
-				hql.append("And u.truename = '" + truename+"'");
+				hql.append("And u.truename = '" + truename + "'");
 			}
 			if (entranceDate != null && !("".equals(entranceDate))) {
-				hql.append("And u.entranceDate = '" + entranceDate+"'");
+				hql.append("And u.entranceDate = '" + entranceDate + "'");
 			}
 			if (majorId != null && !("".equals(majorId)))
 				hql.append("And s.majorId = '" + majorId + "'");
@@ -212,24 +271,25 @@ public class UserDaoImpl implements UserDao {
 
 		if ((studNumber == null || "".equals(studNumber)) && (truename == null || "".equals(truename))
 				&& (entranceDate == null || "".equals(entranceDate)) && (majorId == null || "".equals(majorId))
-				&& (degreeId == null || "".equals(degreeId)) ) {
+				&& (degreeId == null || "".equals(degreeId))) {
 			System.out.println("错误查询");
 			return 0;
 		}
-		StringBuilder hql = new StringBuilder("from User u join Schoolexperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) where u.isDeleted  = '0' ");
+		StringBuilder hql = new StringBuilder(
+				"from User u join Schoolexperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) where u.isDeleted  = '0' ");
 		if ("0".equals(passed))
 			hql.append("And u.checkOut='0' ");
 		else if ("1".equals(passed)) {
 			hql.append("And u.checkOut='1' ");
 		}
 		if (studNumber != null && !("".equals(studNumber)))
-			hql.append("And u.studNumber= '" + studNumber+"'");
+			hql.append("And u.studNumber= '" + studNumber + "'");
 		else {
 			if (truename != null && !("".equals(truename))) {
-				hql.append("And u.truename = '" + truename+"'");
+				hql.append("And u.truename = '" + truename + "'");
 			}
 			if (entranceDate != null && !("".equals(entranceDate))) {
-				hql.append("And u.entranceDate = '" + entranceDate+"'");
+				hql.append("And u.entranceDate = '" + entranceDate + "'");
 			}
 			if (majorId != null && !("".equals(majorId)))
 				hql.append("And s.majorId = '" + majorId + "'");
@@ -237,8 +297,8 @@ public class UserDaoImpl implements UserDao {
 				hql.append("And s.degreeId  = '" + degreeId + "'");
 		}
 		System.out.println(hql.toString());
-		return Integer
-				.parseInt(String.valueOf(session.createSQLQuery("SELECT COUNT(userId) " + hql.toString()).uniqueResult()));
+		return Integer.parseInt(
+				String.valueOf(session.createSQLQuery("SELECT COUNT(userId) " + hql.toString()).uniqueResult()));
 	}
 
 	/* 将数据转为Excel */

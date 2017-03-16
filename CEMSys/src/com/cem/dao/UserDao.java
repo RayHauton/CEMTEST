@@ -2,7 +2,7 @@ package com.cem.dao;
 
 import java.util.List;
 
-
+import com.cem.customPojo.UserBaseInfo;
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
 
@@ -10,6 +10,11 @@ import com.cem.queryVO.UserManageVo;
  * Created by RayHauton on 2017/1/25.
  */
 public interface UserDao {
+	
+	/*
+	 * 根据班号查询同班的人
+	 */
+	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception;
 
 	/*
 	 * 添加用户信息

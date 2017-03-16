@@ -22,6 +22,7 @@ public class User implements java.io.Serializable {
 	private String address;
 	private String entranceDate;
 	private String graduateDate;
+	private String classNo;
 	private String schoolExperienceId;
 	private String checkOut;
 	private String bbsrank;
@@ -35,9 +36,18 @@ public class User implements java.io.Serializable {
 		this.userId = userId;
 	}
 
+	/*
+	 * 自定义构造器
+	 */
+	public User(String truename, String mobile, String email) {
+		this.truename = truename;
+		this.mobile = mobile;
+		this.email = email;
+	}
+
 	public User(int userId, String username, String truename, String password, String sex, String studNumber,
 			String birth, String mobile, String email, String address, String entranceDate, String graduateDate,
-			String schoolExperienceId, String checkOut, String bbsrank, String role, String isDeleted) {
+			String classNo, String schoolExperienceId, String checkOut, String bbsrank, String role, String isDeleted) {
 		this.userId = userId;
 		this.username = username;
 		this.truename = truename;
@@ -153,6 +163,18 @@ public class User implements java.io.Serializable {
 		this.graduateDate = graduateDate;
 	}
 
+	public String getClassNo() {
+		return classNo;
+	}
+
+	public void setClassNo(String classNo) {
+		this.classNo = classNo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getSchoolExperienceId() {
 		return this.schoolExperienceId;
 	}
@@ -194,14 +216,13 @@ public class User implements java.io.Serializable {
 	}
 
 	public String toStringView() {
-		return username + "," + truename + "," + sex + "," + studNumber + "," + birth + "," + mobile
-				+ "," + email + "," + address + "," + entranceDate + "," + graduateDate;
+		return username + "," + truename + "," + sex + "," + studNumber + "," + birth + "," + mobile + "," + email + ","
+				+ address + "," + entranceDate + "," + graduateDate;
 	}
 
 	@Override
 	public String toString() {
 		return truename + "," + sex + "," + birth + "," + entranceDate + "," + graduateDate;
 	}
-	
-	
+
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cem.customPojo.UserBaseInfo;
 import com.cem.dao.UserDao;
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
@@ -19,6 +20,19 @@ import com.cem.service.UserService;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao = null;
+
+	
+	
+	/**
+	 * @param classNo 班级号码
+	 * @return 包含班级同学的一些信息
+	 * @exception exception
+	 * @author linhd
+	 */
+	@Override
+	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception {
+		return userDao.findClassMateByClasNo(classNo);
+	}
 
 	@Override
 	public void insertUser(User user) throws Exception {

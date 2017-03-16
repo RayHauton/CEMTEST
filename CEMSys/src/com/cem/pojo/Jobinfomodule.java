@@ -22,6 +22,10 @@ public class Jobinfomodule implements java.io.Serializable {
 	public Jobinfomodule() {
 	}
 
+	public Jobinfomodule(String companyName) {
+		this.companyName = companyName;
+	}
+
 	public Jobinfomodule(int moduleId, int userId, String companyNature, String jobRank, String companyName,
 			String positionName, String isDeleted) {
 		this.moduleId = moduleId;

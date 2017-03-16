@@ -3,6 +3,7 @@ package com.cem.service;
 import java.util.List;
 import java.util.Map;
 
+import com.cem.customPojo.UserBaseInfo;
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
 
@@ -10,6 +11,15 @@ import com.cem.queryVO.UserManageVo;
  * Created by RayHauton on 2017/1/25.
  */
 public interface UserService {
+	
+	
+	/**
+	 * 
+	 * @param classNo 班级号码
+	 * @throws Exception
+	 */
+	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception;
+	
 	/*
 	 * 添加用户信息
 	 */
