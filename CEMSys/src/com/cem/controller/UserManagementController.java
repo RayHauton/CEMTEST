@@ -1,7 +1,5 @@
 package com.cem.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,9 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cem.pojo.Jobinfomodule;
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
 import com.cem.service.JobService;
@@ -24,7 +22,6 @@ import com.cem.service.UserService;
 @Controller
 @RequestMapping(value = "/userManage")
 public class UserManagementController {
-	private static final int Object = 0;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -32,6 +29,17 @@ public class UserManagementController {
 	@Autowired
 	SurveySysService surveySysService;
 
+	
+	@RequestMapping(value = "/findClassmatesByClassNo")
+	public ModelAndView findClassmatesByIdClassNo(@RequestParam String truename,@RequestParam String classNo) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("classmatesList",userService.findClassMateByClasNo(truename,classNo));
+		modelAndView.addObject("truename",truename);
+		modelAndView.addObject("classNo",classNo);
+		modelAndView.setViewName("baseView/classmates");
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = "/open")
 	public ModelAndView openJsp(HttpSession session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();

@@ -16,9 +16,10 @@ public interface UserService {
 	/**
 	 * 
 	 * @param classNo 班级号码
+	 * @param truename 真实姓名
 	 * @throws Exception
 	 */
-	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception;
+	public List<UserBaseInfo> findClassMateByClasNo(String truename,String classNo) throws Exception;
 	
 	/*
 	 * 添加用户信息

@@ -12,9 +12,9 @@ import com.cem.queryVO.UserManageVo;
 public interface UserDao {
 	
 	/*
-	 * 根据班号查询同班的人
+	 * 根据班号以及姓名查询同班的人
 	 */
-	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception;
+	public List<UserBaseInfo> findClassMateByClasNo(String truename,String classNo) throws Exception;
 
 	/*
 	 * 添加用户信息

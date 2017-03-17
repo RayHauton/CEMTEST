@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+.outer{
+	width:1000px;
+	min-height:400px;
+	margin-left:auto;
+	margin-right:auto;
+	border:1px solid #d4d4d4;
+	border-radius:4px;
+}
+.queryTable{
+	width:560px;
+	height:50px;
+/* 	background-color: red; */
+	font-size:12px;
+	margin-left:10px;
+}
+.inputBtn{
+	width:60px;
+	height:25px;
+	border-radius:4px;
+	border:transparent;
+	color:white;
+	font-size:12px;
+/* 	border:1px solid #d0d0d0; */
+}
+.inputSet{
+	border:1px solid #d0d0d0;
+	border-radius:2px;
+	height:25px;
+}

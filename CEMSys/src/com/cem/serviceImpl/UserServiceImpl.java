@@ -25,13 +25,14 @@ public class UserServiceImpl implements UserService {
 	
 	/**
 	 * @param classNo 班级号码
+	 * @param truename 真实姓名
 	 * @return 包含班级同学的一些信息
 	 * @exception exception
 	 * @author linhd
 	 */
 	@Override
-	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception {
-		return userDao.findClassMateByClasNo(classNo);
+	public List<UserBaseInfo> findClassMateByClasNo(String truename,String classNo) throws Exception {
+		return userDao.findClassMateByClasNo(truename,classNo);
 	}
 
 	@Override

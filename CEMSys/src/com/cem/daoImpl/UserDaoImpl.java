@@ -55,49 +55,58 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	/**
-	 * @param classNo 班号
+	 * @param classNo
+	 *            班号
 	 */
 	@Override
-	public List<UserBaseInfo> findClassMateByClasNo(String classNo) throws Exception {
+	public List<UserBaseInfo> findClassMateByClasNo(String truename, String classNo) throws Exception {
 		Session session = getSession();
 		List<UserBaseInfo> userInfoList = new ArrayList<>();
-		//因为没有外键，此时两表查询使用笛卡尔积，爆炸，，，所以跳过hibernate直接调用原生jdbc
+		// 因为没有外键，此时两表查询使用笛卡尔积，爆炸，，，所以跳过hibernate直接调用原生jdbc
 		session.doWork(new Work() {
 			@Override
-			public void execute(Connection connection){
-				String sql = "select u.truename,u.mobile,u.email,job.companyName "
-						+ "from user u left outer join jobinfomodule job "
-						+ "on u.userId=job.userId and u.isDeleted='0' and job.isDeleted='0' "
-						+ "and u.classNo=?";
-				PreparedStatement pstmt =null;
-				ResultSet rs=null;
-				try{
+			public void execute(Connection connection) {
+				boolean flag = false;
+				String sql = "select u.truename,u.classNo,u.mobile,u.email,job.companyName "
+						+ "from user u inner join jobinfomodule job "
+						+ "on u.userId=job.userId and u.isDeleted='0' and job.isDeleted='0' and u.classNo=?";
+				if(truename!=null && truename.length()!=0){
+					flag=true;
+					sql+=" and u.truename like ?";
+				}
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				try {
 					pstmt = connection.prepareStatement(sql);
-					pstmt.setString(0, classNo);
+					pstmt.setString(1, classNo);
+					if(flag){
+						pstmt.setString(2, "%"+truename+"%");
+					}
 					rs = pstmt.executeQuery();
 					UserBaseInfo userBaseInfo = null;
-					while(rs.next()){
+					while (rs.next()) {
 						userBaseInfo = new UserBaseInfo();
 						userBaseInfo.setTruename(rs.getString(1));
-						userBaseInfo.setMobile(rs.getString(2));
-						userBaseInfo.setEmail(rs.getString(3));
-						userBaseInfo.setCompanyName(rs.getString(4));
+						userBaseInfo.setClassNo(rs.getString(2));
+						userBaseInfo.setMobile(rs.getString(3));
+						userBaseInfo.setEmail(rs.getString(4));
+						userBaseInfo.setCompanyName(rs.getString(5));
 						userInfoList.add(userBaseInfo);
 					}
-				}catch(SQLException ex){
+				} catch (SQLException ex) {
 					ex.printStackTrace();
-				} finally{
-					try{
-						if(rs!=null){
+				} finally {
+					try {
+						if (rs != null) {
 							rs.close();
 						}
-						if(pstmt!=null){
+						if (pstmt != null) {
 							pstmt.close();
 						}
-						if(connection!=null){
+						if (connection != null) {
 							connection.close();
 						}
-					}catch(SQLException ex){
+					} catch (SQLException ex) {
 						ex.printStackTrace();
 					}
 				}
