@@ -29,6 +29,10 @@ public class UserManagementController {
 	@Autowired
 	SurveySysService surveySysService;
 
+	@RequestMapping(value = "/openClassmatesView")
+	public void openClassmatesView(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.getRequestDispatcher("/baseView/classmates.jsp").forward(request, response);;
+	}
 	
 	@RequestMapping(value = "/findClassmatesByClassNo")
 	public ModelAndView findClassmatesByIdClassNo(@RequestParam String truename,@RequestParam String classNo) throws Exception{

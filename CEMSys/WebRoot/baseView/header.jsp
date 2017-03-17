@@ -94,7 +94,7 @@
 					</ul>
 				</li>
 				<li><a href="${pageContext.request.contextPath }/collegeEvent/show.action">学院事件录</a></li>
-				<li><a href="#">查找我的同学</a></li>
+				<li><a href="${pageContext.request.contextPath }/userManage/openClassmatesView.action">查找我的同学</a></li>
 			</ul>
 		</div>
 	</nav>
