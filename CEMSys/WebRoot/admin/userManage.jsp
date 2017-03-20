@@ -31,7 +31,7 @@
 				<div class="searchLogo">
 					<img alt="" src="../img/donation/search1.png">
 				</div>
-				<form action="../userManage/findUsers" method="get">
+				<form action="../userManage/findUsers_adm" method="post">
 					<div style="margin-bottom: 13px">
 						<label>学号</label> <input class="form-control" placeholder="输入学号"
 							name="studNumber" id="studNumber"> <label>姓名</label> <input
@@ -298,19 +298,19 @@
 function queryAll() {
 	var pSize = document.getElementById("pageSize").value;
 	var status = document.getElementById("audit").value;
-	var aim = "../userManage/findUserWithout?studNumber=&trueName=&entranceDate=&degreeId=&majorId=&audit="+status+"&pageSize="+pSize;
+	var aim = "../userManage/findUserWithout_adm?studNumber=&trueName=&entranceDate=&degreeId=&majorId=&audit="+status+"&pageSize="+pSize;
 	window.location.assign(aim);
 };
 
 function lastpage(){
 	var last = parseInt('${userManageVo.pageIndex}')-1;
-	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+last;
+	var aim  = "../userManage/${userManageVo.accessMode }_adm?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+last;
 	window.location.assign(aim);
 };
 
 function nextpage(){
 	var next = parseInt('${userManageVo.pageIndex}')+1;
-	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+next;
+	var aim  = "../userManage/${userManageVo.accessMode }_adm?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+next;
 	window.location.assign(aim);
 };
 

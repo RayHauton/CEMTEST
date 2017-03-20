@@ -3,7 +3,7 @@
 	
 	
 	function downloadUsers(){
-		var aim = "../userManage/downloadUsers.action"
+		var aim = "../userManage/downloadUsers_adm.action"
 		var result = confirm('是否导出所有用户信息至Excel')
 		if(result)
 			window.location.assign(aim);
@@ -17,7 +17,7 @@
 			$.ajax({
 				type:"POST",
 				async:false,
-				url:"../userManage/userDelete.action",
+				url:"../userManage/userDelete_adm.action",
 				data:params,
 				error:function(){
 					alert("失败");
@@ -43,7 +43,7 @@
 		$.ajax({
 			type:"post",
 			async:false,
-			url:"../userManage/check",
+			url:"../userManage/check_adm",
 			data:params,
 			error:function(){
 				alert("失败");
@@ -61,7 +61,7 @@
 		$.ajax({
 			type:"post",
 			async:false,
-			url:"../userManage/findUser",
+			url:"../userManage/findUser_adm",
 			data:params,
 			error:function(){
 				alert("失败")

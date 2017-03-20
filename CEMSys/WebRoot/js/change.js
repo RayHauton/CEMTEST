@@ -36,7 +36,6 @@ for (var i = 0; i < liDom.length; i++) {
 };
 
 function baseSkip() {
-	alert("kaishi");
 	var params = $("#base").serializeArray();
 	$.ajax({
 		type : "POST",
@@ -63,14 +62,12 @@ function baseSkip() {
 				sibling(conDom, function() {// divDom的兄弟节点的display状态为none
 					this.style.display = "none";
 				});
-				alert(data)
 			}
 		}
 	});
 };
 
 function occupationSkip() {
-	alert("工作开始");
 	var params = $("#occupation").serializeArray();
 	$.ajax({
 		type : "POST",
@@ -97,14 +94,12 @@ function occupationSkip() {
 				sibling(conDom, function() {// divDom的兄弟节点的display状态为none
 					this.style.display = "none";
 				});
-				alert(data)
 			}
 		}
 	});
 };
 
 function jobSkip() {
-	alert("职业开始");
 	var params = $("#job").serializeArray();
 	$.ajax({
 		type : "POST",
@@ -122,14 +117,12 @@ function jobSkip() {
 			if (data == "noExist") {
 				alert("用户不存在");
 			} else {
-				alert(data)
 				window.location.href = '../index.jsp';
 			}
 		}
 	});
 };
 function mytest(){
-	alert(o.style.height);
 	o.style.height = $("#content").height()+40+"px";
 	var AA = getId("select").children;
 /*	for (var i = 0; i < AA.length; i++) {
