@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.cem.customPojo.UserBaseInfo;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
 
@@ -76,6 +79,6 @@ public interface UserService {
 	
 	public void checkUserStates(String[] studNumberArr,String[] auditArr)throws Exception;
 	
-	public void downloadUsers(List<User> uList) throws Exception;
+	public void downloadUsers(List<User> uList,HttpServletRequest request,HttpServletResponse response) throws Exception;
 	
 }

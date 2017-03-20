@@ -4,7 +4,7 @@ $('#tableDiv tbody').on( 'click', 'td',function () {
 	var userId = $("tr:eq("+index+") td:eq(5)").html();
 	if(row==4){
 		$.ajax({
-			url : "../adminSurveySys/showSurveyDetail",
+			url : "../adminSurveySys/showSurveyDetail_adm.action",
 			type : 'post',
 			data : {userId:userId},
 			dataType : 'html',
@@ -14,7 +14,6 @@ $('#tableDiv tbody').on( 'click', 'td',function () {
 					var strs = new Array();
 					if (objs != null) {
 						strs = objs.split(",");
-						alert(objs);
 						var num = strs.length;
 						if (num == 26)
 							num = 14;
@@ -32,7 +31,7 @@ $('#tableDiv tbody').on( 'click', 'td',function () {
 		});
 	}else if(row==5){
 		$.ajax({
-			url : "../adminSurveySys/showUserDetail",
+			url : "../adminSurveySys/showUserDetail_adm.action",
 			type : 'post',
 			data : {userId:userId},
 			dataType : 'html',

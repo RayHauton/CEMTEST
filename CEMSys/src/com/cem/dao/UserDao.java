@@ -3,6 +3,10 @@ package com.cem.dao;
 import java.util.List;
 
 import com.cem.customPojo.UserBaseInfo;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.tree.ExpandVetoException;
+
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
 
@@ -74,9 +78,9 @@ public interface UserDao {
 	public int countUsersWithOut(String passed)throws Exception;
 	/*下载用户信息相关*/
 	
-	public void dataToExcel(List<User> userList) throws Exception; 
+	public void dataToExcel(List<User> userList,HttpServletRequest request) throws Exception; 
 	
-	public void download()throws Exception;
+	public void download(HttpServletRequest request,HttpServletResponse response)throws Exception;
 	
 	
 	
