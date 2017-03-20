@@ -61,7 +61,7 @@ public class UserManagementController {
 	}
 
 	/* 大量查询用户信息 */
-	@RequestMapping(value = "/findUsers")
+	@RequestMapping(value = "/findUsers_adm")
 	public ModelAndView findUsers(UserManageVo userManageVo) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		// userManageVo.setPageSize("100");
@@ -91,7 +91,7 @@ public class UserManagementController {
 	}
 
 	/* 单个用户详情查询 */
-	@RequestMapping(value = "/findUser")
+	@RequestMapping(value = "/findUser_adm")
 	public void findUser(UserManageVo userManageVo, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		// ModelAndView modelAndView =new ModelAndView();
@@ -112,7 +112,7 @@ public class UserManagementController {
 
 	}
 
-	@RequestMapping(value = "/findUserWithout")
+	@RequestMapping(value = "/findUserWithout_adm")
 	public ModelAndView findUserWithout(UserManageVo userManageVo) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("准备进入dao层");
@@ -139,7 +139,7 @@ public class UserManagementController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/userDelete")
+	@RequestMapping(value = "/userDelete_adm")
 	public void userDelete(String studNumber, HttpServletResponse response) throws Exception {
 		System.out.println(studNumber);
 		System.out.println("准备删除");
@@ -157,7 +157,7 @@ public class UserManagementController {
 
 	}
 
-	@RequestMapping(value = "/check")
+	@RequestMapping(value = "/check_adm")
 	public void checkUserStates(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String[] studNumberArr = request.getParameterValues("studNumber");
 		String[] auditArr = request.getParameterValues("audit_states");
@@ -165,7 +165,7 @@ public class UserManagementController {
 		response.getWriter().write("success");
 	}
 
-	@RequestMapping(value = "/downloadUsers")
+	@RequestMapping(value = "/downloadUsers_adm")
 	public void downloadUsers() throws Exception {
 		List<User> uList = userService.findUserWithOut();
 		userService.downloadUsers(uList);
