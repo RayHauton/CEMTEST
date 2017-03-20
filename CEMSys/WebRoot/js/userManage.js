@@ -75,7 +75,7 @@
 						document.getElementById("username").innerHTML=de[i];
 						break;
 					case 1:
-						document.getElementById("truename").innerHTML=de[i];
+						document.getElementById("trueName").innerHTML=de[i];
 						break;
 					case 2:
 						document.getElementById("sex").innerHTML=de[i];
@@ -96,7 +96,7 @@
 						document.getElementById("address").innerHTML=de[i];
 						break;
 					case 8:
-						document.getElementById("entranceDate").innerHTML=de[i];
+						document.getElementById("entrancedate").innerHTML=de[i];
 						
 						break;
 					case 9:

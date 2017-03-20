@@ -37,7 +37,7 @@
 							name="studNumber" id="studNumber"> <label>姓名</label> <input
 							class="form-control" placeholder="输入姓名" name="truename"
 							id="truename"> <label>入学时间</label> <select
-							class="form-control" name="entranceDate">
+							class="form-control" name="entranceDate" id="entranceDate">
 							<option value=""></option>
 							<option value="volvo">Volvo</option>
 							<option value="saab">Saab</option>
@@ -72,19 +72,39 @@
 						</select>
 					</div>
 					<div style="margin-top: 15px; margin-left: 0px;">
-						<button type="reset" class="btn btn-success form-control">&ensp;重置&ensp;</button>
-						<button type="submit" class="btn btn-success form-control">&ensp;查询&ensp;</button>
-						<button type="button" class="btn btn-success form-control"
-							onclick="queryAll();">&ensp;查询全部&ensp;</button>
-						<button type="button" class="btn btn-success form-control"
-							style="background-color: #2894FF; border: none;"
-							onclick="downloadUsers();">导出全部用户信息</button>
-						<label>每页显示</label> <select class="btn btn-success form-control"
-							name="pageSize" id="pageSize" style="padding: 0px; width: 77px;">
-							<c:forEach var="pageSize" items="${pageSizeList }">
-								<option value=${pageSize }>${pageSize }</option>
-							</c:forEach>
-						</select>
+						<table style="margin-left: 112px;">
+							<tbody>
+								<tr>
+									<td>
+										<button type="reset" class="btn btn-success form-control">&ensp;重置&ensp;</button>
+									</td>
+									<td>
+										<button type="submit" class="btn btn-success form-control">&ensp;查询&ensp;</button>
+									</td>
+									<td>
+										<button type="button" class="btn btn-success form-control"
+											onclick="queryAll();">&ensp;查询全部&ensp;</button>
+									</td>
+									<td>
+										<button type="button" class="btn btn-success form-control"
+											style="background-color: #2894FF; border: none;"
+											onclick="downloadUsers();">导出全部用户信息</button>
+									</td>
+									<td style="margin: 30px;">
+										<p style="margin-top: 16px; margin-left: 13px;">每页显示
+										<p>
+									</td>
+									<td><select class="btn btn-success form-control"
+										name="pageSize" id="pageSize"
+										style="padding: 0px; width: 77px;">
+											<c:forEach var="pageSize" items="${pageSizeList }">
+												<option value=${pageSize }>${pageSize }</option>
+											</c:forEach>
+
+									</select></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</form>
 				<hr id="hr" />
@@ -130,8 +150,9 @@
 					</tbody>
 				</table>
 				<div class="record">
-					<span><a id="lastPage1" onclick="lastpage();"href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
-						id="nextPage1" onclick="nextpage();"href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
+					<span><a id="lastPage1" onclick="lastpage();"
+						href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
+						id="nextPage1" onclick="nextpage();" href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
 					</span>
 				</div>
 
@@ -192,8 +213,10 @@
 					</table>
 				</form>
 				<div class="record">
-					<span><a id="lastPage2" onclick="lastpage();"href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
-						id="nextPage2" onclick="nextpage"href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
+					<span><a id="lastPage2" onclick="lastpage();"
+						href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
+						id="nextPage2" onclick="nextpage" href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
+
 
 
 					
@@ -219,7 +242,7 @@
 						</tr>
 						<tr>
 							<td>真实姓名</td>
-							<td id="truename"></td>
+							<td id="trueName"></td>
 						</tr>
 						<tr>
 							<td>性别</td>
@@ -247,7 +270,7 @@
 						</tr>
 						<tr>
 							<td>入学日期</td>
-							<td id="entranceDate"></td>
+							<td id="entrancedate"></td>
 						</tr>
 						<tr>
 							<td>毕业日期</td>
@@ -283,13 +306,13 @@ function lastpage(){
 	var last = parseInt('${userManageVo.pageIndex}')-1;
 	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+last;
 	window.location.assign(aim);
-}
+};
 
 function nextpage(){
 	var next = parseInt('${userManageVo.pageIndex}')+1;
 	var aim  = "../userManage/${userManageVo.accessMode }?studNumber=${userManageVo.studNumber}&truename=${userManageVo.truename}&entranceDate=${userManageVo.entranceDate}&majorId=${userManageVo.majorId}&degreeId=${userManageVo.degreeId}&audit=${userManageVo.audit}&pageSize=${userManageVo.pageSize}&pageIndex="+next;
 	window.location.assign(aim);
-}
+};
 
 var options = document.getElementById("pageSize").options;
 var size = options.length;
@@ -298,6 +321,7 @@ for(var i=0;i<size;i++){
 		options[i].selected=true;
 	}
 };
+
 var options = document.getElementById("majorId").options;
 var size = options.length;
 for(var i=0;i<size;i++){
@@ -305,6 +329,7 @@ for(var i=0;i<size;i++){
 		options[i].selected=true;
 	}
 };
+
 var options = document.getElementById("degreeId").options;
 var size = options.length;
 for(var i=0;i<size;i++){
@@ -312,6 +337,7 @@ for(var i=0;i<size;i++){
 		options[i].selected=true;
 	}
 };
+
 var options = document.getElementById("audit").options;
 var size = options.length;
 for(var i=0;i<size;i++){
@@ -319,6 +345,14 @@ for(var i=0;i<size;i++){
 		options[i].selected=true;
 	}
 };
+
+var studNumber = document.getElementById("studNumber");
+if('${userManageVo.studNumber}'!=null )
+	studNumber.value = '${userManageVo.studNumber}';
+	
+var truename = document.getElementById("truename");
+if('${userManageVo.truename}'!=null )
+	truename.value = '${userManageVo.truename}';
 
 	
 window.onload=function selectStyle(){
@@ -344,14 +378,6 @@ window.onload=function selectStyle(){
 		nextpage2.style.display = "none";
 		
 	}
-	
-var studNumber = document.getElementById("studNumber");
-if('${userManageVo.studNumber}'!=null )
-	studNumber.value = '${userManageVo.studNumber}';
-	
-var truename = document.getElementById("truename");
-if('${userManageVo.truename}'!=null )
-	truename.value = '${userManageVo.truename}';
 };
 </script>
 </html>

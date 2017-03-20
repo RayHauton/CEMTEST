@@ -82,6 +82,8 @@ public class UserServiceImpl implements UserService {
 		// result.put("disapproved",
 		// userDao.findUsersFromUserManage(userManageVo));
 		// } else
+		if (userManageVo.getPageIndex() == null || "".equals(userManageVo.getPageIndex()))
+			userManageVo.setPageIndex("1");
 		if ("0".equals(userManageVo.getAudit())) {
 			result.put("disapproved", userDao.findUsersFromUserManage(userManageVo));
 			result.put("approved", null);
