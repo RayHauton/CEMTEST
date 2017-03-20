@@ -164,9 +164,9 @@ public class UserManagementController {
 	}
 
 	@RequestMapping(value = "/downloadUsers")
-	public void downloadUsers() throws Exception {
+	public void downloadUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<User> uList = userService.findUserWithOut();
-		userService.downloadUsers(uList);
+		userService.downloadUsers(uList,request,response);
 	}
 
 }

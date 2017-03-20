@@ -52,7 +52,7 @@
 						<li><a href="#">校友会信息</a></li>
 						<li><a href="${pageContext.request.contextPath }/collegeEvent/show_adm.action">学院事件录</a></li>
 						<li><a href="#">学历管理</a></li>
-						<li><a href="${pageContext.request.contextPath }/adminSurveySys/open.action">调研信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/adminSurveySys/open_adm.action">调研信息</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">

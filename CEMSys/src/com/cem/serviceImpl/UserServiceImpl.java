@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -180,9 +184,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void downloadUsers(List<User> uList) throws Exception {
-		userDao.dataToExcel(uList);
-		userDao.download();
+	public void downloadUsers(List<User> uList,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		userDao.dataToExcel(uList,request);
+		userDao.download(request,response);
 
 	}
 

@@ -28,9 +28,9 @@
 				    &emsp;导出EXCEL&emsp; <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu" id="dropdown-menu">
-				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?part=1">导出个人能力品质调研表</a></li>
-				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?part=2">导出专业能力培养质量调研表</a></li>
-				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload">导出全部信息</a></li>
+				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload_adm.action?part=1">导出个人能力品质调研表</a></li>
+				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload_adm.action?part=2">导出专业能力培养质量调研表</a></li>
+				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload_adm.action">导出全部信息</a></li>
 				  </ul>
 				</div>
 			<div id="searchTermA">
@@ -39,7 +39,7 @@
 					<img alt="" src="../img/donation/search1.png">
 				</div>
 				<h5>根据题号与对应的得分查询，若不输入则默认查询全部信息</h5>
-				<form action="${pageContext.request.contextPath}/adminSurveySys/search" method="post" id="form">
+				<form action="${pageContext.request.contextPath}/adminSurveySys/search_adm.action" method="post" id="form">
 					<div style="margin-bottom:13px">
 						<div id="test"></div>
 						<div id="addDiv">
@@ -82,9 +82,9 @@
 					    将查询到的调研信息导出EXCEL <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" id="dropdown-menu">
-					    <li><a id="ExportTable1" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?downloadPart=part&part=1">导出个人能力品质调研表</a></li>
-					    <li><a id="ExportTable2" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?downloadPart=part&part=2">导出专业能力培养质量调研表</a></li>
-					    <li><a id="ExportTable3" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload?downloadPart=part">导出全部信息</a></li>
+					    <li><a id="ExportTable1" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload_adm.action?downloadPart=part&part=1">导出个人能力品质调研表</a></li>
+					    <li><a id="ExportTable2" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload_adm.action?downloadPart=part&part=2">导出专业能力培养质量调研表</a></li>
+					    <li><a id="ExportTable3" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload_adm.action?downloadPart=part">导出全部信息</a></li>
 					  </ul>
 					</div>
 					<table class="table table-bordered table-striped" style="width:100%;">
@@ -106,7 +106,7 @@
 								<td>${userList.studNumber }</td>
 								<td><button class="btn btn-danger control" name="surveyDetails">调研详情</button></td>
 								<td><button class="btn btn-danger control" name="userDetails">用户详情</button></td>
-								<td>${userList.userId }</td>
+								<td style="display:none">${userList.userId }</td>
 							</tr>
 							</c:forEach>
 						</tbody>
