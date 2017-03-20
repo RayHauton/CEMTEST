@@ -83,6 +83,8 @@ public class UserManagementController {
 		int pageCount = recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1;
 		((UserManageVo) result.get("userManageVo")).setPageCount(pageCount);
 		((UserManageVo)result.get("userManageVo")).setAccessMode("findUsers");
+		System.out.println(((UserManageVo)result.get("userManageVo")).getPageCount());
+		System.out.println(((UserManageVo)result.get("userManageVo")).getPageIndex());
 		modelAndView.addObject("userManageVo", result.get("userManageVo"));
 		modelAndView.setViewName("admin/userManage");
 		return modelAndView;
