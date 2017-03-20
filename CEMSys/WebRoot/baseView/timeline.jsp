@@ -7,12 +7,14 @@ To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/view_set/base.css">
 	<link rel="stylesheet" href="../css/view_set/timeline.css">
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/view_set/head.css">
 	<link rel="stylesheet" href="../css/view_set/footer.css">
 </head>
@@ -50,7 +52,8 @@ To change this template use File | Settings | File Templates.
 				</div>
 			</div>
 			<div class="imgDiv">
-				<img alt="" src="/fileUpload/collegeEventImgs/${pojo.eventImg}">
+				<img alt="" src="/fileUpload/collegeEventImgs/${pojo.eventImg}"
+				 width="<fmt:formatNumber type="number" value="${pojo.width*100 div pojo.height }" maxFractionDigits="0"/>px" height="100px">
 			</div>
 		</div>
 	</c:forEach>
@@ -116,6 +119,10 @@ To change this template use File | Settings | File Templates.
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/loginController/loginAndLogout.js"></script>
 <script type="text/javascript">
+	window.onload=function(){
+		document.getElementById("foredate").value='${queryVo.foredate}';
+		document.getElementById("afterdate").value='${queryVo.afterdate}';
+	}
 	function submitFormOfQuery(pageIndex){
 		document.getElementById("pageIndex").value=pageIndex;
 		document.getElementById("ff").submit();

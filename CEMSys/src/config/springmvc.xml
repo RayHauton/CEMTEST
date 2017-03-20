@@ -21,6 +21,9 @@
     	<property name="maxUploadSize">
     		<value>5242880</value>
     	</property>
+    	<property name="maxInMemorySize">
+    		<value>5242880</value>
+    	</property>
     </bean>
    <bean class="com.cem.globalException.GlobalCustomExceptionResolver"></bean>
     <!--配置拦截器-->

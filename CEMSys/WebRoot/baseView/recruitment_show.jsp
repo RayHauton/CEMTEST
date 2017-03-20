@@ -18,16 +18,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/view_set/recruitment_show.css">
+<link rel="stylesheet" href="../css/view_set/head.css">
+<link rel="stylesheet" href="../css/view_set/footer.css">
 <title>招聘信息查看</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<input type="hidden" value="${queryVo.viewAll }" id="checkViewAll">
 	<div class="outer">
 		<div class="head">
-			<div class="imgDiv">
-				<img alt="" src="../img/discover.png">
-			</div>
+<!-- 			<div class="imgDiv"> -->
+<!-- 				<img alt="" src="../img/discover.png"> -->
+<!-- 			</div> -->
 			<span>招聘信息一览</span>
 		</div>
 		<div class="searchDiv">
@@ -84,7 +88,7 @@
 							</c:choose>
 						</td>
 <%-- 						<td>${recruitment.publishDate }</td> --%>
-						<td><fmt:formatDate value="${recruitment.publishDate }"></fmt:formatDate></td>
+						<td>${recruitment.publishDate }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -194,11 +198,12 @@
 			</div>
 		</div>
 	</div>
-	
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/recruitmentControl/recruitment_show.js"></script>
+<script src="../js/loginController/loginAndLogout.js" ></script>
 <script type="text/javascript">
 	function openSearchDialog() {
 		$("#searchDialog").slideToggle(200);

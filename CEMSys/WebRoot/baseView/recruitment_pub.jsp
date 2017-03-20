@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/view_set/recruitment_pub.css">
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
@@ -21,9 +22,9 @@
 	<div class="outer">
 		<form action="${pageContext.request.contextPath }/recruitment/publish.action" method="post" enctype="multipart/form-data" id="form">
 			<div class="head">
-				<div class="imgDiv">
-					<img alt="" src="../img/edit.png">
-				</div>
+<!-- 				<div class="imgDiv"> -->
+<!-- 					<img alt="" src="../img/edit.png"> -->
+<!-- 				</div> -->
 				<span>发布招聘信息</span>
 			</div>
 			<div class="info">

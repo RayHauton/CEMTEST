@@ -5,10 +5,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,6 +38,8 @@ public class RecruitmentController {
 	private String path;
 	@Value("${defaultPageSize}")
 	private Integer pageSizeDefault;
+	@Value("${visualPathValue}")
+	private String visualPathValue;
 	@Autowired
 	private RecruitmentService recruitmentService;
 
@@ -53,8 +60,13 @@ public class RecruitmentController {
 	@RequestMapping(value = "/download")
 	public void download(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "filename") String filename) throws GlobalCustomException {
-		ServletContext context = request.getServletContext();
-		String realPath = context.getRealPath(path) + "/" + filename;
+		// String realPath = context.getRealPath(path) + "/" + filename;
+		/*
+		 * 解析文件名称前面的时间段，然后反推出目录
+		 */
+		String parseFileName = filename.substring(0, 10);
+		String realPath = visualPathValue + "/recruitmentAttachments/" + parseFileName.substring(0, 4) + "/"
+				+ parseFileName.substring(5, 7) + "/" + filename;
 		System.out.println(realPath);
 		response.setContentType("application/force-download");
 		response.addHeader("Content-Disposition", "attachment;fileName=" + filename);
@@ -75,7 +87,7 @@ public class RecruitmentController {
 				os.write(buffer, 0, bound);
 				bound = bis.read(buffer);
 			}
-			os.flush();//清空缓存区
+			os.flush();// 清空缓存区
 		} catch (Exception ex) {
 			throw new GlobalCustomException("IO异常");
 		} finally {
@@ -142,23 +154,29 @@ public class RecruitmentController {
 	@RequestMapping("/publish")
 	public String publish(HttpServletResponse response, HttpServletRequest request, HttpSession session,
 			MultipartFile attachment, Recruitment recruitment) throws Exception {
-		ServletContext context = request.getServletContext();
-		String dirRealPath = context.getRealPath(path);
-		System.out.println(dirRealPath);
-		// System.out.println(pageSizeString);
 		/*
-		 * 文件默认放在/WebRoot/fileUpload文件夹中 最后项目完成更换成服务器的某个位置 这个地方
-		 * 尽管请求完毕后项目中的fileUpload目录仍然是空的 但是在tomcat的项目目录文件已经成功上传
+		 * 文件最终按照月份进行管理
 		 */
 		String oriFileName = attachment.getOriginalFilename();
-		if (oriFileName != null && oriFileName.length() != 0 && attachment != null) {
-			// 用户可能不上传附件
-			String newFileName = UUID.randomUUID() + oriFileName.substring(oriFileName.lastIndexOf("."));
-			File newFile = new File(dirRealPath + "/" + newFileName);
-			attachment.transferTo(newFile);
-			recruitment.setAttachmentPath(newFileName);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String pubDate = dateFormat.format(new Date());// 获取当前日期的字符串
+		System.out.println(pubDate.substring(0, 4));
+		System.out.println(pubDate.substring(5, 7));
+		String targetPath = visualPathValue + "/recruitmentAttachments/" + pubDate.substring(0, 4) + "/"
+				+ pubDate.substring(5, 7);// 精确到月
+		// 目标存储路径未必存在所以要进行判断
+		// File file = new File(targetPath);
+		Path path = Paths.get(targetPath);
+		if (!Files.exists(path, LinkOption.NOFOLLOW_LINKS)) {
+			// 说明目标目录不存在,进行创建
+			Files.createDirectories(path);
 		}
-		recruitment.setPublishDate(new java.sql.Date(new java.util.Date().getTime()));
+		// 重新命名文件名称
+		String newName = pubDate + "_" + UUID.randomUUID() + oriFileName.substring(oriFileName.lastIndexOf("."));// 利用*
+																													// 分割时间与文件实际名称
+		attachment.transferTo(Paths.get(targetPath, newName).toFile());
+		recruitment.setAttachmentPath(newName);
+		recruitment.setPublishDate(pubDate);
 		recruitment.setIsDeleted("0");
 		recruitmentService.insertRecruitment(recruitment);
 		return "redirect:show.action";

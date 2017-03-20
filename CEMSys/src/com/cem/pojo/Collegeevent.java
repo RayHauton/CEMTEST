@@ -15,6 +15,8 @@ public class Collegeevent implements java.io.Serializable {
 	private String eventDetail;
 	private String eventImg;
 	private String eventDate;
+	private Integer width;
+	private Integer height;
 	private String isDeleted;
 
 	public Collegeevent() {
@@ -73,6 +75,22 @@ public class Collegeevent implements java.io.Serializable {
 
 	public void setEventDate(String eventDate) {
 		this.eventDate = eventDate;
+	}
+
+	public Integer getWidth() {
+		return width;
+	}
+
+	public void setWidth(Integer width) {
+		this.width = width;
+	}
+
+	public Integer getHeight() {
+		return height;
+	}
+
+	public void setHeight(Integer height) {
+		this.height = height;
 	}
 
 	public String getIsDeleted() {

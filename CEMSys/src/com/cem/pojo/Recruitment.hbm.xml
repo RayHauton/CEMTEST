@@ -10,40 +10,35 @@
         </id>
         <property name="userId" type="string">
             <column name="userId" length="10">
-                <comment>??????</comment>
             </column>
         </property>
         <property name="truename" type="string">
             <column name="truename" length="20" />
         </property>
-        <property name="publishDate" type="date">
+        <property name="publishDate" type="string">
             <column name="publishDate" length="10">
-                <comment>????????</comment>
             </column>
         </property>
         <property name="companyName" type="string">
             <column name="companyName" length="60">
-                <comment>???????</comment>
             </column>
         </property>
         <property name="summary" type="string">
             <column name="summary" length="65535">
-                <comment>??????</comment>
             </column>
         </property>
         <property name="connectWay" type="string">
             <column name="connectWay" length="100">
-                <comment>??????</comment>
             </column>
         </property>
         <property name="attachmentPath" type="string">
             <column name="attachmentPath" length="200">
-                <comment>??????????&#161;&#164;??</comment>
+                <comment>附件</comment>
             </column>
         </property>
         <property name="isDeleted" type="java.lang.String">
             <column name="isDeleted" length="1">
-                <comment>?????????</comment>
+                <comment>删除标志位</comment>
             </column>
         </property>
     </class>

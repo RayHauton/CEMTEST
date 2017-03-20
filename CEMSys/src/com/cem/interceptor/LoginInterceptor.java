@@ -38,12 +38,26 @@ public class LoginInterceptor implements HandlerInterceptor {
         //检验session是否含有用户信息
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            return true;
+        	/*
+        	 * 这个地方还是需要进行权限验证，感觉代码写糟了，，，，尴尬
+        	 */
+        	String privilege = url.contains("_adm")?"1":"0";
+        	String role = user.getRole();
+        	boolean allow=false;
+        	if(role.equals("0")){//管理员直接放行，普通用户不行
+        		if(role.equals(privilege)){
+        			allow=true;
+        		}else{
+        			 request.getRequestDispatcher("/privilegeWarning.jsp").forward(request,response);
+        		}
+        	}else{
+        		allow=true;
+        	}
+            return allow;
         }
         //代码执行到这里，说明用户尚未登录，需要登录验证
         request.setAttribute("toLogin","toLogin");
         request.getSession().setAttribute("willTo", url);
-//        RequestDispatcher dis = request.getRequestDispatcher("/loginRedirect.jsp");
         request.getRequestDispatcher("/loginRedirect.jsp").forward(request,response);
         return false;
     }

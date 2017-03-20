@@ -4,26 +4,28 @@ body {
 	font-family: 微软雅黑;
 	padding: 0;
 	margin: 0;
-	background-image: url("../../img/p2.jpg");
+/* 	background-image: url("../../img/p2.jpg"); */
 	background-size: cover;
 }
 
 .outer {
-	width: 850px;
-	height: 880px;
-	margin: 30px auto;
-	border-radius: 10px;
-	border: 1px solid #1296DB;
+	width: 1000px;
+	min-height: 550px;
+	margin: 0px auto;
+	border-radius: 4px;
+	border: 1px solid #d7d7d7;
 	background-color: #FFFFFF;
+	border-top:transparent;
 }
 
 .head {
-	width: 850px;
+	width:999px;
 	height: 35px;
-	background-color: #50E450;
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
+/* 	background-color: #50E450; */
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
 	padding: 0px;
+	border-bottom:1px #d1d1d1 solid;
 }
 
 .head .imgDiv {
@@ -44,11 +46,11 @@ body {
 	margin-top: 8px;
 	font-size: 15px;
 	font-family: 微软雅黑;
-	color: white;
-	letter-spacing: 3px;
+	color: #00537b;
+/* 	letter-spacing: 3px; */
 	float: left;
-	border-top: 1px dashed #FFFFFF;
-	margin-left: 2px;
+/* 	border-top: 1px dashed #FFFFFF; */
+	margin-left: 10px;
 }
 
 .dividePage {
@@ -57,9 +59,10 @@ body {
 
 .searchDiv {
 	width: 100%;
-	height: 36px;
+	height: 45px;
 	/* 	background-color: pink; */
 	float: left;
+	padding-top:5px;
 }
 
 .btn-drop {
@@ -126,19 +129,19 @@ body {
 	color:#FFFFFF;
 	margin-left: 20px;
 }
-.dropdown-menu{
-	padding:0px;
-	margin:0;
-	height: 120px;
-}
-.dropdown-menu li{
-	cursor: pointer;
-	text-indent: 10px;
-	height:30px;
-	border-bottom:1px solid silver;
-	line-height:30px;
+/* .dropdown-menu{ */
+/* 	padding:0px; */
+/* 	margin:0; */
+/* 	height: 120px; */
+/* } */
+/* .dropdown-menu li{ */
+/* 	cursor: pointer; */
+/* 	text-indent: 10px; */
+/* 	height:30px; */
+/* /* 	border-bottom:1px solid silver; */ */
+/* 	line-height:30px; */
 	
-}
+/* } */
 .dropdown-menu li:HOVER {
 	background-color: #1296db;
 	color: #FFFFFF;
@@ -181,10 +184,3 @@ font{
 	border-radius:4px;
 /* 	background-color: #1296db; */
 }
-
-
-
-
-
-
-

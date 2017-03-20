@@ -24,7 +24,7 @@ body {
 	height: 35px;
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
-	background-color: #50e450;
+/* 	background-color: #50e450; */
 	padding: 0px;
 }
 
@@ -47,10 +47,11 @@ body {
 	margin-top: 8px;
 	font-size: 15px;
 	font-family: 微软雅黑;
-	color: white;
-	letter-spacing: 3px;
+	color: #00537b;
+	letter-spacing: 2px;
 	float: left;
-	border-top: 1px dashed #FFFFFF;
+	margin-left:10px;
+/* 	border-top: 1px dashed #FFFFFF; */
 }
 
 .info {

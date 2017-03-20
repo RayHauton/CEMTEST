@@ -4,6 +4,7 @@ import com.cem.pojo.User;
 import com.cem.service.UserService;
 import com.cem.util.RegexUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class LoginController {
+	@Value("${system.name}")
+	private String systemName;
 	@Autowired
 	private UserService userService;
 
@@ -56,6 +59,15 @@ public class LoginController {
 				user = userService.findUserByUsername(loginMethod, false);
 			}
 			/*
+			 * 判断用户是否有权限访问将要访问的界面，通过解析url是否含有"_adm"来判断
+			 * eg:/CEMSys/donation/open_adm.action 默认管理员可以访问普通用户的界面，反之不可以
+			 */
+			String goingTo = (String) session.getAttribute("willTo");
+			if(goingTo==null){
+				goingTo=systemName;
+			}
+			String privilege = goingTo.contains("_adm") ? "1" : "0";
+			/*
 			 * 校验密码
 			 */
 			if (user != null) {
@@ -67,11 +79,24 @@ public class LoginController {
 					// 用户审核通过
 					if (password.equals(user.getPassword())) {
 						session.setAttribute("user", user);
-						if(user.getRole().equals("0")){
-							response.getWriter().write("succ_g");
-						}else{
-							response.getWriter().write("succ_a");
+						/*
+						 * 如果privilege是“1”，说明是管理员，此时不用进行拦截检测，直接放行，
+						 * 如果是“0”，说明是普通用户，此时进行权限检验
+						 */
+						String role = user.getRole();
+						if (role.equals("0")) {
+							// 检验普通用户权限
+							if (role.equals(privilege)) {
+								// 权限验证通过，走你┏ (゜ω゜)
+								response.getWriter().write("succ_general");
+							} else {
+								// 权限验证失败，该哪儿去哪儿去吧(ノ｀Д)ノ
+								response.getWriter().write("privilegeValidationFail");
+							}
+						} else {// 放行管理员
+							response.getWriter().write("succ_admin");
 						}
+						session.removeAttribute("willTo");
 					} else {
 						response.getWriter().write("error");
 					}
@@ -86,7 +111,6 @@ public class LoginController {
 		} else {
 			// 说明是直接访问的是login.action
 			response.sendRedirect("./login/login.jsp");
-//			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 		}
 
 	}

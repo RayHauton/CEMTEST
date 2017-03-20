@@ -20,6 +20,12 @@
         <property name="eventDate" type="string">
             <column name="eventDate" length="7" not-null="true" />
         </property>
+        <property name="width" type="integer">
+        	<column name="width"></column>
+        </property>
+        <property name="height" type="integer">
+        	<column name="height"></column>
+        </property>
         <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true" />
         </property>

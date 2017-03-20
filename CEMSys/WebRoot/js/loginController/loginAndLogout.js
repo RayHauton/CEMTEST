@@ -14,11 +14,20 @@ function login(prefix, action, target) {
 			window.alert("服务器错误！");
 		},
 		success : function(data) {
-			if (data == "succ_g") {
-				window.open(target, "_self");
+			if (data == "succ_general") {
+				if(target.length==0){
+					window.open(prefix, "_self");
+				}else{
+					window.open(target, "_self");
+				}
 				return;
-			} else if (data == "succ_a") {//管理员登录
-				window.open(prefix+"/admin/adminIndex.jsp", "_self");
+			} else if (data == "succ_admin") {// 管理员登录
+//				window.open(prefix + "/admin/adminIndex.jsp", "_self");
+				if(target.length==0){
+					window.open(prefix+"/admin/adminIndex.jsp","_self");
+				}else{
+					window.open(target, "_self");
+				}
 				return;
 			} else if (data == "notExist") {
 				window.alert("用户不存在，请尝试其他登录方式！");
@@ -28,6 +37,9 @@ function login(prefix, action, target) {
 				return;
 			} else if (data == "notPass") {
 				window.alert("账号未通过审核！请重新注册，并保证注册信息的正确！");
+				return;
+			} else if (data == "privilegeValidationFail") {
+				window.alert("您无权访问此界面！");
 				return;
 			} else {
 				window.alert("密码错误！");

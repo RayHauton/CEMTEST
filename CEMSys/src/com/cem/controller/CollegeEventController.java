@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cem.pojo.Collegeevent;
 import com.cem.queryVO.CollegeEventQueryVo;
 import com.cem.service.CollegeEventService;
+import com.cem.util.ImageUtil;
 
 /*
  * 学院事件录Controller
@@ -148,6 +149,9 @@ public class CollegeEventController {
 		/*
 		 * 调用service进行存储
 		 */
+		int[] imageInfo = ImageUtil.getImageWidthAndHeight(image.getInputStream());
+		colgevnt.setWidth(imageInfo[0]);
+		colgevnt.setHeight(imageInfo[1]);
 		collegeEventService.add(colgevnt);
 		return "redirect:show_adm";
 	}
