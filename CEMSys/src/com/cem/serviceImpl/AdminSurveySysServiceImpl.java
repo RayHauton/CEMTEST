@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.cem.dao.AdminSurveySysDao;
 import com.cem.pojo.Majorabilitycultivationquality;
@@ -37,10 +38,6 @@ public class AdminSurveySysServiceImpl implements AdminSurveySysService {
 
 	@Autowired
 	AdminSurveySysDao adminSurveySysDao = null;
-	@Autowired  
-	private  HttpServletRequest request;  
-	@Autowired  
-	private  HttpServletResponse response; 
 	
 	List<String> listU = new ArrayList<>();
 	List<String> listS = new ArrayList<>();
@@ -103,8 +100,7 @@ public class AdminSurveySysServiceImpl implements AdminSurveySysService {
 		return adminSurveySysDao.searchUserByUserId(userId);
 	}
 
-	public void dataToExcel(List<User> userList,List<Selfabilityquality> sList,List<Majorabilitycultivationquality> mList) throws Exception {
-		
+	public void dataToExcel(List<User> userList,List<Selfabilityquality> sList,List<Majorabilitycultivationquality> mList,HttpServletRequest request) throws Exception {
 		String realPath = request.getServletContext().getRealPath("/") + "tempFile";
 		File fileupload = new File(realPath);
 		if(!fileupload.exists()){
@@ -190,7 +186,7 @@ public class AdminSurveySysServiceImpl implements AdminSurveySysService {
 		workbook.close();
 	}
 
-	public void download() throws Exception {
+	public void download(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String path = request.getServletContext().getRealPath("/") + "tempFile/";
 		File file = new File(path + "tempFlie.xls");
 		//根据当前时期生成下载的默认文件名

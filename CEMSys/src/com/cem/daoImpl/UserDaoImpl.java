@@ -41,12 +41,6 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Autowired
-	private HttpServletResponse response;
-
-	@Autowired
-	private HttpServletRequest request;
-
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -245,7 +239,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	/* 将数据转为Excel */
-	public void dataToExcel(List<User> userList) throws Exception {
+	public void dataToExcel(List<User> userList,HttpServletRequest request) throws Exception {
 		// 获取文件地址
 		String realPath = request.getServletContext().getRealPath("/") + "tempFile";
 		// 创建父目录
@@ -329,7 +323,7 @@ public class UserDaoImpl implements UserDao {
 		workbook.close();
 	}
 
-	public void download() throws Exception {
+	public void download(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String path = request.getServletContext().getRealPath("/") + "tempFile/";
 		File file = new File(path + "tempFlie.xls");
 		// 根据当前时期生成下载的默认文件名

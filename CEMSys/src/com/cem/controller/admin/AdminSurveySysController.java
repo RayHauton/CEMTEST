@@ -1,6 +1,7 @@
 package com.cem.controller.admin;
 
 
+import java.awt.image.RescaleOp;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class AdminSurveySysController {
 	@Autowired
 	SurveySysService surveySysService;
 	
-	@RequestMapping(value = "/open")
+	@RequestMapping(value = "/open_adm")
 	public String open(){
 		return "redirect:/admin/survey.jsp";
 	}
@@ -55,7 +56,7 @@ public class AdminSurveySysController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/search")
+	@RequestMapping(value = "/search_adm")
 	public String search(AdminSurveyQueryVo adminSurveyQueryVo,HttpServletRequest request) throws Exception {
 		if (adminSurveyQueryVo.getPageIndex() == null) {
 			adminSurveyQueryVo.setPageIndex(1);
@@ -96,8 +97,8 @@ public class AdminSurveySysController {
 	}
 	
 	
-	@RequestMapping(value = "/exportToExcelAndDownload")
-	public void exportToExcelAndDownload(HttpServletRequest request)throws Exception{
+	@RequestMapping(value = "/exportToExcelAndDownload_adm")
+	public void exportToExcelAndDownload(HttpServletRequest request,HttpServletResponse response)throws Exception{
 		String downloadPart = request.getParameter("downloadPart");//是否为下载查询到的部分，part表示只下载查询到的信息
 		String part = request.getParameter("part");//获取导出部分，1表示第一张表，2表示第二张表，无表示全部导出
 		String[] userIds = null;
@@ -129,12 +130,12 @@ public class AdminSurveySysController {
 			}
 		}
 		//将数据写入Excel
-		adminSurveySysService.dataToExcel(userList,sList,mList);
+		adminSurveySysService.dataToExcel(userList,sList,mList,request);
 		//下载Excel文件
-		adminSurveySysService.download();
+		adminSurveySysService.download(request,response);
 	}
 	
-	@RequestMapping(value = "/showSurveyDetail")
+	@RequestMapping(value = "/showSurveyDetail_adm")
 	public void showSurveyDetail(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -161,7 +162,7 @@ public class AdminSurveySysController {
 	}
 	
 	
-	@RequestMapping(value = "/showUserDetail")
+	@RequestMapping(value = "/showUserDetail_adm")
 	public void showUserDetail(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");

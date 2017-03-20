@@ -3,6 +3,7 @@ package com.cem.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.cem.pojo.Majorabilitycultivationquality;
 import com.cem.pojo.Selfabilityquality;
@@ -34,13 +35,13 @@ public interface AdminSurveySysService {
 	 * @param mList
 	 * @throws Exception
 	 */
-	public void dataToExcel(List<User> userList,List<Selfabilityquality> sList,List<Majorabilitycultivationquality> mList) throws Exception;
+	public void dataToExcel(List<User> userList,List<Selfabilityquality> sList,List<Majorabilitycultivationquality> mList,HttpServletRequest request) throws Exception;
 	
 	/**
 	 * 下载生成的Excel文件并删除本地生成的临时文件
 	 * @throws Exception
 	 */
-	public void download()throws Exception;
+	public void download(HttpServletRequest request,HttpServletResponse response)throws Exception;
 	
 	/**
 	 * 查找出User表中所有的用户ID号
