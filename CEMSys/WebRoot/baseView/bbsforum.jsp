@@ -14,6 +14,8 @@
 	href="${pageContext.request.contextPath }/css/view_set/footer.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/css/view_set/forum.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/view_set/ihome.css">
 
 <!-- 	ueditor编辑器 -->
 <script type="text/javascript" charset="utf-8"
@@ -135,8 +137,8 @@ h1 {
 		id="basePath">
 
 	<jsp:include page="/baseView/header.jsp"></jsp:include>
-	<div class="box">
-		<div class="viewMain">
+	<div class="wholepage">
+		<div class="i_home">
 			<div class="ihome-content">
 				<div class="forum-content">
 					<ul class="list-group">
@@ -205,8 +207,6 @@ h1 {
 						</ul>
 					</div>
 				</div>
-				<div class="aside">ddan</div>
-
 				<span>发表新帖 </span>
 				<div class="inputBox"
 					style="width: 819px; margin-left: auto; margin-right: auto;">
@@ -221,11 +221,40 @@ h1 {
 					</p>
 				</div>
 			</div>
+			<div class="aside">
+				<div class="my_info">
+					<div class="my_info_title">
+						<span class="my_info_title_setting">[设置]</span> <span
+							class="my_info_title_title">个人信息</span>
+					</div>
+					<div class="my_info_content">
+						<div class="my_info_content_img">头像</div>
+						<div class="my_info_content_info">
+							<p class="info_name">dadan</p>
+							<p class="info_sex">男</p>
+							<a href="${pageContext.request.contextPath }/forum/myMessage">
+								<img alt=""
+								src="${pageContext.request.contextPath }/img/forum/lingdang.png">
+							</a> <span id="tongzhi" style="display: none;"><a
+								href="${pageContext.request.contextPath }/forum/myMessage"><strong
+									id="tongzhi-content">0</strong></a> </span>
+						</div>
+					</div>
+				</div>
+				<div class="somethingelse">
+					<ul>
+						<li class="somethingelse_home"><a
+							href="${pageContext.request.contextPath }/forum/f/1">首页</a></li>
+						<li class="somethingelse_mytie"><a
+							href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${sessionScope.user.userId }">个人中心</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-
-		<jsp:include page="/baseView/footer.jsp"></jsp:include>
-
 	</div>
+	<jsp:include page="/baseView/footer.jsp"></jsp:include>
+
+
 	<script src="${pageContext.request.contextPath }/js/jquery.min.js"
 		type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"
@@ -233,5 +262,11 @@ h1 {
 	<script
 		src="${pageContext.request.contextPath }/js/forumController/forum.js"
 		type="text/javascript"></script>
+	<script type="text/javascript">
+		function messagebox(test) {
+			var floor = $(test).attr('name');
+			$('#pp' + floor).toggle();
+		}
+	</script>
 </body>
 </html>

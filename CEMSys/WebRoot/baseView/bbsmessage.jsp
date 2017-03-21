@@ -59,7 +59,8 @@
 					<nav class="navbar navbar-default" role="navigation">
 					<div class="container-fluid">
 						<div class="navbar-header">
-							<a href="${pageContext.request.contextPath }/forum/f/1" class="navbar-brand">论坛主页</a>
+							<a href="${pageContext.request.contextPath }/forum/f/1"
+								class="navbar-brand">论坛主页</a>
 						</div>
 						<div>
 							<ul class="nav navbar-nav">
@@ -81,12 +82,15 @@
 								<div class="feed_left">
 									<div class="replyme">
 										<div class="replyme_user">
-											<a href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${test.personId }" target="_blank">${test.personName }&nbsp;:&nbsp;</a>
+											<a
+												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${test.personId }"
+												target="_blank">${test.personName }&nbsp;:&nbsp;</a>
 										</div>
 									</div>
 									<div class="feed_from">
-										回复我的主题：“<a href="${pageContext.request.contextPath }/forum/p/forumId" class="feed_forum" title=""
-											target="_blank">${test.forumTitle }</a>”
+										回复我的主题：“<a
+											href="${pageContext.request.contextPath }/forum/p/${test.forumId }"
+											class="feed_forum" title="" target="_blank">${test.forumTitle }</a>”
 									</div>
 								</div>
 								<div class="feed_right">
@@ -98,6 +102,19 @@
 							</li>
 						</c:forEach>
 					</ul>
+				</div>
+				<div class="button_next">
+					<c:if test="${currentPageNum >1 }">
+						<a
+							href="${pageContext.request.contextPath }/forum/myMessage?messagePageIndex=1">首页</a>
+						<a
+							href="${pageContext.request.contextPath }/forum/myMessage?messagePageIndex=${currentPageNum-1}"><上一页</a>
+					</c:if>
+					<c:if test="${currentPageNum<totalPage }">
+						<a
+							href="${pageContext.request.contextPath }/forum/myMessage?messagePageIndex=${currentPageNum+1}"
+							class="button_next_next">下一页></a>
+					</c:if>
 				</div>
 			</div>
 			<div class="i_right">侧边栏</div>

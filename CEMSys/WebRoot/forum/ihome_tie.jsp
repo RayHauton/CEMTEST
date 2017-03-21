@@ -98,6 +98,19 @@
 						</c:forEach>
 					</ul>
 				</div>
+				<div class="button_next">
+					<c:if test="${currentPageNum >1 }">
+						<a
+							href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId}&pageIndex=1">首页</a>
+						<a
+							href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId}&pageIndex=${currentPageNum-1}"><上一页</a>
+					</c:if>
+					<c:if test="${currentPageNum<totalPage }">
+						<a
+							href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId}&pageIndex=${currentPageNum+1}"
+							class="button_next_next">下一页></a>
+					</c:if>
+				</div>
 			</div>
 			<div class="i_right">侧边栏</div>
 		</div>

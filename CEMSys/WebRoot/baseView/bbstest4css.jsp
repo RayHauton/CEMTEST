@@ -56,18 +56,15 @@ img {
 									<h4>
 										<input type="hidden" id="userId${test.floor }"
 											value="${test.publishUserId }" /> <cite>${test.replyTime }&nbsp;${test.floor }</cite>
-										<a href="#">${test.publishUser }</a> 回复
+										<a
+											href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${test.publishUserId }">${test.publishUser }</a>
+										回复
 									</h4>
-									<div class="table_main">引用${test.replyObject }L：${test.parentReplyId }</div>
+									<c:if test="${test.replyObject != null }">
+										<div class="table_main">引用${test.replyObject }L：${test.parentReplyId }</div>
+									</c:if>
 									<div class="every_reply">
-										<!-- 										<span class="char"> <img -->
-										<%-- 											src="${pageContext.request.contextPath }/img/forum/left_char.png" --%>
-										<!-- 											alt="逗号"> -->
-										<!-- 										</span> -->
 										<div id="id${test.floor }">${test.replyText }</div>
-										<!-- 										<span class="char"> <img -->
-										<%-- 											src="${pageContext.request.contextPath }/img/forum/right_char.png" --%>
-										<!-- 											alt="逗号"></span> -->
 									</div>
 									<div class="replyinfo-reply">
 										<c:if
@@ -97,9 +94,6 @@ img {
 					</c:forEach>
 				</ul>
 			</div>
-
-
-
 
 			<div class="container" style="text-align: center;">
 				<c:if test="${totalReplyPage>1 }">
@@ -157,13 +151,32 @@ img {
 		</div>
 
 		<div class="aside">
-			<p>友好时间测试</p>
-			<div>
-				<p>消息通知测试</p>
-				以下是消息通知测试 <span id="tongzhi" style="display: none;">有<a
-					href="${pageContext.request.contextPath }/forum/myMessage"><strong
-						id="tongzhi-content">0</strong></a>条新消息
-				</span>
+			<div class="my_info">
+				<div class="my_info_title">
+					<!-- 					<span class="my_info_title_setting">[设置]</span>  -->
+					<span class="my_info_title_title">个人信息</span>
+				</div>
+				<div class="my_info_content">
+					<div class="my_info_content_img">头像</div>
+					<div class="my_info_content_info">
+						<p class="info_name">dadan</p>
+						<p class="info_sex">男</p>
+						<a href="${pageContext.request.contextPath }/forum/myMessage">
+							<img alt=""
+							src="${pageContext.request.contextPath }/img/forum/lingdang.png">
+						</a> <span id="tongzhi" style="display: none;"><a
+							href="${pageContext.request.contextPath }/forum/myMessage"><strong
+								id="tongzhi-content">0</strong></a> </span>
+					</div>
+				</div>
+			</div>
+			<div class="somethingelse">
+				<ul>
+					<li class="somethingelse_home"><a
+						href="${pageContext.request.contextPath }/forum/f/1">首页</a></li>
+					<li class="somethingelse_mytie"><a
+						href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${sessionScope.user.userId }">个人中心</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>

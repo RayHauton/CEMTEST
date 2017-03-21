@@ -83,7 +83,7 @@
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#">校友会</a></li>
 						<li><a href="#">校友联络</a></li>
-						<li><a href="#">校友发声</a></li>
+						<li><a href="${pageContext.request.contextPath }/forum/f/1">校友发声</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
