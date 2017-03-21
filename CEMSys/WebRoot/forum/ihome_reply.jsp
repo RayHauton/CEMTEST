@@ -59,7 +59,8 @@
 					<nav class="navbar navbar-default" role="navigation">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a href="${pageContext.request.contextPath }/forum/f/1" class="navbar-brand">论坛主页</a>
+								<a href="${pageContext.request.contextPath }/forum/f/1"
+									class="navbar-brand">论坛主页</a>
 							</div>
 							<div>
 								<ul class="nav navbar-nav">
@@ -69,7 +70,8 @@
 												href="${pageContext.request.contextPath }/forum/myMessage?uid=${currentUserId }">回复我的</a></li>
 											<li><a
 												href="${pageContext.request.contextPath }/forum/ihome_tie?uid=${currentUserId }">我的帖子</a></li>
-											<li class="active"><a href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId }">我的回复</a></li>
+											<li class="active"><a
+												href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId }">我的回复</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a
@@ -85,25 +87,34 @@
 				</div>
 				<div class="simple_block_container">
 					<ul>
-						<li><cite>10-22</cite>
-							<div class="wrap_container">
-								发帖 <a href="#" class="wrap">我好喜欢你</a>
-								<nobr>
-									<span class="reply_txt"> <a href="#" class="b_reply"
-										target="_blank">回复</a> (10)
-									</span>
-								</nobr>
-							</div></li>
-						<li><cite>10-22</cite>
-							<div class="wrap_container">
-								发帖 <a href="#" class="wrap">我是你爹</a>
-								<nobr>
-									<span class="reply_txt"> <a href="#" class="b_reply"
-										target="_blank">回复</a> (10)
-									</span>
-								</nobr>
-							</div></li>
+						<c:forEach items="${replyList }" var="test">
+							<li><cite>${test.replyTime }</cite>
+								<div class="wrap_container">
+									回复： <a
+										href="${pageContext.request.contextPath }/forum/p/${test.forum}"
+										class="wrap">${test.replyText }</a>
+									<!-- 								<nobr> -->
+									<!-- 									<span class="reply_txt"> <a href="#" class="b_reply" -->
+									<!-- 										target="_blank">回复</a> (10) -->
+									<!-- 									</span> -->
+									<!-- 								</nobr> -->
+								</div></li>
+						</c:forEach>
 					</ul>
+				</div>
+
+				<div class="button_next">
+					<c:if test="${currentPageNum >1 }">
+						<a
+							href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId}&pageIndex=1">首页</a>
+						<a
+							href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId}&pageIndex=${currentPageNum-1}"><上一页</a>
+					</c:if>
+					<c:if test="${currentPageNum<totalPage }">
+						<a
+							href="${pageContext.request.contextPath }/forum/ihome_reply?uid=${currentUserId}&pageIndex=${currentPageNum+1}"
+							class="button_next_next">下一页></a>
+					</c:if>
 				</div>
 			</div>
 			<div class="i_right">侧边栏</div>

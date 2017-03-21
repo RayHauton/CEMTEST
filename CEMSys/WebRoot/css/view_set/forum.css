@@ -9,7 +9,7 @@
 	border-top: 0;
 	margin-top: -1px;
 	width: 821px;
-	/* 	margin:auto; */
+	float:left;
 }
 
 .forum-info {
@@ -36,8 +36,12 @@
 	color: #c9c9c9;
 }
 
+.container{
+	background-color:#e9f2fc;
+}
+
 body.ihome {
-	font-size: 15px;
+	font-size: 14px;
 	font-family: "Microsoft YaHei", SimSun, arial, "\5b8b\4f53";
 	background-color: #f3f3f3;
 }
@@ -54,6 +58,16 @@ body.ihome {
 	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
+	background-image: url(../../img/forum/forum_back.png);
+    background-position-x: 100%;
+    background-position-y: 0%;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
 }
 
 /* »Ø¸´µÄcss*/
@@ -66,6 +80,16 @@ body.ihome {
 	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
+	background-image: url(../../img/forum/forum_back.png);
+    background-position-x: 100%;
+    background-position-y: 0%;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
 }
 
 .reply {
@@ -84,7 +108,8 @@ body.ihome {
 
 .aside {
 	float:right;
-	padding-right:50px;
+/* 	padding-right:50px; */
+	width:170px;
 }
 
 .replytext {
