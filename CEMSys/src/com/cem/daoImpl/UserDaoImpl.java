@@ -48,6 +48,89 @@ public class UserDaoImpl implements UserDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	
+	
+	
+	@Override
+	public String findPassword(int userId) throws Exception {
+		Session session = getSession();
+		String[] pass = new String[1];
+		session.doWork(new Work() {
+			@Override
+			public void execute(Connection con) throws SQLException {
+				String sql = "select password from user where userId=? limit 1";
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				try{
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, userId);
+					rs = pstmt.executeQuery();
+					while(rs.next()){
+						pass[0] = rs.getString(1);
+					}
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				}finally{
+					try {
+						if (rs != null) {
+							rs.close();
+						}
+						if (pstmt != null) {
+							pstmt.close();
+						}
+						if (con != null) {
+							con.close();
+						}
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
+		return pass[0];
+	}
+
+
+
+
+	/**
+	 * @param userId 用户id
+	 * @param password 密码
+	 */
+	@Override
+	public boolean alterPassword(int userId, String password) throws Exception {
+		Session session = getSession();
+		int[] flag = new int[1];
+		session.doWork(new Work() {
+			PreparedStatement pstmt = null;
+			@Override
+			public void execute(Connection con) throws SQLException {
+				try{
+					int recursor = 0;
+					String sql = "update user set password=? where userId=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, password);
+					pstmt.setInt(2, userId);
+					recursor = pstmt.executeUpdate();
+					flag[0]=recursor;
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				} finally{
+					if(pstmt!=null){
+						pstmt.close();
+					}
+					if(con!=null){
+						con.close();
+					}
+				}
+				
+			}
+		});
+		return flag[0]==1?true:false;
+	}
+
+
+
 	/**
 	 * @param classNo
 	 *            班号
@@ -62,7 +145,7 @@ public class UserDaoImpl implements UserDao {
 			public void execute(Connection connection) {
 				boolean flag = false;
 				String sql = "select u.truename,u.classNo,u.mobile,u.email,job.companyName "
-						+ "from user u inner join jobinfomodule job "
+						+ "from user u left outer join jobinfomodule job "
 						+ "on u.userId=job.userId and u.isDeleted='0' and job.isDeleted='0' and u.classNo=?";
 				if(truename!=null && truename.length()!=0){
 					flag=true;
@@ -323,9 +406,6 @@ public class UserDaoImpl implements UserDao {
 		WritableSheet sheet = workbook.createSheet("Sheet1", 0);
 		// 样式表
 		// 表头样式
-		WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD, false,
-				UnderlineStyle.NO_UNDERLINE, Colour.BLUE);
-		WritableCellFormat headerCellFormat = new WritableCellFormat(headerFont);
 		// 标题样式
 		WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD, false,
 				UnderlineStyle.NO_UNDERLINE, Colour.BLACK);

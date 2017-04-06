@@ -30,20 +30,52 @@ public class UserManagementController {
 	SurveySysService surveySysService;
 
 	@RequestMapping(value = "/openClassmatesView")
-	public void openClassmatesView(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		request.getRequestDispatcher("/baseView/classmates.jsp").forward(request, response);;
+	public void openClassmatesView(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.getRequestDispatcher("/baseView/classmates.jsp").forward(request, response);
+		;
 	}
-	
+
+	/**
+	 * 修改用户密码操作
+	 * 
+	 * @param reponse
+	 * @param userId
+	 *            用户id
+	 * @param password
+	 *            密码
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/alterPassword")
+	public void alterPassword(HttpSession session,HttpServletResponse response, @RequestParam int userId, @RequestParam String oriPass,
+			@RequestParam String newPass) throws Exception {
+		String passInDB = userService.findPassword(userId);
+		if(passInDB.equals(oriPass)){//将用户输入的密码与数据库中的密码进行比较
+			if(passInDB.equals(newPass)){//新旧密码不能相同
+				response.getWriter().write("passSame");
+			}else{
+				if(userService.alterPassword(userId, newPass)){
+					response.getWriter().write("succ");
+					session.removeAttribute("user");
+				}else{
+					response.getWriter().write("error");
+				}
+			}
+		}else{
+			response.getWriter().write("passError");
+		}
+	}
+
 	@RequestMapping(value = "/findClassmatesByClassNo")
-	public ModelAndView findClassmatesByIdClassNo(@RequestParam String truename,@RequestParam String classNo) throws Exception{
+	public ModelAndView findClassmatesByIdClassNo(@RequestParam String truename, @RequestParam String classNo)
+			throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("classmatesList",userService.findClassMateByClasNo(truename,classNo));
-		modelAndView.addObject("truename",truename);
-		modelAndView.addObject("classNo",classNo);
+		modelAndView.addObject("classmatesList", userService.findClassMateByClasNo(truename, classNo));
+		modelAndView.addObject("truename", truename);
+		modelAndView.addObject("classNo", classNo);
 		modelAndView.setViewName("baseView/classmates");
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/open")
 	public ModelAndView openJsp(HttpSession session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
@@ -82,9 +114,9 @@ public class UserManagementController {
 		int pageSize = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getPageSize());
 		int pageCount = recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1;
 		((UserManageVo) result.get("userManageVo")).setPageCount(pageCount);
-		((UserManageVo)result.get("userManageVo")).setAccessMode("findUsers");
-		System.out.println(((UserManageVo)result.get("userManageVo")).getPageCount());
-		System.out.println(((UserManageVo)result.get("userManageVo")).getPageIndex());
+		((UserManageVo) result.get("userManageVo")).setAccessMode("findUsers");
+		System.out.println(((UserManageVo) result.get("userManageVo")).getPageCount());
+		System.out.println(((UserManageVo) result.get("userManageVo")).getPageIndex());
 		modelAndView.addObject("userManageVo", result.get("userManageVo"));
 		modelAndView.setViewName("admin/userManage");
 		return modelAndView;
@@ -133,7 +165,7 @@ public class UserManagementController {
 		int pageSize = Integer.parseInt(((UserManageVo) result.get("userManageVo")).getPageSize());
 		int pageCount = recordCount % pageSize == 0 ? recordCount / pageSize : recordCount / pageSize + 1;
 		((UserManageVo) result.get("userManageVo")).setPageCount(pageCount);
-		((UserManageVo)result.get("userManageVo")).setAccessMode("findUserWithout");
+		((UserManageVo) result.get("userManageVo")).setAccessMode("findUserWithout");
 		modelAndView.addObject("userManageVo", result.get("userManageVo"));
 		modelAndView.setViewName("admin/userManage");
 		return modelAndView;
@@ -165,11 +197,10 @@ public class UserManagementController {
 		response.getWriter().write("success");
 	}
 
-
 	@RequestMapping(value = "/downloadUsers_adm")
 	public void downloadUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<User> uList = userService.findUserWithOut();
-		userService.downloadUsers(uList,request,response);
+		userService.downloadUsers(uList, request, response);
 	}
 
 }

@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>捐赠公告设置</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
@@ -80,10 +81,10 @@
 	</script>
 	<table class="table table-bordered table-striped">
 		<thead>
-			<th>捐赠人</th>
+			<th width="120px">捐赠人</th>
 			<th width="100px">捐赠学号</th>
 			<th>捐赠用途</th>
-			<th width="100px">捐赠物品类别</th>
+			<th width="120px">捐赠物品类别</th>
 			<th>捐赠明细</th>
 			<th width="100px">捐赠时间</th>
 			<th width="140px;">操作</th>

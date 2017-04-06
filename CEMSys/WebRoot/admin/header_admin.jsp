@@ -17,7 +17,7 @@
 						class="dropdown-toggle" href="#" style="color:deeppink;"><img src="${pageContext.request.contextPath }/img/user.png" style="width:20px;height:20px;">
 						${sessionScope.user.truename }<b class="caret"></b></a>
 						<ul role="menu" class="dropdown-menu">
-							<li><a href="#">修改密码</a></li>
+							<li><a href="#" data-toggle="modal" data-target="#alterPassword" style="cursor:pointer;">修改密码</a></li>
 							<li><a href="#">查看资料</a></li>
 							<li><a onclick="logout('${pageContext.request.contextPath}','/logout.action','/index.jsp');">注销</a></li>
 						</ul>
@@ -74,3 +74,80 @@
 		</div>
 	</nav>
 </div>
+<!-- 修改密码弹出框 -->
+<div class="modal fade" id="alterPassword" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="customModal">
+					修改密码：
+				</h4>
+			</div>
+			<form action="" method="post" id="alter_ff">
+				<div class="modal-body">
+					<input type="hidden" name="userId" id="userId"/>
+					<div class="form-group">
+						<label for="oriPass">旧密码：</label>
+						<input type="text" class="form-control" id="oriPass" name="oriPass" required/>
+					</div>
+					<div class="form-group">
+						<label for="newPass">新密码：</label>
+						<input type="text" class="form-control" id="newPass" name="newPass" required/>
+					</div>
+				</div>
+			</form>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-success" onclick="submit();">
+					提交
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+/**
+ * 修改密码控制
+ */
+	function submit(){
+		if(document.getElementById("oriPass").value==''){
+			window.alert("请填写原始密码");
+			return;
+		}
+		var newPass = document.getElementById("newPass").value;
+		if(newPass==''){
+			window.alert("请填写新密码");
+			return;
+		}
+		if(newPass.length<8 || newPass.length>20){
+			window.alert("密码长度在8-20字符之间！");
+			return;
+		}
+		document.getElementById("userId").value='${sessionScope.user.userId}';
+		$.ajax({
+			type:'POST',
+			url:"/CEMSys/userManage/alterPassword.action",
+			data:$("#alter_ff").serialize(),
+			async:true,
+			error:function(){
+				window.alert("出现未知错误！");
+			},
+			success:function(data){
+				if(data=="succ"){
+					window.alert("修改密码成功！");
+					window.open("${pageContext.request.contextPath}/login/login.jsp","_self");
+				}
+				if(data=="passSame"){
+					window.alert("新旧密码不能相同!");
+				}
+				if(data=="passError"){
+					window.alert("原密码错误！");
+				}
+			}
+		});
+}
+</script>

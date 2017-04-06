@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +26,16 @@ public class UserServiceImpl implements UserService {
 
 	
 	
+	@Override
+	public String findPassword(int userId) throws Exception {
+		return userDao.findPassword(userId);
+	}
+
+	@Override
+	public boolean alterPassword(int userId, String password) throws Exception {
+		return userDao.alterPassword(userId, password);
+	}
+
 	/**
 	 * @param classNo 班级号码
 	 * @param truename 真实姓名

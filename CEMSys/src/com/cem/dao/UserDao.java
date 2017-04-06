@@ -5,7 +5,6 @@ import java.util.List;
 import com.cem.customPojo.UserBaseInfo;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.tree.ExpandVetoException;
 
 import com.cem.pojo.User;
 import com.cem.queryVO.UserManageVo;
@@ -14,6 +13,22 @@ import com.cem.queryVO.UserManageVo;
  * Created by RayHauton on 2017/1/25.
  */
 public interface UserDao {
+	
+	/**
+	 * 找到用户密码
+	 * @param userId
+	 * @return
+	 * @throws Exception
+	 */
+	public String findPassword(int userId) throws Exception;
+	/**
+	 * 更换密码
+	 * @param userId
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean alterPassword(int userId,String password) throws Exception;
 	
 	/*
 	 * 根据班号以及姓名查询同班的人

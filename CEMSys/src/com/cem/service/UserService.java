@@ -14,7 +14,22 @@ import com.cem.queryVO.UserManageVo;
  * Created by RayHauton on 2017/1/25.
  */
 public interface UserService {
+	/**
+	 *查找用户的密码 
+	 * @param userId
+	 * @return String
+	 * @throws Exception
+	 */
+	public String findPassword(int userId) throws Exception;
 	
+	/**
+	 * 
+	 * @param userId 用户ID
+	 * @param password 密码
+	 * @return true or false
+	 * @throws Exception
+	 */
+	public boolean alterPassword(int userId,String password) throws Exception;
 	
 	/**
 	 * 

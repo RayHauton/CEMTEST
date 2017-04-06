@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 .outer{
 	width:1000px;
-	min-height:300px;
+	min-height:500px;
 	margin-left:auto;
 	margin-right:auto;
 /* 	background-color: deeppink; */
@@ -44,7 +44,7 @@ input{
 	border:1px #c6c6c6 solid;
 }
 .date{
-	width:140px;
+	width:132px;
 }
 .btn-query{
 	width:70px;

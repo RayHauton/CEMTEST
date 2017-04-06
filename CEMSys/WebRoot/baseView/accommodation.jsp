@@ -9,6 +9,7 @@
 	<meta charset="UTF-8">
 	<title>校友系统-返校住宿</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/view_set/accommodation.css">
 	<link rel="stylesheet" href="../css/view_set/head.css">
 	<link rel="stylesheet" href="../css/view_set/footer.css">
