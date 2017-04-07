@@ -30,8 +30,38 @@ public class BaseInfomationController {
 	private JobService jobService = null;
 
 	@RequestMapping(value = "/open")
-	public String open() throws Exception {
-		return "redirect:/baseView/base-information.jsp";
+	public String open(HttpSession session) throws Exception {
+		User user;
+		System.out.println("从action跳转");
+		String username = ((User) session.getAttribute("user")).getUsername();
+		String mobile = ((User) session.getAttribute("user")).getMobile();
+		String email = ((User) session.getAttribute("user")).getEmail();
+//		System.out.println(username);
+//		System.out.println(mobile);
+//		System.out.println(email);
+		if (username != null && !("".equals(username))) {
+			user = userservice.findUserByUsername(username, true);
+//			System.out.println("username");
+		} else if (mobile != null && !("".equals(mobile))) {
+			user = userservice.findUserByMobile(mobile, true);
+//			System.out.println("mobil");
+		} else if (email != null && !("".equals(email))) {
+			user = userservice.finduserByEmail(email, true);
+//			System.out.println("email");
+		} else {
+//			System.out.println("全部为空");
+			return "redirect:/login/login.jsp";
+		}
+
+		if (user == null) {
+//			System.out.println("不存在用户，准备跳转");
+			return "redirect:/login/login.jsp";
+		} else {
+//			System.out.println("存在用户，准备跳转");
+			return "redirect:/baseView/base-information.jsp";
+
+		}
+
 	}
 
 	@RequestMapping(value = "/updatebaseInf")
@@ -44,7 +74,21 @@ public class BaseInfomationController {
 			user.setTruename(request.getParameter("truename"));
 			user.setSex(request.getParameter("sex"));
 			user.setBirth(request.getParameter("birth"));
-			user.setAddress(request.getParameter("country") + request.getParameter("address"));
+			System.out.println(request.getParameter("province1"));
+			System.out.println(request.getParameter("city1"));
+			System.out.println(request.getParameter("district1"));
+			System.out.println(request.getParameter("country") + "-" + request.getParameter("province1") + "-"
+					+ request.getParameter("city1") + "-" + request.getParameter("district1"));
+			if (request.getParameter("country").equals("inChina")) {
+				String address = request.getParameter("country") + "-" + request.getParameter("province1") + "-"
+						+ request.getParameter("city1") + "-" + request.getParameter("district1");
+				System.out.println(address);
+				user.setAddress(address);
+				System.out.println(user.getAddress());
+			} else {
+				user.setAddress(request.getParameter("country") + "-" + request.getParameter("address"));
+			}
+
 			// System.out.println(user.getUsername());
 			// System.out.println(user.getTruename());
 			// System.out.println(user.getSex());

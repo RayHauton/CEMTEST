@@ -19,33 +19,90 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="../css/view_set/footer.css">
 </head>
 <body>
+<div>
 	<jsp:include page="../baseView/header.jsp"></jsp:include>
-	<div class="box" style="height:" id="box">
+	<div class="box" style="height:;width: " id="box">
 		<div id="content" style="border-left: 2px solid mediumseagreen;">
 			<!-- 基础信息模块 -->
 			<div style="display: block; margin-left: 20px; font-size: 16px;">
 				<form action="" id="base">
-					<h2>基础信息模块</h2>
+					<h2>基础信息模块(<label style="color: red;font-size: 15px;">*</label>为必填项)</h2>
 					<p>
-						您的姓名：<input type="text" placeholder="请输入真实姓名" name="truename">
+						<label style="color: red;font-size: 15px;">*</label>您的姓名：<input type="text" placeholder="请输入真实姓名" name="truename" id="truename">
 					</p>
 					<p>您的性别：</p>
 					<p>
 						<label><input type="radio" name="sex" value="男"
-							checked="checked">男</label> <label><input type="radio"
-							name="sex" value="女">女</label>
+							checked="checked" id="sex">男</label> <label><input type="radio"
+							name="sex" value="女" id="sex">女</label>
 					</p>
 					<p>
-						您的出生日期： <input type="date" name="birth">
+						您的出生日期： <input type="date" name="birth" id="birth">
 					</p>
-					<p>您工作或居住地址：</p>
+					<p><label style="color: red;font-size: 15px;">*</label>您工作或居住地址：</p>
 					<p>
-						<label><input type="radio" name="country">国内</label> <label><input
-							type="radio" name="country">国外</label>
+						<label><input type="radio" name="country" value="inChina" onclick="inChinaF();" id="country">国内</label>
+						<label><input type="radio" name="country" value="outChina" onclick="outChinaF();" id="country">国外</label>
 					</p>
 					<p>
-						您的详细地址： <input type="text" placeholder="请输入详细地址" name="address">
+					<div id="outChinaD" style="display: none">
+					请输入您的详细地址<input type="text" name="address" id="address">
+					</div>
+					<div id="inChinaD" style="display: none;height: 30px;">
+						<div data-toggle="distpicker">
+							<div class="form-group" style="width: 100px;float: left;">
+								<label class="sr-only" for="province1">Province</label> <select
+									class="form-control" id="province1" name="provincel"><option
+										value="" data-code="">—— 省 ——</option>
+									<option value="北京市" data-code="110000" >北京市</option>
+									<option value="天津市" data-code="120000">天津市</option>
+									<option value="河北省" data-code="130000">河北省</option>
+									<option value="山西省" data-code="140000">山西省</option>
+									<option value="内蒙古自治区" data-code="150000">内蒙古自治区</option>
+									<option value="辽宁省" data-code="210000">辽宁省</option>
+									<option value="吉林省" data-code="220000">吉林省</option>
+									<option value="黑龙江省" data-code="230000">黑龙江省</option>
+									<option value="上海市" data-code="310000">上海市</option>
+									<option value="江苏省" data-code="320000">江苏省</option>
+									<option value="浙江省" data-code="330000">浙江省</option>
+									<option value="安徽省" data-code="340000">安徽省</option>
+									<option value="福建省" data-code="350000">福建省</option>
+									<option value="江西省" data-code="360000">江西省</option>
+									<option value="山东省" data-code="370000">山东省</option>
+									<option value="河南省" data-code="410000">河南省</option>
+									<option value="湖北省" data-code="420000">湖北省</option>
+									<option value="湖南省" data-code="430000">湖南省</option>
+									<option value="广东省" data-code="440000">广东省</option>
+									<option value="广西壮族自治区" data-code="450000">广西壮族自治区</option>
+									<option value="海南省" data-code="460000">海南省</option>
+									<option value="重庆市" data-code="500000">重庆市</option>
+									<option value="四川省" data-code="510000">四川省</option>
+									<option value="贵州省" data-code="520000">贵州省</option>
+									<option value="云南省" data-code="530000">云南省</option>
+									<option value="西藏自治区" data-code="540000">西藏自治区</option>
+									<option value="陕西省" data-code="610000">陕西省</option>
+									<option value="甘肃省" data-code="620000">甘肃省</option>
+									<option value="青海省" data-code="630000">青海省</option>
+									<option value="宁夏回族自治区" data-code="640000">宁夏回族自治区</option>
+									<option value="新疆维吾尔自治区" data-code="650000">新疆维吾尔自治区</option>
+									<option value="台湾省" data-code="710000">台湾省</option>
+									<option value="香港特别行政区" data-code="810000">香港特别行政区</option>
+									<option value="澳门特别行政区" data-code="820000">澳门特别行政区</option></select>
+							</div>
+							<div class="form-group" style="width: 150px;float: left;">
+								<label class="sr-only" for="city1">City</label> <select
+									class="form-control" id="city1" name="city1"><option
+										value="" data-code="">—— 市 ——</option></select>
+							</div>
+							<div class="form-group" style="width: 110px;float: left;">
+								<label class="sr-only" for="district1">District</label> <select
+									class="form-control" id="district1" name="district1"><option
+										value="" data-code="">—— 区 ——</option></select>
+							</div>
+						</div>
+					</div>
 					</p>
+
 					<div class="btncus">
 						<input type="button" value="提交" class="btn-success"
 							onclick="baseSkip();"> <input type="reset" value="重置"
@@ -56,8 +113,8 @@ To change this template use File | Settings | File Templates.
 			<!-- 职业信息模块 -->
 			<div>
 				<form action="" id="occupation">
-					<h2>职业信息模块</h2>
-					<p>您的工作单位性质：</p>
+					<h2>职业信息模块(<label style="color: red;font-size: 15px;">*</label>标记为必填项)</h2>
+					<p><label style="color: red;font-size: 15px;">*</label>您的工作单位性质：</p>
 					<p>
 						<label><input type="radio" name="companyNature" value="0">企事业单位工作</label>
 						<label><input type="radio" name="companyNature" value="1">自主创业</label>
@@ -81,8 +138,8 @@ To change this template use File | Settings | File Templates.
 			<!-- 工作满意程度与待遇成就 -->
 			<div>
 				<form action="" id="job">
-					<h2>工作待遇成就与满意程度</h2>
-					<p>您目前的税前年收入（有工作带来的包含工资、奖金、补贴、分红等）：</p>
+					<h2>工作待遇成就与满意程度(<label style="color: red;font-size: 15px;">*</label>标记为必填项)</h2>
+					<p><label style="color: red;font-size: 15px;">*</label>您目前的税前年收入（有工作带来的包含工资、奖金、补贴、分红等）：</p>
 					<p class="income">
 						<label><input type="radio" name="income" checked="checked"
 							value="1">五万以下</label> <label><input type="radio"
@@ -94,10 +151,10 @@ To change this template use File | Settings | File Templates.
 							type="radio" name="income" value="7">一百万以上</label>
 					</p>
 					<p>
-						您工作几年以后职位得到第一次晋升： <input type="text" placeholder="请输入数字"
+						<label style="color: red;font-size: 15px;">*</label>您工作几年以后职位得到第一次晋升： <input type="text" placeholder="请输入数字"
 							name="firstPromote"><span>年</span>
 					</p>
-					<p>您获得的最高荣誉级别是：</p>
+					<p><label style="color: red;font-size: 15px;">*</label>您获得的最高荣誉级别是：</p>
 					<p>
 						<label><input type="radio" name="honorLevel" value="0">无</label>
 						<label><input type="radio" name="honorLevel" value="1">单位内</label>
@@ -109,7 +166,7 @@ To change this template use File | Settings | File Templates.
 					<p>
 						具体荣誉名称： <input type="text" name="honorName">
 					</p>
-					<p>您共有几次转换工作单位的经历：</p>
+					<p><label style="color: red;font-size: 15px;">*</label>您共有几次转换工作单位的经历：</p>
 					<p>
 						<label><input type="radio" name="transferJobCount"
 							value="1">0次</label> <label><input type="radio"
@@ -181,7 +238,7 @@ To change this template use File | Settings | File Templates.
 					</p>
 					</p>
 					<p>
-						在单位考核中，您最长评定为<select name="companyExamine" id="">
+						<label style="color: red;font-size: 15px;">*</label>在单位考核中，您最长评定为<select name="companyExamine" id="">
 							<option value="1">优秀</option>
 							<option value="2">良好</option>
 							<option value="3">合格</option>
@@ -222,8 +279,14 @@ To change this template use File | Settings | File Templates.
 		</div>
 	</div>
 	<jsp:include page="../baseView/footer.jsp"></jsp:include>
-	<script src="../js/change.js"></script>
 	<script src="../js/jquery-1.9.min.js"></script>
+	<script src="../js/change.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/distpicker.js"></script>
+	<script src="../js/distpicker.data.js"></script>
+	<script src="../js/distpicker.data.min.js"></script>
+	<script src="../js/distpicker.min.js"></script>
+	</div>
 </body>
 </html>
