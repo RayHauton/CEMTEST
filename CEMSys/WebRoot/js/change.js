@@ -12,11 +12,34 @@ function sibling(obj, callback) {
 	}
 	;
 };
+
+function inChinaF() {
+	var inC = document.getElementById('inChinaD');
+	var out = document.getElementById('outChinaD');
+	var o1 = document.getElementById('box');
+	inC.style.display = "block";
+	out.style.display = "none";
+	o1.style.height = $("#content").height() + 30 + "px";
+};
+
+function outChinaF() {
+	var o2 = document.getElementById('box');
+	var inC = document.getElementById('inChinaD');
+	var out = document.getElementById('outChinaD');
+	inC.style.display = "none";
+	out.style.display = "block";
+	o2.style.height = $("#content").height() + 10 + "px";
+};
+
 function getId(id) {
 	return document.getElementById(id);
 };
+
 var liDom = getId("select").children;
 var o = document.getElementById('box');
+o.style.width = $("#navBody").width()+300+"px";
+o.style.height = $("#content").height() + 40 + "px";
+
 for (var i = 0; i < liDom.length; i++) {
 	liDom[i].index = i;// 记录索引
 	liDom[i].onclick = function() {// 绑定点击事件
@@ -29,14 +52,22 @@ for (var i = 0; i < liDom.length; i++) {
 		sibling(conDom, function() {// divDom的兄弟节点的display状态为none
 			this.style.display = "none";
 		});
-		o.style.height = $("#content").height()+40+"px";
-		
-		
+		o.style.height = $("#content").height() + 40 + "px";
 	};
 };
 
 function baseSkip() {
-	var params = $("#base").serializeArray();
+	var params = {
+		truename : $("#truename").val(),
+		sex : $("#sex").val(),
+		birth : $("#birth").val(),
+		country : $("#country").val(),
+		address : $("#address").val,
+		province1 : $("#province1").val(),
+		city1 : $("#city1").val(),
+		district1 : $("#district1").val()
+	};
+	;
 	$.ajax({
 		type : "POST",
 		async : false,
@@ -62,6 +93,7 @@ function baseSkip() {
 				sibling(conDom, function() {// divDom的兄弟节点的display状态为none
 					this.style.display = "none";
 				});
+				o.style.height = $("#content").height() + 40 + "px";
 			}
 		}
 	});
@@ -94,6 +126,7 @@ function occupationSkip() {
 				sibling(conDom, function() {// divDom的兄弟节点的display状态为none
 					this.style.display = "none";
 				});
+				o.style.height = $("#content").height() + 40 + "px";
 			}
 		}
 	});
@@ -122,20 +155,22 @@ function jobSkip() {
 		}
 	});
 };
-function mytest(){
-	o.style.height = $("#content").height()+40+"px";
+function mytest() {
+	o.style.height = $("#content").height() + 40 + "px";
 	var AA = getId("select").children;
-/*	for (var i = 0; i < AA.length; i++) {
-		alert(AA[i].getElementsByTagName("a")[0].href);
-		};*/
+	/*
+	 * for (var i = 0; i < AA.length; i++) {
+	 * alert(AA[i].getElementsByTagName("a")[0].href); };
+	 */
 
 	for (var i = 0; i < AA.length; i++) {
 		AA[i].getElementsByTagName("a")[0].href = "#";
-		};
-	/*for (var i = 0; i < AA.length; i++) {
-		alert(AA[i].getElementsByTagName("a")[0].href);
-		};*/
-	};
+	}
+	;
+	/*
+	 * for (var i = 0; i < AA.length; i++) {
+	 * alert(AA[i].getElementsByTagName("a")[0].href); };
+	 */
+};
 
-window.onload= mytest;
-
+window.onload = mytest;

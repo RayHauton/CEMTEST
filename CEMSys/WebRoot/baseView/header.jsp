@@ -33,7 +33,7 @@
 		</c:choose>
 	</div>
 </div>
-<div class="navBody">
+<div class="navBody" id="navBody">
 	<nav role="navigation" class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -49,9 +49,9 @@
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">个人信息<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu" id="select">
-						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">基础信息</a></li>
-						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">职业信息</a></li>
-						<li><a href="${pageContext.request.contextPath }/baseView/base-information.jsp">工作待遇</a></li>
+						<li><a href="${pageContext.request.contextPath }/infoSys/open.action">基础信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/infoSys/open.action">职业信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/infoSys/open.action">工作待遇</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
