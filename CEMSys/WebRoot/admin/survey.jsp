@@ -20,10 +20,10 @@
 <body>
 		<jsp:include page="header_admin.jsp"></jsp:include>
 		<div class="contentBody">
-			<button type="button" class="btn btn-info" style="margin-left:7%;margin-top:7px;">根据个人信息查询</button>
-			<button type="button" class="btn btn-info" style="margin-left:15%;margin-top:7px;">根据调研信息查询</button>
+<!-- 			<button type="button" class="btn btn-info" style="margin-left:7%;margin-top:7px;">根据个人信息查询</button> -->
+<!-- 			<button type="button" class="btn btn-info" style="margin-top:7px;" id="surveyInfoSearch">根据调研信息查询</button> -->
 <%-- 			<a type="button" class="btn btn-info" style="margin-left:15%;margin-top:7px;" href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload">调研信息导出成Excel</a> --%>
-				<div class="btn-group" style="margin-left:15%;margin-top:7px;">
+				<div class="btn-group" style="float:right;margin-right:30px;margin-bottom:7px;margin-top:7px;">
 				  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    &emsp;导出EXCEL&emsp; <span class="caret"></span>
 				  </button>
@@ -33,8 +33,8 @@
 				    <li><a href="${pageContext.request.contextPath}/adminSurveySys/exportToExcelAndDownload_adm.action">导出全部信息</a></li>
 				  </ul>
 				</div>
-			<div id="searchTermA">
 				<hr id="hr"/>
+			<div id="searchTermA">
 				<div class="searchLogo"style="z-index:1px;position:absolute;">
 					<img alt="" src="../img/donation/search1.png">
 				</div>
@@ -76,7 +76,7 @@
 				</form>
 				<hr id="hr"/>
 				<div id="tableDiv" style="width:70%;margin-left:15%;margin-top:10px;">
-					<label>共查询到<span style="color:red">&emsp;${sessionScope.listNum}</span>&emsp;条记录</label><br/>
+<%-- 					<label>共查询到<span style="color:red">&emsp;${sessionScope.listNum}</span>&emsp;条记录</label><br/> --%>
 					<div class="btn-group" >
 					  <button type="button" class="btn btn-primary control0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    将查询到的调研信息导出EXCEL <span class="caret"></span>
@@ -148,6 +148,7 @@
 								<li class="disabled"><span>&raquo; </span></li>
 							</c:otherwise>
 						</c:choose>
+							<span class="record">共<font>${sessionScope.listNum}</font>条记录，当前是第<font>${sessionScope.adminSurveyQueryVo.pageIndex }</font>页，共<font>${sessionScope.pageCount }</font>页</span>
 					</ul>
 					<script type="text/javascript">
 						var aTags = document.getElementsByName("pageTag");
