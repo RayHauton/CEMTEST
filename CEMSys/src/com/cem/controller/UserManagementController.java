@@ -46,21 +46,21 @@ public class UserManagementController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/alterPassword")
-	public void alterPassword(HttpSession session,HttpServletResponse response, @RequestParam int userId, @RequestParam String oriPass,
-			@RequestParam String newPass) throws Exception {
+	public void alterPassword(HttpSession session, HttpServletResponse response, @RequestParam int userId,
+			@RequestParam String oriPass, @RequestParam String newPass) throws Exception {
 		String passInDB = userService.findPassword(userId);
-		if(passInDB.equals(oriPass)){//将用户输入的密码与数据库中的密码进行比较
-			if(passInDB.equals(newPass)){//新旧密码不能相同
+		if (passInDB.equals(oriPass)) {// 将用户输入的密码与数据库中的密码进行比较
+			if (passInDB.equals(newPass)) {// 新旧密码不能相同
 				response.getWriter().write("passSame");
-			}else{
-				if(userService.alterPassword(userId, newPass)){
+			} else {
+				if (userService.alterPassword(userId, newPass)) {
 					response.getWriter().write("succ");
 					session.removeAttribute("user");
-				}else{
+				} else {
 					response.getWriter().write("error");
 				}
 			}
-		}else{
+		} else {
 			response.getWriter().write("passError");
 		}
 	}
@@ -78,14 +78,36 @@ public class UserManagementController {
 
 	@RequestMapping(value = "/open")
 	public ModelAndView openJsp(HttpSession session) throws Exception {
+		System.out.println("准备跳转");
 		ModelAndView modelAndView = new ModelAndView();
 		User user = (User) session.getAttribute("user");
 		String mobile = user.getMobile();
-		if (userService.findUserByMobile(mobile, true) != null) {
+		String username = user.getUsername();
+		String email = user.getEmail();
+		User manage = null;
+		if (username != null && !("".equals(username))) {
+			manage = userService.findUserByUsername(username, true);
+			System.out.println(username);
+		}
+		else if (mobile != null && !("".equals(mobile))) {
+			manage = userService.findUserByMobile(mobile, true);
+			System.out.println(mobile);
+		}   else if (email != null && !("".equals(email))) {
+			manage = userService.finduserByEmail(email, true);
+			System.out.println(email);
+		} else {
+			System.out.println("全空");
+			modelAndView.setViewName("login/login");
+		}
+		if (manage != null && "1".equals(manage.getRole()) ){
 			modelAndView.setViewName("admin/userManage");
 			modelAndView.addObject("approvedsum", 0);
 			modelAndView.addObject("disapprovedsum", 0);
 		} else {
+			if(manage==null)
+			System.out.println("用户不存在");
+			if("1".equals(manage.getRole()))
+				System.out.println("非管理员");
 			modelAndView.setViewName("login/login");
 		}
 

@@ -37,15 +37,10 @@
 						<label>学号</label> <input class="form-control" placeholder="输入学号"
 							name="studNumber" id="studNumber"> <label>姓名</label> <input
 							class="form-control" placeholder="输入姓名" name="truename"
-							id="truename"> <label>入学时间</label> <select
-							class="form-control" name="entranceDate" id="entranceDate">
-							<option value=""></option>
-							<option value="volvo">Volvo</option>
-							<option value="saab">Saab</option>
-							<option value="opel">Opel</option>
-							<option value="audi">Audi</option>
+							id="truename"> <label>入学时间</label> <input type="text"
+							class="form-control" placeholder="输入入学时间" name="entranceDate">
 
-						</select> <br /> <label>学位</label><select name="degreeId"
+						<br /> <label>学位</label><select name="degreeId"
 							class="form-control" id="degreeId">
 							<option value="">-----</option>
 							<option value="D01">专科</option>
@@ -217,6 +212,7 @@
 					<span><a id="lastPage2" onclick="lastpage();"
 						href="javascript:void(0);">上一页</a> 当前是第<font>${userManageVo.pageIndex }</font>页<a
 						id="nextPage2" onclick="nextpage" href="javascript:void(0);">下一页</a>共<font>${userManageVo.pageCount }</font>页
+
 
 
 
