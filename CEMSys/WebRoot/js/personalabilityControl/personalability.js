@@ -15,7 +15,7 @@ $(function() {
 			else if (flag == 0) {
 				var data = $("#SelfabilityqualityForm").serializeArray();
 				$.ajax({
-					url : "${pageContext.request.contextPath}/surveySys/saveSelfabilityquality",
+					url : "../surveySys/saveSelfabilityquality",
 					type : 'post',
 					data : data,
 					dataType : 'html',
@@ -24,6 +24,11 @@ $(function() {
 							var objs = jQuery.parseJSON(data);
 							alert(objs[0].activityName);
 						}
+						$('#Majorabilitycultivationquality').css('display', 'block');
+						$('#SelfabilityqualityP').css('display', 'none');
+						$('#SelfabilityqualityTable').css('display', 'none');
+						$('#SelfabilityqualityH2').css('display', 'none');
+						$('#SelfabilityqualityBtn').css('display', 'none');
 					},
 					error : function(xhr,textStatus, errorThrown) {
 						alert("error");
@@ -50,7 +55,7 @@ $(function() {
 			else if (flag == 0) {
 				var data = $("#MajorabilitycultivationqualityForm").serializeArray();
 				$.ajax({
-					url : "${pageContext.request.contextPath}/surveySys/saveMajorabilitycultivationquality",
+					url : "../surveySys/saveMajorabilitycultivationquality",
 					type : 'post',
 					data : data,
 					dataType : 'html',
@@ -59,6 +64,7 @@ $(function() {
 							var objs = jQuery.parseJSON(data);
 							alert(objs[0].activityName);
 						}
+						 window.location.href="../index.jsp"; 
 					},
 					error : function(xhr,textStatus, errorThrown) {
 						alert("error");
@@ -85,5 +91,6 @@ $(function() {
 		$('#SelfabilityqualityBtn').css('display', 'none');
 	}
 });
+
 
 

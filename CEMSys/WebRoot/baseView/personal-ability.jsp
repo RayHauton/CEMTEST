@@ -23,13 +23,13 @@ To change this template use File | Settings | File Templates.
 			<div id="content">
 				<!-- 个人能力品质调研 -->
 				<div id="Selfabilityquality">
-					<p style="width: 70%; font-size: 18px; margin-left: 15%;"
+					<p style="width: 998px; font-size: 18px; margin:0 auto;" align="middle"
 						id="SelfabilityqualityP" >
 						人才培养质量一直是学院办学的关注点，现邀请您对学院毕业生个人能力品质整体水平进行评价。以下问题主要是要了解南航经管毕业生和其他高校毕业生相对比，个人能力品质方面的事迹表现，请您选择符合框格。<br />1分表示完全非常弱（南航弱），5分表示非常强（南航强）。
 					</p>
 					<form action="" id="SelfabilityqualityForm">
-						<table id="SelfabilityqualityTable" class="table table-striped" style="width:70%">
-							<h2 id="SelfabilityqualityH2" style="margin-top:0px">个人能力品质调研</h2>
+						<table id="SelfabilityqualityTable" class="table table-striped" style="width:1000px">
+							<h2 id="SelfabilityqualityH2" style="margin-top:0px" align="center">个人能力品质调研</h2>
 							<tbody>
 								<tr class="border-top">
 									<td class="border-left">序号</td>
@@ -232,12 +232,12 @@ To change this template use File | Settings | File Templates.
 				</div>
 				<!-- 专业能力培养调研 -->
 				<div id="Majorabilitycultivationquality">
-					<p style="width: 70%; font-size: 18px; margin-left: 15%">
+					<p style="width: 998px; font-size: 18px; margin:0 auto;" align="middle">
 						教育教学过程是实现高质量人才培养的前提和基础，现邀请您对学院专业能力培养质量进行评价。以下问题主要了解毕业生对专业人才培养工作的评价，答案没有对与错，最重要的是真实客观。请选择您认为最符合的框格。<br />1分表示非常弱，5分表示非常强。
 					</p>
 					<form action="" id="MajorabilitycultivationqualityForm">
-						<table  class="table table-striped" style="width:70%">
-							<h2>专业能力培养质量调研</h2>
+						<table  class="table table-striped" style="width:1000px">
+							<h2 align="middle">专业能力培养质量调研</h2>
 							<tbody>
 								<tr class="border-top">
 									<td class="border-left">序号</td>
@@ -579,8 +579,8 @@ To change this template use File | Settings | File Templates.
 								</tr>
 							</tbody>
 						</table>
-						<div class="btn" style="margin:0px;padding:0px">
-							<input type="button" value="提交"
+						<div class="btn" style="margin:0 auto;" >
+							<input type="button" value="提交" style=" margin:0 auto;"
 								id="MajorabilitycultivationqualitySubmit"><input
 								type="reset" value="重置">
 						</div>
