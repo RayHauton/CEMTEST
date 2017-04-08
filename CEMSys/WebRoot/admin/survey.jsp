@@ -11,6 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/adminPersonalAbility.css">
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
@@ -88,7 +89,7 @@
 					  </ul>
 					</div>
 					<table class="table table-bordered table-striped" style="width:100%;">
-						<thead style="font-size:20px">
+						<thead style="font-size:15px;">
 							<tr>
 								<th>&emsp;&ensp;用户名</th>
 								<th>&emsp;&ensp;真实姓名</th>

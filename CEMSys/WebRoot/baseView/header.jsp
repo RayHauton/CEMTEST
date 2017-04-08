@@ -23,7 +23,6 @@
 						</ul>
 					</li>
 				</ul>
-				
 			</c:when>
 			<c:otherwise>
 				<a href="${pageContext.request.contextPath }/login.action"
@@ -82,7 +81,7 @@
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">校友联络<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#">校友会</a></li>
-						<li><a href="#">校友联络</a></li>
+						<li><a href="${pageContext.request.contextPath }/userManage/openClassmatesView.action">校友联络</a></li>
 						<li><a href="${pageContext.request.contextPath }/forum/f/1">校友发声</a></li>
 					</ul>
 				</li>
@@ -94,7 +93,10 @@
 					</ul>
 				</li>
 				<li><a href="${pageContext.request.contextPath }/collegeEvent/show.action">学院事件录</a></li>
-				<li><a href="${pageContext.request.contextPath }/userManage/openClassmatesView.action">查找我的同学</a></li>
+<%-- 				<li><a href="${pageContext.request.contextPath }/userManage/openClassmatesView.action">查找我的同学</a></li> --%>
+				<c:if test="${sessionScope.user.role==1 }">
+					<li><a href="${pageContext.request.contextPath }/admin/adminIndex.jsp">系统管理</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</nav>
