@@ -10,7 +10,6 @@
         </id>
         <property name="rankName" type="string">
             <column name="rankName" length="20">
-                <comment>???????</comment>
             </column>
         </property>
         <property name="icon" type="string">
@@ -20,7 +19,6 @@
         </property>
         <property name="isDeleted" type="string">
             <column name="isDeleted" length="1" not-null="true">
-                <comment>??????????</comment>
             </column>
         </property>
     </class>

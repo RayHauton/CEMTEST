@@ -3,6 +3,7 @@
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +13,20 @@
 	<link rel="stylesheet" href="../css/view_set/alumni-association.css">
 	<link rel="stylesheet" href="../css/view_set/head.css">
 	<link rel="stylesheet" href="../css/view_set/footer.css">
+	<script src="../js/alumniAssociationController/alumniAssociationControl.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="content">
-		<div class="association">
-			<h2>校友会名称</h2>
-			<p>联系人：某某人&nbsp&nbsp&nbsp&nbsp联系电话：025-52765388</p>
-			<div id="picture">
-				这是一张校友会图片
-				<img src="" alt="">
+		<c:forEach var="pojo" items="${alumniAssoList }">
+			<div class="association">
+				<h2>${pojo.alumniAssociationName }</h2>
+				<p>联系人：${pojo.contactPerson }&nbsp&nbsp&nbsp&nbsp联系方式：${pojo.contactWay }</p>
+				<div id="picture">
+					<img src="/fileUpload/alumniAssociationImg/${pojo.img }" alt="${pojo.alumniAssociationName }" onload="resize(this,'${pojo.width}','${pojo.height }');">
+				</div>
 			</div>
-		</div>
+		</c:forEach>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>

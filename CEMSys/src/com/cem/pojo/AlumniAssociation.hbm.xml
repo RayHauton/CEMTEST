@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-8 15:47:26 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.cem.pojo.AlumniAssociation" table="alumniassociation" catalog="cemsys" optimistic-lock="version">
+        <id name="alumniAssociationId" type="java.lang.Integer">
+            <column name="alumniAssociationId" />
+            <generator class="native" />
+        </id>
+        <property name="alumniAssociationName" type="string">
+            <column name="alumniAssociationName" length="20" not-null="true" />
+        </property>
+        <property name="contactPerson" type="string">
+            <column name="contactPerson" length="20" not-null="true" />
+        </property>
+        <property name="contactWay" type="string">
+            <column name="contactWay" length="20" not-null="true" />
+        </property>
+        <property name="img" type="string">
+            <column name="img" length="100" />
+        </property>
+        <property name="width" type="java.lang.Integer">
+            <column name="width"  />
+        </property>
+        <property name="height" type="java.lang.Integer">
+            <column name="height" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="isDeleted" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

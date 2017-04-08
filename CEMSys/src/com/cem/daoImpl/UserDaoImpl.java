@@ -145,7 +145,7 @@ public class UserDaoImpl implements UserDao {
 			public void execute(Connection connection) {
 				boolean flag = false;
 				String sql = "select u.truename,u.classNo,u.mobile,u.email,job.companyName "
-						+ "from user u left outer join jobinfomodule job "
+						+ "from user u join jobinfomodule job "
 						+ "on u.userId=job.userId and u.isDeleted='0' and job.isDeleted='0' and u.classNo=?";
 				if(truename!=null && truename.length()!=0){
 					flag=true;

@@ -49,7 +49,7 @@
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">数据管理<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">校友会信息</a></li>
+						<li><a href="${pageContext.request.contextPath }/alumiAssociation/open_adm.action">校友会信息</a></li>
 						<li><a href="${pageContext.request.contextPath }/collegeEvent/show_adm.action">学院事件录</a></li>
 						<li><a href="#">学历管理</a></li>
 						<li><a href="${pageContext.request.contextPath }/adminSurveySys/open_adm.action">调研信息</a></li>
