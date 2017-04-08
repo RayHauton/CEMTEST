@@ -176,3 +176,4 @@
 		});
 }
 </script>
+<script src="../js/loginController/loginAndLogout.js"></script>

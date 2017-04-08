@@ -291,6 +291,7 @@
 <script src="../js/jquery-1.9.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/userManage.js"></script>
+<script src="../js/loginController/loginAndLogout.js"></script>
 <script type="text/javascript">
 function queryAll() {
 	var pSize = document.getElementById("pageSize").value;
