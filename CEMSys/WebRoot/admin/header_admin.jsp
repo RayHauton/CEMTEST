@@ -67,9 +67,11 @@
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#">论坛审核</a></li>
 						<li><a href="#">祝福模板</a></li>
-						<li><a href="../userManage/open.action">用户管理</a></li>
+						<li><a href="${pageContext.request.contextPath }/userManage/open.action">用户管理</a></li>
+						<li><a href="#">用户审核</a></li>
 					</ul>
 				</li>
+				<li><a href="${pageContext.request.contextPath }">返回普通系统</a></li>
 			</ul>
 		</div>
 	</nav>
