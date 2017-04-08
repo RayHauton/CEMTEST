@@ -80,7 +80,7 @@
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">校友联络<b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
-						<li><a href="#">校友会</a></li>
+						<li><a href="${pageContext.request.contextPath }/alumiAssociation/open.action">校友会</a></li>
 						<li><a href="${pageContext.request.contextPath }/userManage/openClassmatesView.action">校友联络</a></li>
 						<li><a href="${pageContext.request.contextPath }/forum/f/1">校友发声</a></li>
 					</ul>

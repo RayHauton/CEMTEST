@@ -161,7 +161,7 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				<div style="background-color:red;width:560px;height:350px;">
+				<div style="width:560px;height:350px;">
 					<img alt="" src="" id="imgDetail">
 				</div>
 			</div>
