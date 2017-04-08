@@ -10,7 +10,7 @@ function postForum(){
 		return 
 	};
 	if(forumTitle.length>25){
-		alert("标题过长");
+		$('#errormsg').show ().delay (3000).fadeOut ();
 		return
 	};
 	$.ajax({
