@@ -93,11 +93,6 @@
 									回复： <a
 										href="${pageContext.request.contextPath }/forum/p/${test.forum}"
 										class="wrap">${test.replyText }</a>
-									<!-- 								<nobr> -->
-									<!-- 									<span class="reply_txt"> <a href="#" class="b_reply" -->
-									<!-- 										target="_blank">回复</a> (10) -->
-									<!-- 									</span> -->
-									<!-- 								</nobr> -->
 								</div></li>
 						</c:forEach>
 					</ul>

@@ -159,53 +159,60 @@ h1 {
 								</div></li>
 						</c:forEach>
 					</ul>
-					<div class="container" style="text-align: center;">
-						<ul class="pagination">
-							<li><a href="#">共${totalForumPage }页</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=1">首页</a></li>
+					<c:choose>
+						<c:when test="${totalForumPage == 0 }">
+							<div class="nonebbs11">还没有帖子 赶紧发一个吧</div>
+						</c:when>
+						<c:otherwise>
+							<div class="container" style="text-align: center;">
+								<ul class="pagination">
+									<li><a href="#">共${totalForumPage }页</a></li>
+									<li><a
+										href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=1">首页</a></li>
 
-							<c:if test="${currentForumPage>1 }">
-								<li><a
-									href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage-1 }">上一页</a></li>
-							</c:if>
-							<c:choose>
-								<c:when test="${totalForumPage<=10 }">
-									<c:set var="begin" value="1"></c:set>
-									<c:set var="end" value="${totalForumPage }"></c:set>
-								</c:when>
-								<c:otherwise>
-									<c:set var="begin" value="${currentForumPage-5 }"></c:set>
-									<c:set var="end" value="${currentForumPage+4 }"></c:set>
-									<c:if test="${begin<1 }">
-										<c:set var="begin" value="1"></c:set>
-										<c:set var="end" value="10"></c:set>
-									</c:if>
-									<c:if test="${end>totalForumPage }">
-										<c:set var="begin" value="${totalForumPage-9 }"></c:set>
-										<c:set var="end" value="${totalForumPage }"></c:set>
-									</c:if>
-								</c:otherwise>
-							</c:choose>
-							<c:forEach var="i" begin="${begin }" end="${end }">
-								<c:choose>
-									<c:when test="${i==currentForumPage }">
-										<li class="active"><a href="#">${i }</a></li>
-									</c:when>
-									<c:otherwise>
+									<c:if test="${currentForumPage>1 }">
 										<li><a
-											href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${i }">${i }</a></li>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							<c:if test="${currentForumPage<totalForumPage }">
-								<li><a
-									href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage+1 }">下一页</a></li>
-							</c:if>
-							<li><a
-								href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${totalForumPage }">尾页</a></li>
-						</ul>
-					</div>
+											href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage-1 }">上一页</a></li>
+									</c:if>
+									<c:choose>
+										<c:when test="${totalForumPage<=10 }">
+											<c:set var="begin" value="1"></c:set>
+											<c:set var="end" value="${totalForumPage }"></c:set>
+										</c:when>
+										<c:otherwise>
+											<c:set var="begin" value="${currentForumPage-5 }"></c:set>
+											<c:set var="end" value="${currentForumPage+4 }"></c:set>
+											<c:if test="${begin<1 }">
+												<c:set var="begin" value="1"></c:set>
+												<c:set var="end" value="10"></c:set>
+											</c:if>
+											<c:if test="${end>totalForumPage }">
+												<c:set var="begin" value="${totalForumPage-9 }"></c:set>
+												<c:set var="end" value="${totalForumPage }"></c:set>
+											</c:if>
+										</c:otherwise>
+									</c:choose>
+									<c:forEach var="i" begin="${begin }" end="${end }">
+										<c:choose>
+											<c:when test="${i==currentForumPage }">
+												<li class="active"><a href="#">${i }</a></li>
+											</c:when>
+											<c:otherwise>
+												<li><a
+													href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${i }">${i }</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${currentForumPage<totalForumPage }">
+										<li><a
+											href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${currentForumPage+1 }">下一页</a></li>
+									</c:if>
+									<li><a
+										href="${pageContext.request.contextPath }/forum/f/${forumModule }?forumIndex=${totalForumPage }">尾页</a></li>
+								</ul>
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<span>发表新帖 </span>
 				<div class="inputBox"
@@ -214,6 +221,7 @@ h1 {
 						class="form-control" onkeydown="countChar('forumTitle','counter')"
 						onkeyup="countChar('forumTitle','counter')" /> 已经输入<span
 						id="counter">0</span>/25个字
+					<div id="errormsg" style="display:none;">标题过长</div>
 					<textarea rows="5" cols="5" id="editor" style="height: 300px"></textarea>
 					<p>
 						<input type="button" value="发送" onclick="javascript:postForum()"

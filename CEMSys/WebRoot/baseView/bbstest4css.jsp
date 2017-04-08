@@ -94,7 +94,8 @@ img {
 					</c:forEach>
 				</ul>
 			</div>
-
+	
+			
 			<div class="container" style="text-align: center;">
 				<c:if test="${totalReplyPage>1 }">
 					<ul class="pagination">
