@@ -217,10 +217,10 @@ h1 {
 				<span>发表新帖 </span>
 				<div class="inputBox"
 					style="width: 819px; margin-left: auto; margin-right: auto;">
-					<input type="text" id="forumTitle" placeholder="标题"
+					<input type="text" id="forumTitle" placeholder="请填写标题"
 						class="form-control" onkeydown="countChar('forumTitle','counter')"
-						onkeyup="countChar('forumTitle','counter')" /> 已经输入<span
-						id="counter">0</span>/25个字
+						onkeyup="countChar('forumTitle','counter')" />
+						已经输入<span id="counter">0</span>/25个字
 					<div id="errormsg" style="display:none;">标题过长</div>
 					<textarea rows="5" cols="5" id="editor" style="height: 300px"></textarea>
 					<p>

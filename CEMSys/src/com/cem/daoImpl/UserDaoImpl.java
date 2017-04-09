@@ -47,9 +47,6 @@ public class UserDaoImpl implements UserDao {
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
-	
-	
 	
 	@Override
 	public String findPassword(int userId) throws Exception {
@@ -90,9 +87,6 @@ public class UserDaoImpl implements UserDao {
 		return pass[0];
 	}
 
-
-
-
 	/**
 	 * @param userId 用户id
 	 * @param password 密码
@@ -128,8 +122,6 @@ public class UserDaoImpl implements UserDao {
 		});
 		return flag[0]==1?true:false;
 	}
-
-
 
 	/**
 	 * @param classNo

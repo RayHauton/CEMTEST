@@ -129,10 +129,10 @@ body.ihome {
 
 .replyinfo-reply {
 	padding-top: 5px;
-	float: right;
 	margin-left: auto;
-	margin-right: 2px;
+	margin-right: 10px;
 	color: #333;
+	float:right;
 }
 
 .right_up:hover .element {
@@ -142,10 +142,13 @@ body.ihome {
 .element {
 	display: none;
 }
-
+.deleteAndComment{
+	width:700px;
+	height:30px;
+}
 .commentText {
 	width: 620px;
-	height: 150px;
+	height: 137px;
 	display: none;
 	background-color: #f4fef6
 }

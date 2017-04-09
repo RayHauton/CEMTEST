@@ -50,7 +50,14 @@ ul{
     list-style: none;
 }
 
-
+.imput_placeholder{
+	top: 1px;
+    left: 10px;
+    height: 30px;
+    line-height: 30px;
+    color: rgb(191, 191, 191);
+    display: block;
+}
 
 
 
@@ -92,7 +99,7 @@ ul{
     padding: 20px 0 21px 10px;
 }
 .replyme{
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     padding-bottom: 10px;
 }
@@ -102,7 +109,7 @@ ul{
     text-decoration: underline;
 }
 .replyme_user{
-    float: left;
+/*     float: left; */
 }
 
 .replyme_content{
