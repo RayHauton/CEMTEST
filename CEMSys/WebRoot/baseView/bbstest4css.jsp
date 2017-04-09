@@ -50,7 +50,12 @@ img {
 						<li id="${test.replyId }">
 							<div class="block">
 								<div class="left_up">
-									<span><img src="" alt="">头像</span>
+									<c:if test="${user.sex=='1' }">
+									<span><img src="${pageContext.request.contextPath }/img/forum/man.png" alt="头像"></span>
+									</c:if>
+									<c:if test="${user.sex=='2' }">
+									<span><img src="${pageContext.request.contextPath }/img/forum/girl.png" alt="头像"></span>
+									</c:if>
 								</div>
 								<div class="right_up">
 									<h4>
@@ -66,6 +71,7 @@ img {
 									<div class="every_reply">
 										<div id="id${test.floor }">${test.replyText }</div>
 									</div>
+									<div class="deleteAndComment">
 									<div class="replyinfo-reply">
 										<c:if
 											test="${user.role =='3' || user.userId == test.publishUserId }">
@@ -73,20 +79,21 @@ img {
 												<span style="color: #333; cursor: pointer; width: 50px;"
 													name="${test.replyId }" onclick="deleteReply(this)"><img
 													src="${pageContext.request.contextPath }/img/forum/gantanhao.png"
-													alt="" style="width: 15px; height: 20px;">删除</span>
+													alt="" style="width: 15px; height: 20px;">删除 |</span>
 											</ins>
 										</c:if>
 										<span name="${test.floor }"
 											style="color: #333; cursor: pointer;"
 											onclick="messagebox(this)"><img
 											src="${pageContext.request.contextPath }/img/forum/reply.png"
-											alt="" style="width: 15px; height: 15px;">评论</span>
+											alt="" style="width: 15px; height: 15px;"> 评论</span>
+									</div>
 									</div>
 									<div id="pp${test.floor }" class="commentText">
 										<textarea placeholder="请输入内容" id="replyToHost${test.floor }"
-											style="width: 610px; height: 102px;"></textarea>
+											style="width: 610px; height: 102px;margin-left:5px;"></textarea>
 										<input type="button" name="${test.floor }" value="发表评论"
-											onclick="javascript:reply(this)" class="btn btn-default">
+											onclick="javascript:reply(this)" class="btn btn-default" style="margin-right:5px;float:right;">
 									</div>
 								</div>
 							</div>
@@ -158,7 +165,9 @@ img {
 					<span class="my_info_title_title">个人信息</span>
 				</div>
 				<div class="my_info_content">
-					<div class="my_info_content_img">头像</div>
+					<div class="my_info_content_img">
+						<img alt="头像" src="${pageContext.request.contextPath }/img/forum/man.png">
+					</div>
 					<div class="my_info_content_info">
 						<p class="info_name">dadan</p>
 						<p class="info_sex">男</p>
