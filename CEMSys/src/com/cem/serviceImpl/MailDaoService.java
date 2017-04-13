@@ -12,7 +12,7 @@ import com.cem.service.MailService;
 public class MailDaoService implements MailService {
 
 	@Override
-	@Scheduled(cron = "0/10 * * * * ?") // 间隔5秒执行
+//	@Scheduled(cron = "0/10 * * * * ?") // 间隔5秒执行
 	public void sendMail() {
 		// TODO Auto-generated method stub
 		System.out.println("定时的任务");

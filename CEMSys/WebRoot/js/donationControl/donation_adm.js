@@ -122,14 +122,14 @@ function submitInsertForm(urlPrefix, operation) {
  * 删除记录控制
  */
 function deleteRecord(urlPrefix,pageIndex,obj){
-	console.log(obj.parentNode.parentNode.children[1].innerText);
-	var donationId = obj.parentNode.parentNode.children[1].innerText;
+	console.log(obj.parentNode.parentNode.children[0].innerText);
+	var donationId = obj.parentNode.parentNode.children[0].innerText;
 	if(!window.confirm("确认要删除吗?")){
 		return;
 	}
 	$.ajax({
 		type:'POST',
-		url:urlPrefix+"/donation/delete.action",
+		url:urlPrefix+"/donation/delete_adm.action",
 		data:'donationId='+donationId,
 		async:true,
 		error:function(){
