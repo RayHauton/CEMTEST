@@ -1,7 +1,5 @@
 package com.cem.test;
 
-import java.util.Random;
-
 import org.junit.Test;
 
 import com.cem.customPojo.UserCustom;

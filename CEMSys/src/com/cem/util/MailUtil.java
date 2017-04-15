@@ -51,10 +51,10 @@ public class MailUtil {
 		messageHelper.setFrom(userFrom);
 		messageHelper.setSubject(subject);
 		messageHelper.setText(textContext);
-		if(file!=null){
-			FileSystemResource fileSystemResource = new FileSystemResource(file);
-			messageHelper.addAttachment("test.rar", fileSystemResource);
-		}
+//		if(file!=null){
+//			FileSystemResource fileSystemResource = new FileSystemResource(file);
+//			messageHelper.addAttachment("test.rar", fileSystemResource);
+//		}
 		sender.setUsername(username);
 		sender.setPassword(password);
 		sender.setJavaMailProperties(prop);

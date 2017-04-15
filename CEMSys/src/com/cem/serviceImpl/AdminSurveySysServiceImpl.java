@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-
 import com.cem.dao.AdminSurveySysDao;
 import com.cem.pojo.Majorabilitycultivationquality;
 import com.cem.pojo.Selfabilityquality;
@@ -100,6 +98,7 @@ public class AdminSurveySysServiceImpl implements AdminSurveySysService {
 		return adminSurveySysDao.searchUserByUserId(userId);
 	}
 
+	@Override
 	@SuppressWarnings("unused")
 	public void dataToExcel(List<User> userList,List<Selfabilityquality> sList,List<Majorabilitycultivationquality> mList,HttpServletRequest request) throws Exception {
 		String realPath = request.getServletContext().getRealPath("/") + "tempFile";
@@ -187,6 +186,7 @@ public class AdminSurveySysServiceImpl implements AdminSurveySysService {
 		workbook.close();
 	}
 
+	@Override
 	public void download(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String path = request.getServletContext().getRealPath("/") + "tempFile/";
 		File file = new File(path + "tempFlie.xls");
