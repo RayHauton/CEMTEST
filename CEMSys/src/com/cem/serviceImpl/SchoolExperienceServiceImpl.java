@@ -18,6 +18,26 @@ public class SchoolExperienceServiceImpl implements SchoolExperienceService {
 	
 	
 	@Override
+	public List<Schoolexperience> findSEByMajorId(String majorId) throws Exception {
+		return schoolExperienceDao.findSEByMajorId(majorId);
+	}
+
+	@Override
+	public void insert(Schoolexperience se) throws Exception {
+		schoolExperienceDao.insert(se);
+	}
+
+	@Override
+	public void update(Schoolexperience se) throws Exception {
+		schoolExperienceDao.update(se);
+	}
+
+	@Override
+	public List<String> findDegreeIdByMajorId(String majorId) throws Exception {
+		return schoolExperienceDao.findDegreeIdByMajorId(majorId);
+	}
+
+	@Override
 	public String findMaxId() throws Exception {
 		return schoolExperienceDao.findMaxId();
 	}

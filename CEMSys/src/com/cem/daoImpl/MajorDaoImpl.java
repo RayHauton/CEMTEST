@@ -17,6 +17,7 @@ import com.cem.customPojo.MajorCustom;
 import com.cem.dao.MajorDao;
 import com.cem.pojo.Major;
 import com.cem.util.GenerateHqlSectionUtil;
+
 @Repository
 public class MajorDaoImpl implements MajorDao {
 	@Autowired
@@ -26,35 +27,37 @@ public class MajorDaoImpl implements MajorDao {
 		return sessionFactory.getCurrentSession();
 	}
 
-	
-	
-	
+	/**
+	 * 更新专业信息
+	 */
+	@Override
+	public void merge(Major major) throws Exception {
+		getSession().merge(major);
+	}
+
 	@Override
 	public String findMaxId() throws Exception {
 		Session session = getSession();
 		return (String) session.createQuery("SELECT MAX(majorId) FROM Major WHERE isDeleted='0'").uniqueResult();
 	}
 
-
-
-
 	@Override
 	public List<MajorCustom> findAllWithDegreeInfo() throws Exception {
 		ArrayList<MajorCustom> majorCustomList = new ArrayList<>();
 		Session session = getSession();
 		session.doWork(new Work() {
-			
+
 			@Override
 			public void execute(Connection con) throws SQLException {
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 				MajorCustom pojo = null;
-				try{
+				try {
 					String sql = "select d.degreeId,d.degreeName,m.majorId,majorName from degree d,major m,schoolexperience se "
 							+ "where m.majorId=se.majorId and d.degreeId=se.degreeId and se.isDeleted='0' and d.isDeleted='0' and m.isDeleted='0' order by m.majorId asc, d.degreeId asc";
 					pstmt = con.prepareStatement(sql);
 					rs = pstmt.executeQuery();
-					while(rs.next()){
+					while (rs.next()) {
 						pojo = new MajorCustom();
 						pojo.setDegreeId(rs.getString(1));
 						pojo.setDegreeName(rs.getString(2));
@@ -62,13 +65,13 @@ public class MajorDaoImpl implements MajorDao {
 						pojo.setMajorName(rs.getString(4));
 						majorCustomList.add(pojo);
 					}
-				}catch(SQLException ex){
+				} catch (SQLException ex) {
 					ex.printStackTrace();
-				}finally{
-					if(pstmt!=null){
+				} finally {
+					if (pstmt != null) {
 						pstmt.close();
 					}
-					if(rs!=null){
+					if (rs != null) {
 						rs.close();
 					}
 				}
@@ -77,28 +80,23 @@ public class MajorDaoImpl implements MajorDao {
 		return majorCustomList;
 	}
 
-
-
-
 	@Override
 	public void insert(Major major) throws Exception {
 		getSession().save(major);
 	}
 
-
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Major> findByMajorIdList(List<String> majorIdList) throws Exception {
 		Session session = getSession();
-		if(majorIdList.size()!=0){//如果有记录的情况
-			String hql = "FROM Major WHERE isDeleted='0' AND majorId IN "+new GenerateHqlSectionUtil().generateHql_IN(majorIdList);
+		if (majorIdList.size() != 0) {// 如果有记录的情况
+			String hql = "FROM Major WHERE isDeleted='0' AND majorId IN "
+					+ new GenerateHqlSectionUtil().generateHql_IN(majorIdList);
 			return session.createQuery(hql).list();
-		}else{//没有对应记录
+		} else {// 没有对应记录
 			return null;
 		}
 	}
-
 
 	@SuppressWarnings("unchecked")
 	@Override

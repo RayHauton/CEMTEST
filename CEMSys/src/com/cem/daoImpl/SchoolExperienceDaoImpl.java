@@ -1,9 +1,15 @@
 package com.cem.daoImpl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,12 +34,71 @@ public class SchoolExperienceDaoImpl implements SchoolExperienceDao {
 
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public String findMaxId() throws Exception {
-		return (String) getSession().createQuery("SELECT MAX(schooleExperienceId) FROM Schoolexperience WHERE isDeleted='0'").uniqueResult();
+	public List<Schoolexperience> findSEByMajorId(String majorId) throws Exception {
+		return getSession().createQuery("FROM Schoolexperience se WHERE se.majorId=? AND se.isDeleted='0'").setParameter(0, majorId).list();
 	}
 
 
+
+	@Override
+	public void insert(Schoolexperience se) throws Exception {
+		getSession().save(se);
+	}
+
+
+
+	@Override
+	public void update(Schoolexperience se) throws Exception {
+		getSession().update(se);
+	}
+
+
+
+	/**
+	 * 根据专业Id找到学位Id
+	 */
+	@Override
+	public List<String> findDegreeIdByMajorId(String majorId) throws Exception {
+		List<String> degreeIds = new ArrayList<String>();
+		getSession().doWork(new Work() {
+			@Override
+			public void execute(Connection con) throws SQLException {
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				try{
+					String sql = "select degreeId from schoolexperience se where se.majorId=? and se.isDeleted='0'";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, majorId);
+					rs = pstmt.executeQuery();
+					while(rs.next()){
+						degreeIds.add(rs.getString(1));
+					}
+				}catch(SQLException ex){
+					ex.printStackTrace();
+				}finally {
+					if(pstmt!=null){
+						pstmt.close();
+					}
+					if(rs!=null){
+						rs.close();
+					}
+					if(con!=null){
+						con.close();
+					}
+				}
+			}
+		});
+		return degreeIds;
+	}
+
+	@Override
+	public String findMaxId() throws Exception {
+		return (String) getSession()
+				.createQuery("SELECT MAX(schooleExperienceId) FROM Schoolexperience WHERE isDeleted='0'")
+				.uniqueResult();
+	}
 
 	@Override
 	public void insertSEBatch(List<Schoolexperience> seList) throws Exception {

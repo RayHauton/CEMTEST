@@ -6,6 +6,13 @@ import com.cem.customPojo.MajorCustom;
 import com.cem.pojo.Major;
 
 public interface MajorDao {
+	/**
+	 * 更新专业信息
+	 * @param major
+	 * @throws Exception
+	 */
+	public void merge(Major major) throws Exception;
+	
 	
 	/**
 	 * 查找最大的degreeId标号

@@ -39,13 +39,50 @@ request.setAttribute("degreeList", baseDataUtil.getDegrees());
 	                <td>${majorCustom.degreeId }</td>
 	                <td>${majorCustom.degreeName }</td>
 	                <td>
-	                    <button class="btn btn-info">编辑</button>
-	                    <button class="btn btn-warning">删除</button>
+	                    <button class="btn btn-info" data-toggle="modal" data-target="#update" onclick="getDegreeIdByMajorId('${pageContext.request.contextPath}/majorSet/getDegreeIdByMajorId.action',this)">编辑</button>
+	                    <button class="btn btn-warning" onclick="deleteRecord(this,'${pageContext.request.contextPath}/majorSet/delete_adm.action')">删除</button>
 	                </td>
 	            </tr>
         	</c:forEach>
         </tbody>
     </table>
+</div>
+<!-- 更新专业信息 -->
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_update" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel_update">更新专业信息
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div id="infoBody">
+				<form action="${pageContext.request.contextPath }/majorSet/update_adm.action" id="ff_update" method="post">
+				<input type="hidden" name="majorId" id="majorId_hidden">
+				<div class="form-group">
+					<label for="majorName_update">专业名称</label>
+					<input type="text" class="form-control" id="majorName_update" name="majorName">
+				</div>
+				<div class="errorInfo" id="majorNameError_update" style="display: none;"></div>
+				<b>归属于哪个学位？（可多选）</b>
+				<div class="checkbox">
+					<c:forEach var="degree" items="${degreeList }">
+						<label><input type="checkbox" name="degreeId_update" value="${degree.degreeId }">${degree.degreeName }</label>|
+					</c:forEach>
+				</div>
+				<div class="errorInfo" id="degreeNameError_update" style="display: none;"></div>
+				</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" onclick="submitUpdateForm();">提交</button>
+				<button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- 添加专业信息 -->
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_info" aria-hidden="true">

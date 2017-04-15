@@ -18,6 +18,11 @@ public class MajorServiceImpl implements MajorService {
 	
 	
 	@Override
+	public void merge(Major major) throws Exception {
+		majorDao.merge(major);
+	}
+
+	@Override
 	public String findMaxId() throws Exception {
 		return majorDao.findMaxId();
 	}

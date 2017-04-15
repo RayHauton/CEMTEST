@@ -7,6 +7,14 @@ import com.cem.pojo.Major;
 
 public interface MajorService {
 
+	/**
+	 * 更新专业信息
+	 * 
+	 * @param major
+	 * @throws Exception
+	 */
+	public void merge(Major major) throws Exception;
+
 	public String findMaxId() throws Exception;
 
 	public List<MajorCustom> findAllWithDegreeInfo() throws Exception;

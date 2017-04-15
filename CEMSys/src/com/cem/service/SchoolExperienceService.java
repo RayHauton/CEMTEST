@@ -6,7 +6,22 @@ import com.cem.pojo.Major;
 import com.cem.pojo.Schoolexperience;
 
 public interface SchoolExperienceService {
-	
+
+	public List<Schoolexperience> findSEByMajorId(String majorId) throws Exception;
+
+	public void insert(Schoolexperience se) throws Exception;
+
+	public void update(Schoolexperience se) throws Exception;
+
+	/**
+	 * 根据专业id找出其归属的学位
+	 * 
+	 * @param majorId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> findDegreeIdByMajorId(String majorId) throws Exception;
+
 	public String findMaxId() throws Exception;
 
 	public void insertSEBatch(List<Schoolexperience> seList) throws Exception;

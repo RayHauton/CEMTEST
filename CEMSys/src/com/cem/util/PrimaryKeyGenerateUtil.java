@@ -4,7 +4,7 @@ package com.cem.util;
  * @author linhd
  *
  */
-public class PrimaryGenerateUtil {
+public class PrimaryKeyGenerateUtil {
 	/**
 	 * 生成major表的逐渐
 	 */
