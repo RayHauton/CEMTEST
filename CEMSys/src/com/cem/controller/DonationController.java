@@ -49,7 +49,7 @@ public class DonationController {
 	/*
 	 * 删除记录
 	 */
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/delete_adm")
 	public void delete(@RequestParam int donationId,HttpServletResponse response) throws Exception{
 		donationService.delete(donationId);
 		response.getWriter().write("succ");

@@ -69,6 +69,7 @@ public class AdminSurveySysDaoImpl implements AdminSurveySysDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Integer> searchSMCondition(AdminSurveyQueryVo adminSurveyQueryVo) {
 		String titleNum = adminSurveyQueryVo.getTitleNum();
@@ -89,11 +90,12 @@ public class AdminSurveySysDaoImpl implements AdminSurveySysDao {
 		} else
 			sql = "select u.userId from User u where u.isDeleted = '0'";
 		Query query = session.createSQLQuery(sql);
-		List<Integer> queryList = (List<Integer>) query.list();
+		List<Integer> queryList = query.list();
 
 		return queryList;
 	}
 
+	@Override
 	public User searchUserByUserId(int userId) {
 		Session session = getSession();
 		User user = (User) session.get(User.class, userId);
@@ -109,7 +111,7 @@ public class AdminSurveySysDaoImpl implements AdminSurveySysDao {
 		Session session = getSession();
 		String hql = "select u.userId from User u";
 		Query query = session.createSQLQuery(hql);
-		List<Object> queryList = (List<Object>) query.list();
+		List<Object> queryList = query.list();
 		String[] userIds = new String[queryList.size()];
 		for (int i = 0; i < queryList.size(); i++)
 			userIds[i] = String.valueOf(queryList.get(i));
