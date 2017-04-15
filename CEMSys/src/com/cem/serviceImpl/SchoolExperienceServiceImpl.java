@@ -15,6 +15,18 @@ public class SchoolExperienceServiceImpl implements SchoolExperienceService {
 	@Autowired
 	private SchoolExperienceDao schoolExperienceDao;
 
+	
+	
+	@Override
+	public String findMaxId() throws Exception {
+		return schoolExperienceDao.findMaxId();
+	}
+
+	@Override
+	public void insertSEBatch(List<Schoolexperience> seList) throws Exception {
+		schoolExperienceDao.insertSEBatch(seList);
+	}
+
 	@Override
 	public Schoolexperience findBySchoolExpericenceId(String SEId) throws Exception {
 		return schoolExperienceDao.findBySchoolExpericenceId(SEId);

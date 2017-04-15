@@ -6,6 +6,11 @@ import com.cem.pojo.Major;
 import com.cem.pojo.Schoolexperience;
 
 public interface SchoolExperienceDao {
+	
+	public String findMaxId() throws Exception;
+	
+	public void insertSEBatch(List<Schoolexperience> seList) throws Exception;
+	
 	/*
 	 * 根据Id查询记录（感觉一般很少用）
 	 */
