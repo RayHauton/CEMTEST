@@ -2,9 +2,17 @@ package com.cem.service;
 
 import java.util.List;
 
+import com.cem.customPojo.MajorCustom;
 import com.cem.pojo.Major;
 
 public interface MajorService {
+
+	public String findMaxId() throws Exception;
+
+	public List<MajorCustom> findAllWithDegreeInfo() throws Exception;
+
+	public void insert(Major major) throws Exception;
+
 	/*
 	 * 查询全部专业
 	 */

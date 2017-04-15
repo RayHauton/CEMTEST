@@ -26,6 +26,23 @@ public class SchoolExperienceDaoImpl implements SchoolExperienceDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	
+	
+	@Override
+	public String findMaxId() throws Exception {
+		return (String) getSession().createQuery("SELECT MAX(schooleExperienceId) FROM Schoolexperience WHERE isDeleted='0'").uniqueResult();
+	}
+
+
+
+	@Override
+	public void insertSEBatch(List<Schoolexperience> seList) throws Exception {
+		Session session = getSession();
+		for (Schoolexperience item : seList) {
+			session.save(item);
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> Schoolexperience findSchoolExperienceByMajorIdAndDegreeId(T... condition) throws Exception {
@@ -47,7 +64,8 @@ public class SchoolExperienceDaoImpl implements SchoolExperienceDao {
 			throw new GlobalCustomException("违反参数传入规则，只传入UserCustom实例，或者传入degreeId，majorId，二者顺序不可颠倒！");
 		}
 		String hql = "FROM Schoolexperience se WHERE se.degreeId=? AND se.majorId=? AND se.isDeleted='0'";
-		return (Schoolexperience) session.createQuery(hql).setParameter(0, degreeId).setParameter(1, majorId).uniqueResult();
+		return (Schoolexperience) session.createQuery(hql).setParameter(0, degreeId).setParameter(1, majorId)
+				.uniqueResult();
 	}
 
 	@Override

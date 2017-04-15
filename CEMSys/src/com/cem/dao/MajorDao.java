@@ -2,9 +2,29 @@ package com.cem.dao;
 
 import java.util.List;
 
+import com.cem.customPojo.MajorCustom;
 import com.cem.pojo.Major;
 
 public interface MajorDao {
+	
+	/**
+	 * 查找最大的degreeId标号
+	 */
+	public String findMaxId() throws Exception;
+	
+	/**
+	 * 查找所有的专业信息（附带学位信息）
+	 * @return
+	 * @throws Exception
+	 */
+	public List<MajorCustom> findAllWithDegreeInfo() throws Exception;
+	/**
+	 * 新增记录
+	 * @param major
+	 * @throws Exception
+	 */
+	public void insert(Major major) throws Exception;
+	
 	/*
 	 * 查询全部专业
 	 */
