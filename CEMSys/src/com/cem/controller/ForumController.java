@@ -6,8 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,9 +21,6 @@ import com.cem.service.ForumService;
 @Controller
 @RequestMapping(value="/forum")
 public class ForumController {
-	@Autowired
-	private DataSource dataSource;
-	
 	@Autowired
 	private ForumService forumService;
 	

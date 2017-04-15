@@ -380,6 +380,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	/* 将数据转为Excel */
+	@Override
 	public void dataToExcel(List<User> userList,HttpServletRequest request) throws Exception {
 		// 获取文件地址
 		String realPath = request.getServletContext().getRealPath("/") + "tempFile";
@@ -461,6 +462,7 @@ public class UserDaoImpl implements UserDao {
 		workbook.close();
 	}
 
+	@Override
 	public void download(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String path = request.getServletContext().getRealPath("/") + "tempFile/";
 		File file = new File(path + "tempFlie.xls");

@@ -176,26 +176,27 @@ setInterval(function(){
 //	alert("interval");
 },30000);
 
-function Push(){
-	$.ajax({
-		type:'post',
-		url:$('#basePath').val()+'/forum/messageInfo',
-		data:{},
-		beforeSend:function(){},
-		success:function(data){
-			var object = eval("("+data+")");//eval使用前要先加括号，才能得到完整的json数据
-			if(object.msg!=0){
-				$('#tongzhi-content').html(object.msg);//更新消息数目
-				$('#tongzhi').show();//将消息显示出来
-			}else{
-				$('#tongzhi').hide();//隐藏消息
-			}
-		},
-		error:function(){
-			alert("error");
-		}
-	});
-}
+//////////////////////////////////此处为新消息提醒    若不用请关闭///////////////////////////////////
+//function Push(){
+//	$.ajax({
+//		type:'post',
+//		url:$('#basePath').val()+'/forum/messageInfo',
+//		data:{},
+//		beforeSend:function(){},
+//		success:function(data){
+//			var object = eval("("+data+")");//eval使用前要先加括号，才能得到完整的json数据
+//			if(object.msg!=0){
+//				$('#tongzhi-content').html(object.msg);//更新消息数目
+//				$('#tongzhi').show();//将消息显示出来
+//			}else{
+//				$('#tongzhi').hide();//隐藏消息
+//			}
+//		},
+//		error:function(){
+//			alert("error");
+//		}
+//	});
+//}
 
 
 /**
