@@ -2,8 +2,11 @@ package com.cem.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -12,6 +15,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.cem.pojo.User;
+import com.cem.util.BeanUtil;
 
 public class ForumTest {
 //	@Test
@@ -146,9 +153,48 @@ public class ForumTest {
 		}
 		return date;
 	}
-	@Test
 	public void test() throws ParseException{
 		System.out.println(getFriendlyTime("2017-3-6 15:30:12"));
+	}
+	
+	public void test1(){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println(simpleDateFormat.format(new Date()));
+	}
+	
+	@Test 
+	public void test2(){
+		JdbcTemplate jdbcTemplate =  (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class); 
+		String sql = "select * from user where DATEDIFF('2017-04-09',birth) >= 0";
+		List<Map<String, Object>> log = new ArrayList<>();
+		List<User> list = new ArrayList<>();
+		try {
+			log = jdbcTemplate.queryForList(sql);
+			for (Map<String, Object> map : log) {
+				User user = new User();
+				user.setUserId((int) map.get("userId"));
+				user.setUsername((String) map.get("username"));
+				user.setTruename((String) map.get("truename"));
+				user.setSex((String) map.get("sex"));
+				user.setStudNumber((String) map.get("studNumber"));
+				user.setBirth((String) map.get("birth"));
+				user.setMobile((String) map.get("mobile"));
+				user.setEmail((String) map.get("email"));
+				user.setEntranceDate((String) map.get("entranceDate"));
+				user.setGraduateDate((String) map.get("graduateDate"));
+				user.setSchoolExperienceId((String) map.get("schoolExperienceId"));
+				user.setCheckOut((String) map.get("checkOut"));
+				user.setIsDeleted((String) map.get("isDeleted"));
+				user.setClassNo((String) map.get("classNo"));
+				list.add(user);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		for (User user : list) {
+			System.out.println(user.getEmail() + " " + user.getTruename());
+		}
 	}
 }
 

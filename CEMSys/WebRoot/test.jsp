@@ -23,10 +23,19 @@
 	</c:choose>
 
 	<jsp:include page="/baseView/header.jsp"></jsp:include>
-	<div style="text-align:center;">
-	<p><a href="${pageContext.request.contextPath }/forum/f/1">随便你说</a></p>
-	<p><a href="${pageContext.request.contextPath }/forum/f/2">学术论坛</a></p>
+	<div style="text-align: center;">
+		<p>
+			<a href="${pageContext.request.contextPath }/forum/f/1">随便你说</a>
+		</p>
+		<p>
+			<a href="${pageContext.request.contextPath }/forum/f/2">学术论坛</a>
+		</p>
+
 	</div>
+
+
+
+
 	<jsp:include page="/baseView/footer.jsp"></jsp:include>
 </body>
 </html>
