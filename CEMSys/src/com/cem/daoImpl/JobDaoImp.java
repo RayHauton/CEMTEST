@@ -31,23 +31,18 @@ public class JobDaoImp implements JobDao{
 		@SuppressWarnings("unchecked")
 		List<Jobinfomodule> jobinfomodules = session.createQuery(hql).setParameter(0, userId).setParameter(1, "0").setFirstResult(0)
 				.setMaxResults(1).list();
+		System.out.println("//////////////");
 		return jobinfomodules.size() == 1 ? jobinfomodules.get(0) : null;
 	}
 
-	@Override
-	public void deleteJobinfomodule(Jobinfomodule jobinfomodule) throws Exception {
-		// TODO Auto-generated method stub
-		jobinfomodule.setIsDeleted("1");
-		Session session = getSession();
-		session.update(jobinfomodule);
-		
-	}
 
 	@Override
-	public void updateJobinfomodule(Jobinfomodule jobinfomodule) throws Exception {
+	public boolean deleteJobinfomodule(int userID) throws Exception {
 		// TODO Auto-generated method stub
-		Session session  =getSession();
-		session.update(jobinfomodule);
+		Session session = getSession();
+		String hql = "update Jobinfomodule j set j.isDeleted='1' where j.userId='" + userID + "'and j.isDeleted='0';";
+		session.createSQLQuery(hql).executeUpdate();
+		return true;
 	}
 
 	@Override
@@ -101,20 +96,14 @@ public class JobDaoImp implements JobDao{
 		return jobcontitionmodules.size() == 1 ? jobcontitionmodules.get(0) : null;
 	}
 
-	@Override
-	public void deleteJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception {
-		// TODO Auto-generated method stub
-		jobcontitionmodule.setIsDeleted("1");
-		Session session = getSession();
-		session.update(jobcontitionmodule);
-		
-	}
 
 	@Override
-	public void updateJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception {
+	public boolean deleteJobcontitionmodule(int userID) throws Exception {
 		// TODO Auto-generated method stub
 		Session session = getSession();
-		session.update(jobcontitionmodule);
+		String hql = "update Jobcontitionmodule j set j.isDeleted='1' where j.userId='" + userID + "'and j.isDeleted='0';";
+		session.createSQLQuery(hql).executeUpdate();
+		return true;
 	}
 
 	@Override
@@ -185,6 +174,18 @@ public class JobDaoImp implements JobDao{
 	public void insertTransferjobcount(Transferjobcount transferjobcount) throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean updateJobinfomodule(Jobinfomodule jobinfomodule) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

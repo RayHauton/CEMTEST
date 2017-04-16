@@ -124,7 +124,7 @@ public class BaseInfomationController {
 				response.getWriter().write("succ");
 			} else {
 				System.out.println("目标值已存在");
-				jobService.deleteJobInf(jobinfomodule2);
+				jobService.deleteJobInf(jobinfomodule2.getUserId());
 				jobService.insertJobInf(jobinfomodule);
 				response.setCharacterEncoding("utf-8");
 				response.getWriter().write("覆盖成功");

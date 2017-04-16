@@ -136,7 +136,7 @@ public class SchoolExperienceDaoImpl implements SchoolExperienceDao {
 	@Override
 	public Schoolexperience findBySchoolExpericenceId(String SEId) throws Exception {
 		Session session = getSession();
-		return (Schoolexperience) session.createQuery("FROM Schoolexperience se WHERE se.isDeleted='0' AND se.SEId=?")
+		return (Schoolexperience) session.createQuery("FROM Schoolexperience se WHERE se.isDeleted='0' AND se.schooleExperienceId=?")
 				.setParameter(0, SEId).uniqueResult();
 	}
 
