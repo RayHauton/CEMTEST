@@ -36,10 +36,15 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public void deleteJobInf(Jobinfomodule jobinfomodule) throws Exception {
+	public boolean deleteJobInf(int userId) throws Exception {
 		// TODO Auto-generated method stub
-		jobinfomodule.setIsDeleted("1");
-		jobDao.updateJobinfomodule(jobinfomodule);
+		
+		if(jobDao.deleteJobinfomodule(userId))
+			return true;
+		else {
+			return false;
+		}
+		
 	}
 
 	@Override
@@ -68,9 +73,13 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public void deleteJobCon(Jobcontitionmodule jobcontitionmodule) throws Exception {
+	public boolean deleteJobCon(int userId) throws Exception {
 		// TODO Auto-generated method stub
-		jobDao.deleteJobcontitionmodule(jobcontitionmodule);
+		if(jobDao.deleteJobcontitionmodule(userId))
+			return true;
+		else {
+			return false;
+		}
 	}
 
 }

@@ -306,7 +306,7 @@ public class UserDaoImpl implements UserDao {
 			return null;
 		}
 		StringBuilder hql = new StringBuilder(
-				"select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate from User u join Schoolexperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) where u.isDeleted  = '0' ");
+				"select u.username,u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate from User u join Schoolexperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) where u.isDeleted  = '0' ");
 		if ("0".equals(passed))
 			hql.append("And u.checkOut='0' ");
 		else if ("1".equals(passed)) {
@@ -504,15 +504,15 @@ public class UserDaoImpl implements UserDao {
 		String hql = null;
 		System.out.println(passed);
 		if ("1".equals(passed))
-			hql = "select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
+			hql = "select u.username,u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
 					+ "from User u join SchoolExperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) "
 					+ "where u.isDeleted  = '0' and u.checkOut = '1' ";
 		else if ("3".equals(passed)) {
-			hql = "select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
+			hql = "select u.username,u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
 					+ "from User u join SchoolExperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) "
 					+ "where u.isDeleted  = '0' ";
 		} else if ("0".equals(passed)) {
-			hql = "select u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
+			hql = "select u.username,u.truename,u.studNumber,m.majorName,u.mobile,u.email,u.entranceDate,u.graduateDate "
 					+ "from User u join SchoolExperience s on (u.schoolExperienceId=s.schooleExperienceId) join Major m on (s.majorId=m.majorId) "
 					+ "where u.isDeleted  = '0' and u.checkOut = '0' ";
 		}

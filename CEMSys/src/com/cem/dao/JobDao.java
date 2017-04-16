@@ -10,8 +10,8 @@ public interface JobDao {
 	
 	
 	public Jobinfomodule findJobinfomoduleByUserId(int userId) throws Exception;
-	public void deleteJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
-	public void updateJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
+	public boolean updateJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
+	public boolean deleteJobinfomodule(int useId) throws Exception;
 	public void insertJobinfomodule(Jobinfomodule jobinfomodule) throws Exception;
 	
 	public Companynature findCompanynatureByNaturId(String natureId) throws Exception;
@@ -20,8 +20,8 @@ public interface JobDao {
 	public void insertCompanynature(Companynature companynature) throws Exception;
 	
 	public Jobcontitionmodule findJobcontitionmoduleByUserId(int userId) throws Exception;
-	public void deleteJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception;
-	public void updateJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception;
+	public boolean updateJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception;
+	public boolean deleteJobcontitionmodule(int useId) throws Exception;
 	public void insertJobcontitionmodule(Jobcontitionmodule jobcontitionmodule) throws Exception;
 	
 	public Income findIncomeByIncomeId(String incomeId) throws Exception;

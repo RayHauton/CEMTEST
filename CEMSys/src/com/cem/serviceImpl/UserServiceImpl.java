@@ -160,18 +160,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean deleteUser(User user) throws Exception {
 		// TODO Auto-generated method stub
-		if (user.getStudNumber().length() == 8)
-			user.setStudNumber("0" + user.getStudNumber());
-		User user2 = findUserByStudNum(user.getStudNumber(), false);
-		if (user2 == null) {
+		if (user == null) {
 			System.out.println("未找到");
 			return false;
 		} else {
-			user2.setIsDeleted("1");
+			System.out.println("用户已找到");
+			user.setIsDeleted("1");
 		}
-		if (userDao.updateUser(user2))
+		if (userDao.updateUser(user)){
+			System.out.println("删除成功");
 			return true;
+			}
 		else {
+			System.out.println("dao层报错");
 			return false;
 		}
 	}
