@@ -1,0 +1,148 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: 微软雅黑;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+.contentBody {
+	min-height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 6px;
+	border: 1px solid #d3d7cf;
+	width: 1000px;
+}
+
+
+.searchLogo {
+	margin:0px;
+	float: left;
+	width: 70px;
+	height: 70px;
+	margin-left: 4px;
+}
+
+.searchLogo img {
+	margin:0px;
+	width: 45px;
+	height: 45px;
+	margin-left: 12px;
+	margin-top: 15px;
+}
+
+#hr {
+	width: 100%;
+	height: 3px;
+	border: none;
+	border-top: 2px solid #d3d7cf;
+	margin-top: 6px;
+	margin-bottom: 0px;
+}
+#input{
+	margin:0px;
+	padding:0px;
+	width:25px;
+	height: 25px;
+}
+.form-control{
+	margin:0px;
+	padding:0px;
+	display: inline-block;
+	width:25px;
+	height: 27px;
+}
+
+th{
+	margin:0px;
+	padding:0px;
+	text-align:center;
+}
+td{
+	margin:0px;
+	padding:0px;
+	text-align:center;
+}
+
+#user {
+	font-family:"Open Sans", Helvetica, Arial, sans-serif;
+	font-weight:300;
+	font-size: 14px;
+	line-height:30px;
+	color:#777;
+	padding:25px;
+	margin:5px 0;
+}
+
+.record{
+	float: left;
+	margin-left:10px;
+/* 	margin-top:20px; */
+	display: inline-block;
+}
+.record{
+	display: inline-block;
+/* 	margin-top:5px; */
+/* 	background-color: red; */
+	height: 33px;
+	border-radius: 4px;
+	line-height: 33px;
+	border: 1px solid #DDDDDD;
+	font-size:12px;
+}
+
+.radio-btn input[type="radio"], .check-box input[type="checkbox"] {
+    visibility: hidden;
+}
+
+ .check-box {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 2px 7px 0 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 1px #ccc;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+    border: 1px solid #ccc;
+}
+.check-box i {
+    background: url('../../images/check_mark.png') no-repeat center center;
+    position: absolute;
+    left: 3px;
+    bottom: -15px;
+    width: 16px;
+    height: 16px;
+    opacity: .5;
+    transition: all 400ms ease-in-out;
+    transform:rotateZ(-180deg);
+}
+
+
+.checkedBox {
+    box-shadow: inset 0 0 5px 1px #ccc;
+    border-bottom-color: #fff;
+}
+.checkedBox i {
+    bottom: 2px;
+    transform:rotateZ(0deg);
+}
+a{ 
+	text-decoration:none; 
+}
+.notice{
+	display:none;
+	position:absolute;	
+	z-index:999;
+	height:46px;
+	width:170px;
+	background-image: url('../../images/dialog.png');
+	background-size: 170px 40px;
+	background-repeat: no-repeat;
+}

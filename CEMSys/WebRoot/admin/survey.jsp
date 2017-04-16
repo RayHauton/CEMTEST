@@ -93,9 +93,9 @@
 							<tr>
 								<th>&emsp;&ensp;用户名</th>
 								<th>&emsp;&ensp;真实姓名</th>
-								<th>&emsp;学号</th>
-								<th>&emsp;&ensp;调研详情</th>
-								<th>&emsp;&ensp;用户详情</th>
+								<th>&emsp;&emsp;&ensp;学号</th>
+								<th>&emsp;&emsp;&ensp;调研详情</th>
+								<th>&emsp;&emsp;&ensp;用户详情</th>
 								<th style="display:none">&emsp;&ensp;ID号</th>
 							</tr>
 						</thead>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-2-24 22:31:31 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.cem.pojo.StudentList" table="studentlist" catalog="cemsys">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="stuId" type="string">
+            <column name="stuId" length="10" />
+        </property>
+         <property name="stuName" type="string">
+            <column name="stuName" length="30" />
+        </property>
+        <property name="stuGender" type="string">
+            <column name="stuGender" length="1">
+            </column>
+        </property>
+        <property name="entranceDate" type="java.lang.String">
+            <column name="entranceDate" length="10" />
+        </property>
+        <property name="classNo" type="java.lang.String">
+            <column name="classNo" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
