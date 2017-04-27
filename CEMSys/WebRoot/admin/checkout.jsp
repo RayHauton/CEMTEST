@@ -23,21 +23,20 @@
 	<jsp:include page="header_admin.jsp"></jsp:include>
 	<div class="contentBody">
 		<br />
-		<h3
-			style="margin: 0; padding: 0; margin-bottom: 15px; margin-top: 5px;">以下为尚未审核用户</h3>
-		<div id="tableDiv"
-			style="width: 70%; margin-left: 15%; margin-top: 10px;">
+		<h3 style="margin: 0; padding: 0; margin-bottom: 15px; margin-top: 5px;">以下为尚未审核用户</h3>
+		<h5>将鼠标悬浮于<img src="../images/yes.png" style="width:13px;height:auto;">/<img src="../images/No.png" style="width:13px;height:auto;">可查看详情</h5>
+		<div id="tableDiv" style="width: 80%; margin-left: 10%; margin-top: 10px;">
 			<form action="${pageContext.request.contextPath }/checkout/auditSelected_adm.action">
 				<table class="table table-bordered table-striped" style="width: 100%;" >
 					<thead style="font-size: 15px;">
 						<tr>
 							<th>序号</th>
 							<th>多选</th>
-							<th>用户名</th>
-							<th>真实姓名</th>
-							<th>学号</th>
-							<th>入学时间</th>
-							<th>是否通过审核</th>
+							<th style="width:125px;">用户名</th>
+							<th style="width:125px;">真实姓名</th>
+							<th style="width:125px;">学号</th>
+							<th style="width:125px;">入学时间</th>
+							<th style="width:125px;">是否通过审核</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -72,10 +71,10 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td><%=k+1 %></td>	
-							<td><div class="check-box" id="selectAll"><i><input type="checkbox" name="check-box" id="temp"></i></div><span style="display:inline-block;vertical-align:super;">全选</span></td>
-							<td><button class="btn form-control btn-success" style="width:120px;" id="pass">批量通过审核</button></td>
-							<td><button class="btn form-control btn-danger" style="width:120px;" id="refuse">批量不通过审核</button></td>
+							<td>全选</td>	
+							<td><div class="check-box" id="selectAll"><i><input type="checkbox" name="check-box" id="temp"></i></div></td>
+							<td colspan="2" ><button class="btn form-control btn-success" style="width:120px;" id="pass">批量通过审核</button></td>
+							<td colspan="2" ><button class="btn form-control btn-danger" style="width:120px;" id="refuse">批量不通过审核</button></td>
 						</tr>
 					</tfoot>
 				</table>

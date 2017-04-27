@@ -65,11 +65,15 @@ $(function(){
 			notice.hide();
 		});
 	});
-//	$(".notice").mouseover(function(){ 
-//		$(this).show();
-//	}).mouseout(function(){
-//		$(this).hide();
-//	});
+	$(".notice").mouseover(function(){ 
+		$(this).show();
+	}).mouseout(function(){
+		$(this).hide();
+	});
+});
+
+$(function(){
+	
 	
 });
 
