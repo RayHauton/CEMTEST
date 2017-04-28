@@ -5,9 +5,16 @@ Date: 2016/12/6
 Time: 21:22
 To change this template use File | Settings | File Templates.
 --%>
+<%@page import="com.cem.util.BeanUtil"%>
+<%@page import="com.cem.serviceImpl.SystemInfoGetterService"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
+if(session.getAttribute("systemDomain")==null){
+	session.setAttribute("systemDomain", ((SystemInfoGetterService)BeanUtil.getBean(SystemInfoGetterService.class)).getSystemDomain());
+}
+%>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -52,7 +59,7 @@ To change this template use File | Settings | File Templates.
 				</div>
 			</div>
 			<div class="imgDiv">
-				<img alt="" src="/fileUpload/collegeEventImgs/${pojo.eventImg}"
+				<img alt="" src="http://${sessionScope.systemDomain }/fileUpload/collegeEventImgs/${pojo.eventImg}"
 				 width="<fmt:formatNumber type="number" value="${pojo.width*100 div pojo.height }" maxFractionDigits="0"/>px" height="100px">
 			</div>
 		</div>

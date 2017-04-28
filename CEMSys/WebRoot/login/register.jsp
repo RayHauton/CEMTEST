@@ -16,8 +16,9 @@ request.setAttribute("majorList", new BaseDataUtil().getMajors());
 <html>
 <head>
     <title>校友信息系统用户注册</title>
-    <link rel="stylesheet" href="../css/login/register.css"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/login/register.css"/>
 </head>
 <body>
 <!-- 保存url前缀 -->

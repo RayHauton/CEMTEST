@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>南航经管院专业学习交流平台</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/login/login.css">
     <link rel="stylesheet" href="../css/alertCss/xcConfirm.css">
 </head>
@@ -24,8 +25,8 @@
         </div>
         <div class="title">
 <!--             <p class="h1 " style="color:#2CC42C;letter-spacing:3px;">经济与管理学院</p> -->
-            <p class="h1 " style="color:#FFFFFF;letter-spacing:3px;">经济与管理学院</p>
-            <p class="h3" style="color:#000FFE;letter-spacing:2px;">校友信息管理系统</p>
+            <p class="h1 " style="color:#0080c0;letter-spacing:3px;">经济与管理学院</p>
+            <p class="h3" style="color:#0080c0;letter-spacing:2px;">校友信息管理系统</p>
         </div>
     </div>
     <div id="loginFormDiv">

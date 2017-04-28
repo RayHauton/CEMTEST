@@ -81,7 +81,8 @@
 			<li class="dropdown"><a data-toggle="dropdown"
 				class="dropdown-toggle" href="#">校友快讯<b class="caret"></b></a>
 				<ul role="menu" class="dropdown-menu">
-					<li><a href="#">招聘信息</a></li>
+					<li><a href="${pageContext.request.contextPath }/recruitment/show.action">查看招聘信息</a></li>
+					<li><a href="${pageContext.request.contextPath }/recruitment/open.action">发布招聘信息</a></li>
 					<li><a href="http://cem.nuaa.edu.cn/list11710910.htm">校友风采</a></li>
 					<li><a href="http://cem.nuaa.edu.cn/list11710909.htm">新闻公告</a></li>
 				</ul></li>

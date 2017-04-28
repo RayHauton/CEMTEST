@@ -1,9 +1,17 @@
 <!-- 
 	校友会信息页面
  -->
+<%@page import="com.cem.util.BeanUtil"%>
+<%@page import="com.cem.serviceImpl.SystemInfoGetterService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+if(session.getAttribute("systemDomain")==null){
+	session.setAttribute("systemDomain", ((SystemInfoGetterService)BeanUtil.getBean(SystemInfoGetterService.class)).getSystemDomain());
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +32,7 @@
 				<h2>${pojo.alumniAssociationName }</h2>
 				<p>联系人：${pojo.contactPerson }&nbsp&nbsp&nbsp&nbsp联系方式：${pojo.contactWay }</p>
 				<div id="picture">
-					<img src="/fileUpload/alumniAssociationImg/${pojo.img }" alt="${pojo.alumniAssociationName }" onload="resize(this,'${pojo.width}','${pojo.height }');">
+					<img src="http://${sessionScope.systemDomain }/fileUpload/alumniAssociationImg/${pojo.img }" alt="${pojo.alumniAssociationName }" onload="resize(this,'${pojo.width}','${pojo.height }');">
 				</div>
 			</div>
 		</c:forEach>

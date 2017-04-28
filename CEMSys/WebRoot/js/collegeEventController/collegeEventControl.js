@@ -178,7 +178,7 @@ function showInfo(url,type,obj){
 /*
  * 加载图片
  */
-function loadImg(url,obj){
+function loadImg(url,obj,systemDomain){
 	document.getElementById("infoBody").innerText="正在加载图片，请稍后...";
 	var tr = obj.parentNode.parentNode;
 	$.ajax({
@@ -190,7 +190,7 @@ function loadImg(url,obj){
 			window.alert("数据加载失败！");
 		},
 		success:function(data){
-			document.getElementById("imgInfo").src="/fileUpload/collegeEventImgs/"+data;
+			document.getElementById("imgInfo").src="http://"+systemDomain+"/fileUpload/collegeEventImgs/"+data;
 		}
 	});
 }

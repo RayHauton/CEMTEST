@@ -84,10 +84,10 @@ function submitForm(operation) {
 	}
 }
 
-function showImg(obj){
+function showImg(obj,systemDomain){
 	console.log(obj.parentNode.getAttribute("id"));
 	var img = document.getElementById("imgDetail");
-	img.setAttribute("src",obj.parentNode.getAttribute("id"));
+	img.setAttribute("src","http://"+systemDomain+obj.parentNode.getAttribute("id"));
 	img.onload=function(){
 		var width = img.width;
 		var height = img.height;

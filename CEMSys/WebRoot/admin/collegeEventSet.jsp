@@ -1,9 +1,14 @@
+<%@page import="com.cem.util.BeanUtil"%>
+<%@page import="com.cem.serviceImpl.SystemInfoGetterService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.cem.util.BaseDataUtil" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setAttribute("pageSizeList", BaseDataUtil.getPageSizes());
+	if(session.getAttribute("systemDomain")==null){
+		session.setAttribute("systemDomain", ((SystemInfoGetterService)BeanUtil.getBean(SystemInfoGetterService.class)).getSystemDomain());
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -65,7 +70,7 @@
 				</span>
 				</td>
 				<td>${pojo.eventDate }</td>
-				<td><a data-toggle="modal" data-target="#showImg" class="detailA" onclick="loadImg('${pageContext.request.contextPath}/collegeEvent/loadImg.action',this)">查看图片</a></td>
+				<td><a data-toggle="modal" data-target="#showImg" class="detailA" onclick="loadImg('${pageContext.request.contextPath}/collegeEvent/loadImg.action',this,'${sessionScope.systemDomain }')">查看图片</a></td>
 				<td>
 				<button class="btn btn-primary" data-toggle="modal" data-target="#update" onclick="fillUpdateInfo(this)">编辑</button>
 				<button class="btn btn-warning" onclick="deleteRecord('${pageContext.request.contextPath}/collegeEvent/delete.action',this,'${queryVo.pageIndex }')">删除</button>
