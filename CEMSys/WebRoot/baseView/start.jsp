@@ -8,6 +8,7 @@
 <!-- <link rel="stylesheet" href="../css/view_set/base.css"> -->
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
+<link rel="stylesheet" href="../css/person_detail.css">
 <style>
 </style>
 <title>Insert title here</title></head>

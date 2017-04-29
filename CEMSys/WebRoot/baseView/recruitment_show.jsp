@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="../css/view_set/recruitment_show.css">
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
+<link rel="stylesheet" href="../css/person_detail.css">
 <title>招聘信息查看</title>
 </head>
 <body>

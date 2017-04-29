@@ -22,6 +22,7 @@ if(session.getAttribute("systemDomain")==null){
 	<link rel="stylesheet" href="../css/view_set/alumni-association.css">
 	<link rel="stylesheet" href="../css/view_set/head.css">
 	<link rel="stylesheet" href="../css/view_set/footer.css">
+	<link rel="stylesheet" href="../css/person_detail.css">
 	<script src="../js/alumniAssociationController/alumniAssociationControl.js"></script>
 </head>
 <body>

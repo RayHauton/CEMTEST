@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../css/view_set/recruitment_pub.css">
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
+<link rel="stylesheet" href="../css/person_detail.css">
 <title>发布招聘信息</title>
 </head>
 <body>

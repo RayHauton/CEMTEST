@@ -16,9 +16,10 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="../css/view_set/base.css">
 <link rel="stylesheet" href="../css/view_set/personal-ability.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/person_detail.css">
 </head>
 <body style="text-align: center;">
-		<jsp:include page="header.jsp" flush="true"></jsp:include>
+		<jsp:include page="../baseView/header.jsp" ></jsp:include>
 			<div id="content">
 				<!-- 个人能力品质调研 -->
 				<div id="Selfabilityquality">
@@ -552,7 +553,9 @@ To change this template use File | Settings | File Templates.
 									<td class="border-left">38</td>
 									<td class="w120">科研机会</td>
 									<td><input type="radio" id="38"
-										name="scientificResearchOpportunity" value="1"></td>
+										name="scientificResearchOpportunity" value="1"></
+
+>
 									<td><input type="radio" id="38"
 										name="scientificResearchOpportunity" value="2"></td>
 									<td><input type="radio" id="38"
@@ -586,8 +589,6 @@ To change this template use File | Settings | File Templates.
 					</form>
 				</div>
 			</div>
-		</div>
-		<br/>
 		<jsp:include page="footer.jsp"></jsp:include>
 	<script src="../js/jquery-1.9.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
