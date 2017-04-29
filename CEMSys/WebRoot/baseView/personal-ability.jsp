@@ -18,7 +18,6 @@ To change this template use File | Settings | File Templates.
 <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body style="text-align: center;">
-	<table>
 		<jsp:include page="header.jsp" flush="true"></jsp:include>
 			<div id="content">
 				<!-- 个人能力品质调研 -->
@@ -590,7 +589,6 @@ To change this template use File | Settings | File Templates.
 		</div>
 		<br/>
 		<jsp:include page="footer.jsp"></jsp:include>
-	</table>
 	<script src="../js/jquery-1.9.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/loginController/loginAndLogout.js"></script>
