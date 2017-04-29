@@ -149,72 +149,72 @@
 <!-- 模态框1（Modal） -->
 <div class="modal fade" id="ability-bg" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog" style="width: 500px;">
-		<div class="modal-content">
+	<div class="modal-dialog" >
+		<div class="modal-content"   id="modal-content-person">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 				<%-- <h4 class="modal-title" id="myModalLabel">${app_users[0]}</h4> --%>
 			</div>
-			<div class="modal-body" style="margin-left: 50px; padding: 0px;">
+			<div class="modal-body" id="modal-body-person">
 				<form action="" id="update_detail">
 					<table class="table table-bordered table-striped"
-						style="width: 400px;">
+						 id="person-detail-tab">
 						<tr>
-							<td>用户名</td>
-							<td id=""><input id="ab-username"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">用户名</td>
+							<td id="pta"><input id="ab-username"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>真实姓名</td>
-							<td id=""><input id="ab-trueName"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">真实姓名</td>
+							<td id="pta"><input id="ab-trueName"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>性别</td>
-							<td id=""><input id="ab-sex"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1"> 性别</td>
+							<td  id="pta"><input id="ab-sex"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>学号</td>
-							<td><input id="ab-studnumber"
-								style="width: 100%; height: 100%; border: none; text-align: center;"
+							<td id="pta1">学号</td>
+							<td id="pta"><input id="ab-studnumber"
+								style=""
 								readonly unselectable="on"></td>
 						</tr>
 						<tr>
-							<td>生日</td>
-							<td id=""><input id="ab-birth"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">生日</td>
+							<td id="pta"><input id="ab-birth"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>手机号</td>
-							<td id=""><input id="ab-mobile"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">手机号</td>
+							<td id="pta"><input id="ab-mobile"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>Email</td>
-							<td id=""><input id="ab-email"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">Email</td>
+							<td id="pta"><input id="ab-email"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>地址</td>
-							<td id=""><input id="ab-address"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">地址</td>
+							<td id="pta"><input id="ab-address"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>入学日期</td>
-							<td id=""><input id="ab-entrancedate"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">入学日期</td>
+							<td id="pta"><input id="ab-entrancedate"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>毕业日期</td>
-							<td id=""><input id="ab-graduateDate"
-								style="width: 100%; height: 100%; border: none; text-align: center;"></td>
+							<td id="pta1">毕业日期</td>
+							<td id="pta"><input id="ab-graduateDate"
+								style=""></td>
 						</tr>
 						<tr>
-							<td>学历</td>
-							<td id=""><select
-								style="width: 60%; height: 100%; border: none; text-align: center; margin-left: 20%"
+							<td id="pta1">学历</td>
+							<td id="pta"><select
+								style=""
 								id="ab-degree" disabled="true">
 									<option value="">-----</option>
 									<option value="D01">专科</option>
@@ -225,9 +225,9 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td>专业</td>
-							<td id=""><select
-								style="width: 60%; height: 1000%; border: none; text-align: center; margin-left: 20%"
+							<td id="pta1">专业</td>
+							<td id="pta"><select
+								style=""
 								disabled="true"
 								id="ab-major">
 									<option value="">-----</option>
@@ -370,7 +370,7 @@
 								option2[q].selected = true;
 							}
 						}
-						;
+						; 
 
 					}
 				})

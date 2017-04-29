@@ -1,5 +1,6 @@
 /**/
 .box{width: 100%;margin: 20px auto;position: relative;}
+
 @media screen and (min-width:761px) {
 	.subnav{width: 180px;height: 100%;position: absolute;top: 20px;left: 0;padding: 0 10px;}
 	.subnav li{display: block;padding: 5px;color: #fff;font-size: 16px;cursor: pointer;}
@@ -10,11 +11,16 @@
 	.w120{width: 220px;font-size: 16px;}
 	input[type="radio"]{width: 50%;height: 50%;display: inline-block;margin-top: 25px;}
 	table{border: 1px solid #fff;outline: none;text-align: center;margin: 0 auto;}	
-	table td{width: 80px;height: 50px;line-height: 50px;}
-	table tr td{border-top: 1px solid #fff;}
-	table tr.border-top td{border-top: 0;}
-	table td{border-left: 1px solid #fff;}
-	table td.border-left{border-left: 0px;}
+	table td{height: 43px;line-height: 50px;}
+	#SelfabilityqualityTable tr td{border-top: 1px solid #fff;}
+	#SelfabilityqualityTable tr.border-top td{border-top: 0;}
+	#SelfabilityqualityTable td{border-left: 1px solid #fff;}
+	#SelfabilityqualityTable td.border-left{border-left: 0px;} 
+	#MajorabilitycultivationqualityForm tr td{border-top: 1px solid #fff;}
+	#MajorabilitycultivationqualityForm tr.border-top td{border-top: 0;}
+	#MajorabilitycultivationqualityForm td{border-left: 1px solid #fff;}
+	#MajorabilitycultivationqualityForm td.border-left{border-left: 0px;} 
+	
 	.btn{margin: 0px auto;text-align: center;}
 	.btn input{width: 100px;height: 36px;background-color: yellow;font-size: 16px;display: inline-block;line-height: 36px;background-color: #f60;}
 }
@@ -29,16 +35,15 @@
 	input[type="radio"]{width: 24px;height: 24px;display: inline-block;margin-top: 12px;}
 	table{border: 1px solid #fff;outline: none;text-align: center;margin: 0 auto;}	
 	table td{width: 80px;height: 36px;line-height: 36px;}
-	table tr td{border-top: 1px solid #fff;}
-	table tr.border-top td{border-top: 0;}
-	table td{border-left: 1px solid #fff;}
-	table td.border-left{border-left: 0px;}
+	#SelfabilityqualityTable tr td{border-top: 1px solid #fff;}
+	#SelfabilityqualityTable tr.border-top td{border-top: 0;}
+	#SelfabilityqualityTable td{border-left: 1px solid #fff;}
+	#SelfabilityqualityTable td.border-left{border-left: 0px;} 
+	#MajorabilitycultivationqualityForm tr td{border-top: 1px solid #fff;}
+	#MajorabilitycultivationqualityForm tr.border-top td{border-top: 0;}
+	#MajorabilitycultivationqualityForm td{border-left: 1px solid #fff;}
+	#MajorabilitycultivationqualityForm td.border-left{border-left: 0px;} 
 	.btn{margin: 0px auto;text-align: center;}
 	.btn input{width: 100px;height: 36px;background-color: yellow;font-size: 16px;display: inline-block;line-height: 36px;background-color: #f60;}
  }
-.table-bordered {
-	display:none;
-}
-.modal-footer{
-	display:none;
-}
+

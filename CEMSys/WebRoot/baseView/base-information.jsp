@@ -13,6 +13,7 @@ To change this template use File | Settings | File Templates.
 <title>校友基本信息登记</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/view_set/base.css">
+<link rel="stylesheet" href="../css/person_detail.css">
 <link rel="stylesheet" href="../css/view_set/base-information.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/view_set/head.css">

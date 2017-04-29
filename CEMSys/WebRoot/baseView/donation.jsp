@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../css/view_set/donation.css">
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
+<link rel="stylesheet" href="../css/person_detail.css">
 <title>捐赠实时公告系统</title>
 </head>
 <body>

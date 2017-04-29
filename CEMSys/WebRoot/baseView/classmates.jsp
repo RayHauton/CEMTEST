@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="../css/view_set/head.css">
 <link rel="stylesheet" href="../css/view_set/footer.css">
 <link rel="stylesheet" href="../css/view_set/classmate.css">
+<link rel="stylesheet" href="../css/person_detail.css">
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
