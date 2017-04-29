@@ -36,3 +36,9 @@
 	.btn{margin: 0px auto;text-align: center;}
 	.btn input{width: 100px;height: 36px;background-color: yellow;font-size: 16px;display: inline-block;line-height: 36px;background-color: #f60;}
  }
+.table-bordered {
+	display:none;
+}
+.modal-footer{
+	display:none;
+}
