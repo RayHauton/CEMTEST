@@ -22,6 +22,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import com.cem.dao.MailDao;
@@ -48,23 +49,33 @@ public class MailDaoImpl implements MailDao {
 
 	private Properties prop = new Properties();
 
-	private String Username = "nuaadadan@163.com";
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	// @Scheduled(cron="0 0 9 * * ?")//每天上午9点执行
+	// @Scheduled(cron = "0 0 9 * * ?") // 每天上午9点执行
+	// @Scheduled(cron="0/20 * * * * ?")//每隔x秒执行一次
 	public void sendBirthdayMail() {
 		// TODO Auto-generated method stub
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String today = simpleDateFormat.format(new Date());
 		// 遍历得到当天生日的校友
-		String sql = "select * from user where DATEDIFF('" + today + "',birth) = 0";
+		// String sql = "select * from user where DATEDIFF('" + today +
+		// "',birth) = 0";
+		// 将所有的日期转换成2000年进行比较
+		String sql = "select * from user where DATEDIFF(CONCAT('2000',DATE_FORMAT('" + today
+				+ "','-%m-%d')),CONCAT('2000',DATE_FORMAT(birth,'-%m-%d')))='0'";
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
-		List<User> userList = new ArrayList<>();
-		for (Map<String, Object> map : list) {
-			User user = translateMapToUser(map);
-			userList.add(user);
+		if (list.size() == 0) {
+			System.out.println("无人今日生日");
+		} else {
+			System.out.println("今天" + list.size() + "人生日");
+			List<User> userList = new ArrayList<>();
+			for (Map<String, Object> map : list) {
+				User user = translateMapToUser(map);
+				userList.add(user);
+			}
+			sendBirthdayBlessMail(userList);
 		}
 	}
 
@@ -78,26 +89,13 @@ public class MailDaoImpl implements MailDao {
 	}
 
 	@Override
-	public void testMail() {
-		// TODO Auto-generated method stub
-		initMailSender();
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-		simpleMailMessage.setFrom(mailSender.getUsername());
-		simpleMailMessage.setTo("987612820@qq.com");
-		simpleMailMessage.setSubject("This is a test");
-		simpleMailMessage.setText("dadan");
-
-		mailSender.send(simpleMailMessage);
-	}
-
-	@Override
 	public void sendHyperTextMail(String subject, String content, String[] toList, Map<String, String> pictures,
 			Map<String, String> attachments) throws MessagingException {
 		initMailSender();
 		MimeMessage mailMessage = mailSender.createMimeMessage();
 
 		MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage, true, "utf-8");
-		messageHelper.setFrom(Username);// 设置发件人邮箱
+		messageHelper.setFrom(userName);// 设置发件人邮箱
 
 		// 设置收件人邮箱
 		if (toList.length <= 0) {
@@ -192,10 +190,6 @@ public class MailDaoImpl implements MailDao {
 				userList.addAll(tempList);
 			}
 		}
-		System.out.println("1111111111111");
-		for (String string : userList) {
-			System.out.println(string);
-		}
 		return userList;
 	}
 
@@ -205,9 +199,9 @@ public class MailDaoImpl implements MailDao {
 		List<String> queryCondition = new ArrayList<>();
 		String[] strArr = null;
 		String regex = ",|，";// 中文或者英文逗号
-		if (toList.contains(",")||toList.contains("，")) {
+		if (toList.contains(",") || toList.contains("，")) {
 			strArr = toList.split(regex);
-		}else{
+		} else {
 			strArr = new String[1];
 			strArr[0] = toList;
 		}
@@ -226,13 +220,47 @@ public class MailDaoImpl implements MailDao {
 		} else if (what.equals("class")) {// 按班级
 			for (String s : strArr) {
 				// 09+班级号码
-				queryCondition.add("09" + s );
+				queryCondition.add("09" + s);
 			}
 		} else {
 			return null;
 		}
 		System.out.println(queryCondition);
 		return queryCondition;
+	}
+
+	@Override
+	public void sendAuditSuccessMail(String userMail) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void sendBirthdayBlessMail(List<User> userList) {
+		// TODO Auto-generated method stub
+		initMailSender();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String today = simpleDateFormat.format(new Date());
+		String subject = "南航大经管院全体祝您生日快乐";
+		StringBuffer content = null;
+		if (userList == null) {
+			System.out.println("今日无人生日");
+		} else {
+			for (User usr : userList) {
+				content = new StringBuffer("<p>");
+				content.append(usr.getTruename()
+						+ "：</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 您好！</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 今天是"
+						+ today
+						+ "，您之前在南京航空航天大学经济与管理学院校友系统登记过您的生日。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;祝生日快乐，工作愉快，身体健康！</p><p style='text-align: right; '>南京航空航天大学经济与管理学院</p><p style='text-align: right; '>"
+						+ today + "</p>");
+				try {
+					sendHyperTextMail(subject, content.toString(), new String[] { usr.getEmail() }, null, null);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cem.dao.MailDao;
+import com.cem.pojo.User;
 import com.cem.service.MailService;
 
 @Service
@@ -23,11 +24,6 @@ public class MailServiceImpl implements MailService {
 		mailDao.sendBirthdayMail();
 	}
 	
-	@Override
-	public void testMail(){
-		mailDao.testMail();
-	}
-
 	@Override
 	public void sendHyperTextMail(String subject, String content, String[] toList, Map<String, String> pictures,
 			Map<String, String> attachments) throws MessagingException {
@@ -45,6 +41,18 @@ public class MailServiceImpl implements MailService {
 	public List<String> generateQueryCondition(String toList, String what) {
 		// TODO Auto-generated method stub
 		return mailDao.generateQueryCondition(toList, what);
+	}
+
+	@Override
+	public void sendAuditSuccessMail(String userMail) {
+		// TODO Auto-generated method stub
+		mailDao.sendAuditSuccessMail(userMail);
+	}
+
+	@Override
+	public void sendBirthdayBlessMail(List<User> userList) {
+		// TODO Auto-generated method stub
+		mailDao.sendBirthdayBlessMail(userList);
 	}
 
 }

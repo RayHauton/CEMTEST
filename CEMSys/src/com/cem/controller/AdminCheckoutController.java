@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cem.pojo.User;
 import com.cem.service.AdminCheckoutService;
+import com.cem.service.MailService;
 import com.cem.util.BeanUtil;
 import com.cem.util.MailUtil;
 
@@ -73,6 +74,4 @@ public class AdminCheckoutController {
 		}
 		return  "redirect:/checkout/open_adm.action";
 	}
-	
-	
 }

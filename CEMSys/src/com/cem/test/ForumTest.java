@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.hql.internal.ast.SqlASTFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -94,7 +95,6 @@ public class ForumTest {
 //		System.out.println(result);
 //	}
 	
-	@Test
 	public void test(){
 		try {
 			JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
@@ -155,5 +155,17 @@ public class ForumTest {
 //	public void test() throws ParseException{
 //		System.out.println(getFriendlyTime("2017-3-6 15:30:12"));
 //	}
+	
+	public void test12313(){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String today = simpleDateFormat.format(new Date());
+		JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
+		String sql = "update User set role='1010101' DATEDIFF(DATE_FORMAT('" + today + "',%m-%d),DATE_FORMAT(birth)) = 0";
+	}
+	@Test
+	public void testjlsadf(){
+		JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
+		String sql = "SELECT DATEDIFF(CONCAT('2000',DATE_FORMAT('2017-1-15','-%m-%d')),CONCAT('2000',DATE_FORMAT('2017-1-1','-%m-%d')))";
+	}
 }
 

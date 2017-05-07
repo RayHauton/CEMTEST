@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,41 +36,10 @@ public class MailController {
 	@Value("${summernoteUploadPath}")
 	private String uploadPath;
 
-	@RequestMapping(value = "/audit")
-	public String sentMailAfterAudit() {
-		mailService.testMail();
-		return "test";
-	}
-
-	@RequestMapping(value = "/birthdayBlessing")
-	public void sentBirthdayblessing() {
-
-	}
-
 	/**
 	 * String subject,String content,String[] toList,Map<String, String>
 	 * pictures,Map<String, String> attachments
 	 */
-	@RequestMapping(value = "/uploadMail")
-	public String uploadMail(@RequestParam("1") MultipartFile file1, @RequestParam("2") MultipartFile file2,
-			@RequestParam("subject") String subject, @RequestParam("content") String content,
-			@RequestParam("toUsers") String toUsers) {
-		String[] toList = toUsers.split(";");
-		String finalContent = translateImgSrcToCid1(content);
-		Map<String, String> pictures = translateImgSrcToCid2(content);
-		MultipartFile[] files = new MultipartFile[2];
-		files[0] = file1;
-		files[1] = file2;
-		Map<String, String> attachments = translateAttachmentToMap(files);
-		try {
-			mailService.sendHyperTextMail(subject, finalContent, toList, pictures, attachments);
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "redirect:/mailTest";
-	}
-
 	@RequestMapping(value = "/mailToAll")
 	public ModelAndView mailtoall(@RequestParam("1") MultipartFile file1, @RequestParam("2") MultipartFile file2,
 			@RequestParam("subject") String subject, @RequestParam("content") String content) {
