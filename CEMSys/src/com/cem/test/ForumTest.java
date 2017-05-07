@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -12,6 +14,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.cem.util.BeanUtil;
 
 public class ForumTest {
 //	@Test
@@ -89,20 +94,20 @@ public class ForumTest {
 //		System.out.println(result);
 //	}
 	
-//	@Test
-//	public void test(){
-//		JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
-//		try {
-//			String sql = "update ForumMessage set status='1' where personId='2'";
-//			int result = jdbcTemplate.update(sql);
-//			System.out.println(result);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		}
-//		
-//		
-//	}
+	@Test
+	public void test(){
+		try {
+			JdbcTemplate jdbcTemplate = (JdbcTemplate) BeanUtil.getBean(JdbcTemplate.class);
+			String sql = "select email from User where classNo LIKE '09__2%'";
+			List<Map<String, Object>> result = jdbcTemplate.queryForList(sql);
+			System.out.println(result);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	
 //	@Test
@@ -146,9 +151,9 @@ public class ForumTest {
 		}
 		return date;
 	}
-	@Test
-	public void test() throws ParseException{
-		System.out.println(getFriendlyTime("2017-3-6 15:30:12"));
-	}
+//	@Test
+//	public void test() throws ParseException{
+//		System.out.println(getFriendlyTime("2017-3-6 15:30:12"));
+//	}
 }
 

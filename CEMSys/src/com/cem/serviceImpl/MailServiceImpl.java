@@ -1,5 +1,6 @@
 package com.cem.serviceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -32,6 +33,18 @@ public class MailServiceImpl implements MailService {
 			Map<String, String> attachments) throws MessagingException {
 		// TODO Auto-generated method stub
 		mailDao.sendHyperTextMail(subject, content, toList, pictures, attachments);
+	}
+
+	@Override
+	public List<String> findUserEmailList(List<String> queryCondition) {
+		// TODO Auto-generated method stub
+		return mailDao.findUserEmailList(queryCondition);
+	}
+
+	@Override
+	public List<String> generateQueryCondition(String toList, String what) {
+		// TODO Auto-generated method stub
+		return mailDao.generateQueryCondition(toList, what);
 	}
 
 }
