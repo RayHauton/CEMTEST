@@ -37,10 +37,6 @@ function countChar(inputName,spanName){
 	document.getElementById(spanName).innerHTML=length;
 }
 
-/*<div class="table_main">引用${test.replyObject }L：引用内容</div>
-									<div class="every_reply">
-									<div id="id${test.floor }">${test.replyText }</div> 
-									</div>*/
 function reply(test){
 	// 当前楼层的用户id hostId
 	var forumId = document.getElementById("forumId").value;

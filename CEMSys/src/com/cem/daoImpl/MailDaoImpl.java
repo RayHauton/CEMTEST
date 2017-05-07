@@ -12,55 +12,71 @@ import java.util.Properties;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.sql.DataSource;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import com.cem.dao.MailDao;
 import com.cem.pojo.User;
+
 @Repository
-public class MailDaoImpl implements MailDao{
+public class MailDaoImpl implements MailDao {
 	@Autowired
 	private DataSource dataSource;
-	
+
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Value("${mail.username}")
+	private String userName;
+
+	@Value("${mail.password}")
+	private String password;
+
+	@Value("${mail.host}")
+	private String host;
+
 	private JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-	
+
 	private Properties prop = new Properties();
-	
+
 	private String Username = "nuaadadan@163.com";
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Override
-//	@Scheduled(cron="0 0 9 * * ?")//每天上午9点执行
+	// @Scheduled(cron="0 0 9 * * ?")//每天上午9点执行
 	public void sendBirthdayMail() {
 		// TODO Auto-generated method stub
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String today = simpleDateFormat.format(new Date());
-		//遍历得到当天生日的校友
-		String sql = "select * from user where DATEDIFF('"+ today +"',birth) = 0";
+		// 遍历得到当天生日的校友
+		String sql = "select * from user where DATEDIFF('" + today + "',birth) = 0";
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 		List<User> userList = new ArrayList<>();
-		for(Map<String, Object> map:list){
+		for (Map<String, Object> map : list) {
 			User user = translateMapToUser(map);
 			userList.add(user);
 		}
 	}
 
-	public void initMailSender(){
-		mailSender.setHost("smtp.163.com");
-		mailSender.setUsername("nuaadadan@163.com");
-		mailSender.setPassword("dadan123");	
+	public void initMailSender() {
+		mailSender.setHost(host);
+		mailSender.setUsername(userName);
+		mailSender.setPassword(password);
 		prop.setProperty("mail.smtp.auth", "true");
 		prop.setProperty("mail.smtp.timeout", "25000");
 		mailSender.setJavaMailProperties(prop);
 	}
-	
+
 	@Override
 	public void testMail() {
 		// TODO Auto-generated method stub
@@ -70,79 +86,77 @@ public class MailDaoImpl implements MailDao{
 		simpleMailMessage.setTo("987612820@qq.com");
 		simpleMailMessage.setSubject("This is a test");
 		simpleMailMessage.setText("dadan");
-		
+
 		mailSender.send(simpleMailMessage);
 	}
-	
+
 	@Override
-	public void sendHyperTextMail(String subject,String content,String[] toList,Map<String, String> pictures,Map<String, String> attachments) throws MessagingException{
+	public void sendHyperTextMail(String subject, String content, String[] toList, Map<String, String> pictures,
+			Map<String, String> attachments) throws MessagingException {
 		initMailSender();
 		MimeMessage mailMessage = mailSender.createMimeMessage();
-		
+
 		MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage, true, "utf-8");
-		messageHelper.setFrom(Username);//设置发件人邮箱
-		
-		//设置收件人邮箱
+		messageHelper.setFrom(Username);// 设置发件人邮箱
+
+		// 设置收件人邮箱
 		if (toList.length <= 0) {
 			throw new RuntimeException("收件人邮箱不得为空");
 		}
 		messageHelper.setTo(toList);
-		messageHelper.setSubject(subject);//设置主题
-		messageHelper.setText(content, true);//true表示启动HTML格式的邮件
-		
-		//添加图片
-		if (pictures!=null) {
-			for(Iterator<Map.Entry<String, String>> it = pictures.entrySet().iterator();it.hasNext();){
+		messageHelper.setSubject(subject);// 设置主题
+		messageHelper.setText(content, true);// true表示启动HTML格式的邮件
+
+		// 添加图片
+		if (pictures != null) {
+			for (Iterator<Map.Entry<String, String>> it = pictures.entrySet().iterator(); it.hasNext();) {
 				Map.Entry<String, String> entry = it.next();
 				String cid = entry.getKey();
 				String filePath = entry.getValue();
-				if (null == cid || null == filePath) {  
-                    throw new RuntimeException("请确认每张图片的ID和图片地址是否齐全！");  
-                }
-				
+				if (null == cid || null == filePath) {
+					throw new RuntimeException("请确认每张图片的ID和图片地址是否齐全！");
+				}
 				File file = new File(filePath);
-//				if (!file.exists()) {
-//					throw new RuntimeException("图片"+ filePath+"不存在");
-//				}
+				// if (!file.exists()) {
+				// throw new RuntimeException("图片"+ filePath+"不存在");
+				// }
 				FileSystemResource img = new FileSystemResource(file);
 				messageHelper.addInline(cid, img);
 			}
 		}
-		
-		// 添加附件  
-        if (null != attachments) {  
-            for (Iterator<Map.Entry<String, String>> it = attachments  
-                    .entrySet().iterator(); it.hasNext();) {  
-                Map.Entry<String, String> entry = it.next();  
-                String cid = entry.getKey();  
-                String filePath = entry.getValue();  
-                if (null == cid || null == filePath) {  
-                    throw new RuntimeException("请确认每个附件的ID和地址是否齐全！");  
-                }  
-  
-                File file = new File(filePath);  
-                if (!file.exists()) {  
-                    throw new RuntimeException("附件" + filePath + "不存在！");  
-                }  
-  
-                FileSystemResource fileResource = new FileSystemResource(file);  
-                messageHelper.addAttachment(cid, fileResource);  
-            }  
-        }
-        
-        //发送邮件
-        try {
-        	mailSender.send(mailMessage);
+
+		// 添加附件
+		if (null != attachments) {
+			for (Iterator<Map.Entry<String, String>> it = attachments.entrySet().iterator(); it.hasNext();) {
+				Map.Entry<String, String> entry = it.next();
+				String cid = entry.getKey();
+				String filePath = entry.getValue();
+				if (null == cid || null == filePath) {
+					throw new RuntimeException("请确认每个附件的ID和地址是否齐全！");
+				}
+
+				File file = new File(filePath);
+				if (!file.exists()) {
+					throw new RuntimeException("附件" + filePath + "不存在！");
+				}
+
+				FileSystemResource fileResource = new FileSystemResource(file);
+				messageHelper.addAttachment(cid, fileResource);
+			}
+		}
+
+		// 发送邮件
+		try {
+			mailSender.send(mailMessage);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-        
-        System.out.println(1);
+
 	}
-	
-	public User translateMapToUser(Map<String, Object> map){
-		User user= new User();
+
+	public User translateMapToUser(Map<String, Object> map) {
+		User user = new User();
 		user.setUsername((String) map.get("username"));
 		user.setTruename((String) map.get("truename"));
 		user.setSex((String) map.get("sex"));
@@ -158,6 +172,67 @@ public class MailDaoImpl implements MailDao{
 		user.setClassNo((String) map.get("classNo"));
 		return user;
 	}
-	
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> findUserEmailList(List<String> queryCondition) {
+		// TODO Auto-generated method stub
+		List<String> userList = new ArrayList<>();
+		String sql = null;
+		Session session = sessionFactory.getCurrentSession();
+		if (queryCondition == null) {
+			return null;
+		} else if (queryCondition.size() == 1 && queryCondition.get(0) == "allUsers") {
+			sql = "select email from User";
+			userList = session.createQuery(sql).list();
+		} else {
+			for (String condition : queryCondition) {
+				sql = "select email from User where classNo LIKE '" + condition + "'";
+				List<String> tempList = session.createQuery(sql).list();
+				userList.addAll(tempList);
+			}
+		}
+		System.out.println("1111111111111");
+		for (String string : userList) {
+			System.out.println(string);
+		}
+		return userList;
+	}
+
+	@Override
+	public List<String> generateQueryCondition(String toList, String what) {
+		// TODO Auto-generated method stub
+		List<String> queryCondition = new ArrayList<>();
+		String[] strArr = null;
+		String regex = ",|，";// 中文或者英文逗号
+		if (toList.contains(",")||toList.contains("，")) {
+			strArr = toList.split(regex);
+		}else{
+			strArr = new String[1];
+			strArr[0] = toList;
+		}
+		if (what.equals("allUsers")) {
+			queryCondition.add("allUsers");
+		} else if (what.equals("grade")) {// 按年级
+			for (String s : strArr) {
+				// 09+年级+%
+				queryCondition.add("09" + s + "%");
+			}
+		} else if (what.equals("dept")) {// 按专业
+			for (String s : strArr) {
+				// 09+__+专业号码+%
+				queryCondition.add("09__" + s + "%");
+			}
+		} else if (what.equals("class")) {// 按班级
+			for (String s : strArr) {
+				// 09+班级号码
+				queryCondition.add("09" + s );
+			}
+		} else {
+			return null;
+		}
+		System.out.println(queryCondition);
+		return queryCondition;
+	}
+
 }
