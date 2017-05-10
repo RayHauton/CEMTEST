@@ -75,6 +75,24 @@ public class MailController {
 		return "redirect:/mailTest";
 	}
 
+	@RequestMapping(value="/nonePhotoMail")
+	public String nonePhotoMail(@RequestParam("1") MultipartFile file1, @RequestParam("2") MultipartFile file2,
+			@RequestParam("subject") String subject, @RequestParam("content") String content,
+			@RequestParam("toUsers") String toUsers){
+		String[] toList = toUsers.split(";");
+		Map<String, String> pictures = null;
+		MultipartFile[] files = new MultipartFile[2];
+		files[0] = file1;
+		files[1] = file2;
+		Map<String, String> attachments = translateAttachmentToMap(files);
+		try {
+			mailService.sendHyperTextMail(subject, content, toList, pictures, attachments);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "succ";
+	}
 	private boolean saveFile(MultipartFile file, String filePath) {
 		if (!file.isEmpty()) {
 			try {
