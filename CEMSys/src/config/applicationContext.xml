@@ -73,7 +73,6 @@
 			pointcut="execution(* com.cem.serviceImpl.*.*(..))" />
 	</aop:config>
 	<task:annotation-driven/>
-	
 </beans>
 
 
