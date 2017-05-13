@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,7 @@ public class ForumController {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return simpleDateFormat.format(date);
 	}
+	
 	/**
 	 * 选择一个模块进入 得到帖子列表
 	 * @param request
@@ -38,15 +41,11 @@ public class ForumController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/f/{forumModuleId}")
-	private ModelAndView getForumList(HttpServletRequest request,HttpServletResponse response,HttpSession session,@PathVariable(value="forumModuleId") int id) throws Exception{
+	private ModelAndView getForumList(HttpServletRequest request,HttpSession session,@PathVariable(value="forumModuleId") int id) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
-		String pageNum = request.getParameter("forumIndex");
-		if (pageNum == null) {
-			pageNum = "1";
-		}
-		int pageIndex = Integer.parseInt(pageNum);
+		String pageNum = checkNULLAndSet(getParameter(request, "forumIndex"), "1");
 		session.setAttribute("forumModuleId", id);
-		Map<String, Object> map = forumService.FindForumwhileGointoModule(id, pageIndex);
+		Map<String, Object> map = forumService.FindForumwhileGointoModule(id, Integer.parseInt(pageNum));
 		modelAndView.setViewName("/baseView/bbsforum");
 		modelAndView.addAllObjects(map);
 		return modelAndView;
@@ -62,12 +61,9 @@ public class ForumController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/p/{forumId}")
-	private ModelAndView getReplyList(HttpServletRequest request,HttpServletResponse response,HttpSession session,@PathVariable(value="forumId") int forumId) throws Exception{
+	private ModelAndView getReplyList(HttpServletRequest request,@PathVariable(value="forumId") int forumId) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
-		String pageNum = request.getParameter("pageNum");
-		if (pageNum == null) {
-			pageNum = "1";
-		}
+		String pageNum = checkNULLAndSet(getParameter(request, "pageNum"), "1");
 		Map<String, Object> map = forumService.FindReplywhileGointoForum(forumId, Integer.parseInt(pageNum));
 		modelAndView.addAllObjects(map);
 		modelAndView.setViewName("/baseView/bbstest4css");
@@ -83,37 +79,23 @@ public class ForumController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/insertForum")
-	private String insertForum(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
+	private String insertForum(HttpServletRequest request,HttpSession session) throws Exception{
 		User user = (User) session.getAttribute("user");
-		Forum forum = new Forum();
-		Reply reply = new Reply();
-		String forumTitle = request.getParameter("forumTitle");
-		String content = request.getParameter("forumContent");
+		String[] parameters = getParameters(request, new String[]{"forumTitle","forumContent"});
+		String forumTitle = parameters[0];
+		String content = parameters[1];
 		if (content == null) {
 			content = forumTitle;
 		}
 		String forumModuleId = String.valueOf(session.getAttribute("forumModuleId"));
 		
 		//对forum进行设置
-		forum.setForumTitle(forumTitle);
-		forum.setForumContent(content);
-		forum.setPublishTime(getFormattedTime(new Date()));
-		forum.setUpdateTime(forum.getPublishTime());
-		forum.setUserId(user.getUserId());
-		forum.setUsername(user.getUsername());
-		forum.setForumModule(forumModuleId);
-		forum.setTruename(user.getTruename());
+		Forum forum = new Forum(forumTitle, content, forumModuleId, user.getUserId(),user.getUsername(), user.getTruename(), getFormattedTime(new Date()), getFormattedTime(new Date()));
 		forumService.insertForum(forum);
 		
 		//同时将发帖内容发送到回复表中 （BBS格式）
-		reply.setFloor((short) 1);
-		String forumId = forumService.FindForumIdWhilePostForum(String.valueOf(user.getUserId()), forum.getPublishTime());
-		reply.setForum(forumId);
-		reply.setPublishUserId(user.getUserId());
-		reply.setPublishUser(user.getUsername());
-		reply.setReplyText(content);
-		reply.setReplyTime(forum.getPublishTime());
-		forumService.insertReply(reply,forumId);
+		Reply reply2 = new Reply(content, user.getUserId(), user.getUsername(), String.valueOf(forum.getForumId()), (short)1, forum.getPublishTime());
+		forumService.insertReply(reply2,String.valueOf(forum.getForumId()));
 		
 		return "redirect:/forum/f/"+forumModuleId;
 	}
@@ -129,38 +111,24 @@ public class ForumController {
 	public ModelAndView insertReply(HttpServletRequest request,HttpSession session)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		User user = (User) session.getAttribute("user");
-		String forumId = request.getParameter("forumId");
-		String replyText = request.getParameter("replyText");
-		String floor = request.getParameter("floor");
-		String userId = request.getParameter("userId");
-		String forumTitle = request.getParameter("forumTitle");
-		String objectReplyContent = request.getParameter("objectReplyContent");
-		Reply reply = new Reply();
-		ForumMessage message = new ForumMessage();
 		
-		reply.setForum(forumId);//帖子id
-		reply.setReplyTime(getFormattedTime(new Date()));//时间
-		reply.setReplyText(replyText);//回复内容
-		reply.setReplyObject(floor);//回复几楼
-		reply.setFloor(forumService.getFloorWhenInsertReply(forumId));//该回复所在楼层
-		reply.setPublishUserId(user.getUserId());
-		reply.setPublishUser(user.getUsername());
+		String[] parameters = getParameters(request, new String[]{"forumId","replyText","floor","userId","forumTitle","objectReplyContent"});
+		String forumId = parameters[0];
+		String replyText = parameters[1];
+		String floor = parameters[2];
+		String userId = parameters[3];
+		String forumTitle = parameters[4];
+		String objectReplyContent = parameters[5];
+		Reply reply2 = new Reply(replyText, user.getUserId(), user.getUsername(), forumId, forumService.getFloorWhenInsertReply(forumId), getFormattedTime(new Date()), floor);
 		if (objectReplyContent != null) {
 			if (objectReplyContent.length() > 200) {
-				reply.setParentReplyId(objectReplyContent.substring(0, 200));
+				reply2.setParentReplyId(objectReplyContent.substring(0, 200));
 			}else{
-				reply.setParentReplyId(objectReplyContent);
+				reply2.setParentReplyId(objectReplyContent);
 			}
 		}
-		forumService.insertReply(reply,forumId);
-		
-		message.setForumId(Integer.parseInt(forumId));
-		message.setForumTitle(forumTitle);
-		message.setObjectReplyId(Integer.parseInt(userId));
-		message.setPersonId(user.getUserId());
-		message.setPersonName(user.getUsername());
-		message.setTime(reply.getReplyTime());
-		
+		forumService.insertReply(reply2,forumId);
+		ForumMessage message = new ForumMessage(Integer.parseInt(forumId), forumTitle, user.getUserId(), user.getUsername(), reply2.getReplyTime(), Integer.parseInt(userId));
 		forumService.insertMessage(message);
 		modelAndView.setViewName("redirect:/forum/p/"+forumId);
 		return modelAndView;
@@ -169,7 +137,7 @@ public class ForumController {
 	@RequestMapping(value="/deleteForum")
 	public ModelAndView deleteForum(HttpServletRequest request,HttpSession session) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
-		String forumId = request.getParameter("forumId");
+		String forumId = getParameter(request, "forumId");
 		forumService.deleteForum(Integer.parseInt(forumId));
 		modelAndView.setViewName("redirect:/forum/f/1");
 		
@@ -179,8 +147,9 @@ public class ForumController {
 	@RequestMapping(value="/deleteReply")
 	public ModelAndView deleteReply(HttpServletRequest request,HttpSession session) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
-		String replyId = request.getParameter("replyId");
-		String forumId = request.getParameter("forumId");
+		String[] parameters = getParameters(request, new String[]{"replyId","forumId"});
+		String replyId = parameters[0];
+		String forumId = parameters[1];
 		forumService.deleteReply(Integer.parseInt(replyId));
 		modelAndView.setViewName("redirect:/forum/p/" + forumId);
 		return modelAndView;
@@ -204,10 +173,7 @@ public class ForumController {
 	public ModelAndView myMessage(HttpServletRequest request,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		User user = (User) session.getAttribute("user");
-		String messagePageIndex = request.getParameter("messagePageIndex");
-		if (messagePageIndex == null) {
-			messagePageIndex = "1";
-		}
+		String messagePageIndex = checkNULLAndSet(request.getParameter("messagePageIndex"), "1");
 		Map<String, Object> map = forumService.FindAllNewMessages(user.getUserId(), messagePageIndex);
 		modelAndView.setViewName("/baseView/bbsmessage");
 		modelAndView.addAllObjects(map);
@@ -240,5 +206,21 @@ public class ForumController {
 		modelAndView.setViewName("/forum/ihome_reply");
 		modelAndView.addAllObjects(map);
 		return modelAndView;
+	}
+	
+	//得到参数
+	private String getParameter(HttpServletRequest request,String parameterName){
+		return request.getParameter(parameterName);
+	}
+	
+	private String[] getParameters(HttpServletRequest request,String[] parameters){
+		String[] result = new String[parameters.length];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = getParameter(request, parameters[i]);
+		}
+		return result;
+	}
+	private String checkNULLAndSet(String toCheck,String value){
+		return (toCheck == null)?value:toCheck;
 	}
 }

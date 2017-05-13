@@ -82,6 +82,20 @@ public class Forum implements java.io.Serializable {
 		this.isFine = isFine;
 		this.isDeleted = isDeleted;
 	}
+	
+
+	public Forum(String forumTitle, String forumContent, String forumModule, Integer userId, String username,
+			String truename, String publishTime, String updateTime) {
+		super();
+		this.forumTitle = forumTitle;
+		this.forumContent = forumContent;
+		this.forumModule = forumModule;
+		this.userId = userId;
+		this.username = username;
+		this.truename = truename;
+		this.publishTime = publishTime;
+		this.updateTime = updateTime;
+	}
 
 	public int getForumId() {
 		return this.forumId;

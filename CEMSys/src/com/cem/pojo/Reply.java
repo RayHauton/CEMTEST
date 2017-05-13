@@ -43,6 +43,28 @@ public class Reply implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
+	public Reply(String replyText, int publishUserId, String publishUser, String forum, Short floor, String replyTime) {
+		super();
+		this.replyText = replyText;
+		this.publishUserId = publishUserId;
+		this.publishUser = publishUser;
+		this.forum = forum;
+		this.floor = floor;
+		this.replyTime = replyTime;
+	}
+
+	public Reply(String replyText, int publishUserId, String publishUser, String forum, Short floor, String replyTime,
+			String replyObject) {
+		super();
+		this.replyText = replyText;
+		this.publishUserId = publishUserId;
+		this.publishUser = publishUser;
+		this.forum = forum;
+		this.floor = floor;
+		this.replyTime = replyTime;
+		this.replyObject = replyObject;
+	}
+
 	public int getReplyId() {
 		return this.replyId;
 	}

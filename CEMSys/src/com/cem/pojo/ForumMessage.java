@@ -33,6 +33,17 @@ public class ForumMessage implements Serializable{
 		this.status = status;
 	}
 
+	public ForumMessage(int forumId, String forumTitle, int personId, String personName, String time,
+			int objectReplyId) {
+		super();
+		this.forumId = forumId;
+		this.forumTitle = forumTitle;
+		this.personId = personId;
+		this.personName = personName;
+		this.time = time;
+		this.objectReplyId = objectReplyId;
+	}
+
 	public int getId() {
 		return id;
 	}

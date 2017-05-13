@@ -28,7 +28,6 @@ public class ForumDaoImpl implements ForumDao {
 	/**
 	 * 所有页面默认显示条数大小为5 可根据情况进行修改 可能不同页面显示不同 没有全局变量pageSize crtl+f 检索 pageSize
 	 */
-
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -42,6 +41,12 @@ public class ForumDaoImpl implements ForumDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unused")
+	private String getFormattedTime(Date date){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return simpleDateFormat.format(date);
+	}
+	
 	@Override
 	public String insertForum(Forum forum) throws Exception {
 		// TODO Auto-generated method stub
