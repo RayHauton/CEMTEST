@@ -15,6 +15,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -41,7 +42,7 @@ public class ForumDaoImpl implements ForumDao {
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
+	
 	@Override
 	public String insertForum(Forum forum) throws Exception {
 		// TODO Auto-generated method stub
