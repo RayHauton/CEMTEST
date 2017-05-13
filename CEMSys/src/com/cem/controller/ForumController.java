@@ -33,12 +33,6 @@ public class ForumController {
 	
 	/**
 	 * 选择一个模块进入 得到帖子列表
-	 * @param request
-	 * @param response
-	 * @param session
-	 * @param id
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/f/{forumModuleId}")
 	private ModelAndView getForumList(HttpServletRequest request,HttpSession session,@PathVariable(value="forumModuleId") int id) throws Exception{
