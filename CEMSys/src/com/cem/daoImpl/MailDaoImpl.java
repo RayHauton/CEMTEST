@@ -1,6 +1,7 @@
 package com.cem.daoImpl;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,13 +9,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.sql.DataSource;
 
+import org.apache.commons.net.smtp.SMTP;
+import org.apache.commons.net.smtp.SMTPClient;
+import org.apache.commons.net.smtp.SMTPReply;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.ToListResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -23,10 +29,20 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Repository;
+import org.xbill.DNS.Lookup;
+import org.xbill.DNS.Record;
+import org.xbill.DNS.Type;
 
 import com.cem.dao.MailDao;
+import com.cem.pojo.HTMLMail;
 import com.cem.pojo.User;
+import com.sun.corba.se.spi.orbutil.threadpool.ThreadPool;
+import com.sun.mail.handlers.text_html;
+import com.sun.media.jfxmedia.logging.Logger;
+
+import sun.net.smtp.SmtpClient;
 
 @Repository
 public class MailDaoImpl implements MailDao {
@@ -49,6 +65,7 @@ public class MailDaoImpl implements MailDao {
 
 	private Properties prop = new Properties();
 
+	private ThreadPoolTaskExecutor _threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -144,13 +161,33 @@ public class MailDaoImpl implements MailDao {
 		}
 
 		// 发送邮件
+		// 同步发送
+		long time1 = System.currentTimeMillis();
 		try {
 			mailSender.send(mailMessage);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		long time2 = System.currentTimeMillis();
+		// 异步发送
+		_threadPoolTaskExecutor = initThreadPoolExecutor();
+		_threadPoolTaskExecutor.execute(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					mailSender.send(mailMessage);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+		});
+		long time3 = System.currentTimeMillis();
 
+		System.err.println("同步完成时间：" + (time2 - time1));
+		System.err.println("异步完成时间：" + (time3 - time2));
 	}
 
 	public User translateMapToUser(Map<String, Object> map) {
@@ -263,4 +300,157 @@ public class MailDaoImpl implements MailDao {
 		}
 	}
 
+	public ThreadPoolTaskExecutor initThreadPoolExecutor() {
+		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+		threadPoolTaskExecutor.setQueueCapacity(200); // 队列容量
+		threadPoolTaskExecutor.setCorePoolSize(5); // 核心线程数量
+		threadPoolTaskExecutor.setMaxPoolSize(100); // 最大线程数量
+		threadPoolTaskExecutor.setKeepAliveSeconds(300); // 允许线程空闲时间
+		threadPoolTaskExecutor.initialize(); // 重新初始化
+		return threadPoolTaskExecutor;
+	}
+
+	public boolean isValid(String email) {
+		if (!email.matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+")) {
+			return false;
+		}
+		Record[] rsult = null;
+		SMTPClient client = new SMTPClient();
+		try {
+			client.connect(host);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public void sendHyperTextMail(HTMLMail htmlMail) throws MessagingException {
+		// TODO Auto-generated method stub
+		initMailSender();
+		MimeMessage mailMessage = mailSender.createMimeMessage();
+
+		MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage, true, "utf-8");
+		messageHelper.setFrom(userName);// 设置发件人邮箱
+
+		// 设置收件人邮箱
+		if (htmlMail.getToList().length <= 0) {
+			throw new RuntimeException("收件人邮箱不得为空");
+		}
+		messageHelper.setSubject(htmlMail.getSubject());// 设置主题
+		messageHelper.setText(htmlMail.getContent(), true);// true表示启动HTML格式的邮件
+
+		Map<String, String> pictures = htmlMail.getPictures();
+		Map<String, String> attachments = htmlMail.getAttachments();
+		// 添加图片
+		if (pictures != null) {
+			for (Iterator<Map.Entry<String, String>> it = pictures.entrySet().iterator(); it.hasNext();) {
+				Map.Entry<String, String> entry = it.next();
+				String cid = entry.getKey();
+				String filePath = entry.getValue();
+				if (null == cid || null == filePath) {
+					throw new RuntimeException("请确认每张图片的ID和图片地址是否齐全！");
+				}
+				File file = new File(filePath);
+				// if (!file.exists()) {
+				// throw new RuntimeException("图片"+ filePath+"不存在");
+				// }
+				FileSystemResource img = new FileSystemResource(file);
+				messageHelper.addInline(cid, img);
+			}
+		}
+
+		// 添加附件
+		if (null != attachments) {
+			for (Iterator<Map.Entry<String, String>> it = attachments.entrySet().iterator(); it.hasNext();) {
+				Map.Entry<String, String> entry = it.next();
+				String cid = entry.getKey();
+				String filePath = entry.getValue();
+				if (null == cid || null == filePath) {
+					throw new RuntimeException("请确认每个附件的ID和地址是否齐全！");
+				}
+
+				File file = new File(filePath);
+				if (!file.exists()) {
+					throw new RuntimeException("附件" + filePath + "不存在！");
+				}
+
+				FileSystemResource fileResource = new FileSystemResource(file);
+				messageHelper.addAttachment(cid, fileResource);
+			}
+		}
+
+		// 发送邮件
+		_threadPoolTaskExecutor = initThreadPoolExecutor();
+		long time2 = System.currentTimeMillis();
+		_threadPoolTaskExecutor.execute(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				for (String s1 : htmlMail.getToList()) {
+					try {
+						if (isValid_Email(s1)) {
+							messageHelper.setTo(s1);
+							mailSender.send(mailMessage);	
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		long time3 = System.currentTimeMillis();
+		System.err.println("异步完成时间：" + (time3 - time2));
+	}
+	
+	//防止因为一个邮箱无效 导致不能发送邮件
+	//进行邮箱的有效性检验
+	public boolean isValid_Email(String email){
+		if (!email.matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+")) {
+			return false;
+		}
+		String host1111 = "";
+		String hostName = email.split("@")[1];
+		Record[] result = null;
+		SMTPClient client = new SMTPClient();
+		try {
+			// 查找MX记录
+			Lookup lookup = new Lookup(hostName, Type.MX);
+			lookup.run();
+			if (lookup.getResult() != Lookup.SUCCESSFUL) {
+				return false;
+			} else {
+				result = lookup.getAnswers();
+			}
+			// 连接到邮箱服务器
+			for (int i = 0; i < result.length; i++) {
+				host1111 = result[i].getAdditionalName().toString();
+				client.connect(host1111);
+				if (!SMTPReply.isPositiveCompletion(client.getReplyCode())) {
+					client.disconnect();
+					continue;
+				} else {
+					break;
+				}
+			}
+			client.login("163.com");/////////////////////////////////////////此处要修改成发送方所在的位置
+			client.setSender(userName);
+			client.addRecipient(email);
+			if (250 == client.getReplyCode()) {
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try{
+				client.disconnect();
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
 }

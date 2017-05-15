@@ -1,5 +1,7 @@
 package com.cem.controller;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cem.pojo.HTMLMail;
 import com.cem.service.MailService;
 
 import com.cem.service.MailService;
@@ -50,11 +53,12 @@ public class MailController {
 		files[0] = file1;
 		files[1] = file2;
 		Map<String, String> attachments = translateAttachmentToMap(files);
+		HTMLMail htmlMail = null;
 		try {
 			List<String> sList = mailService.findUserEmailList(mailService.generateQueryCondition("全体成员", "allUsers"));
 			String[] toList = (String[]) sList.toArray(new String[sList.size()]);
-			
-			mailService.sendHyperTextMail(subject, content, toList, null, attachments);
+			htmlMail = new HTMLMail(subject, content, toList, null, attachments);
+			mailService.sendHyperTextMail(htmlMail);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -198,10 +202,6 @@ public class MailController {
 	private boolean saveFile(MultipartFile file, String filePath) {
 		if (!file.isEmpty()) {
 			try {
-				// String filePath =
-				// request.getSession().getServletContext().getRealPath("/")+"upload/"+file.getOriginalFilename();
-				// String filePath = "e:/uploadTest/" +
-				// file.getOriginalFilename();
 				// 转存文件
 				file.transferTo(new File(filePath));
 				return true;

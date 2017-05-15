@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cem.dao.MailDao;
+import com.cem.pojo.HTMLMail;
 import com.cem.pojo.User;
 import com.cem.service.MailService;
 
@@ -53,6 +54,17 @@ public class MailServiceImpl implements MailService {
 	public void sendBirthdayBlessMail(List<User> userList) {
 		// TODO Auto-generated method stub
 		mailDao.sendBirthdayBlessMail(userList);
+	}
+
+	@Override
+	public void sendHyperTextMail(HTMLMail htmlMail) {
+		// TODO Auto-generated method stub
+		try {
+			mailDao.sendHyperTextMail(htmlMail);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

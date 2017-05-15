@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.mail.MessagingException;
 
+import com.cem.pojo.HTMLMail;
 import com.cem.pojo.User;
 
 public interface MailDao {
@@ -21,4 +22,5 @@ public interface MailDao {
 	
 	public void sendBirthdayBlessMail(List<User> userList);
 
+	public void sendHyperTextMail(HTMLMail htmlMail) throws MessagingException;
 }

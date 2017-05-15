@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -33,28 +33,19 @@ public class ForumDaoImpl implements ForumDao {
 	private SessionFactory sessionFactory;
 
 	@Autowired
-	private DataSource dataSource;
-
-	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 
-	@SuppressWarnings("unused")
-	private String getFormattedTime(Date date){
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return simpleDateFormat.format(date);
-	}
-	
 	@Override
 	public String insertForum(Forum forum) throws Exception {
 		// TODO Auto-generated method stub
 		Session session = getSession();
 		forum.setIsDeleted("0");
 		forum.setIsFine("0");
-		forum.setViewCount(1);
+		forum.setViewCount(0);
 		forum.setReplyCount(0);
 		session.save(forum);
 		return "succ";
@@ -76,6 +67,7 @@ public class ForumDaoImpl implements ForumDao {
 	public String deleteForum(int ForumId) {
 		// TODO Auto-generated method stub
 		String sql = "update Forum set isDeleted='1' where forumId='" + ForumId + "'";
+		// DetachedCriteria criteria = createDetachedCriteria(object)
 		int result = jdbcTemplate.update(sql);
 		if (result > 0) {
 			return "succ";
@@ -101,19 +93,20 @@ public class ForumDaoImpl implements ForumDao {
 	public Map<String, Object> FindForumwhileGointoModule(int forumModuleId, int pageIndex) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
-		Date date = new Date();
 		int pageSize = 10;
 		Session session = getSession();
 		if (pageIndex == 0) {
 			pageIndex = 1;
 		}
-		String sql = "select f from Forum f where f.forumModule=? and f.isDeleted='0' order by updateTime desc";
-		List<Forum> list = session.createQuery(sql).setString(0, String.valueOf(forumModuleId))
-				.setFirstResult((pageIndex - 1) * pageSize).setMaxResults(pageSize).list();
+		// 使用DetachedCriteria
+		List<Forum> list = session.createCriteria(Forum.class)
+				.add(Restrictions.eq("forumModule", String.valueOf(forumModuleId)))
+				.add(Restrictions.eq("isDeleted", "0")).addOrder(Order.desc("updateTime")).list();
+
 		String count = "select count(*) from Forum f where f.forumModule=? and f.isDeleted='0'";
 		int count1 = Integer.parseInt(
 				String.valueOf(session.createQuery(count).setString(0, String.valueOf(forumModuleId)).uniqueResult()));
-		int forumPage = count1 % pageSize==0 ? (count1 / pageSize) : (count1 / pageSize) + 1;
+		int forumPage = getPageNum(count1, pageSize);
 		try {
 			for (Forum forum : list) {
 				forum.setPublishTime(getFriendlyTime(forum.getPublishTime()));
@@ -137,7 +130,6 @@ public class ForumDaoImpl implements ForumDao {
 	public Map<String, Object> FindReplywhileGointoForum(int forumId, int pageIndex) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
-		List<Reply> objectReplyList = new ArrayList<>();
 		int pageSize = 10;
 		Session session = getSession();
 		if (pageIndex == 0) {
@@ -149,12 +141,11 @@ public class ForumDaoImpl implements ForumDao {
 		String count = "select count(*) from Reply r where r.forum=? and r.isDeleted='0'";
 		int count1 = Integer.parseInt(
 				String.valueOf(session.createQuery(count).setString(0, String.valueOf(forumId)).uniqueResult()));
-		String sql2 = "select f from Forum f where f.forumId=?";
-		Forum forum = (Forum) session.createQuery(sql2).setString(0, String.valueOf(forumId)).uniqueResult();
+		Forum forum = (Forum) session.createQuery("select f from Forum f where f.forumId=?")
+				.setString(0, String.valueOf(forumId)).uniqueResult();
 		forum.setViewCount(forum.getViewCount() + 1);
-		String sql3 = "update Forum set viewCount = viewCount+1 where forumId='" + forumId + "'";
-		jdbcTemplate.update(sql3);
-		int replyPage = count1 % pageSize == 0 ? (count1 / pageSize) : (count1 / pageSize) + 1;
+		jdbcTemplate.update("update Forum set viewCount = viewCount+1 where forumId='" + forumId + "'");
+		int replyPage = getPageNum(count1, pageSize);
 		try {
 			for (Reply reply : list) {
 				reply.setReplyTime(getFriendlyTime(reply.getReplyTime()));
@@ -191,7 +182,7 @@ public class ForumDaoImpl implements ForumDao {
 		List<Forum> list = session.createQuery(sql).setString(0, userId)
 				.setFirstResult((Integer.parseInt(pageNum) - 1) * pageSize).setMaxResults(pageSize).list();
 		int result = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, userId).uniqueResult()));
-		int totalPage = result%pageSize==0? result/pageSize:result/pageSize+1;
+		int totalPage = getPageNum(result, pageSize);
 		try {
 			for (Forum forum : list) {
 				forum.setPublishTime(getFriendlyTime(forum.getPublishTime()));
@@ -213,8 +204,7 @@ public class ForumDaoImpl implements ForumDao {
 		// TODO Auto-generated method stub
 		String sql = "select max(floor)+1 from Reply r where r.forum='" + forumId + "'";
 		String result = jdbcTemplate.queryForObject(sql, String.class);
-		short floor = (short) Integer.parseInt(result);
-		return floor;
+		return (short) Integer.parseInt(result);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -226,9 +216,10 @@ public class ForumDaoImpl implements ForumDao {
 		int pageSize = 10;
 		String sql = "select r from Reply r where publishUserId=? and isDeleted='0' order by replyId desc";
 		String count = "select count(*) from Reply where publishUserId=? and isDeleted='0' ";
-		List<Reply> list = session.createQuery(sql).setString(0, userId).setFirstResult((Integer.parseInt(pageNum)-1)*pageSize).setMaxResults(pageSize).list();
+		List<Reply> list = session.createQuery(sql).setString(0, userId)
+				.setFirstResult((Integer.parseInt(pageNum) - 1) * pageSize).setMaxResults(pageSize).list();
 		int result = Integer.parseInt(String.valueOf(session.createQuery(count).setString(0, userId).uniqueResult()));
-		int totalPage = result%pageSize==0?result/pageSize:result/pageSize+1;
+		int totalPage = getPageNum(result, pageSize);
 		try {
 			for (Reply reply : list) {
 				reply.setReplyTime(getFriendlyTime(reply.getReplyTime()));
@@ -256,15 +247,8 @@ public class ForumDaoImpl implements ForumDao {
 	@Override
 	public int findNewMessageNumber(int userId) {
 		// TODO Auto-generated method stub
-		// 1
-		// Session session = getSession();
-		// String sql = "select count(*) from ForumMessage where personId=? and
-		// status='0' ";
-		// int count = Integer
-		// .parseInt(String.valueOf(session.createQuery(sql).setString(0,
-		// String.valueOf(userId)).uniqueResult()));
-		// 2 which is better? i dont know sry,but i prefer 2.
-		String sql = "select count(*) from ForumMessage where objectReplyId='" + userId + "' and status='0' and personId <> '" + userId +"'";
+		String sql = "select count(*) from ForumMessage where objectReplyId='" + userId
+				+ "' and status='0' and personId <> '" + userId + "'";
 		int count = Integer.parseInt(jdbcTemplate.queryForObject(sql, String.class));
 		return count;
 	}
@@ -277,7 +261,8 @@ public class ForumDaoImpl implements ForumDao {
 		int pageSize = 10;
 		Session session = getSession();
 		String sql = "select f from ForumMessage f where objectReplyId=? and personId <> ? order by id desc";
-		List<ForumMessage> list = session.createQuery(sql).setString(0, String.valueOf(userId)).setString(1, String.valueOf(userId)).setMaxResults(pageSize)
+		List<ForumMessage> list = session.createQuery(sql).setString(0, String.valueOf(userId))
+				.setString(1, String.valueOf(userId)).setMaxResults(pageSize)
 				.setFirstResult((Integer.parseInt(messagePageIndex) - 1) * pageSize).list();
 		for (ForumMessage forumMessage : list) {
 			try {
@@ -293,10 +278,12 @@ public class ForumDaoImpl implements ForumDao {
 		return map;
 	}
 
-	public void updateMessageInfo(int userId){
-		String changeStatus = "update ForumMessage set status='1' where personId='"+userId+"'";
+	//将消息置为已读
+	public void updateMessageInfo(int userId) {
+		String changeStatus = "update ForumMessage set status='1' where personId='" + userId + "'";
 		jdbcTemplate.update(changeStatus);
 	}
+	//友好时间显示
 	public String getFriendlyTime(String date) throws ParseException {
 		Date nowTime = new Date();
 		Date oldtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date);
@@ -332,5 +319,9 @@ public class ForumDaoImpl implements ForumDao {
 			return "刚刚";
 		}
 		return date;
+	}
+
+	protected int getPageNum(int totalNum, int pageSize) {
+		return totalNum % pageSize == 0 ? totalNum / pageSize : totalNum / pageSize + 1;
 	}
 }
