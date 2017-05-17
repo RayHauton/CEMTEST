@@ -14,6 +14,8 @@ To change this template use File | Settings | File Templates.
 	<title>校友论坛</title>
 	<link rel="stylesheet" href="../css/view_set/base.css">
 	<link rel="stylesheet" href="../css/view_set/BBS.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
 

@@ -8,6 +8,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
 <link rel="stylesheet"
+href="${pageContext.request.contextPath }/css/bootstrap.css">
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/view_set/head.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/view_set/footer.css">
