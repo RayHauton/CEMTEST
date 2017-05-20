@@ -98,19 +98,21 @@ $(function(){
 			return false;
 		}
 	});
+	var flag2;
 	$('#refuse').click(function(){
-		flag1 = false;
+		flag2 = false;
 		$('.check-box[id!=selectAll]').each(function(){
 			var xx = $(this).children('i').children('input').attr('checked');
-			if(xx!='checked'){
-				flag1=true;
+			if(xx=='checked'){
+				flag2=true;
 			}
 		});
 		$('#tempInput').val("-");
-		if(!flag1){
+		if(!flag2){
 			alert("请选择需要批量不通过审核的用户");
 			return false;
 		}
+		
 	});
 });
 
