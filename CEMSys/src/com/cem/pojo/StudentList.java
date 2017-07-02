@@ -1,5 +1,12 @@
 package com.cem.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="studentlist")
 public class StudentList {
 
 	private int id;
@@ -9,6 +16,8 @@ public class StudentList {
 	private String entranceDate;
 	private String classNo;
 	
+	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
